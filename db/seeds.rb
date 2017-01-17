@@ -13,7 +13,7 @@ Size.create! label: 'XL'
 Size.create! label: 'XXL'
 Size.create! label: 'XXXL'
 
-Event.create! name: 'Test Event', desc: 'Test is a test', registration_date: '2017-01-08', event_date: '2017-3-08', event_start_time: "2000-01-01 19:26:00", goal: 10000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: true
+Event.create! name: 'Test Event', desc: 'Test is a test', registration_date: '2017-01-08', event_date: '2017-3-08', event_start_time: "2000-01-01 19:26:00", goal: 10000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: true, size_ids: [1,2,3,4,5]
 
 Team.create! name: 'Test Team', max_members: 999, event_id: 1 
 
@@ -27,3 +27,4 @@ Contribution.create! amount: 18.18, backable: Team.first
 
 Attendee.create! fee: 25.00, shirt_size: 'Small', paid: true, event_id: 1, team_id: 1
 
+RegistationFee.create! label: "Adult", amount: 25.00, event_id: 1
