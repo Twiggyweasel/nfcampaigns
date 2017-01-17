@@ -27,4 +27,4 @@ Contribution.create! amount: 18.18, backable: Team.first
 
 Attendee.create! fee: 25.00, shirt_size: 'Small', paid: true, event_id: 1, team_id: 1
 
-RegistationFee.create! label: "Adult", amount: 25.00, event_id: 1
+RegistrationFee.create! label: "Adult", amount: 25.00, event_id: 1
