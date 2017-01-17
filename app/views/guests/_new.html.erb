@@ -1,0 +1,27 @@
+<%= form_for( [ @attendee, Guest.new ], remote: true) do |f| %>
+    <div class='row'>
+      <div class="col-md-6">
+        <%= f.label :name, "Guest's name" %>
+        <%= f.text_field :name, class: 'form-control', id: 'name_box' %>
+      </div>
+      <div class="col-md-6">
+    
+        <%= f.label :email, "Guest's Email" %>
+        <%= f.email_field :email, class: 'form-control', id: 'email_box' %>
+      </div>
+    </div>
+
+  <div class='row'>
+    <div class="col-md-4">
+      <%= f.label :fee, "Registration Fee" %>
+      <%= f.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control', id: 'fee_box') %>
+    </div>
+    <div class="col-md-4">
+      <%= f.label :shirt_size, "Shirt Size" %>
+      <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control', id: 'shirt_box') %>
+    </div>
+        <div class="col-md-4">
+          <%= f.submit 'Submit', class: 'btn btn-primary', style: 'margin-top: 2rem;' %>
+        </div>
+    </div>
+<% end %>

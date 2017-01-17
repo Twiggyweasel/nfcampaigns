@@ -1,0 +1,9 @@
+<% @contributions.each do |contribution| %>
+
+<h2><%= contribution.id %></h2>
+<ul>
+  <li>Amount: <%= number_to_currency(contribution.amount) %></li>
+  <li>Type: <%= contribution.backable_type %></li>
+</ul>
+
+<% end %>

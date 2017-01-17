@@ -1,0 +1,29 @@
+<%= form_for [@context, @contribution] do |f| %>
+  <% if @contribution.errors.any? %>
+    <%= render "shared/errors", errors: @contribution.errors %>
+  <% end %>
+
+
+<div class='row'>
+  <div class='col-md-4 offset-md-4'>
+    <div class='card'>
+      <div class='card-block'>
+          <div class="form-group">
+            <%= f.label :amount %>
+            <%= f.number_field :amount, class: "form-control" %>
+          </div>
+          
+            <%= f.label :honoree %>
+            <%= f.text_field :honoree, class: "form-control" %>
+          
+          <div class='row'>
+            <div class='col-12'>
+            <%= f.submit class: "btn btn-success btn-block my-3" %>
+            <%= link_to "Cancel", :back, class: "btn btn-danger btn-block mb-2 mt-2" %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

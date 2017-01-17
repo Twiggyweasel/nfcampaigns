@@ -1,0 +1,23 @@
+<%= form_for([@attendee, @pledge_page]) do |f| %>
+  <% if @pledge_page.errors.any? %>
+    <%= render "shared/errors", errors: @pledge_page.errors %>
+  <% end %>
+
+<div class='row'>
+  <div class='col-12 col-md-8 offset-md-2'>
+    <div class='card'>
+      <div class='card-block'>
+        <%= f.label :summary %>
+        <%= f.text_area :summary, class: 'form-control', rows: 10 %>
+        <%= f.label :goal %>
+        <%= f.number_field :goal, class: 'form-control', placeholder: '100.00' %>
+        <%= f.label :pledge_pic %>
+        <%= f.file_field :pledge_pic, class: 'form-control' %>
+        
+        <%= f.submit %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

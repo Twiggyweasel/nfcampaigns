@@ -1,0 +1,9 @@
+$("#guests_container").prepend("<%= escape_javascript(render 'guests/guest', guest: @guest ) %>");
+$("#name_box").val("");
+$("#email_box").val("");
+$("#fee_box").val("");
+$("#shirt_box").val("");
+$("#guest-count").text("x<%= escape_javascript(@guest.attendee.guests.count.to_s) %>");
+$("#guest-total").text("<%= escape_javascript(number_to_currency(@guest.attendee.guests_fee_total.to_s)) %>");
+$("#attendee-total").text("<%= escape_javascript(number_to_currency(@guest.attendee.attendee_total.to_s)) %>");
+

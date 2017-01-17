@@ -1,0 +1,29 @@
+<%= form_for([@event, @team]) do |f| %>
+ <% if @team.errors.any? %>
+    <%= render "shared/errors", errors: @team.errors %>
+  <% end %>
+
+
+<div class='row'>
+  <div class='col-md-4 offset-md-4'>
+    <div class='card event-card-shadow'>
+      <div class='card-block'>
+        <%= f.label :name, "Team Name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.fields_for :attendees do |ff| %>
+          <%= ff.label :fee, "Registation Fee" %>
+          <%= ff.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
+          <%= ff.label :shirt_size %>
+          <%= ff.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control') %>
+          <%= ff.hidden_field(:event_id, value: @event.id) %>
+        <% end %>
+        
+      <%= f.submit 'Create Team', class: 'btn btn-success btn-block my-3' %>
+      <%= link_to "Cancel", :back, class: 'btn btn-danger btn-block my-1'%>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>

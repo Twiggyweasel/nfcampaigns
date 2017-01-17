@@ -1,0 +1,39 @@
+<!--<div class='container my-0'>-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <#% flash.each do |message_type, message| %>-->
+<!--                <div class="alert alert-<#%= message_type %> mt-2"><#%= message %>-->
+<!--                <a class="close" data-dismiss="alert">&#215;</a>-->
+<!--                </div>-->
+<!--            <#% end %>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<% flash.each do |type, message | %>
+
+<% case type
+  when 'success'
+    icon = "fa fa-check-circle-o"
+  when 'warning'
+    icon = "fa fa-exclamation-triangle"
+  when 'danger'
+    icon = "fa fa-times-circle-o"
+  end 
+%>
+<script>
+    $.notify({
+	// options
+	icon: '<%= icon %>',
+	message:  "<%= message %>"
+},{
+	// settings
+	type: '<%= type %>',
+	placement: {
+		from: "top",
+		align: "right"
+	},
+});
+</script>
+<% end %>

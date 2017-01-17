@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  max_members: 1
+  raised: 9.99
+  is_private: false
+
+two:
+  name: MyString
+  max_members: 1
+  raised: 9.99
+  is_private: false

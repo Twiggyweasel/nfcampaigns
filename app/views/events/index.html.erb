@@ -1,0 +1,118 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row mt-1">
+    <div class="col-12 text-center">
+        <h1 class="display-3">Events Catalog</h1>
+        <hr />
+    </div>
+</div>
+
+<div class="row my-3">
+  <div class="col-12 col-md-2 offset-md-3">
+      <label for="type">Filter By Event Type</label>
+      <select class="form-control" name="type">
+          <option>All</option>
+          <option>Test</option>
+      </select>
+  </div>
+  <div class="col-12 col-md-2">
+      <label for="company">Filter By Location</label>
+      <select class="form-control" name="company">
+          <option>All</option>
+          <% @events.each do |event| %>
+          <option><%= event.state %></option>
+          <% end %>
+      </select>
+  </div>
+  <div class="col-12 col-md-2">
+      <label for="sortby">Sort By</label>
+      <select class="form-control" name="sortby">
+          <option>All</option>
+          <option>Test</option>
+      </select>
+  </div>
+</div>
+
+
+
+<div class='row pt-3'>
+  <% @events.each do |event| %>
+    <!--<#% if !event.is_private? %>-->
+    <div class='col-md-4 col-sm-6 col-xl-3'>
+      <div class='card item-square my-2'>
+        <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
+        <% if event.event_cover? %>
+          <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
+        <% else %>
+          <%= image_tag "calvin-default.jpg", class: 'card-img-top img-fluid' %>
+        <% end %>
+        <div class='card-block'>
+          <h4 class='card-title'> <%= event.name %></h6>
+          <p class='card-text'><%= event.venue_name %> - <%= event.city %>, <%= event.state %><br /> <%= event.event_date.strftime("%A, %B %d %Y") %>
+            <br />
+            <%= link_to "View Event", event_path(event), class: "btn btn-primary mt-3 item-square" %>
+            <%= link_to "Contribute", new_event_contribution_path(event), class: "btn btn-warning mt-3 item-square" %>
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+          <div class='row'>
+              <!--<div class='col-xs-4'><p class='text-xs-left mb-0'><i class='fa fa-user'></i> <#%= event.attendees.count %></p></div> -->
+              <div class='col-4'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <%= event.teams.count %></p></div>            
+              <div class='col-4 pl-0'><p class='text-xs-center mb-0'><i class='fa fa-usd'></i> <%= number_to_currency(event.raised) %></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<#% end %>-->
+  <% end %>
+</div>
+
+<!--<h1>Events</h1>-->
+
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Registration date</th>-->
+<!--      <th>Event date</th>-->
+<!--      <th>Event</th>-->
+<!--      <th>Goal</th>-->
+<!--      <th>Raised</th>-->
+<!--      <th>Venue name</th>-->
+<!--      <th>Street</th>-->
+<!--      <th>City</th>-->
+<!--      <th>State</th>-->
+<!--      <th>Zipcode</th>-->
+<!--      <th>Has shirts</th>-->
+<!--      <th>Is private</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+
+<!--  <tbody>-->
+<!--    <#% @events.each do |event| %>-->
+<!--      <tr>-->
+<!--        <td><#%= event.name %></td>-->
+<!--        <td><#%= event.registration_date %></td>-->
+<!--        <td><#%= event.event_date %></td>-->
+<!--        <td><#%= event.event_start_time %></td>-->
+<!--        <td><#%= event.goal %></td>-->
+<!--        <td><#%= event.raised %></td>-->
+<!--        <td><#%= event.venue_name %></td>-->
+<!--        <td><#%= event.street %></td>-->
+<!--        <td><#%= event.city %></td>-->
+<!--        <td><#%= event.state %></td>-->
+<!--        <td><#%= event.zipcode %></td>-->
+<!--        <td><#%= event.has_shirts %></td>-->
+<!--        <td><#%= event.is_private %></td>-->
+<!--        <td><#%= link_to 'Show', event %></td>-->
+<!--        <td><#%= link_to 'Edit', edit_event_path(event) %></td>-->
+<!--        <td><#%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+<!--    <#% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<!--<br>-->
+
+<%= link_to 'New Event', new_event_path %>

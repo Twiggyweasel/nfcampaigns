@@ -1,0 +1,119 @@
+<% if @pledge_page.event.event_cover.url %>
+  <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+  </div>
+<% else %>
+  <div class='row cover-img-block' style='background-image: url("<%= image_url('calvin-default.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+  </div>
+<% end %>
+
+<div class='container mb-5'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card event-card-shadow primary-pledge-card' style='margin-top: -300px;'>
+        <div style='margin-top:-125px; margin-left: 25px; width:600px;'>
+          <img class='img-fluid img-thumbnail' src='https://robohash.org/attendee<%= @pledge_page.attendee.id %>pledge_page<%= @pledge_page.id %>.png?set=set1&size=250x250&bgset=bg<%= @pledge_page.id %>' style='border-radius: 50%;'>
+          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'>*Username* <br /><small class='text-muted'>First Time Walker</small></h4>
+        </div>
+        <div class='card-block'>
+          <div class="row">
+            <div class="col-md-8">
+              <h5>
+              <span><%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name %></span>
+              <br />
+              <%= @pledge_page.event.event_date.strftime("%A, %B %d %Y") %>
+              </h5>
+              <h4>Achieved: <%= number_to_currency(@pledge_page.attendee.total_raised) %> (<%= @pledge_page.percent_raised.to_f.ceil %>%) <span class='float-right'>Goal: <%= number_to_currency(@pledge_page.goal) %></span></h4>
+              <div class="progress mt-3">
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= @pledge_page.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @pledge_page.percent_raised.to_f.ceil %>%;'></div>
+              </div>
+            </div>
+            <div class='col-md-4' style='margin-top: -125px;'>
+              <h4>Share This Page:</h4>
+              <ul class='nav'>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:<%= @pledge_page.event.name %>&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-3x social-icon' style='color:#FF5700;'></i></a></li>
+              </ul>
+              <hr />
+              <h4>Support *Username*</h4>
+              <%= link_to "Join Me", new_event_attendee_path(@pledge_page.attendee.event), class: 'btn btn-primary btn-block' %>
+              <%= link_to "Donate", new_attendee_contribution_path(@pledge_page.attendee), class: 'btn btn-success btn-block' %>
+            </div>
+          </div>
+          <hr />
+          <div class='row'>
+            <div class='col-12'>
+              Nf Network is a great cause that needs to be supported so you should do that....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='card event-card-shadow'>
+        <div class='card-block'>
+          <div class='row'>
+            <div class='col-md-4'>
+              <h4>Guests</h4>
+              <hr />
+              <table class='table'>
+                <thead>
+                  <tr>
+                    <th colspan="2">Name</th>
+                    <th>Amount Raised</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @pledge_page.guests.each do |guest| %>
+                <tr>
+                  <td colspan="2"><%= guest.name %></td>
+                  <td><%= number_to_currency(guest.fee) %></td>
+                </tr>
+                <% end %>  
+                </tbody>
+              </table>
+            </div>
+            <div class='col-md-4'>
+              <h4>Team Members</h4>
+              <hr />
+              <% if @pledge_page.attendee.team == @pledge_page.event.teams.first %>
+              <h5>*Username* has not joined a team.</h5>
+              <% end %>
+            </div>
+            <div class='col-md-4'>
+              <h4>Contributions</h4>
+              <hr />
+              <table class='table'>
+                <thead>
+                  <tr>
+                    <th colspan="2">Name</th>
+                    <th>Contribution</th>
+                  </tr>  
+                </thead>
+                <tbody>
+                <% @pledge_page.contributions.each do |contribution| %>
+                <tr>
+                  <td colspan="2">Unknown</td>
+                  <td><%= number_to_currency(contribution.amount) %></td>
+                </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'comments/new', context: @pledge_page %>
+  <div id='comments_container'>
+    <%= render @pledge_page.comments %>
+  </div>
+</div>
+
+
+

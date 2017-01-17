@@ -1,0 +1,166 @@
+<% if @event.event_cover.url %>
+<div class='row cover-img-block' style='background-image: url("<%= @event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+</div>
+<% else %>
+<div class='row cover-img-block' style='background-image: url("<%= image_url('calvin-default.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+</div>
+
+
+<% end %>
+<div class='container'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card event-cover-card' style='margin-top: -300px;'>
+        <div class='card-block'>
+          <h2 class='card-title'><%= @event.name %> - <%= @event.venue_name %> <br /> <small class='muted'><%= @event.event_date.strftime("%A, %B %d %Y") %> @ <%= @event.event_start_time.strftime("%I:%M %p")  %></small>
+
+          </h2>
+          <p class='card-text'>
+            
+            
+            <div class='row'>
+              <div class='col-8'>
+                <h4>Achieved: <%= number_to_currency(@event.raised) %> <span class='float-right'>Goal: <%= number_to_currency(@event.goal) %></span></h4>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;'></div>
+                </div>
+              </div>
+              <div class='col-4 mt-4'>
+                <div class="dropdown float-right ">
+                  <a class="btn btn-success dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Register
+                  </a>
+                
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <%= link_to 'Single Registation', new_event_attendee_path(@event), class: 'dropdown-item' %>
+                    <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
+                  </div>
+                </div>                
+                <%= link_to 'Contribute', new_event_contribution_path(@event), class: 'btn btn-warning item-square float-right mx-1' %>
+              </div>
+            </div>
+
+            
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='card event-card-shadow' style='margin-top: -100px;'>
+        <div class='card-block'>
+          <div class='row'>
+            <div class='col-md-4'>
+              <div class='card callout text-center'>
+                <h2><%= @event.all_attendees %> <br />
+                Attendees</h2>
+              </div>
+            </div>
+            <div class='col-md-4'>
+              <div class='card callout text-center'>
+                <h2><%= @event.teams.count %> <br />
+                Teams</h2>
+              </div>
+            </div>
+            <div class='col-md-4'>
+              <div class='card callout text-center'>
+                <h2><%= @event.contributions.count %> <br />
+                Contributions</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='card event-card-shadow'>
+        <div class='row event-header m-0'>
+          <div class='col-12'>
+            <h3 class='p-3'>Event Details</h3>
+          </div>  
+        </div>
+        <div class='row'>
+          <div class='col-12 p-3'>
+            <p class='px-3'><%= @event.desc.html_safe %></p> 
+          </div>
+        </div>     
+        <div class='row event-header m-0'>
+          <div class='col-6'>
+            <h3 class='p-3'>Top Teams</h3>
+          </div>  
+          <div class='col-6'>
+            <h3 class='p-3'>Top Contributions</h3>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-6'>
+            <% if @event.teams.count == 1 %>
+              <h4 class="p-3">No Teams have been formed</h4>
+            <% else %>
+              <table class='table'>
+                <thead>
+                  <tr>
+                    <th>Team Name</th>
+                    <th>Amount Raised</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @event.teams.each do |team|%>
+                  <tr>
+                    <td><%= team.name %></td>
+                    <td>$150.00</td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+          <div class='col-6 pr-5'>
+
+                <% if !@event.contributions %>
+                <h4>There have been no Contributions</h4>
+                <% else %>
+                <table class='table'>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Amount Raised</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% @top_fundraisers.each do |raiser| %>
+                    <tr>
+                      <td>Unknown</td>
+                      <td><%= number_to_currency(raiser.amount) %></td>
+                    </tr>
+                  <% end %>  
+                  </tbody>
+                </table>
+                <% end %>
+              
+            
+          </div>
+        </div>
+        <div class='row event-header m-0'>
+          <div class='col-12'>
+            <h3 class='p-3'>Event Location</h3>
+          </div>  
+        </div>
+        <div class='row'>
+          <div class='col-12'>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkh8FKeW5f8K0ms_1lNh6QGrBBtBpPY_Y&q=<%= @event.street %>,<%= @event.city %>+<%= @event.state %>" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'comments/new', context: @event %>
+  <div id="comments_container">
+    <%= render @event.comments %>
+  </div>
+</div>

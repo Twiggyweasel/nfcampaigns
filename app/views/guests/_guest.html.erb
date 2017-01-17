@@ -1,0 +1,7 @@
+<tr>
+  <td><%= guest.name %></td>
+  <td><%= guest.email %></td>
+  <td><%= number_to_currency(guest.fee) %></td>
+  <td><%= guest.shirt_size %></td>
+  <td><%= link_to 'edit', edit_attendee_guest_path(guest.attendee_id, guest), class: 'btn btn-sm btn-primary' %>/that</td>
+</tr>

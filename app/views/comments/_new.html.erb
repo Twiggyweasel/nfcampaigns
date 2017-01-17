@@ -1,0 +1,16 @@
+
+<div class='row mt-3'>
+  <div class='col-md-12'>
+    <div class='card event-card-shadow'>
+      <div class='card-block'>
+          <h2>Comments:</h2>
+          <div class="form-group">
+            <%= form_for([context, Comment.new], remote: true) do |f| %>
+            <%= f.text_area :body, class: "form-control", rows: 10, id: 'comment_box' %>
+          </div>
+          <%= f.submit class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
