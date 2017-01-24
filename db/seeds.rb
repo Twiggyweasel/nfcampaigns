@@ -17,14 +17,14 @@ Event.create! name: 'Test Event', desc: 'Test is a test', registration_date: '20
 
 Team.create! name: 'Test Team', max_members: 999, event_id: 1 
 
-Contribution.create! amount: 10.10, backable: Event.first
-Contribution.create! amount: 210.10, backable: Event.first
-Contribution.create! amount: 2100.10, backable: Event.first
-Contribution.create! amount: 1001.10, backable: Event.first
-Contribution.create! amount: 103.10, backable: Event.first
-Contribution.create! amount: 10.10, backable: Team.first
-Contribution.create! amount: 18.18, backable: Team.first
+# Contribution.create! amount: 10.10, backable: Event.first
+# Contribution.create! amount: 210.10, backable: Event.first
+# Contribution.create! amount: 2100.10, backable: Event.first
+# Contribution.create! amount: 1001.10, backable: Event.first
+# Contribution.create! amount: 103.10, backable: Event.first
+# Contribution.create! amount: 10.10, backable: Team.first
+# Contribution.create! amount: 18.18, backable: Team.first
 
-Attendee.create! fee: 25.00, shirt_size: 'Small', paid: true, event_id: 1, team_id: 1
+# Attendee.create! fee: 25.00, shirt_size: 'Small', paid: true, event_id: 1, team_id: 1
 
 RegistrationFee.create! name: "Adult", amount: 25.00, event_id: 1

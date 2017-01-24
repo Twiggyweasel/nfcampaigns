@@ -18,10 +18,12 @@ ActiveRecord::Schema.define(version: 20170119193109) do
     t.boolean  "paid",       default: false
     t.integer  "team_id"
     t.integer  "event_id"
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["team_id"], name: "index_attendees_on_team_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -48,9 +50,11 @@ ActiveRecord::Schema.define(version: 20170119193109) do
     t.string   "processing"
     t.string   "backable_type"
     t.integer  "backable_id"
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["backable_type", "backable_id"], name: "index_contributions_on_backable_type_and_backable_id"
+    t.index ["user_id"], name: "index_contributions_on_user_id"
   end
 
   create_table "event_sizes", force: :cascade do |t|

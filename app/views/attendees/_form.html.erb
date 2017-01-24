@@ -1,9 +1,9 @@
 <%= form_for([@event, @attendee]) do |f| %>
+  <%= f.hidden_field(:user_id, :value => current_user.id) %>
   <% if @attendee.errors.any? %>
     <%= render "shared/errors", errors: @attendee.errors %>
   <% end %>
 
-  </div>
   <div class='row mt-1'>
     <div class='col-md-4 offset-md-4'>
       <div class='card'>
@@ -11,9 +11,11 @@
           <%= f.label :fee, "Registration Fee" %>
           <%= f.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
           <%= f.label :shirt_size %>
-          <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control') %>
+          <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
+
           <%= f.label :team_id, "Choose a Team" %>
           <%= f.select( :team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
+
         </div>
       </div> 
     </div>
@@ -95,7 +97,4 @@
       $("#addGuestRow").show();
     }
   });
-  
-
-  
 </script>

@@ -32,7 +32,7 @@ class AttendeesController < ApplicationController
     end
     
     def attendee_params
-      params.required(:attendee).permit(:fee, :shirt_size, :paid, :team_id, guests_attributes: [:id, :fee, :name, :shirt_size])
+      params.required(:attendee).permit(:fee, :shirt_size, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
     end
 
 end

@@ -41,7 +41,7 @@ class ContributionsController < ApplicationController
   
   private
     def contribution_params
-      params.require(:contribution).permit(:amount)
+      params.require(:contribution).permit(:amount, :honoree, :user_id)
     end
   
     def context

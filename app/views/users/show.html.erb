@@ -1,9 +1,10 @@
 <div class='header-img'></div>
 <div class='card card-block main-raised'>
-  <img class='img-fluid img-thumbnail img-raised d-block mx-auto' src='http://placehold.it/150x150'> 
+  <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-raised') %>
+
 
   <div class='raised-content'>
-    <h3 class='card-title text-xs-center'><%= @user.full_name %></h3>
+    <h3 class='card-title text-xs-center'><%= @user.name %></h3>
     <div class='row mt-2'>
       <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
         <h3><%= @user.attendees.count %></h3>

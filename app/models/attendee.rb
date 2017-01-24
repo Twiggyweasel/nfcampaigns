@@ -1,6 +1,8 @@
 class Attendee < ApplicationRecord
   belongs_to :team
   belongs_to :event
+  belongs_to :user
+  
   has_one :pledge_page
   has_many :contributions, as: :backable
   has_many :guests, inverse_of: :attendee
@@ -9,6 +11,8 @@ class Attendee < ApplicationRecord
   
   validates :fee, presence: true
   validates :shirt_size, presence: true
+  validates :user_id, presence: true, :uniqueness => { :scope => :event_id,
+    :message => "You can only register to attend this event once!" }
   
   def reject_guest(attributes)
     attributes['name'].blank?

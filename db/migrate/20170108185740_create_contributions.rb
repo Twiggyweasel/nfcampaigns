@@ -6,6 +6,8 @@ class CreateContributions < ActiveRecord::Migration[5.0]
       t.string :processing
       
       t.references :backable, polymorphic: true, index: true      
+      t.references :user, foreign_key: true
+      
       t.timestamps
     end
   end
