@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115220338) do
+ActiveRecord::Schema.define(version: 20170119193109) do
 
   create_table "attendees", force: :cascade do |t|
     t.decimal  "fee"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20170115220338) do
     t.datetime "updated_at",                 null: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["team_id"], name: "index_attendees_on_team_id"
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -113,6 +122,15 @@ ActiveRecord::Schema.define(version: 20170115220338) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["event_id"], name: "index_teams_on_event_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "profile_pic"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end

@@ -1,0 +1,22 @@
+<div class='header-img'></div>
+<div class='card card-block main-raised'>
+  <img class='img-fluid img-thumbnail img-raised d-block mx-auto' src='http://placehold.it/150x150'> 
+
+  <div class='raised-content'>
+    <h3 class='card-title text-xs-center'><%= @user.full_name %></h3>
+    <div class='row mt-2'>
+      <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
+        <h3><%= @user.attendees.count %></h3>
+        Events Attending
+      </div>
+      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout'>
+        <h3><%= @user.contributions.count %></h3>
+        Contributions
+      </div>
+      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout'>
+        <h3>$10,000</h3>
+        Funds Raised
+      </div>
+    </div>
+  <div>
+</div>

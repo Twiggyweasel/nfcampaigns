@@ -33,6 +33,10 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem "font-awesome-rails"
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "fog-aws"
+gem 'omniauth-twitter'
+gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem 'omniauth-identity'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

@@ -72,3 +72,56 @@ body {
 .primary-pledge-card {
   position: relative;
 }
+
+.card-rel {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    color: black;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
+    0 3px 1px -2px rgba(0, 0, 0, 0.2), 
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card-rel .header {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  margin: 15px;
+  border-radius: 3px;
+  padding: 20px 0;
+  background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+  //background: linear-gradient(45deg, rgba(124,227,250,1) 0%, rgba(53,206,252,1) 30%, rgba(53,176,252,1) 100%);
+  color: white;
+  margin-top: -40px;
+}
+
+.text-divide {
+    margin-top: 2rem;
+}
+
+.input-group-addon:not(:last-child) {
+    min-width: 45px;
+}
+
+.card-rel .header-primary {
+   background: linear-gradient(45deg, rgba(124,227,250,1) 0%, rgba(53,206,252,1) 30%, rgba(53,176,252,1) 100%);
+}
+
+.card-rel .header-success {
+    background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);
+}
+
+.card-rel .header-warning {
+    background: linear-gradient(45deg, rgba(255,191,131,1) 0%, rgba(255,132,25,1) 100%);
+}
+
+.card-rel .nav-pills .active, .card-rel .nav-pills .active:focus, .card-rel .nav-pills li a:hover, .card-rel .nav-pills .active:hover {
+    background-color: rgba(0,0,0,.1);
+    color: white;
+}
+.card-rel .nav-pills .nav-link {
+    color: white;
+}
+
+.w {
+    color:white;
+}
