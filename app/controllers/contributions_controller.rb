@@ -1,4 +1,6 @@
 class ContributionsController < ApplicationController
+  before_action :require_user, only: [:new, :edit, :destroy]
+  
   
   def index
     @contributions = Contribution.all

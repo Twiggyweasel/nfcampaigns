@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
     @current_user = user
     session[:user_id] = user.nil? ? user : user.id
   end
+  
+  def require_user
+    if !logged_in?
+      flash[:danger] = "You must be logged in to do that!"
+      redirect_to :back
+    end
+  end
 end

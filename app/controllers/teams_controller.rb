@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_event
+  before_action :require_user, only: [:new, :edit, :destroy]
+  
   
   def new
     @team = @event.teams.new
