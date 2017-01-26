@@ -38,6 +38,8 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'
 gem 'omniauth-identity'
 
+gem 'activemerchant'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
