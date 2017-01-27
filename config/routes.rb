@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  namespace :admin do
+    resources :payments, only: [:index]
+  end
+  
   resources :events do 
     resources :contributions, only: [:show, :new, :create, :edit, :update]
     resources :comments, only: [:new, :create]
@@ -23,6 +28,7 @@ Rails.application.routes.draw do
   match '/logout', to: 'session#destroy', via: [:get, :post]
   resources :users #needed by omniauth-identity
   
+  resources :payments, only: [:index, :new, :create, :show]
   
   root to: "events#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

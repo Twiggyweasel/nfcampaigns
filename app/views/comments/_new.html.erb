@@ -3,14 +3,17 @@
   <div class='col-md-12'>
     <div class='card event-card-shadow'>
       <div class='card-block'>
-          <h2>Comments:</h2>
-          <div class="form-group">
+          <h2 class='text-center'>Comments</h2>
+          <% if logged_in? %>
             <%= form_for([context, Comment.new], remote: true) do |f| %>
-            <%= f.text_area :body, class: "form-control", rows: 10, id: 'comment_box' %>
-          </div>
-          <%= f.submit class: "btn btn-primary" %>
+              <div class="form-group">
+                <%= f.text_area :body, class: "form-control", rows: 10, id: 'comment_box', placeholder: "Share something great!" %>
+              </div>
+              <%= f.submit class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
-<% end %>
+

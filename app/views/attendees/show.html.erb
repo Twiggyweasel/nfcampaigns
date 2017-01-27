@@ -11,7 +11,15 @@
   <div class='col-md-6 offset-md-1'>
     <div class='card'>
       <div class='card-block'>
-                  <%= link_to "Cancel Registration", "", class: 'btn btn-danger btn-sm float-right' %>
+        <div class="dropdown">
+  <button class="btn btn-secondary btn-small float-right" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class='fa fa-minus'></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton" style='margin-top:40px;'>
+    <%= link_to "Cancel Registration", "Cancel Registration", class: ' dropdown-item float-right py-0' %>
+          </div>
+</div>
+                  
         <h2>Registration Information</h2>
         <p class='card-text'>
           Registrant: User's Name
