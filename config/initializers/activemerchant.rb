@@ -24,7 +24,7 @@ if Rails.env == "development"
 
 elsif Rails.env == "production"
   login = ENV["STRIPE_SECRET_TEST"]
-
+  ActiveMerchant::Billing::Base.mode = :test
 end
 
 GATEWAY = ActiveMerchant::Billing::StripeGateway.new({
