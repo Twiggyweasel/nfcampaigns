@@ -4,6 +4,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :guests, through: :attendees
   has_many :events, through: :attendees
   has_many :teams, through: :attendees
+  has_many :pledge_pages, through: :attendees
   has_many :contributions
   
   

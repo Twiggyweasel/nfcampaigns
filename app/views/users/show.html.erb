@@ -21,3 +21,37 @@
     </div>
   <div>
 </div>
+
+
+<div class='row'>
+  <% @user.attendees.each do |attendee| %>
+  <div class='col-4 my-3'>
+    <div class='card'>
+      <div class='card-block'>
+        <h2 class='card-title'><%= attendee.event.name %></h2>
+        <p class='card-text'>
+          Location: <%= attendee.event.venue_name %> <a href=''>map</a>
+          <br />
+          Date: <%= attendee.event.event_date.strftime("%A, %B %d %Y") %>
+          <br />
+          Guests: <%= attendee.guests.count %>
+          <br />
+          Days til Event: <%= (attendee.event.event_date - Date.current()).to_i %>
+        </p>
+      </div>
+      <div class='card-footer'>
+        <div class='row'>
+          <div class='col-6'>
+            <%= link_to "Registration", attendee_path(attendee), class: 'btn btn-secondary btn-block' %>          
+          </div>
+          <div class='col-6'>
+            <%= link_to "Pledge Page", attendee_pledge_page_path(attendee), class: 'btn btn-secondary btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+

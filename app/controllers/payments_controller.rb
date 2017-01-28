@@ -16,10 +16,10 @@ class PaymentsController < ApplicationController
     if @payment.save
       if @payment.process
         redirect_to payments_path, notice: "The user has been successfully charged." and return
-      # else
-      #   redirect_to payment_path(@payment)
+      else
+        redirect_to payment_path(@payment)
       end
-      render 'new'
+      # render :new
     end
   end
 

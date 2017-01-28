@@ -1,8 +1,10 @@
 class PledgePagesController < ApplicationController
-  before_action :set_attendee, only: [:new, :create]
+  before_action :set_attendee, only: [:show, :new, :create]
+  before_action :no_pledge_page, only: [:show]
   
   def show
-    @pledge_page = PledgePage.find(params[:id])
+    @pledge_page = @attendee.pledge_page
+    # @pledge_page = PledgePage.find(params[:id])
   end
   
   def new
@@ -20,7 +22,13 @@ class PledgePagesController < ApplicationController
   end
   
   private 
-  
+    def no_pledge_page
+      if !@attendee.pledge_page
+        flash[:danger] = "Pledge Page not Found"
+        redirect_to event_path(@attendee.event_id)
+      end
+    end
+    
     def set_attendee
       @attendee = Attendee.find(params[:attendee_id])
     end

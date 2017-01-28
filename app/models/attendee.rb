@@ -11,8 +11,12 @@ class Attendee < ApplicationRecord
   
   validates :fee, presence: true
   validates :shirt_size, presence: true
-  validates :user_id, presence: true, :uniqueness => { :scope => :event_id,
-    :message => "You can only register to attend this event once!" }
+  # validates :user_id, presence: true, :uniqueness => { :scope => :event_id,
+  #   :message => "You can only register to attend this event once!" }
+  
+  after_create do
+    self.create_pledge_page(summary: "test", goal: 1000, attendee_id: self.id)
+  end
   
   def reject_guest(attributes)
     attributes['name'].blank?

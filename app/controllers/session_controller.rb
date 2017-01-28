@@ -20,13 +20,13 @@ class SessionController < ApplicationController
         # account. But we found the authentication and the user associated with it 
         # is the current user. So the authentication is already associated with 
         # this user. So let's display an error message.
-        redirect_to root_path, notice: "You have already linked this account"
+        redirect_to root_path, :flash => { :warning => "You have already linked this account" }
       else
         # The authentication is not associated with the current_user so lets 
         # associate the authentication
         @authentication.user = current_user
         @authentication.save
-        redirect_to root_path, notice: "Account successfully authenticated"
+        redirect_to root_path, :flash => { :success => "Account successfully authenticated" }
       end
     else # no user is signed_in
       if @authentication.user.present?
@@ -59,11 +59,11 @@ class SessionController < ApplicationController
   
   def destroy
     self.current_user = nil
-    redirect_to root_path, notice: "Signed out!"
+    redirect_to root_path, :flash => { :danger => "Signed out!" }
   end
   
   def failure  
-    redirect_to root_path, alert: "Authentication failed, please try again."  
+    redirect_to root_path, :flash => { :danger => "Authentication failed, please try again." }  
   end
 end
 
