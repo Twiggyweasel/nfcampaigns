@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   
   match '/login', to: 'session#new', via: [:get, :post]
   match '/logout', to: 'session#destroy', via: [:get, :post]
+  get '/auth/failure', to: 'sessions#failure'
   resources :users #needed by omniauth-identity
   
   resources :payments, only: [:index, :new, :create, :show]
