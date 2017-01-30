@@ -1,8 +1,12 @@
 <%= render 'shared/title', title: 'All Users' %>
-
-
-<div class='container'>
+<div class='container mt-3'>
   <div class='row'>
+    <div class='col-12'>
+      <%= link_to(admin_users_path(format: :xlsx), class: 'btn btn-primary btn-sm float-right') do %><i class='fa fa-download'></i> Export to Excel <% end %>
+    </div>
+  </div>
+
+  <div class='row mt-3'>
     <div class='col-12'>
       <div class='card card-block'>
         <table class='table mt-3'>

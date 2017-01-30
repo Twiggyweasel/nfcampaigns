@@ -3,9 +3,9 @@
 <div class='row mt-5'>
 <div class='card mt-5 card-rel card-block main-raised'>
   <% if @user.profile_pic? %>
-    <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-thumbnail', style: "border-radius: 50%; margin-top: -100px ") %>
+    <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-thumbnail rounded-circle', style: "margin-top: -100px ") %>
   <% else %>
-    <%= image_tag('no_user.png', class: 'img-fluid d-block mx-auto img-thumbnail', style: "border-radius: 50%; margin-top: -100px; height: 250px; ")  %>
+    <%= image_tag('no_user.png', class: 'img-fluid d-block mx-auto img-thumbnail rounded-circle', style: "margin-top: -100px; height: 250px; ")  %>
   <% end %>
   <div class='raised-content'>
     <h3 class='card-title text-center'><%= @user.name %> - Kansas</h3>

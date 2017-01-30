@@ -41,6 +41,10 @@ gem 'omniauth-identity'
 
 gem 'activemerchant'
 
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
