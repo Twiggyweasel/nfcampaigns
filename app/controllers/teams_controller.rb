@@ -2,6 +2,9 @@ class TeamsController < ApplicationController
   before_action :set_event
   before_action :require_user, only: [:new, :edit, :destroy]
   
+  def show
+    @team = Team.find(params[:id])
+  end
   
   def new
     @team = @event.teams.new
@@ -24,6 +27,6 @@ class TeamsController < ApplicationController
     end
     
     def team_params
-      params.require(:team).permit(:name, attendees_attributes: [:fee, :shirt_size, :event_id])
+      params.require(:team).permit(:name, attendees_attributes: [:fee, :shirt_size, :event_id, :user_id])
     end
 end

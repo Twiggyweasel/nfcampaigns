@@ -5,7 +5,7 @@
         <p class='card-text blockquote'>
           <%= comment.body %>
           <br />
-          <span class='blockquote-footer'><%= comment.created_at.strftime("%I:%M %p") %></span>
+          <span class='blockquote-footer'>by: <%= link_to comment.user.name, user_path(comment.user) %> on <%= comment.created_at.strftime("%I:%M %p") %></span>
         </p>
       </div>
     </div>

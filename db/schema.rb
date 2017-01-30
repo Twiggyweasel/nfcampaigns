@@ -145,10 +145,12 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.integer  "max_members"
     t.decimal  "raised"
     t.boolean  "is_private",  default: false
+    t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["event_id"], name: "index_teams_on_event_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

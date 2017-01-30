@@ -30,7 +30,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
     when 'twitter'
       create(name: auth_name, password: pass_gen, profile_pic: auth['info']['image'])
     else
-      create(name: auth_name)
+      create(name: auth_name, email: auth_email, password: auth['info']['password'])
     end
 
   end

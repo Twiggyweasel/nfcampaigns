@@ -12,6 +12,7 @@
         <%= f.text_field :name, class: 'form-control' %>
 
         <%= f.fields_for :attendees do |ff| %>
+          <%= ff.hidden_field(:user_id, :value => current_user.id) %>
           <%= ff.label :fee, "Registation Fee" %>
           <%= ff.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
           <%= ff.label :shirt_size %>

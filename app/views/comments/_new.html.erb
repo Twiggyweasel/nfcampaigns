@@ -7,10 +7,13 @@
           <% if logged_in? %>
             <%= form_for([context, Comment.new], remote: true) do |f| %>
               <div class="form-group">
+                <%= f.hidden_field(:user_id, :value => current_user.id) %>
                 <%= f.text_area :body, class: "form-control", rows: 10, id: 'comment_box', placeholder: "Share something great!" %>
               </div>
               <%= f.submit class: "btn btn-primary" %>
             <% end %>
+          <% else %>
+          <textarea class='form-control' readonly placeholder="You need to Login in order to leave a comment."></textarea>
           <% end %>
       </div>
     </div>

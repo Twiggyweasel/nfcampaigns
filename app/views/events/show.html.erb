@@ -7,7 +7,7 @@
 
 
 <% end %>
-<div class='container'>
+<div class='container mb-5'>
   <div class='row'>
     <div class='col-12'>
       <div class='card event-cover-card' style='margin-top: -300px;'>
@@ -133,7 +133,7 @@
                   <tbody>
                   <% @top_fundraisers.each do |raiser| %>
                     <tr>
-                      <td>Unknown</td>
+                      <td><%= raiser.user.name %></td>
                       <td><%= number_to_currency(raiser.amount) %></td>
                     </tr>
                   <% end %>  
@@ -150,7 +150,15 @@
           </div>  
         </div>
         <div class='row'>
-          <div class='col-12'>
+          <div class='col-4 pl-4 text-center' style="margin-top: 12%">
+            <h4><%= @event.venue_name %></h4>
+            <p>
+              <%= @event.street %>
+              <br />
+              <%= @event.city %>, <%= @event.state %> <%= @event.zipcode %>
+            </p>
+          </div>
+          <div class='col-8'>
             <div class="embed-responsive embed-responsive-16by9">
               <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkh8FKeW5f8K0ms_1lNh6QGrBBtBpPY_Y&q=<%= @event.street %>,<%= @event.city %>+<%= @event.state %>" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>

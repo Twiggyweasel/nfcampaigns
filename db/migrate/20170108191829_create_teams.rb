@@ -6,6 +6,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.decimal :raised
       t.boolean :is_private, default: false
       
+      t.references :user, foreign_key: true
       t.references :event, foreign_key: true
       t.timestamps
     end
