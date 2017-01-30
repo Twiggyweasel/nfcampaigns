@@ -1,0 +1,32 @@
+<%= render 'shared/title', title: "Edit Record for #{@user.name}" %>
+
+
+
+<%= form_for([:admin, @user]) do |f| %>
+
+<% if @user.errors.any? %>
+  <%= render 'shared/errors', errors: @user.errors %>
+<% end %>
+
+<div class='container'>
+  <div class='col-6 offset-3'>
+    <div class='card card-block'>
+      <%= f.label :name, "Full Name" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email, "User's Email Address" %>
+      <%= f.email_field :email, class: 'form-control' %>      
+      
+      <%= f.label :password, "User's Password" %>
+      <%= f.password_field :password, class: 'form-control' %>
+      
+      
+      
+      <%= f.submit "Update Record", class: 'btn btn-success btn-block mt-3' %>
+      <%= link_to "Cancel Record Update", admin_users_path, class: 'btn btn-danger btn-block mt-3' %>
+    </div>
+  </div>
+</div>
+
+
+<% end %>

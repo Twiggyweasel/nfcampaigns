@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'home', to: 'pages#home'
     resources :events
     resources :promotions 
+    resources :users
   end
   
   resources :events, except: [:new, :create] do 

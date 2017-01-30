@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :password_digest
       t.string :profile_pic
       
+      t.references :role, foriegn_key: true
       t.timestamps
     end
   end

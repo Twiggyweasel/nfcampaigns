@@ -1,5 +1,7 @@
 #User class is responsible for creating user records 
 class User < OmniAuth::Identity::Models::ActiveRecord
+  belongs_to :role
+  
   has_many :attendees
   has_many :guests, through: :attendees
   has_many :events, through: :attendees
@@ -24,13 +26,13 @@ class User < OmniAuth::Identity::Models::ActiveRecord
 
     case auth['provider']
     when 'facebook'
-      create(name: auth_name, password: pass_gen, email: auth_email, profile_pic: auth['info']['image'])
+      create(name: auth_name, password: pass_gen, email: auth_email, profile_pic: auth['info']['image'], role_id: 2)
     when 'google_oauth2'
-      create(name: auth_name, password: pass_gen, email: auth_email, profile_pic: auth['info']['image'])
+      create(name: auth_name, password: pass_gen, email: auth_email, profile_pic: auth['info']['image'], role_id: 2)
     when 'twitter'
-      create(name: auth_name, password: pass_gen, profile_pic: auth['info']['image'])
+      create(name: auth_name, password: pass_gen, profile_pic: auth['info']['image'], role_id: 2)
     else
-      create(name: auth_name, email: auth_email, password: auth['info']['password'])
+      create(name: auth_name, email: auth_email, password: auth['info']['password'], role_id: 2)
     end
 
   end

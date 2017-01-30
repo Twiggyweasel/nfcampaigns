@@ -136,6 +136,10 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.index ["event_id"], name: "index_registration_fees_on_event_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "sizes", force: :cascade do |t|
     t.string "label"
   end
@@ -145,12 +149,10 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.integer  "max_members"
     t.decimal  "raised"
     t.boolean  "is_private",  default: false
-    t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.index ["event_id"], name: "index_teams_on_event_id"
-    t.index ["user_id"], name: "index_teams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -158,8 +160,10 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "profile_pic"
+    t.integer  "role_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
 end
