@@ -8,9 +8,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :identity, fields: [:email, :name], model: User, on_failed_registration: lambda { |env|      
     UsersController.action(:new).call(env)  
   }
-  
-  OmniAuth.config.on_failure = Proc.new { |env|
-    OmniAuth::FailureEndpoint.new(env).redirect_to_failure
-  }
-  
+
 end
