@@ -25,6 +25,6 @@ class Event < ApplicationRecord
   end
   
   after_save do 
-    self.teams.create( name: "No Team", max_members: 999 , event_id: self.id, user_id: 1)
+    self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
   end
 end
