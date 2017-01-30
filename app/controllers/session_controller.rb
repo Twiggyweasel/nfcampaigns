@@ -65,7 +65,7 @@ class SessionController < ApplicationController
   end
   
   def failure  
-    redirect_to root_path, :flash => { :danger => "Authentication failed, please try again." }  
+    redirect_to login_path, :flash => { :danger => "Authentication failed, please try again." }  
   end
 end
 
