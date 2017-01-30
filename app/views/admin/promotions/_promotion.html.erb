@@ -1,0 +1,9 @@
+<tr>
+  <td><%= promotion.name %></td>
+  <td><%= promotion.code %></td>
+  <td><%= number_to_currency(promotion.discount) %></td>
+  <td><%= promotion.is_active %></td>
+  <td><%= link_to "Edit", edit_admin_promotion_path(promotion), class: 'btn btn-primary btn-sm' %>
+  <%= link_to "Delete", [:admin, promotion], method: :destroy,  data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger btn-sm' %>
+  </td>
+</tr>

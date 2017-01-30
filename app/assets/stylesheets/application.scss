@@ -125,3 +125,28 @@ body {
 .w {
     color:white;
 }
+
+#sidebar {
+  height: 100vh;
+}
+
+.card-link {
+  text-decoration: none;
+  color: #ccc;
+  text-align: center;
+  transition: all .5s ease;
+}
+
+.card-link .card {
+  min-height: 95%; 
+  border: 3px #ccc dashed;
+}
+
+.card-link .card h1 {
+  margin-top: 40%;
+}
+
+.card-link:hover {
+  color: #000;
+}
+

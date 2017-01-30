@@ -2,13 +2,17 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :payments, only: [:index]
+    get 'home', to: 'pages#home'
+    resources :events
+    resources :promotions 
   end
   
-  resources :events do 
+  resources :events, except: [:new, :create] do 
     resources :contributions, only: [:show, :new, :create, :edit, :update]
     resources :comments, only: [:new, :create]
     resources :teams
     resources :attendees
+    resources :registration_fees
   end
   resources :contributions
   

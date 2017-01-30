@@ -1,0 +1,31 @@
+<%= render 'shared/title', title: "Edit #{@promotion.name}" %>
+
+<%= form_for [:admin, @promotion] do |f| %>
+  <% if @promotion.errors.any? %>
+    <%= render 'shared/errors', errors: @promotions.errors.each %>
+  <% end %> 
+
+<div class='row'>
+  <div class='col-6 offset-3'>
+    <div class='card card-block'>
+      <%= f.label :name, "Promotion Name" %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :code, "Promotion Code" %>
+      <%= f.text_field :code, class: 'form-control' %>
+      
+      <%= f.label :discount, "Discount" %>
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></div>
+          <%= f.number_field :discount, class: 'form-control mb-2 mb-sm-0', placeholder: "Discount", pattern: '[0,9]' %>
+        <div class="input-group-addon">.00</div>
+      </div>
+      
+      <%= f.submit "Edit Promotion", class: 'btn btn-success btn-block mt-3' %>
+      <%= link_to "Cancel", admin_promotions_path, class: 'btn btn-danger btn-block mt-3' %>
+    </div>
+  </div>
+</div>
+
+
+<% end %>

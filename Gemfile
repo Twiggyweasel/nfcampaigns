@@ -33,6 +33,7 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem "font-awesome-rails"
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "fog-aws"
+gem 'tinymce-rails'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'

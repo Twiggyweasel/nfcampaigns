@@ -2,7 +2,7 @@
   <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
   </div>
 <% else %>
-  <div class='row cover-img-block' style='background-image: url("<%= image_url('calvin-default.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+  <div class='row cover-img-block' style='background-image: url("<%= image_url('dock.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
   </div>
 <% end %>
 
@@ -12,7 +12,7 @@
       <div class='card event-card-shadow primary-pledge-card' style='margin-top: -300px;'>
         <div style='margin-top:-125px; margin-left: 25px; width:600px;'>
           <img class='img-fluid img-thumbnail' src='https://robohash.org/attendee<%= @pledge_page.attendee.id %>pledge_page<%= @pledge_page.id %>.png?set=set1&size=250x250&bgset=bg<%= @pledge_page.id %>' style='border-radius: 50%;'>
-          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'>*Username* <br /><small class='text-muted'>First Time Walker</small></h4>
+          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name %> <br /><small class='text-muted'>First Time Walker</small></h4>
         </div>
         <div class='card-block'>
           <div class="row">
@@ -36,7 +36,7 @@
                 <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:<%= @pledge_page.event.name %>&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-3x social-icon' style='color:#FF5700;'></i></a></li>
               </ul>
               <hr />
-              <h4>Support *Username*</h4>
+              <h4>Support <%= @pledge_page.user.name %></h4>
               <%= link_to "Join Me", new_event_attendee_path(@pledge_page.attendee.event), class: 'btn btn-primary btn-block' %>
               <%= link_to "Donate", new_attendee_contribution_path(@pledge_page.attendee), class: 'btn btn-success btn-block' %>
             </div>
@@ -81,7 +81,7 @@
               <h4>Team Members</h4>
               <hr />
               <% if @pledge_page.attendee.team == @pledge_page.event.teams.first %>
-              <h5>*Username* has not joined a team.</h5>
+              <h5<%= @pledge_page.user.name %> has not joined a team.</h5>
               <% end %>
             </div>
             <div class='col-md-4'>

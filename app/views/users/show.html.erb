@@ -1,10 +1,12 @@
 <div class='header-img'></div>
-<div class='card card-block main-raised'>
-  <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-raised') %>
+<div class='container'>
+<div class='row mt-5'>
+<div class='card mt-5 card-rel card-block main-raised'>
+  <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-thumbnail', style: "border-radius: 50%; margin-top: -100px ") %>
 
 
   <div class='raised-content'>
-    <h3 class='card-title text-xs-center'><%= @user.name %></h3>
+    <h3 class='card-title text-center'><%= @user.name %> - Kansas</h3>
     <div class='row mt-2'>
       <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
         <h3><%= @user.attendees.count %></h3>
@@ -19,11 +21,19 @@
         Funds Raised
       </div>
     </div>
-  <div>
+
 </div>
+</div>
+</div>
+<div class='row mt-3'>
+  <div class='col-12'>
+      <h3>Events Attending</h3>
+  </div>
 
-
+</div>
 <div class='row'>
+
+
   <% @user.attendees.each do |attendee| %>
   <div class='col-4 my-3'>
     <div class='card'>
@@ -54,4 +64,4 @@
   <% end %>
 </div>
 
-
+</div>

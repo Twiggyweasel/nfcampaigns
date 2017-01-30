@@ -1,5 +1,27 @@
-<ul>
+
+
+<div class='container'>
+<div class='row'>
+  <div class='col-12'>
+    <h1 class='text-center'>All Users</h1>
+  </div>
+</div>
+
+<div class='row mt-5'>
+  
   <% @users.each do |user| %>
-    <li><%= user.name %> - <%= link_to "link", user_path(user)%></li>
-  <% end %>
+    <div class='col-md-4 mt-3'>
+      <div class='card text-center' style='position:relative; display: inline-block; width: 100%'>
+        <img src='<%= user.profile_pic %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+        <div class='card-block'>
+          <h3 class='mt-2'><%= user.name %></h3>
+          <%= link_to "View Profile", user_path(user), class: 'btn btn btn-primary'%>
+          <%= link_to "Active Campaign", "" , class: 'btn btn-info' %>
+        </div>
+      </div>
+    </div>
+    <% end %>
 </ul>
+</div>
+
+</div>

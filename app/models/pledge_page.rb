@@ -1,5 +1,6 @@
 class PledgePage < ApplicationRecord
   belongs_to :attendee
+  has_one :user, through: :attendee
   has_one :event, through: :attendee
   has_many :guests, through: :attendee
   has_many :contributions, through: :attendee

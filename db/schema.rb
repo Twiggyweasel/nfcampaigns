@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126164613) do
+ActiveRecord::Schema.define(version: 20170130015307) do
 
   create_table "attendees", force: :cascade do |t|
     t.decimal  "fee"
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 20170126164613) do
     t.text     "body"
     t.string   "commentable_type"
     t.integer  "commentable_id"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contributions", force: :cascade do |t|
@@ -113,6 +115,16 @@ ActiveRecord::Schema.define(version: 20170126164613) do
     t.string  "pledge_pic"
     t.integer "attendee_id"
     t.index ["attendee_id"], name: "index_pledge_pages_on_attendee_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "desc"
+    t.string   "code"
+    t.float    "discount"
+    t.boolean  "is_active",  default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "registration_fees", force: :cascade do |t|

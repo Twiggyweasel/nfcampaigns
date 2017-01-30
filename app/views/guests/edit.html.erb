@@ -1,0 +1,34 @@
+<div class='container'>
+<div class='row'>
+  <div class='col-12 text-center'>
+    <h1>Edit Guest Details</h1>
+  </div>
+</div>
+
+<%= form_for( [@attendee, @guest] ) do |f| %>
+
+<div class='row'>
+  <div class='col-md-6 offset-3'>
+    <div class='card card-block'>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      
+      <%= f.label :fee, "Registration Fee" %>
+      <%= f.select(:fee, options_for_select(@attendee.event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {:prompt => 'Select One'}, class: 'form-control') %>
+      
+      <%= f.label :shirt_size %>
+      <%= f.select( :shirt_size, options_for_select(@attendee.event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control') %>
+      
+      <%= f.submit "Update Guest Information", class: 'btn btn-warning btn-block mt-3' %>
+      <%= link_to "Cancel", event_attendee_path(@attendee.event, @attendee), class: 'btn btn-danger btn-block mt-3' %>
+<% end %>    
+    </div>
+  </div>
+</div>
+
+
+
+</div>

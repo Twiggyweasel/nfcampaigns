@@ -44,7 +44,7 @@
         <% if event.event_cover? %>
           <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
         <% else %>
-          <%= image_tag "calvin-default.jpg", class: 'card-img-top img-fluid' %>
+          <%= image_tag "dock.jpg", class: 'card-img-top img-fluid' %>
         <% end %>
         <div class='card-block'>
           <h4 class='card-title'> <%= event.name %></h6>
@@ -115,4 +115,4 @@
 
 <!--<br>-->
 
-<%= link_to 'New Event', new_event_path %>
+<!--<#%= link_to 'New Event', new_event_path %>-->

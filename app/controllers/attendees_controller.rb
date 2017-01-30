@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_action :set_event, only: [:new, :create, :show ]
+  before_action :set_event, only: [:show, :new, :create, :edit, :update]
   before_action :require_user, only: [:new, :edit, :destroy]
   
   def show
@@ -21,10 +21,29 @@ class AttendeesController < ApplicationController
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
       end
     end
-    
-    
   end
   
+  def edit
+    @attendee = @event.attendees.find(params[:id])
+  end
+  
+  def update
+    @attendee = @event.attendees.find(params[:id])
+    
+    if @attendee.save(attendee_params)
+      redirect_to event_attendee_url(@attendee.event, @attendee), :flash => { :success => "Your registration has been updated."}
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    
+    @attendee = Attendee.find(params[:id])
+    @event = @attendee.event
+    @attendee.destroy
+    redirect_to event_path(@event), :flash => { :danger => "Registration successfully cancelled" }
+  end
   
   private 
     def set_event

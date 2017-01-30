@@ -1,0 +1,17 @@
+<%= form_for [:admin, Promotion.new], remote: true , html: { :class => 'form-inline' } do |f| %>
+
+<%= f.label :name, class: 'sr-only' %>
+<%= f.text_field :name, class: 'form-control mb-2 mr-sm-2 mb-sm-0 mt-sm-2', placeholder: "Promotion Name" %>
+
+<%= f.label :code, class: 'sr-only' %>
+<%= f.text_field :code, class: 'form-control mb-2 mr-sm-2 mb-sm-0 mt-sm-2', placeholder: "Promotion Code" %>
+
+<%= f.label :discount, class: 'sr-only' %>
+<div class="input-group mb-2 mr-sm-2 mb-sm-0 mt-sm-2">
+  <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></div>
+  <%= f.number_field :discount, class: 'form-control mb-2 mb-sm-0', placeholder: "Discount" %>
+  <div class="input-group-addon">.00</div>
+</div>
+
+<%= f.submit "Create Promotion", class: "btn btn-success mt-sm-2" %>
+<% end %>

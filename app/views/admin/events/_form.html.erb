@@ -1,0 +1,108 @@
+<%= tinymce_assets %>
+<%= tinymce %>
+
+<%= form_for [:admin, @event] do |f| %>
+  <% if @event.errors.any? %>
+    <%= render "shared/errors", errors: @event.errors %>
+  <% end %>
+
+<div class='row'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <h3 class="card-title">General Event Details</h3>
+      <div class='row'>
+        <div class='col-md-9'>
+          <%= f.label :name, "Event Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class='col-md-3'>
+           <%= f.label :goal, "Event Goal" %>
+      <div class="input-group">
+        <div class="input-group-addon"><i class='fa fa-usd'></i></div>
+        <%= f.number_field :goal, class: 'form-control' %>
+        <div class="input-group-addon">.00</div>
+      </div>
+        </div>
+      </div>
+      
+      
+     
+      <%= f.label :event_cover %>
+      <%= f.file_field :event_cover, class: 'form-control' %>
+      
+      <%= f.label :desc, "Event Summary" %>
+      <%= f.text_area :desc, class: "tinymce", :row => 350, :cols => 120 %>
+      
+      <%= f.label :teaser, "Event Teaser Text" %>
+      <%= f.text_area :teaser, class: 'form-control', :row => 10 %>
+    </div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <h3 class="card-title">Event Dates</h3>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.label :event_date, "Date of Event" %>
+          <%= f.date_field :event_date, class: 'form-control' %>
+        </div>
+        <div class='col-md-6'>
+                <%= f.label :registration_date, "Date Registration Begins" %>
+        <%= f.date_field :registration_date, class: 'form-control' %>
+        </div>
+      </div>
+
+
+
+        
+        <%= f.label :event_start_time %>
+        <%= f.time_select :event_start_time %>
+     </div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <h3 class="card-title">Event Location Details</h3>
+      <div class='row my-3'>
+        <div class='col-12'>
+          <%= f.label :venue_name, "Name of the Venue" %>
+          <%= f.text_field :venue_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-3'>
+        <div class='col-12'>
+          <%= f.label :street, "Street Address" %>
+          <%= f.text_field :street, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-3'>
+        <div class='col-6'>
+          <%= f.label :city %>
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+        <div class='col-3'>
+          <%= f.label :state %>
+          <%= select_tag :state, options_for_select(states), class: 'form-control'%>
+        </div>
+        <div class='col-3'>
+          <%= f.label :zipcode %>
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
+      </div>  
+     </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <%= f.submit(@event.new_record? ? "Create New Event" : "Edit Event", class: "btn btn-success btn-block") %>
+      <%= link_to "Cancel", admin_events_path, class: "btn btn-danger btn-block" %> 
+    </div>
+  </div>
+</div>
+<% end %>

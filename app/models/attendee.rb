@@ -3,7 +3,7 @@ class Attendee < ApplicationRecord
   belongs_to :event
   belongs_to :user
   
-  has_one :pledge_page
+  has_one :pledge_page, dependent: :destroy
   has_many :contributions, as: :backable
   has_many :guests, inverse_of: :attendee
   

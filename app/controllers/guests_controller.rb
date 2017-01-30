@@ -16,6 +16,26 @@ class GuestsController < ApplicationController
     end
   end
   
+  def edit
+    @guest = @attendee.guests.find(params[:id])
+  end
+  
+  def update
+    @guest = @attendee.guests.find(params[:id])
+    
+    if @guest.update(guest_params)
+      redirect_to event_attendee_path(@attendee.event, @attendee), :flash => { :success => "Guest information successfully updated"}
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @guest = @attendee.guests.find(params[:id])
+    @guest.destroy
+    redirect_to event_attendee_path(@attendee.event, @attendee), :flash => { :danger => "Guest has been deleted" }
+  end
+  
   private 
     def set_attendee
       @attendee = Attendee.find(params[:attendee_id])    

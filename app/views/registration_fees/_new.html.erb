@@ -1,0 +1,16 @@
+
+<%= form_for( [ @event, RegistrationFee.new ], remote: true) do |f| %>
+    <div class='row'>
+    <div class='col-md-4'>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', id: 'name' %>  
+    </div>
+    <div class='col-md-4'>
+      <%= f.label :amount %>
+      <%= f.number_field :amount, class: 'form-control', id: 'amount' %>
+    </div>    
+    <div class='col-md-4' style='padding-top: 1.80rem;'>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div> 
+    </div>
+<% end %>

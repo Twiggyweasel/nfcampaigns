@@ -3,5 +3,6 @@
   <td><%= guest.email %></td>
   <td><%= number_to_currency(guest.fee) %></td>
   <td><%= guest.shirt_size %></td>
-  <td><%= link_to 'edit', edit_attendee_guest_path(guest.attendee_id, guest), class: 'btn btn-sm btn-primary' %>/that</td>
+  <td><%= link_to "Edit", edit_attendee_guest_path(guest.attendee, guest), class: 'btn btn-sm btn-info' %>
+  <%= link_to 'Delete', [guest.attendee, guest], method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-sm btn-danger' %> </td>
 </tr>

@@ -1,0 +1,17 @@
+menubar: 
+min_height: 400
+toolbar:
+  - styleselect | bold italic underline | undo redo | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table
+  - image | link | preview code
+plugins:
+  - image
+  - link
+  - textcolor
+  - table
+  - preview 
+  - template 
+  - wordcount 
+  - code
+templates: [
+    { title: 'test', content: '<h1>Test 1</h1>'}
+    ]
