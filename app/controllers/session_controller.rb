@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   def new
-    
+
   end
   
   def create
@@ -52,7 +52,7 @@ class SessionController < ApplicationController
         # We can now link the authentication with the user and log him in
         u.authentications << @authentication
         self.current_user = u
-        UserMailer.welcome_email(u).deliver_later
+        # UserMailer.welcome_email(u).deliver_later
         redirect_to root_path, :flash => { :success => 'Welcome to The App!' }
         
       end

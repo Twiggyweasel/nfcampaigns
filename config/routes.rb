@@ -38,6 +38,6 @@ Rails.application.routes.draw do
   
   resources :payments, only: [:index, :new, :create, :show]
   
-  root to: "events#index"
+  root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
