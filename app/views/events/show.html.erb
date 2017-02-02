@@ -26,6 +26,12 @@
                 </div>
               </div>
               <div class='col-4 mt-4'>
+                    <ul class='nav navbar-nav float-xs-right pr-1'>
+      <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-2x social-icon' style='color:#3b5998;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-2x social-icon' style='color:#00aced;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-2x social-icon' style='color:#dd4b39;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:<%= @event.name %>&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-2x social-icon' style='color:#FF5700;'></i></a></li>
+    </ul>
                 <div class="dropdown float-right ">
                   <a class="btn btn-success dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Register

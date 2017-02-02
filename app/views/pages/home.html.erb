@@ -1,1 +1,168 @@
-<%= render 'shared/title', title: 'This is the homepage, you should make me prettier' %>
+<div class="row" style='background-image: url("<%= image_url('Capture.PNG') %>"); height: 950px; background-size: cover; '>
+  
+</div>
+<div class='container mt-3'>
+  <div class='row'>
+    <div class='col-10 offset-1 text-center'>
+      <h3><i>Take a crazy breath of fresh air and join us for an unforgettable party, and 1-mile fun run this February, benefiting NF research.</i></h3>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-4 offset-2'>
+      <%= link_to "Register", register_path, class: "btn btn-primary btn-block" %>
+    </div>
+
+    <div class='col-4'>
+    <%= link_to "Contribute", register_path, class: "btn btn-info btn-block" %>
+    </div>
+  </div>
+  <div class='row mt-5'>
+    <div class='col-6 offset-3'>
+      <div class='card card-block text-center' style=''>
+        <div class='row'>
+          <div class='col-6 text-center'>
+            <i class='fa fa-line-chart fa-5x'></i>
+          </div>
+          <div class='col-6 text-center'>
+          <h3 class="align-middle">Raised so far...</h3>
+          <h2 class="align-middle"><i class='fa fa-usd'></i>100,000.00</h2>
+        </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class='row mt-5'>
+    <div class='col-6'>
+      <h3>About our Walks…</h3>
+      <p>Walks for Neurofibromatosis take place in communities nationwide.  These inspiring events create strong bonds that build a supportive NF community.  The goal of these strong communities is to rally together and become one great voice in finding affective treatments and an eventual cure for NF.  The walks are a great way to involve family and friends, meet others who are affected by NF, while raising awareness of this disorder and to create funding for NF research.
+
+Take your first step towards a cure by finding, registering, and then fundraising for a walk near you!</p>
+      
+      
+      <h3>PANTS DROP THIS FEBRUARY. BE THERE!</h3>
+      <p>Join in and take part in the best, craziest thing you’ve ever done. You’ll tell your grandkids about it – and sleep well knowing you helped raise millions for the Children’s Tumor Foundation and neurofibromatosis research.</p>
+    </div>
+    <div class='col-6'>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/giw9tR9SB58?rel=0&showinfo=0" allowfullscreen></iframe>
+      </div>
+      
+    <ul class='nav justify-content-center pr-1 mt-5'>
+      <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-3x social-icon' style='color:#FF5700;'></i></a></li>
+    </ul>
+    </div>
+  </div>
+
+
+</div>
+<nav class="navbar my-5" style='background-color: #015F88; color: white; px-0'>
+  <div class='container'>
+    <div class='row'>
+    <div class='col-4 float-left'>
+      Neurofibromatosis Network
+    </div>
+    <div class='col-4 text-center'>
+      Leading NF Advocacy | Building NF Community
+    </div>
+    <div class='col-4 float-right'>
+      <span class='float-right'>
+      <i class="fa fa-hashtag" aria-hidden="true"></i>StridesforNF
+      </span>
+    </div>
+</div>
+
+  </div>
+  
+</nav>
+
+<div class='container'>
+  <div class='row my-5'>
+    <div class='col-4'>
+            <img src='https://placehold.it/450x250/4DA5A3/ffffff?text=Take+Home+NF+Swag' class='img-fluid rounded'>
+    </div>
+     <div class='col-4'>
+      <img src='https://placehold.it/450x250/FF6550/ffffff?text=NF+Champions' class='img-fluid rounded'>
+    </div>
+
+     <div class='col-4'>
+       <img src='https://placehold.it/450x250/B0145B/ffffff?text=Learn+about+NF' class='img-fluid rounded'>
+
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-6'>
+      <div class='card card-block'>
+        <h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'>See All</small></h2>
+        <table class='table  table-striped'>
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Raised</td>
+            </tr>
+          </thead>
+          <tbody>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='col-6'>
+      <div class='card card-block'>
+        <h2>TOP 5 TEAMS <small class='text-muted float-right'>See All</small></h2>
+        <table class='table  table-striped'>
+          <thead>
+            <tr>
+              <td>Team Name</td>
+              <td>Raised</td>
+            </tr>
+          </thead>
+          <tbody>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+                        <tr>
+              <td>Richard Wise</td>
+              <td>$9,000.00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
