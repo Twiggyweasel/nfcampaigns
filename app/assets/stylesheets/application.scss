@@ -159,3 +159,58 @@ body {
     transform: scale(1.3, 1.3);
     opacity: .8;
 }
+
+.img-tilt-l, .img-tilt-r {
+  transition: all .75s;
+}
+
+.img-tilt-l:hover
+{
+        -webkit-transform: rotateZ(-5deg);
+        -ms-transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg);
+}
+
+.img-tilt-r:hover
+{
+        -webkit-transform: rotateZ(5deg);
+        -ms-transform: rotateZ(5deg);
+        transform: rotateZ(5deg);
+}
+
+.shadow {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.anchor-styled {
+   color: #636C72;
+   transition: all 0.5s;
+  cursor: pointer;
+   
+}
+
+.anchor-styled span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.anchor-styled span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.anchor-styled:hover span {
+  padding-right: 25px;
+  color: #636C72;
+}
+
+.anchor-styled:hover span:after {
+  opacity: 1;
+  right: 0;
+}
