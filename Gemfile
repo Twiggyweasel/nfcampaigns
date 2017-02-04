@@ -41,6 +41,8 @@ gem 'omniauth-identity'
 
 gem 'activemerchant'
 
+gem 'ffaker'
+
 gem 'rubyzip', '~> 1.1.0'
 gem 'axlsx', '2.1.0.pre'
 gem 'axlsx_rails'
@@ -59,7 +61,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'sqlite3'
-  gem 'ffaker'
+
 end
 
 group :development do
