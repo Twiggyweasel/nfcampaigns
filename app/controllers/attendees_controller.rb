@@ -2,6 +2,10 @@ class AttendeesController < ApplicationController
   before_action :set_event, only: [:show, :new, :create, :edit, :update]
   before_action :require_user, only: [:new, :edit, :destroy]
   
+  def index
+    @attendees = Attendee.order(raised: :desc)
+  end
+  
   def show
     @attendee = @event.attendees.find(params[:id])
   end

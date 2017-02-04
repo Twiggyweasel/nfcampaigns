@@ -2,6 +2,10 @@ class PledgePagesController < ApplicationController
   before_action :set_attendee, only: [:show, :new, :create]
   before_action :no_pledge_page, only: [:show]
   
+  def index 
+    @pledge_pages = PledgePage.all
+  end
+  
   def show
     @pledge_page = @attendee.pledge_page
     # @pledge_page = PledgePage.find(params[:id])

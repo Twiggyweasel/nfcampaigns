@@ -1,6 +1,10 @@
 class TeamsController < ApplicationController
-  before_action :set_event
+  before_action :set_event, except: [:index, :new, :create]
   before_action :require_user, only: [:new, :edit, :destroy]
+  
+  def index
+    @teams = Team.order(raised: :desc)
+  end
   
   def show
     @team = Team.find(params[:id])

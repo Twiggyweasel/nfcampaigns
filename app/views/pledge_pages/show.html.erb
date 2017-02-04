@@ -11,8 +11,8 @@
     <div class='col-12'>
       <div class='card event-card-shadow primary-pledge-card' style='margin-top: -300px;'>
         <div style='margin-top:-125px; margin-left: 25px; width:600px;'>
-          <img class='img-fluid img-thumbnail' src='https://robohash.org/attendee<%= @pledge_page.attendee.id %>pledge_page<%= @pledge_page.id %>.png?set=set1&size=250x250&bgset=bg<%= @pledge_page.id %>' style='border-radius: 50%;'>
-          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name %> <br /><small class='text-muted'>First Time Walker</small></h4>
+          <img class='img-fluid img-thumbnail rounded-circle' src='<%= image_url('no_user.png') %>' style='height: 250px;'>
+          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>First Time Walker</small></h4>
         </div>
         <div class='card-block'>
           <div class="row">
@@ -97,7 +97,7 @@
                 <tbody>
                 <% @pledge_page.contributions.each do |contribution| %>
                 <tr>
-                  <td colspan="2">Unknown</td>
+                  <td colspan="2"><%= contribution.user.name.titleize %></td>
                   <td><%= number_to_currency(contribution.amount) %></td>
                 </tr>
                 <% end %>

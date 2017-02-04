@@ -214,3 +214,10 @@ body {
   opacity: 1;
   right: 0;
 }
+
+.banner-image {
+  background-image: image_url('StrongStrides.jpg'); 
+  height: 550px; 
+  background-size: 100% 100%; 
+  background-position: center;
+}

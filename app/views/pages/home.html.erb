@@ -1,5 +1,4 @@
-<div class="row" style='background-image: url("<%= image_url('StrongStrides.jpg') %>"); height: 500px; background-size: 100% 100%; background-position: center;'>
-  
+<div class="row banner-image">
 </div>
 <div class='container mt-3'>
   <div class='row'>
@@ -9,7 +8,11 @@
   </div>
   <div class='row mt-3'>
     <div class='col-4 offset-2'>
-      <%= link_to "Register", register_path, class: "btn btn-primary btn-block" %>
+      <% if !logged_in? %>
+        <%= link_to "Register", register_path, class: "btn btn-primary btn-block" %>
+      <% else %>
+        <%= link_to "Find an Event", events_path, class:'btn btn-primary btn-block' %>
+      <% end %>
     </div>
 
     <div class='col-4'>
@@ -17,13 +20,13 @@
     </div>
   </div>
   <div class='row mt-5'>
-    <div class='col-6 offset-3'>
+    <div class='col-lg-6 offset-lg-3'>
       <div class='card card-block text-center shadow w' style='background-color: #FF6550'>
         <div class='row'>
 
           <div class='col-12 text-center'>
           <h2 class="align-middle" style="font-family: 'Indie Flower', cursive;">Raised so far...</h2>
-          <h2 class="align-middle"><i class="fa fa-pie-chart" aria-hidden="true"></i> <i class='fa fa-usd' style=""></i><span style="">100,000</span></h2>
+          <h2 class="align-middle"><i class="fa fa-pie-chart" aria-hidden="true"></i> <%= number_to_currency(@total_raised) %></span></h2>
         </div>
         </div>
         
@@ -38,15 +41,17 @@
 Take your first step towards a cure by finding, registering, and then fundraising for a walk near you!</p>
       
       
-      <h3>PANTS DROP THIS FEBRUARY. BE THERE!</h3>
-      <p>Join in and take part in the best, craziest thing you’ve ever done. You’ll tell your grandkids about it – and sleep well knowing you helped raise millions for the Children’s Tumor Foundation and neurofibromatosis research.</p>
+      <h3>Lorem ipsum dolor sit amet</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, tortor ac egestas varius, 
+      erat tortor iaculis ex, in egestas nisi risus euismod dolor. Quisque id mauris libero. Vivamus aliquam
+      faucibus pellentesque.</p>
     </div>
     <div class='col-6'>
       <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/giw9tR9SB58?rel=0&showinfo=0" allowfullscreen></iframe>
       </div>
-      
-    <ul class='nav justify-content-center pr-1 mt-5'>
+      <h3 class='text-center mt-4' style="font-family: 'Indie Flower', cursive;">Share With Friends</h3>
+    <ul class='nav justify-content-center pr-1 mt-2'>
       <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
       <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
       <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
@@ -63,46 +68,27 @@ Take your first step towards a cure by finding, registering, and then fundraisin
     <hr />
   </div>
 </div>
-<!--<nav class="navbar my-5" style='background-color: #015F88; color: white; px-0'>-->
-<!--  <div class='container'>-->
-<!--    <div class='row'>-->
-<!--    <div class='col-4 float-left'>-->
-<!--      Neurofibromatosis Network-->
-<!--    </div>-->
-<!--    <div class='col-4 text-center'>-->
-<!--      Leading NF Advocacy | Building NF Community-->
-<!--    </div>-->
-<!--    <div class='col-4 float-right'>-->
-<!--      <span class='float-right'>-->
-<!--      <i class="fa fa-hashtag" aria-hidden="true"></i>StridesforNF-->
-<!--      </span>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--  </div>-->
-  
-<!--</nav>-->
 
 <div class='container'>
-  <div class='row my-5'>
-    <div class='col-4'>
-            <img src='https://placehold.it/450x250/4DA5A3/ffffff?text=Take+Home+NF+Swag' class='img-fluid rounded img-tilt-l shadow'>
+  <div class='row'>
+    <div class='col-lg-4 my-3'>
+            <img src='https://placehold.it/450x250/4DA5A3/ffffff?text=Take+Home+NF+Swag' class='img-fluid rounded img-tilt-l shadow d-block mx-auto'>
     </div>
-     <div class='col-4'>
-      <img src='https://placehold.it/450x250/FF6550/ffffff?text=NF+Champions' class='img-fluid rounded img-tilt-r shadow'>
+     <div class='col-lg-4 my-3'>
+      <img src='https://placehold.it/450x250/FF6550/ffffff?text=NF+Champions' class='img-fluid rounded img-tilt-r shadow d-block mx-auto'>
     </div>
 
-     <div class='col-4'>
-       <img src='https://placehold.it/450x250/B0145B/ffffff?text=Learn+about+NF' class='img-fluid rounded img-tilt-r shadow'>
+     <div class='col-lg-4 my-3'>
+       <img src='https://placehold.it/450x250/B0145B/ffffff?text=Learn+about+NF' class='img-fluid rounded img-tilt-r shadow d-block mx-auto'>
 
     </div>
   </div>
   
 
-  <div class='row my-5'>
-    <div class='col-6'>
-      <div class='card card-block'>
-        <h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'><a href='#' class='anchor-styled'><span>See All</span></a></small></h2>
+  <div class='row'>
+    <div class='col-lg-6 my-5'>
+      <div class='card card-block' style='min-height: 395px;'>
+        <h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'><%= link_to(top_attendees_path, class: 'anchor-styled') do %><span>See All</span><% end %></small></h2>
         <table class='table  table-striped'>
           <thead>
             <tr>
@@ -111,33 +97,19 @@ Take your first step towards a cure by finding, registering, and then fundraisin
             </tr>
           </thead>
           <tbody>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
+            <% @top_attendees.each do |attendee| %>
+            <tr>
+              <td><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee, attendee.pledge_page) %></td>
+              <td><%= number_to_currency(attendee.raised) %> </td>
             </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
     </div>
-    <div class='col-6'>
-      <div class='card card-block'>
-        <h2>TOP 5 TEAMS <small class='text-muted float-right'><a href='#' class='anchor-styled'><span>See All</span></a></small></h2>
+    <div class='col-lg-6 my-5'>
+      <div class='card card-block' style='min-height: 395px;'>
+        <h2>TOP 5 TEAMS <small class='text-muted float-right'><%= link_to(top_teams_path, class: 'anchor-styled') do %><span>See All</span><% end %></small></h2>
         <table class='table  table-striped'>
           <thead>
             <tr>
@@ -146,26 +118,12 @@ Take your first step towards a cure by finding, registering, and then fundraisin
             </tr>
           </thead>
           <tbody>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
+            <% @top_teams.each do |team| %>
+            <tr>
+              <td><%= link_to team.name, event_team_path(team.event, team) %></td>
+              <td><%= number_to_currency(team.raised) %></td>
             </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
-                        <tr>
-              <td>Richard Wise</td>
-              <td>$9,000.00</td>
-            </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -173,4 +131,21 @@ Take your first step towards a cure by finding, registering, and then fundraisin
   </div>
   
 
+</div>
+<div class='row mb-5' style='background-color: #015F88;'>
+  <div class='container'>
+    <div class='row'>
+    <div class='col-md-5 my-5 w'>
+      <h3>Meet This Month's Champion</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, tortor ac egestas varius, erat tortor iaculis ex, 
+      in egestas nisi risus euismod dolor. Quisque id mauris libero. Vivamus aliquam faucibus pellentesque. Cras velit turpis, luctus 
+      sit amet euismod sit amet, tristique quis diam. In hac habitasse platea dictumst. Nam commodo, tortor eget rutrum congue, augue
+      nunc pulvinar quam, id ornare quam nunc quis nisi. Quisque sed nisi et justo lacinia pellentesque. Sed sit amet sapien eget augue 
+      lobortis tempus.</p>
+    </div>
+    <div class='col-md-7 my-5'>
+      <img class='img-fluid rounded d-block mx-auto' src='https://placehold.it/650x350'>
+    </div>
+  </div>
+  </div>
 </div>

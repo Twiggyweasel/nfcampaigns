@@ -23,7 +23,7 @@
                   
         <h2>Registration Information</h2>
         <p class='card-text'>
-          Registrant: User's Name
+          Registrant: <%= @attendee.user.name.titleize %>
           <br />
           Registration Type: <%= number_to_currency(@attendee.fee) %>
           <br />

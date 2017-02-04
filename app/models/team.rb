@@ -6,4 +6,20 @@ class Team < ApplicationRecord
   accepts_nested_attributes_for :attendees, allow_destroy: true
   
   validates :name, presence: true
+  
+  after_find do
+    self.update_raised
+  end
+  
+  after_save do
+    self.update_raised  
+  end
+  
+  def total_raised
+    self.contributions.pluck(:amount).sum + self.attendees.pluck(:raised).sum
+  end
+  
+  def update_raised
+    self.update_column(:raised, total_raised)
+  end
 end

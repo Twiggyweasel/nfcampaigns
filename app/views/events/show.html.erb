@@ -2,7 +2,7 @@
 <div class='row cover-img-block' style='background-image: url("<%= @event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
 </div>
 <% else %>
-<div class='row cover-img-block' style='background-image: url("<%= image_url('calvin-default.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+<div class='row cover-img-block' style='background-image: url("<%= image_url('dock.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
 </div>
 
 
@@ -15,9 +15,10 @@
           <h2 class='card-title'><%= @event.name %> - <%= @event.venue_name %> <br /> <small class='muted'><%= @event.event_date.strftime("%A, %B %d %Y") %> @ <%= @event.event_start_time.strftime("%I:%M %p")  %></small>
 
           </h2>
-          <p class='card-text'>
+
+             <p class='card-text'>
             
-            
+            <div class='container-fluid'>
             <div class='row'>
               <div class='col-8'>
                 <h4>Achieved: <%= number_to_currency(@event.raised) %> <span class='float-right'>Goal: <%= number_to_currency(@event.goal) %></span></h4>
@@ -25,14 +26,9 @@
                   <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;'></div>
                 </div>
               </div>
-              <div class='col-4 mt-4'>
-                    <ul class='nav navbar-nav float-xs-right pr-1'>
-      <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-2x social-icon' style='color:#3b5998;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-2x social-icon' style='color:#00aced;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-2x social-icon' style='color:#dd4b39;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:<%= @event.name %>&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-2x social-icon' style='color:#FF5700;'></i></a></li>
-    </ul>
-                <div class="dropdown float-right ">
+              <div class='col-4 mt-3'>
+                   
+                <div class="dropdown float-right">
                   <a class="btn btn-success dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Register
                   </a>
@@ -46,7 +42,7 @@
               </div>
             </div>
 
-            
+            </div>
           </p>
         </div>
       </div>

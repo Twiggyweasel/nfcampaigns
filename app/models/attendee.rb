@@ -16,21 +16,32 @@ class Attendee < ApplicationRecord
   
   after_create do
     self.create_pledge_page(summary: "test", goal: 1000, attendee_id: self.id)
+
+  end
+  
+  after_save do 
+    self.update_raised
+    self.team.update_raised
   end
   
   def reject_guest(attributes)
     attributes['name'].blank?
   end
   
-  def total_raised 
-    self.contributions.pluck(:amount).sum + attendee_total
-  end
   def guests_fee_total
     Guest.where(attendee_id: self.id).pluck(:fee).sum
   end
   
   def attendee_total
     self.fee + guests_fee_total
+  end
+  
+  def total_raised 
+    self.contributions.pluck(:amount).sum + attendee_total
+  end
+  
+  def update_raised
+    self.update_column(:raised, total_raised)
   end
   
 end

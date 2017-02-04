@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
+
 
 Role.create! name: 'admin'
 Role.create! name: 'user'
@@ -21,15 +23,60 @@ Event.create! name: 'Event Two', desc: 'Test is a test', teaser: "Teaser Text", 
 
 User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "test_123", role_id: 1
 
-Contribution.create! amount: 10.10, backable: Event.first, user_id: 1
-Contribution.create! amount: 210.10, backable: Event.first, user_id: 1
-Contribution.create! amount: 2100.10, backable: Event.first, user_id: 1
-Contribution.create! amount: 1001.10, backable: Event.first, user_id: 1
-Contribution.create! amount: 103.10, backable: Event.first, user_id: 1
-Contribution.create! amount: 10.10, backable: Team.first, user_id: 1
-Contribution.create! amount: 18.18, backable: Team.first, user_id: 1
+25.times do
+  User.create( 
+    name: FFaker::Name.name,
+    email: FFaker::Internet.email,
+    password: "test_123",
+    role_id: 2
+  )
+end
 
-# Attendee.create! fee: 25.00, shirt_size: 'Small', paid: true, event_id: 1, team_id: 1
+10.times do 
+  Team.create(
+    name: FFaker::Address.city + " Team",
+    max_members: 999,
+    event_id: rand(1..2)
+  )
+end
+
+
+
+55.times do
+  Attendee.create(
+    fee: 25.00,
+    shirt_size: 'medium',
+    event_id: rand(1..2),
+    team_id: rand(3..12),
+    user_id: rand(2..25)
+  )
+  
+end
+
+100.times do
+  Contribution.create(
+    amount: rand(1..550),
+    backable: Event.find(rand(1..2)),
+    user_id: rand(2..26),
+  )
+end
+
+100.times do
+  Contribution.create(
+    amount: rand(1..550),
+    backable: Attendee.find(rand(1..15)),
+    user_id: rand(2..26),
+  )
+end
+
+100.times do
+  Contribution.create(
+    amount: rand(1..550),
+    backable: Team.find(rand(3..12)),
+    user_id: rand(2..26),
+  )
+end
+
 
 RegistrationFee.create! name: "Adult", amount: 25.00, event_id: 1
 RegistrationFee.create! name: "Child Under 13", amount: 15.00, event_id: 1

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :contributions
   
-  resources :attendees, except: [:new] do
+  resources :attendees, except: [:new, :index] do
     # resources :pledge_pages, only: [:edit, :update]
     
     get 'pledge_page', to: 'pledge_pages#show', as: :pledge_page
@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   
   resources :payments, only: [:index, :new, :create, :show]
   
+  get '/top_attendees', to: 'attendees#index', as: :top_attendees
+  get '/top_teams', to: 'teams#index', as: :top_teams
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

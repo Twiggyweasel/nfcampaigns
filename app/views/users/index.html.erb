@@ -10,9 +10,13 @@
 <div class='row mt-5'>
   
   <% @users.each do |user| %>
-    <div class='col-md-4 mt-3'>
+    <div class='col-md-4' style='margin-top: 5rem;'>
       <div class='card text-center' style='position:relative; display: inline-block; width: 100%'>
-        <img src='<%= user.profile_pic %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+        <% if user.profile_pic? %>
+          <img src='<%= user.profile_pic %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+        <% else %>
+          <img src='<%= image_url('no_user.png') %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+        <% end %>
         <div class='card-block'>
           <h3 class='mt-2'><%= user.name %></h3>
           <%= link_to "View Profile", user_path(user), class: 'btn btn btn-primary'%>

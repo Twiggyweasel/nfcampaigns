@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.decimal  "fee"
     t.string   "shirt_size"
     t.boolean  "paid",       default: false
+    t.float    "raised"
     t.integer  "team_id"
     t.integer  "event_id"
     t.integer  "user_id"
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170130015307) do
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
+    t.string   "team_photo"
     t.integer  "max_members"
     t.decimal  "raised"
     t.boolean  "is_private",  default: false

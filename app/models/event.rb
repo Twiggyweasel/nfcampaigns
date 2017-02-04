@@ -14,10 +14,14 @@ class Event < ApplicationRecord
     self.attendees.count + self.guests.count
   end
   
-  def raised
-    self.contributions.pluck(:amount).sum + self.attendees.pluck(:fee).sum + self.guests.pluck(:fee).sum
+  def total_raised
+    self.contributions.pluck(:amount).sum + team_total_raised
   end
   
+  def team_total_raised
+    
+    self.teams.pluck(:raised).sum
+  end
   def percent_raised
     if self.raised > 0
       (self.raised/ self.goal) * 100
@@ -26,5 +30,9 @@ class Event < ApplicationRecord
   
   after_save do 
     self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
+  end
+  
+  def update_raised
+      self.update_column(:raised, total_raised)
   end
 end
