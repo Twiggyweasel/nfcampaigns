@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'home'
+  layout 'index'
   
   def home
     @top_attendees = Attendee.order(raised: :desc).limit(5)
