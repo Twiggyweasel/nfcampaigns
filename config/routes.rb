@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :contributions
   
-  resources :attendees, except: [:new, :index] do
+  resources :attendees, except: [:new] do
     # resources :pledge_pages, only: [:edit, :update]
     
     get 'pledge_page', to: 'pledge_pages#show', as: :pledge_page
