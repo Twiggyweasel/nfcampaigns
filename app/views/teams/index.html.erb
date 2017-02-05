@@ -1,0 +1,24 @@
+<%= render "shared/title", title: "Top Teams" %>
+<div class='row mt-5'>
+  <% @teams.each do |team| %>
+  <div class='col-4 mt-3'>
+    <div class='row'>
+      <div class='col-md-5'>
+        <!--<#%= link_to(attendee_pledge_page_path(attendee)) do %>-->
+        <!--  <#% if !attendee.user.profile_pic? %>-->
+        <!--    <img class='img-fluid img-thumbnail rounded-circle d-block mx-auto' style='height:150px;' src='<#%= image_url('no_user.png') %>'>-->
+        <!--  <#% else %>-->
+        <!--    <img class='img-fluid img-thumbnail rounded-circle d-block mx-auto' src='<#%= attendee.user.profile_pic %>' style='height:150px;'>-->
+        <!--  <#% end %>-->
+        <!--<#% end %>-->
+        <img class='img-fluid img-thumbnail rounded-circle d-block mx-auto' style='height:150px;' src='<%= image_url('no_team.png') %>'>
+      </div>
+      <div class='col-md-7'>
+        <%= link_to(event_team_path(team.event, team)) do %><h4 class='mt-3'><%= team.name.titleize %><% end %></h4>
+        <h5><%= team.event.name %> - <%= team.event.city %></h5>
+        <h6><%= number_to_currency(team.raised) %></h6>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
