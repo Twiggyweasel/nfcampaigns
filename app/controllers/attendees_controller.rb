@@ -3,9 +3,7 @@ class AttendeesController < ApplicationController
   before_action :require_user, only: [:new, :edit, :destroy]
   
   def index
-    respond_to do |format|
-     format.html { @attendees = Attendee.order(raised: :desc) }  
-    end
+    @attendees = Attendee.order(:raised).reverse_order 
   end
   
   def show
