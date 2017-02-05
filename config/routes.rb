@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :events, except: [:new, :create] do 
     resources :contributions, only: [:show, :new, :create, :edit, :update]
     resources :comments, only: [:new, :create]
-    resources :teams
-    resources :attendees
+    resources :teams, except: [:index]
+    resources :attendees, except: [:index]
     resources :registration_fees
   end
   
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :guests, except: [:show]
     resources :contributions, only: [:show, :new, :create, :edit, :update]
   end
+  
   resources :pledge_pages do
     resources :comments, only: [:new, :create]
   end
@@ -39,7 +40,7 @@ Rails.application.routes.draw do
   
   resources :payments, only: [:index, :new, :create, :show]
   
-  # get '/top_attendees', to: 'pages#top_attendees'
+  get '/top_attendees', to: 'pages#top_attendees'
   get '/top_teams', to: 'teams#index'
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

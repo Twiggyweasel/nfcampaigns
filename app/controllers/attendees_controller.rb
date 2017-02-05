@@ -3,7 +3,7 @@ class AttendeesController < ApplicationController
   before_action :require_user, only: [:new, :edit, :destroy]
   
   def index
-   
+    @attendees = Attendee.order(:raised).reverse_order 
   end
   
   def show
