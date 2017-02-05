@@ -1,8 +1,7 @@
 #User class is responsible for creating user records 
 class User < OmniAuth::Identity::Models::ActiveRecord
   belongs_to :role
-  
-  has_many :attendees
+  has_many :team_leaders
   has_many :guests, through: :attendees
   has_many :events, through: :attendees
   has_many :teams, through: :attendees

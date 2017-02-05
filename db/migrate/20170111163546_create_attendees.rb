@@ -3,7 +3,10 @@ class CreateAttendees < ActiveRecord::Migration[5.0]
     create_table :attendees do |t|
       t.decimal :fee
       t.string :shirt_size
+      
       t.boolean :paid, default: false
+      t.boolean :is_leader, default: false
+      
       t.float :raised
       
       t.references :team, foreign_key: true

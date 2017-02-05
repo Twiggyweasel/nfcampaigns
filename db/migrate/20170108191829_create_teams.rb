@@ -3,6 +3,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
     create_table :teams do |t|
       t.string :name
       t.string :team_photo
+      t.float :goal
       t.integer :max_members
       t.decimal :raised
       t.boolean :is_private, default: false

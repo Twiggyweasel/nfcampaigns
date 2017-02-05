@@ -29,7 +29,7 @@
           <br />
           Shirt Size Requested: <%= @attendee.shirt_size %>
           <br />
-          Team: <%= @attendee.team.name %> <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to "Manage", event_team_path(@attendee.event), class: '' %> <% end %>
+          Team: <%= @attendee.team.name %> <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to "Manage", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
         </p>
       </div>
     </div>

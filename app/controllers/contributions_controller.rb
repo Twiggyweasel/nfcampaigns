@@ -1,6 +1,10 @@
 class ContributionsController < ApplicationController
   before_action :require_user, only: [:new, :edit, :destroy]
   
+  def contribution_select
+    @events = Event.all
+    @attendees = Attendee.all
+  end
   
   def index
     @contributions = Contribution.all

@@ -36,9 +36,12 @@ end
   Team.create(
     name: FFaker::Address.city + " Team",
     max_members: 999,
-    event_id: rand(1..2)
+    goal: 10000,
+    event_id: rand(1..2),
   )
 end
+
+
 
 
 
@@ -52,6 +55,13 @@ end
   )
   
 end
+
+# for i in 0..Team.count
+#   team = Team.find(i) 
+#   if team.attendees.count != 0
+#     team.attendees.first.update(is_leader: "true")
+#   end
+# end
 
 100.times do
   Contribution.create(

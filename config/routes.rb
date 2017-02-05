@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   
   get 'top_attendees', to: 'pages#attendees'
   get 'top_teams', to: 'teams#index'
+  get 'contribution_select', to: 'contributions#contribution_select'
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -5,14 +5,26 @@
 
 
 <div class='row'>
-  <div class='col-md-4 offset-md-4'>
+  <div class='col-md-6 offset-md-3'>
     <div class='card event-card-shadow'>
       <div class='card-block'>
         <%= f.label :name, "Team Name" %>
         <%= f.text_field :name, class: 'form-control' %>
-
+        
+        <%= f.label :team_photo %>
+        <%= f.file_field :team_photo, class: 'form-control' %>
+        
+        <%= f.label :goal, "Team's Goal" %>
+        <div class="input-group">
+        <div class="input-group-addon"><i class='fa fa-usd'></i></div>
+        <%= f.number_field :goal, class: 'form-control', value: '2500' %>
+        <div class="input-group-addon">.00</div>
+        </div>
+        <br />
+        <h6>Registering as: <%= current_user.name %></h6>
         <%= f.fields_for :attendees do |ff| %>
           <%= ff.hidden_field(:user_id, :value => current_user.id) %>
+          <%= ff.hidden_field(:is_leader, :value => 't') %>
           <%= ff.label :fee, "Registation Fee" %>
           <%= ff.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
           <%= ff.label :shirt_size %>

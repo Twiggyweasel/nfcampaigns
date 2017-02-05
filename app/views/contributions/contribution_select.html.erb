@@ -1,0 +1,62 @@
+<%= render 'shared/title', title: "Where would you like your contribution applied?" %>
+<div class='row my-3'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <h3 class='text-center'>Events or Users</h3>  
+      <div class='col-12 mt-3'>
+        <div class='row'>
+          <div class='col-4 offset-2'>
+            <button type="button" class='btn btn-block btn-secondary' data-toggle="collapse" data-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents" >
+                Events
+              </button>
+          </div>
+          <div class='col-4'>
+            <button type="button" class='btn btn-block btn-secondary' disabled data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
+                Users
+              </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapse" id="collapseEvents">
+  <div class='row'>
+    <div class='col-8 offset-2'>
+      <div class='card card-block'>
+
+            <h3 class='text-center'>Events</h3>
+            <%= select_tag 'event_id', options_from_collection_for_select(@events, 'id', 'name'), class: 'form-control', prompt: 'Select an Event' %>
+            <a href='#' id='event_link' class='btn btn-success btn-block'>Sumbit</a>
+          </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="collapse" id="collapseUsers">
+  <div class='row'>
+    <div class='col-10 offset-1'>
+      <div class='card card-block'>
+        <div class='row'>
+          <div class='col-4'>
+            <label>Users</label>
+            <%= select_tag 'user_id', options_for_select(@attendees.map { |x| [x.user.name, x.id ]} ), class: 'form-control' %>
+          </div>
+          <a href='#' id='user_id' class='btn btn-success btn-block'>Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+   $(function(){
+      $('#event_id').bind('change', function () {
+         var event = $(this).val();
+         $('#event_link').attr("href", "events/" + event + "/contributions/new");
+      });
+    });
+</script>
