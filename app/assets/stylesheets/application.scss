@@ -160,7 +160,7 @@ body {
     opacity: .8;
 }
 
-.img-tilt-l, .img-tilt-r {
+.img-tilt-l, .img-tilt-r, .img-raise {
   transition: all .75s;
 }
 
@@ -177,6 +177,14 @@ body {
         -ms-transform: rotateZ(5deg);
         transform: rotateZ(5deg);
 }
+
+.img-raise:hover {
+  transform: translate(0,-10px);
+  -webkit-transform: translate(0,-10px);
+  -o-transform: translate(0,-10px); 
+  -moz-transform: translate(0,-10px);
+}
+ 
 
 .shadow {
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
