@@ -11,4 +11,8 @@ class PagesController < ApplicationController
     
   end
   
+  def top_attendees
+    @attendees = Attendee.order(raised: :desc)
+  end
+
 end

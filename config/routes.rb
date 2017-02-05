@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   
   resources :payments, only: [:index, :new, :create, :show]
   
-  get '/top_attendees', to: 'attendees#index'
+  get '/top_attendees', to: 'pages#top_attendees'
   get '/top_teams', to: 'teams#index'
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
