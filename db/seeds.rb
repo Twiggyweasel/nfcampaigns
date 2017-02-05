@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'ffaker'
+require 'faker'
 
 
 Role.create! name: 'admin'
@@ -25,8 +25,8 @@ User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "tes
 
 25.times do
   User.create( 
-    name: FFaker::Name.name,
-    email: FFaker::Internet.email,
+    name: Faker::Name.unique.name,
+    email: Faker::Internet.unique.email,
     password: "test_123",
     role_id: 2
   )
@@ -34,7 +34,7 @@ end
 
 10.times do 
   Team.create(
-    name: FFaker::Address.city + " Team",
+    name: Faker::Address.unique.city + " Team",
     max_members: 999,
     goal: 10000,
     event_id: rand(1..2),
