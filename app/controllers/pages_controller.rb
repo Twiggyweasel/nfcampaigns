@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
   
   def top_attendees
-    @attendees = Attendee.order(raised: :desc)
+    @attendees = Attendee.all.order(raised: :desc)
   end
 
 end
