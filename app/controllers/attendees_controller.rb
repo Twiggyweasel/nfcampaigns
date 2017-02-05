@@ -4,6 +4,9 @@ class AttendeesController < ApplicationController
   
   def index
     @attendees = Attendee.order(:raised).reverse_order 
+    respond_to do |format|
+      format.html
+    end
   end
   
   def show
