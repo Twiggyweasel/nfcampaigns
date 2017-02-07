@@ -1,6 +1,6 @@
 class Payment < ApplicationRecord
   require "active_merchant/billing/rails"
-  
+  belongs_to :payable, polymorphic: true
   attr_accessor :card_security_code
   attr_accessor :credit_card_number
   attr_accessor :expiration_month
@@ -15,6 +15,12 @@ class Payment < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
   validate :valid_card
+  
+  after_save do 
+    if self.success == true 
+      self.payable.update_columns(paid: 'true')
+    end
+  end
 
   def credit_card
     ActiveMerchant::Billing::CreditCard.new(

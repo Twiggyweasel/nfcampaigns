@@ -52,11 +52,12 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.decimal  "amount"
     t.string   "honoree"
     t.string   "processing"
+    t.boolean  "paid",          default: false
     t.string   "backable_type"
     t.integer  "backable_id"
     t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["backable_type", "backable_id"], name: "index_contributions_on_backable_type_and_backable_id"
     t.index ["user_id"], name: "index_contributions_on_user_id"
   end
@@ -107,8 +108,11 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.decimal  "amount",             precision: 12, scale: 3
     t.boolean  "success"
     t.string   "authorization_code"
+    t.string   "payable_type"
+    t.integer  "payable_id"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id"
   end
 
   create_table "pledge_pages", force: :cascade do |t|

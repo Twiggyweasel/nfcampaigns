@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :registration_fees
   end
   
-  resources :contributions
+  resources :contributions do
+      resources :payments, only: [:new, :create]
+  end
   
   resources :attendees, except: [:new, :create, :index] do
     # resources :pledge_pages, only: [:edit, :update]

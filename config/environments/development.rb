@@ -52,13 +52,9 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            'orsusbass@gmail.com',
-    password:             '5sBhdhX05HJq',
-    authentication:       :login,
-    enable_starttls_auto: true
-  }
+BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+
+config.web_console.whitelisted_ips = ENV['TRUSTED_IP']
+  
+
 end

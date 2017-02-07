@@ -80,6 +80,7 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
-
+  
+  config.action_mailer.delivery_method = :ses
   # Do not dump schema after migrations.
 end
