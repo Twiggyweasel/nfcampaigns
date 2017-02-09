@@ -1,0 +1,20 @@
+<%= render 'shared/title', title: @referral.new_record? ? 'Create a New Referral' : 'Edit Referral Information' %>
+<%= form_for @referral do |f| %>
+<% if @referral.errors.any? %>
+  <%= render 'shared/errors', errors: @referral.errors %>
+<% end %>
+<div class='row'>
+  <div class='col-6 offset-3'>
+    <div class='card card-block'>
+      <p>Referral Code: <%= @referral_code %></p>
+      <%= f.hidden_field(:referral_code, :value => @referral_code) %>
+      <%= f.label :email, "Referrals Email" %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.hidden_field(:user_id, :value => 1) %>
+      <%= f.submit 'Create Referral', class:'btn btn-success btn-block mt-3' %>
+      <%= link_to 'Cancel', :back, class: 'btn btn-danger btn-block mt-3' %>
+    </div>
+  </div>
+</div>
+  
+<% end %>

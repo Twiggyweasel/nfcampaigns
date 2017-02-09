@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130015307) do
+ActiveRecord::Schema.define(version: 20170209173734) do
 
   create_table "attendees", force: :cascade do |t|
     t.decimal  "fee"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170130015307) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.string   "event_cover"
+    t.string   "event_type"
     t.text     "teaser"
     t.text     "desc"
     t.date     "registration_date"
@@ -123,6 +124,24 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.index ["attendee_id"], name: "index_pledge_pages_on_attendee_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "street"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "referral_code"
+    t.boolean  "has_nf"
+    t.boolean  "child_with_nf"
+    t.boolean  "system_notifications"
+    t.boolean  "event_notifications"
+    t.boolean  "is_private"
+    t.integer  "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "promotions", force: :cascade do |t|
     t.string   "name"
     t.string   "desc"
@@ -131,6 +150,17 @@ ActiveRecord::Schema.define(version: 20170130015307) do
     t.boolean  "is_active",  default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.string   "referral_code"
+    t.string   "email"
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["team_id"], name: "index_referrals_on_team_id"
+    t.index ["user_id"], name: "index_referrals_on_user_id"
   end
 
   create_table "registration_fees", force: :cascade do |t|

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   resources :users #needed by omniauth-identity
   
   resources :payments, only: [:index, :new, :create, :show]
-  
+  resources :referrals
   get 'top_attendees', to: 'pages#attendees'
   get 'top_teams', to: 'teams#index'
   get 'contribution_select', to: 'contributions#contribution_select'

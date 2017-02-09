@@ -54,7 +54,7 @@
       <div class='card-footer'>
         <div class='row'>
           <div class='col-6'>
-            <%= link_to "Registration", attendee_path(attendee), class: 'btn btn-secondary btn-block' %>          
+            <%= link_to "Registration", event_attendee_path(attendee.event, attendee), class: 'btn btn-secondary btn-block' %>          
           </div>
           <div class='col-6'>
             <%= link_to "Pledge Page", attendee_pledge_page_path(attendee), class: 'btn btn-secondary btn-block' %>
