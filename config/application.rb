@@ -12,6 +12,7 @@ module Nfcampaigns
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_record.time_zone_aware_types = [:datetime, :time]
+    config.action_mailer.asset_host = 'http://nf-event-manager-twiggyweasel.c9users.io'
   end
 end
 
