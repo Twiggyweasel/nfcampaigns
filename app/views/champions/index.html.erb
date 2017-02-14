@@ -1,0 +1,48 @@
+<%= render "shared/title", title: 'NF Champions', display: 2 %>
+<div class='container'>
+  <div class='row m-t-5'>
+    <div class='col-md-8'>
+      <p class=''>
+        Our NF Champs are chosen for their strength, courage, and happiness despite
+        difficult circumstances. They are the reason we keep 
+        pushing further to find treatments and a cure for 
+        neurofibromatosis. View their stories or upload your own 
+        and join us in the fight to stay #NFstrong.
+      </p>
+    </div>
+    <div class='col-md-4'>
+      <%= link_to "Submit Your Champion", new_champion_path, class: 'btn btn-warning btn-block' %>
+  
+      <%= link_to "View Events", events_path, class: 'btn btn-primary btn-block' %>
+    </div>
+
+  </div>
+</div>
+
+
+<% @champions.each_with_index do |champ, index| %>
+
+<div class='row my-5' <% if index.even? %>style='background-color: #015F88; color: white;' <% end %>>
+  <div class='container'>
+    <div class='row'>
+    <div class='col-md-5 my-5'>
+      <h3><%= champ.name.titleize %> - Age: <%= champ.age %></h3>
+      <p><%= excerpt(champ.story, 'is', radius: 175) %></p>
+      
+      <div class='row'>
+        <div class='col-4'>
+          <%= link_to "Read More", champion_path(champ), class: 'btn btn-block btn-info' %>
+        </div>
+        <div class='col-8'>
+          <%= link_to "Back this Champion", new_champion_contribution_path(champ), class:'btn btn-block btn-success' %>    
+        </div>
+      </div>
+    </div>
+    <div class='col-md-7 my-5'>
+      <img class='img-fluid rounded d-block mx-auto' src='<%= champ.champion_image %>'>
+    </div>
+  </div>
+  </div>
+</div>
+
+<% end %>

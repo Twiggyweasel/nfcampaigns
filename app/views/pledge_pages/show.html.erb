@@ -9,10 +9,10 @@
 <div class='container mb-5'>
   <div class='row'>
     <div class='col-12'>
-      <div class='card event-card-shadow primary-pledge-card' style='margin-top: -300px;'>
-        <div style='margin-top:-125px; margin-left: 25px; width:600px;'>
+      <div class='card event-card-shadow primary-pledge-card' style='margin-top: -250px;'>
+        <div style='margin-top:-115px; margin-left: 25px; width:600px;'>
           <img class='img-fluid img-thumbnail rounded-circle' src='<%= image_url('no_user.png') %>' style='height: 250px;'>
-          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>First Time Walker</small></h4>
+          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>I'm NFStrong for: Test Test</small></h4>
         </div>
         <div class='card-block'>
           <div class="row">
@@ -38,12 +38,26 @@
               <hr />
               <h4>Support <%= @pledge_page.user.name %></h4>
               <%= link_to "Join Me", new_event_attendee_path(@pledge_page.attendee.event), class: 'btn btn-primary btn-block' %>
-              <%= link_to "Donate", new_attendee_contribution_path(@pledge_page.attendee), class: 'btn btn-success btn-block' %>
+              <%= link_to "Contribute", new_attendee_contribution_path(@pledge_page.attendee), class: 'btn btn-success btn-block' %>
             </div>
           </div>
           <hr />
-          <div class='row'>
+          <div class='row mb-5'>
             <div class='col-12'>
+              <h4>My NF Story</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row my-3'>
+    <div class='col-12'>
+      <div class='card'>
+        <div class='card-block'>
+           <div class='row'>
+            <div class='col-12'>
+              <h4>What is NF Network</h4>
               Nf Network is a great cause that needs to be supported so you should do that....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
             </div>

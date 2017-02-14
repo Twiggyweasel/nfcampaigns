@@ -1,0 +1,133 @@
+<%= render 'shared/title', title: 'Your Account Settings' %>
+<div class='row'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row'>
+        <div class='col-12'>
+          <h4>User Info</h4>         
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>
+          <h6>Profile Picture</h6>
+          <img src='<%= @user.profile_pic %>' class='img-fluid rounded' style='height: 150px;'>
+        </div>
+        <div class='col-md-4'>
+          <h6>Full Name</h6>
+          <%= @user.name %>
+          <br>
+          <br>
+          <h6>I have NF</h6>
+            <%= link_to @profile.has_nf? ? 'Yes' : 'No', has_nf_user_profile_path(@user, @profile), remote: true, method: :put, id: 'has_nf'%>
+        </div>
+        <div class='col-md-4'>
+          <h6>Profile Public</h6>
+          <%= @profile.is_private? ? 'No' : 'Yes' %>
+          <br>
+          <br>
+          <h6>Child with NF</h6>
+          
+          <%= @profile.child_with_nf? ? 'Yes' : 'No' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <h4>Contact Details</h4>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <h5>Address:</h5>
+          <%= @profile.street %> <%= @profile.apt %> <%= @profile.city %> <%= @profile.state %> <%= @profile.zipcode %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <h4>Linked Accounts</h4>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <table class='table text-center'>
+            <thead>
+              <tr>
+                <th class='text-center'>Facebook</th>
+                <th class='text-center'>Twitter</th>
+                <th class='text-center'>Google+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @user.authentications.any? %>
+                <tr>
+                <% if @user.authentications.find_by_provider('facebook')  %>
+                  <td><i class='fa fa-check-circle success fa-3x'></i></td>
+                <% else %>
+                  <td><%= link_to "Link Account", "/auth/facebook" %></td>
+                <% end %>
+                
+                <% if @user.authentications.find_by_provider('twitter') %>
+                  <td><i class='fa fa-check-circle success fa-3x'></i></td>             
+                <% else %>
+                  <td><%= link_to "Link Account", "/auth/twitter" %></td>
+                <% end %>
+                
+                <% if @user.authentications.find_by_provider('google_oauth2') %>
+                  <td><i class='fa fa-check-circle success fa-3x'></i></td>
+                <% else %>
+                  <td><%= link_to "Link Account", "/auth/google_oauth2" %></td>
+                <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <h4>Notification Preferences</h4>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <table class='table text-center'>
+            <thead>
+              <tr>
+                <th class='text-center'>Stay iNFormed</th>
+                <th class='text-center'>Event Notifications</th>
+                <th class='text-center'>Stay iNFormed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= @profile.news_letter? ? 'Yes' : 'No' %></td>
+                <td><%= @profile.event_notifications? ? 'Yes' : 'No' %></td>
+                <td>No (Update)</td>
+              </tr>
+            </tbody>
+          </table>            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

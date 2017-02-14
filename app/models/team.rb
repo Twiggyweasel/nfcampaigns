@@ -11,6 +11,7 @@ class Team < ApplicationRecord
   
   after_find do
     self.update_raised
+
   end
   
   after_save do
@@ -24,4 +25,6 @@ class Team < ApplicationRecord
   def update_raised
     self.update_column(:raised, total_raised)
   end
+  
+  
 end

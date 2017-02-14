@@ -2,7 +2,7 @@
 
 <div class="row mt-1">
     <div class="col-12 text-center">
-        <h1 class="display-3">Event Choices</h1>
+        <h1 class="display-3">NF Events</h1>
         <hr />
     </div>
 </div>
@@ -37,7 +37,7 @@
 
 <div class='row pt-3'>
   <% @events.each do |event| %>
-    <!--<#% if !event.is_private? %>-->
+    <% if !event.is_private? %>
     <div class='col-md-4 col-sm-6 col-xl-3'>
       <div class='card item-square my-2'>
         <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <!--<#% end %>-->
+    <% end %>
   <% end %>
 </div>
 

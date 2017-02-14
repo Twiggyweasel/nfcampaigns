@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209173734) do
+ActiveRecord::Schema.define(version: 20170214034715) do
+
+  create_table "applications", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "event_type"
+    t.string   "city"
+    t.string   "state"
+    t.text     "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "attendees", force: :cascade do |t|
     t.decimal  "fee"
@@ -35,6 +47,19 @@ ActiveRecord::Schema.define(version: 20170209173734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "champions", force: :cascade do |t|
+    t.string   "name"
+    t.string   "champion_image"
+    t.integer  "age"
+    t.text     "story"
+    t.float    "raised"
+    t.boolean  "active",         default: true
+    t.integer  "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["user_id"], name: "index_champions_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -106,13 +131,14 @@ ActiveRecord::Schema.define(version: 20170209173734) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "last4"
-    t.decimal  "amount",             precision: 12, scale: 3
+    t.integer  "confirmation_number"
+    t.decimal  "amount",              precision: 12, scale: 3
     t.boolean  "success"
     t.string   "authorization_code"
     t.string   "payable_type"
     t.integer  "payable_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id"
   end
 
@@ -131,14 +157,15 @@ ActiveRecord::Schema.define(version: 20170209173734) do
     t.string   "state"
     t.string   "zipcode"
     t.string   "referral_code"
+    t.string   "phone"
     t.boolean  "has_nf"
     t.boolean  "child_with_nf"
-    t.boolean  "system_notifications"
     t.boolean  "event_notifications"
-    t.boolean  "is_private"
+    t.boolean  "news_letter"
+    t.boolean  "is_private",          default: false
     t.integer  "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

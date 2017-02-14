@@ -1,0 +1,43 @@
+<%= form_for @champion do |f| %>
+<% if @champion.errors.any? %>
+  <%= render 'shared/errors', errors: @champion.errors %>
+<% end %>
+
+<div class='row mb-3'>
+  <div class='col-md-8 offset-md-2'>
+    <div class='card card-block'>
+
+      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :name, "Champion's Name" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-8'>
+          <%= f.label :champion_image %>
+          <%= f.file_field :champion_image, class: 'form-control-file' %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-4'>
+          <%= f.label :age, "Age of Your Champion" %>
+          <%= f.number_field :age, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :story, "Your Champion's Story" %>
+          <%= f.text_area :story, class: 'form-control', :rows => 15 %>
+        </div>
+      </div>
+      <%= f.hidden_field(:user_id, :value => current_user.id) %>
+      <%= f.submit @champion.new_record? ? "Create Champion" : "Update Champion Details", class: 'btn btn-block btn-success mt-3' %>
+      <%= link_to "Cancel", :back, class: 'btn btn-block btn-danger mt-3' %>
+    </div>
+  </div>
+</div>
+
+<% end %>

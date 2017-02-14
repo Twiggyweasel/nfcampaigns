@@ -49,6 +49,11 @@ class AttendeesController < ApplicationController
     redirect_to event_path(@event), :flash => { :danger => "Registration successfully cancelled" }
   end
   
+  def reciept
+    @attendee = Attendee.find(params[:attendee_id])
+    @payment = @attendee.payments.where(success: true).last
+  end
+  
   private 
     def set_event
       @event = Event.find(params[:event_id])

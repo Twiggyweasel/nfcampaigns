@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   
   def require_user
     if !logged_in?
+      session[:return_url] = "https://" + request.host + request.fullpath
       flash[:danger] = "You must be logged in to do that!"
       redirect_to login_path
     end

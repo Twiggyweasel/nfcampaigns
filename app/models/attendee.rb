@@ -6,7 +6,7 @@ class Attendee < ApplicationRecord
   has_one :pledge_page, dependent: :destroy
   has_many :contributions, as: :backable
   has_many :guests, inverse_of: :attendee
-  
+  has_many :payments, as: :payable
   accepts_nested_attributes_for :guests, allow_destroy: true, reject_if: :reject_guest
   
   validates :fee, presence: true
@@ -42,6 +42,10 @@ class Attendee < ApplicationRecord
   
   def update_raised
     self.update_column(:raised, total_raised)
+  end
+  
+  def amount
+    attendee_total
   end
   
 end

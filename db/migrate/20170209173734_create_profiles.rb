@@ -7,11 +7,12 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :state
       t.string :zipcode
       t.string :referral_code
+      t.string :phone
       t.boolean :has_nf
       t.boolean :child_with_nf
-      t.boolean :system_notifications
       t.boolean :event_notifications
-      t.boolean :is_private
+      t.boolean :news_letter
+      t.boolean :is_private, default: false
 
 
       t.references :user, foreign_key: true

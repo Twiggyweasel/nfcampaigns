@@ -20,13 +20,13 @@ class SessionController < ApplicationController
         # account. But we found the authentication and the user associated with it 
         # is the current user. So the authentication is already associated with 
         # this user. So let's display an error message.
-        redirect_to root_path, :flash => { :warning => "You have already linked this account" }
+        redirect_to user_account_settings_path(current_user), :flash => { :warning => "You have already linked this account" }
       else
         # The authentication is not associated with the current_user so lets 
         # associate the authentication
         @authentication.user = current_user
         @authentication.save
-        redirect_to root_path, :flash => { :success => "Account successfully authenticated" }
+        redirect_to user_account_settings_path(current_user), :flash => { :success => "Account successfully authenticated" }
       end
     else # no user is signed_in
       if @authentication.user.present?
@@ -53,7 +53,8 @@ class SessionController < ApplicationController
         u.authentications << @authentication
         self.current_user = u
         UserMailer.welcome_email(current_user).deliver_later
-        redirect_to root_path, :flash => { :success => 'Welcome to The App!' }
+        redirect_to new_user_profile_path(current_user)
+        # :flash => { :success => 'Welcome to The App!' }
         
       end
     end

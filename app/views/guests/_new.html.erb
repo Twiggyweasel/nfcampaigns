@@ -1,7 +1,7 @@
 <%= form_for( [ @attendee, Guest.new ], remote: true) do |f| %>
     <div class='row'>
       <div class="col-md-6">
-        <%= f.label :name, "Guest's name" %>
+        <%= f.label :name, "Guest's Full Name" %>
         <%= f.text_field :name, class: 'form-control', id: 'name_box' %>
       </div>
       <div class="col-md-6">
@@ -11,9 +11,9 @@
       </div>
     </div>
 
-  <div class='row'>
+  <div class='row my-2'>
     <div class="col-md-4">
-      <%= f.label :fee, "Registration Fee" %>
+      <%= f.label :fee, "Registration Type" %>
       <%= f.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control', id: 'fee_box') %>
     </div>
     <div class="col-md-4">

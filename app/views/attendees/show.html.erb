@@ -1,9 +1,4 @@
-<div class='row mt-3'>
-  <div class='col-12'>
-    <h2 class='text-center'>Registration for <%= @event.name %></h2>
-  </div>
-</div>
-
+<%= render 'shared/title', title: "Registration for #{@event.name}", display: 4 %>
 
 
 
@@ -29,7 +24,7 @@
           <br />
           Shirt Size Requested: <%= @attendee.shirt_size %>
           <br />
-          Team: <%= @attendee.team.name %> <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to "Manage", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
+          Team: <%= @attendee.team.name %> <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to @attendee.is_leader? ? "Manage" : "View", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
         </p>
       </div>
     </div>
@@ -93,7 +88,7 @@
 
         </div>
         <div class='card-footer'>  
-          <%= link_to "Submit Payment", "", class: 'btn btn-success btn-block' %>
+          <%= link_to "Submit Payment", new_attendee_payment_path(@attendee), class: 'btn btn-success btn-block' %>
           <!--<#% if @attendee.pledge_page %>-->
           <!--  <#%= link_to 'View Fundraising Page', attendee_pledge_page_path(@attendee, @attendee.pledge_page), class: 'btn btn-primary' %>-->
           <!--<#% else %>-->

@@ -8,7 +8,10 @@ class Event < ApplicationRecord
   has_many :event_sizes
   has_many :sizes, through: :event_sizes
   mount_uploader :event_cover, EventCoverUploader
-
+  
+  after_find do 
+    self.set_active
+  end
 
   def all_attendees
     self.attendees.count + self.guests.count
@@ -34,5 +37,13 @@ class Event < ApplicationRecord
   
   def update_raised
       self.update_column(:raised, total_raised)
+  end
+  
+  def set_active
+    if self.registration_date.to_date.past? && self.is_private?
+        self.update_column(:is_private, false)
+    elsif self.registration_date.to_date.future? && !self.is_private?
+        self.update_column(:is_private, true)
+    end
   end
 end

@@ -1,0 +1,103 @@
+<%= render 'shared/title', title: 'Tell us more about you' %>
+
+
+
+<%= form_for([@user, @profile]) do |f| %>
+<% if @profile.errors.any? %>
+  <%= render 'shared/errors', errors: @profile.errors %>
+<% end %> 
+
+<div class='row'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h4>Contact Information</h4>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-md-8'>
+          <%= f.label :street %>
+          <%= f.text_field :street, class: 'form-control' %>
+        </div>
+        <div class='col-4'>
+          <%= f.label :apt, "Apt/Suite #" %>
+          <%= f.text_field :apt, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-md-5'>
+          <%= f.label :city %>
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+        <div class='col-md-3'>
+          <%= f.label :state %>
+          <%= f.select :state, options_for_select(states), { }, {class:'form-control', prompt: 'Select a State' } %>
+        </div>
+        <div class='col-md-4'>
+          <%= f.label :zipcode %>
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-md-6'>
+          <h4>NF Details</h4>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-5 offset-1'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :has_nf, class: 'custom-control-input' %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">I Have Neurofibromatosis</span>
+          </label>
+        </div>
+        <div class='col-6'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :child_with_nf, class: 'custom-control-input' %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">I have a child with Neurofibromatosis</span>
+          </label>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-md-6'>
+          <h4>Notifications</h4>
+        </div>
+      </div>
+       <div class='row my-2'>
+        <div class='col-5 offset-1'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :system_notifications, class: 'custom-control-input', checked: true %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">I would like to recieve notifications</span>
+          </label>
+        </div>
+        <div class='col-6'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :event_notifications, class: 'custom-control-input', checked: true %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">I would like to receive event updates</span>
+          </label>
+        </div>
+      </div>
+      
+       
+    </div>
+  </div>
+</div>
+
+<div class='row my-2'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.submit 'Create Account', class: 'btn btn-block btn-success' %>
+          <%= link_to "Cancel Registration", root_path, class: 'btn btn-block btn-danger' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %> 

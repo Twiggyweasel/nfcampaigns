@@ -1,6 +1,7 @@
 #User class is responsible for creating user records 
 class User < OmniAuth::Identity::Models::ActiveRecord
   belongs_to :role
+  has_one :profile, :dependent => :destroy
   has_many :team_leaders
   has_many :attendees
   has_many :guests, through: :attendees
@@ -8,9 +9,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :teams, through: :attendees
   has_many :pledge_pages, through: :attendees
   has_many :contributions
+  has_many :champions
   
-  
- # has_secure_password
   has_many :authentications
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

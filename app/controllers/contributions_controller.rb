@@ -24,7 +24,8 @@ class ContributionsController < ApplicationController
     @contribution = @context.contributions.new(contribution_params)
     
     if @contribution.save
-      redirect_to context_url(context, @contribution), flash: { success: 'Your Contribution was Successfully created!' }
+      redirect_to  new_contribution_payment_path(@contribution)
+      # redirect_to context_url(context, @contribution), flash: { success: 'Your Contribution was Successfully created!' }
     else 
       render :new
     end
@@ -38,11 +39,23 @@ class ContributionsController < ApplicationController
   def update
     @contribution = Contribution.find(params[:id])
     if @contribution.update_attributes(contribution_params)
-      redirect_to context_url(@contribution.backable, @contribution), flash: { success: 'Your Contribution was Successfully Updated!' }
+      redirect_to new_contribution_payment_path(@contribution), flash: { success: 'Your Contribution was Successfully Updated!' }
     else
       render :edit
     end
       
+  end
+  
+  def reciept
+    @context = context 
+    @contribution = Contribution.find(params[:contribution_id])
+    @payment = @contribution.payments.where(success: true).first
+  end
+  
+  def decline
+    @context = context
+    @contribution = Contribution.find(params[:contribution_id])
+    @payment = @contribution.payments.where(success: false).last
   end
   
   private
@@ -57,7 +70,10 @@ class ContributionsController < ApplicationController
       elsif params[:attendee_id]
         id = params[:attendee_id]
         Attendee.find(params[:attendee_id])
-      else
+      elsif params[:champion_id]
+        id = params[:champion_id]
+        Champion.find(params[:champion_id])
+       else
         id = params[:team_id]
         Team.find(params[:team_id])
       end
@@ -68,6 +84,8 @@ class ContributionsController < ApplicationController
         event_contribution_path(context, contribution)
       elsif Attendee === context
         attendee_pledge_page_path(context, context.pledge_page)
+      elseif Champion === context
+        champion_contribution_path(context, contribution)
       else
         team_path(context)
       end

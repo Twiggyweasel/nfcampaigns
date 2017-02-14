@@ -1,6 +1,6 @@
 <div class="row banner-image">
 </div>
-<div class='container mt-3'>
+<div class='container mt-4'>
   <div class='row'>
     <div class='col-10 offset-1 text-center'>
       <h3><i>Take a crazy breath of fresh air and join us for an unforgettable party, and 1-mile fun run this February, benefiting NF research.</i></h3>
@@ -136,16 +136,48 @@ Take your first step towards a cure by finding, registering, and then fundraisin
   <div class='container'>
     <div class='row'>
     <div class='col-md-5 my-5 w'>
-      <h3>Meet This Month's Champion</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit, tortor ac egestas varius, erat tortor iaculis ex, 
-      in egestas nisi risus euismod dolor. Quisque id mauris libero. Vivamus aliquam faucibus pellentesque. Cras velit turpis, luctus 
-      sit amet euismod sit amet, tristique quis diam. In hac habitasse platea dictumst. Nam commodo, tortor eget rutrum congue, augue
-      nunc pulvinar quam, id ornare quam nunc quis nisi. Quisque sed nisi et justo lacinia pellentesque. Sed sit amet sapien eget augue 
-      lobortis tempus.</p>
+      <h3>Meet Our NF Champs</h3>
+      <p>Our NF Champs are chosen for their strength, courage, and happiness despite
+      difficult circumstances. They are the reason we keep 
+      pushing further to find treatments and a cure for 
+      neurofibromatosis. View their stories or upload your own 
+      and join us in the fight to stay #NFstrong.</p>
+      
+      <div class='row'>
+        <div class='col-lg-6 my-2'>
+          <%= link_to "View Their Stories", champions_path, class: 'btn btn-block btn-info' %>
+        </div>
+        <div class='col-lg-6 my-2'>
+          <%= link_to "Share Your NF Champ", new_champion_path, class:'btn btn-block btn-warning' %>    
+        </div>
+      </div>
     </div>
     <div class='col-md-7 my-5'>
-      <img class='img-fluid rounded d-block mx-auto' src='https://placehold.it/650x350'>
+      <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp.png") %>'>
     </div>
+  </div>
+  </div>
+</div>
+<div class='row mb-5'>
+  <div class='container'>
+    <div class='row'>
+          <div class='col-md-5 my-3'>
+      <img class='img-fluid rounded d-block mx-auto' style='style:275px' src='<%= image_url("planning.jpg") %>'>
+    </div>
+    <div class='col-md-6 offset-md-1 my-3'>
+      <h3>Interesting In Hosting An Event?</h3>
+      <p>Our NF Events are an excellent way to build the NF community, raise money to fund research, and to spread awareness. 
+      We are always looking for individuals who are driven to engage with their locale community and help organize events.
+      If this describes you take a moment to fill out an interest form and join us in the fight to stay #NFstrong.</p>
+      
+      <div class='row'>
+        <div class='col-lg-6 offset-3 my-2'>
+          <%= link_to "Click Here", new_application_path, class: 'btn btn-block btn-primary' %>
+        </div>
+        
+      </div>
+    </div>
+
   </div>
   </div>
 </div>

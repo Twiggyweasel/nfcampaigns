@@ -32,6 +32,25 @@ User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "tes
   )
 end
 
+count = 1
+25.times do 
+
+  user = User.find(count)
+  
+  user.create_profile(
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zipcode: Faker::Address.zip,
+    has_nf: true,
+    child_with_nf: false,
+    news_letter: true,
+    event_notifications: true
+  )
+  
+  count += 1
+end
+
 10.times do 
   Team.create(
     name: Faker::Address.unique.city + " Team",
@@ -56,6 +75,14 @@ end
   
 end
 
+teamcount = 3
+10.times do 
+  attendee = Team.find(teamcount).attendees.first 
+
+  attendee.update(is_leader: true)
+
+  teamcount += 1
+end
 # for i in 0..Team.count
 #   team = Team.find(i) 
 #   if team.attendees.count != 0

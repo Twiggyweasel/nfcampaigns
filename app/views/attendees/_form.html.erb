@@ -8,7 +8,8 @@
     <div class='col-md-4 offset-md-4'>
       <div class='card'>
         <div class='card-block'>
-          <%= f.label :fee, "Registration Fee" %>
+          <h5>Registration for <%= current_user.name.titleize %></h5>
+          <%= f.label :fee, "Registration Type" %>
           <%= f.select(:fee, options_for_select(@event.registration_fees.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
           <%= f.label :shirt_size %>
           <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
@@ -42,6 +43,7 @@
     </div>
   </div>
   <% end %>
+  <% if @attendee.new_record? %>
   <div class='row mt-1' id='addGuestRow'>
     <div class='col-md-4 offset-md-4'>
       <div class='card'>
@@ -51,7 +53,7 @@
       </div>
     </div>
   </div>
-
+  <% end %>
    <div class='row mt-1'>
     <div class='col-md-4 offset-md-4'>
       <div class='card'>
@@ -80,9 +82,9 @@
       console.log(guestCount);
     }
     
-    if(guestCount != 0) {
-      $("#addGuest").text("Add Another Guest")
-    }
+    // if(guestCount != 0) {
+    //   $("#addGuest").text("Add Another Guest")
+    // }
     
     if(guestCount == guestMax) {
       $("#addGuestRow").hide();

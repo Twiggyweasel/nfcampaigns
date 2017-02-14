@@ -1,23 +1,12 @@
-<%= render 'shared/title', title: 'New Payment' %>
-
-<div class='row my-3'>
-  <div class='col-8 offset-2'>
-    <div class='card card-block'>
-      <h4>Purchase Details</h4>
-        ammount: <%= number_to_currency(@payable.amount) %>
-        honoree: <% if @payable.honoree? %><%= @payable.honoree.titleize %> <% end %>
-    </div>
-  </div>
-
-</div>
-<%= form_for [@event, @payable, @payment] do |f| %>
+<%= render 'shared/title', title: 'Payment Information', display: 4 %>
+<%= form_for [@event, @context, @payment] do |f| %>
 <div class='row'>
   <% if @payment.errors.any? %>
     <%= render 'shared/errors', errors: @payment.errors %>
   <% end %> 
-  <div class='col-8 offset-2'>
+  <div class='col-6 offset-1'>
     <div class='card card-block'>
-      <h3>Payment Details</h3>
+      <h3>Billing Details</h3>
       <div class='row my-3'>
         <div class='col-6'>
           <%= f.label :first_name, class: "control-label" %>
@@ -48,24 +37,89 @@
           <%= f.text_field :card_security_code, class: "form-control" %>          
         </div>  
       </div>
+      <label class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" checked>
+  <span class="custom-control-indicator"></span>
+  <span class="custom-control-description">Cover the Processing Fees of <%= number_to_currency(@payment.fee(@context.amount)) %></span>
+</label>
         <div class="form-group">
-
+          <%= f.hidden_field(:amount, :value => @context.amount) %> 
         </div>
         <div class="form-group">
 
         </div>
-        <div class="form-group">
-          <%= f.hidden_field(:amount, :value => @payable.amount) %> 
-        </div>
-        <div class="form-group">
-          <%= f.submit "Authorize Card", class: "btn btn-primary float-right" %>
-        </div>
-      <% end %>
+
     </div>
   </div>
+  
+  <% if @context.instance_of? Contribution %>
+  <div class='col-md-4'>
+  <div class='card'>
+    <div class='card-block'>
+      <h2><i class='fa fa-shopping-cart'></i> Cart Information</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Count</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Contribution</td>
+            <td>1x</td>
+            <td><%= number_to_currency(@context.amount) %></td>
+          </tr>
+        </tbody>
+        </table>
+
+    </div>
+            <div class='card-footer'>  
+          <%= f.submit "Authorize Card", class: "btn btn-success btn-block" %>
+          <%= link_to "Edit Contribution Details", edit_event_contribution_path(@context.backable_id, @context), class: 'btn btn-primary btn-block' %>
+        </div>
+  </div>
+  </div>
+  <% else %>
+      <div class='col-md-4'>
+      <div class='card'>
+        <div class='card-block'>
+          <h2><i class='fa fa-shopping-cart'></i> Cart Information</h2>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Count</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Single Registration</td>
+                <td>x1</td>
+                <td><%= number_to_currency(@context.fee) %></td>
+              </tr>
+              <tr>
+                <td>Guests</td>
+                <td id='guest-count'>x<%= @context.guests.count %></td>
+                <td id='guest-total'><%= number_to_currency(@context.guests_fee_total) %></td>
+              </tr>
+              <tr>
+                <td colspan=2>Total:</td>
+                <td id='attendee-total'><%= number_to_currency(@context.attendee_total) %></td>
+              </tr>
+            </tbody>
+          </table>
+          
+
+        </div>
+        <div class='card-footer'>  
+          <%= f.submit "Authorize Card", class: "btn btn-success btn-block" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
-       
-    </div>
-  </div>
-</div>
+<% end %>

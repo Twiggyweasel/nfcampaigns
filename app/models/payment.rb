@@ -16,9 +16,10 @@ class Payment < ApplicationRecord
 
   validate :valid_card
   
-  after_save do 
+  def finalize
     if self.success == true 
-      self.payable.update_columns(paid: 'true')
+      self.payable.update_column(:paid, true)
+      self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
     end
   end
 
@@ -62,5 +63,9 @@ class Payment < ApplicationRecord
         false
       end
     end
+  end
+  
+  def fee(amount)
+    (amount * 0.029) + 0.30  
   end
 end

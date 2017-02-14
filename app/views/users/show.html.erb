@@ -8,7 +8,7 @@
     <%= image_tag('no_user.png', class: 'img-fluid d-block mx-auto img-thumbnail rounded-circle', style: "margin-top: -100px; height: 250px; ")  %>
   <% end %>
   <div class='raised-content'>
-    <h3 class='card-title text-center'><%= @user.name %> - Kansas</h3>
+    <h3 class='card-title text-center'><%= @user.name %> - <%= @user.profile.state %></h3>
     <div class='row mt-2'>
       <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
         <h3><%= @user.attendees.count %></h3>

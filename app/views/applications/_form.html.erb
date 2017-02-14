@@ -1,0 +1,57 @@
+<%= form_for @application do |f| %>
+<% if @application.errors.any? %>
+  <%= render 'shared/errors', errors: @application.errors %>
+<% end %>
+
+<div class='row'>
+  <div class='col-6 offset-3'>
+    <div class='card card-block'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :name, "Full Name" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+          
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :email, "Contact Email Address" %>
+          <%= f.email_field :email, class: 'form-control' %>          
+        </div>
+      </div>      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :phone, "Contact Phone Number" %>
+          <%= f.text_field :phone, class: 'form-control' %>          
+        </div>
+      </div>  
+      <div class='row my-2'>
+        <div class='col-7'>
+          <%= f.label :city, "City where event would be hosted" %>
+          <%= f.text_field :city, class: 'form-control' %>    
+        </div>
+        <div class='col-5'>
+          <%= f.label :state, "State where event would be hosted" %>
+          <%= f.select :state, options_for_select(states), { }, {class:'form-control', prompt: 'Select a State' } %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :event_type, "What Kind of Event Would You Like To Host" %>
+          <%=f.select :event_type, options_for_select([['Walk', "Walk"], ['Bowling', 'Bowling'], ["Gala", "Gala"], ["Dinner", "Dinner"], ["Motorcycle Rally", "Motorcycle Rally"]]), { }, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :comments, "Additional Information" %>
+          <%= f.text_area :comments, class: "form-control", :rows => 15 %>
+        </div>
+      </div>
+      <%= f.submit(@application.new_record? ? "Submit Interest" : "Edit Details", class: 'btn btn-block btn-success my-2') %>
+      <%= link_to "Cancel", :back, class: 'btn btn-block btn-danger' %>
+    </div>
+  </div>
+</div>
+
+
+<% end %>

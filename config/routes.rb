@@ -6,10 +6,14 @@ Rails.application.routes.draw do
     resources :events
     resources :promotions 
     resources :users
+    resources :applications, only: [:index, :show, :destroy]
   end
   
   resources :events, except: [:new, :create] do 
-    resources :contributions, only: [:show, :new, :create, :edit, :update]
+    resources :contributions, only: [:show, :new, :create, :edit, :update] do 
+      get 'reciept', to: 'contributions#reciept'
+      get 'decline', to: 'contributions#decline'
+    end
     resources :comments, only: [:new, :create]
     resources :teams, except: [:index]
     resources :attendees, except: [:index]
@@ -22,7 +26,9 @@ Rails.application.routes.draw do
   
   resources :attendees, except: [:new, :create, :index] do
     # resources :pledge_pages, only: [:edit, :update]
-    
+    resources :payments
+    get 'reciept', to: 'attendees#reciept'
+     get 'decline', to: 'attendees#decline'
     get 'pledge_page', to: 'pledge_pages#show', as: :pledge_page
     resources :guests, except: [:show]
     resources :contributions, only: [:show, :new, :create, :edit, :update]
@@ -38,7 +44,19 @@ Rails.application.routes.draw do
   match '/login', to: 'session#new', via: [:get, :post]
   match '/logout', to: 'session#destroy', via: [:get, :post]
   get '/auth/failure', to: 'session#failure'
-  resources :users #needed by omniauth-identity
+  
+  resources :users do  #needed by omniauth-identity
+    resources :profiles, only: [:new, :create, :edit, :update] do
+      member { put :has_nf }
+    end
+    get 'account_settings', to: 'profiles#show'
+  end
+  
+  resources :champions do 
+    resources :contributions
+  end
+  
+  resources :applications, except: [:index, :destroy]
   
   resources :payments, only: [:index, :new, :create, :show]
   resources :referrals
