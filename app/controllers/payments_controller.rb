@@ -22,6 +22,7 @@ class PaymentsController < ApplicationController
     if @payment.save
       if @payment.process
         @payment.finalize
+
         redirect_to context_url(@context), :flash => { :success => "Your card has been successfully charged." }
         # redirect_to event_contribution_reciept_path(@payable.backable, @payable), :flash => { :success => "Your card has been successfully charged." } and return
       else

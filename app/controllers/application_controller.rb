@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :require_user, :require_admin, :is_admin?
+  helper_method :current_user, :logged_in?, :require_user, :require_admin, :is_admin?, :single_profile
+  
   
   
   def current_user
@@ -33,6 +34,13 @@ class ApplicationController < ActionController::Base
     if !is_admin?
       flash[:danger] = "You are not authorized for this section of the application"
       redirect_to :back
+    end
+  end
+  
+  def single_profile
+    if !current_user.profile.nil?
+      flash[:warning] = "You have already setup your profile"
+      redirect_to user_path(current_user)
     end
   end
 end

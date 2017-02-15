@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_user 
+  before_action :set_user, :require_user
+  before_action :single_profile, only: [:new, :create]
   
   def show
     @profile = @user.profile
@@ -16,8 +17,10 @@ class ProfilesController < ApplicationController
       if session[:return_url] 
         reroute = session[:return_url]
         session.delete(:return_url)
+        UserMailer.welcome_email(current_user).deliver_later
         redirect_to reroute, :flash => { :success => "Your Account has been Successfully Created"}
       else
+        UserMailer.welcome_email(current_user).deliver_later
         redirect_to root_path, :flash => { :success => "Your Account was Successfully Created" }
       end
     else

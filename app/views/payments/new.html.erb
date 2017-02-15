@@ -1,9 +1,12 @@
 <%= render 'shared/title', title: 'Payment Information', display: 4 %>
 <%= form_for [@event, @context, @payment] do |f| %>
-<div class='row'>
+
   <% if @payment.errors.any? %>
     <%= render 'shared/errors', errors: @payment.errors %>
   <% end %> 
+
+<div class='row'>
+
   <div class='col-6 offset-1'>
     <div class='card card-block'>
       <h3>Billing Details</h3>
@@ -38,12 +41,12 @@
         </div>  
       </div>
       <label class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input" checked>
+  <input type="checkbox" class="custom-control-input" id='cover-fee' checked>
   <span class="custom-control-indicator"></span>
   <span class="custom-control-description">Cover the Processing Fees of <%= number_to_currency(@payment.fee(@context.amount)) %></span>
 </label>
         <div class="form-group">
-          <%= f.hidden_field(:amount, :value => @context.amount) %> 
+          <%= f.hidden_field(:amount, :value => (@context.amount + @payment.fee(@context.amount))) %> 
         </div>
         <div class="form-group">
 
@@ -71,6 +74,15 @@
             <td>1x</td>
             <td><%= number_to_currency(@context.amount) %></td>
           </tr>
+           <tr id='processing-block'>
+                <td>Cover Processing Fee:</td>
+                <td id='processing-count'>x1</td>
+                <td id='processing-amount'><%= number_to_currency(@payment.fee(@context.amount)) %></td>
+            </tr>
+            <tr>
+              <td colspan=2>Total:</td>
+              <td id='final-total'><%= number_to_currency((@context.amount + @payment.fee(@context.amount))) %></td>
+            </tr>
         </tbody>
         </table>
 
@@ -105,9 +117,14 @@
                 <td id='guest-count'>x<%= @context.guests.count %></td>
                 <td id='guest-total'><%= number_to_currency(@context.guests_fee_total) %></td>
               </tr>
+              <tr id='processing-block'>
+                <td>Cover Processing Fee:</td>
+                <td id='processing-count'>x1</td>
+                <td id='processing-amount'><%= number_to_currency(@payment.fee(@context.amount)) %></td>
+              </tr>
               <tr>
                 <td colspan=2>Total:</td>
-                <td id='attendee-total'><%= number_to_currency(@context.attendee_total) %></td>
+                <td id='final-total'><%= number_to_currency((@context.attendee_total + @payment.fee(@context.amount))) %></td>
               </tr>
             </tbody>
           </table>
@@ -116,6 +133,7 @@
         </div>
         <div class='card-footer'>  
           <%= f.submit "Authorize Card", class: "btn btn-success btn-block" %>
+          <%= link_to "Edit Registration Details", edit_event_attendee_path(@context.event, @context), class:'btn btn-primary btn-block' %>
         </div>
       </div>
     </div>
@@ -123,3 +141,32 @@
 </div>
 
 <% end %>
+
+<script>
+ $('#cover-fee').click(function() {
+   
+   var amountwfeeRaw = <%= @context.amount + @payment.fee(@context.amount) %>;
+   var amountRaw = <%= @context.amount %>
+   var feeClean = "<%= number_to_currency(@payment.fee(@context.amount)).to_s %>";
+   var total =  "<% if @context.instance_of? Contribution %><%= number_to_currency(@context.amount).to_s %><% else %><%= number_to_currency(@context.attendee_total).to_s %><% end %>"
+   var totalwfee = "<% if @context.instance_of? Contribution %><%= number_to_currency(@payment.fee(@context.amount) + @context.amount).to_s %><% else %><%= number_to_currency(@payment.fee(@context.amount) + @context.attendee_total).to_s %><% end %>"
+   
+   
+      if($(this).is(":checked")) {
+        console.log("checked");
+        // $('#processing-block').show();
+        $('#processing-count').text('x1')
+        $('#processing-amount').text(feeClean);
+        $('#final-total').text(totalwfee);
+        $('#payment_amount').val(amountwfeeRaw);
+      } else {
+        console.log('not checked');
+        // $('#processing-block').hide(); 
+        $('#processing-count').text('x0');
+        $('#processing-amount').text('$0.00');
+        $('#final-total').text(total);
+        $('#payment_amount').val(amountRaw); 
+      }
+  });
+  
+</script>

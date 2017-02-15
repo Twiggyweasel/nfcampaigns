@@ -19,7 +19,9 @@ class Payment < ApplicationRecord
   def finalize
     if self.success == true 
       self.payable.update_column(:paid, true)
-      self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
+      while !self.save
+        self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
+      end
     end
   end
 
