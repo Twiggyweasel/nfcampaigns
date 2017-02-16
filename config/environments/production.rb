@@ -90,4 +90,14 @@ config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true
 }
   # Do not dump schema after migrations.
+  
+config.after_initialize do
+  
+  ActiveMerchant::Billing::Base.mode = :production
+  ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+    :login => ENV["NET_LOGIN_LIVE"],
+    :password => ENV["NET_TRAN_KEY_LIVE"]
+  )
+end 
+  
 end
