@@ -31,7 +31,8 @@ if Rails.env == "development"
 
 elsif Rails.env == "production"
   # login = ENV["STRIPE_SECRET_TEST"]
-  
+    ActiveMerchant::Billing::AuthorizeNetGateway.wiredump_device = File.open(Rails.root.join("log","active_merchant.log"), "a+")
+  ActiveMerchant::Billing::AuthorizeNetGateway.wiredump_device.sync = true
   login = ENV["NET_LOGIN_LIVE"]
   password = ENV["NET_TRAN_KEY_LIVE"]
 end
