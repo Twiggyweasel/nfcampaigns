@@ -59,7 +59,7 @@ class Payment < ApplicationRecord
       else
         update_columns({last4: credit_card.number[-4..-1]})
         errors.add(:base, "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}")
-        errors.add(:base, "The credit card you provided was declined.  Please double check your information and try again.") and return
+        errors.add(:base, "The credit card you provided could not be authorized.  Please double check your information and try again.") and return
         false
       end
     end
