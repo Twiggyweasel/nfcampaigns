@@ -33,6 +33,7 @@ class Event < ApplicationRecord
   
   after_save do 
     self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
+    self.update_raised
   end
   
   def update_raised

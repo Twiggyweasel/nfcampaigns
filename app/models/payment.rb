@@ -19,9 +19,7 @@ class Payment < ApplicationRecord
   def finalize
     if self.success == true 
       self.payable.update_column(:paid, true)
-      while !self.save
-        self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
-      end
+      self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
     end
   end
 
@@ -47,16 +45,16 @@ class Payment < ApplicationRecord
 
   def process
     if valid_card
-      response = GATEWAY.authorize((amount * 100).floor, credit_card)
+      response = GATEWAY.authorize((amount * 100).floor, credit_card, options = { :billing_address => { :address1 => "13308 W 96th Terr", :city => "Lenexa", :state => "KS", :zip => "66215" } })
       if response.success?
         transaction = GATEWAY.capture((amount * 100).floor, response.authorization)
         if !transaction.success?
-          update_columns({last4: credit_card.number[-4..-1]})
+          update_columns({last4: credit_card.number[-4..-1], success: false})
           # errors.add(:base, "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}")
           errors.add(:base, "The credit card you provided was declined.  Please double check your information and try again.") and return
           false
         end
-        update_columns({authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1]})
+        update_columns({authorization_code: transaction.id, success: true, last4: credit_card.number[-4..-1]})
         true
       else
         update_columns({last4: credit_card.number[-4..-1]})

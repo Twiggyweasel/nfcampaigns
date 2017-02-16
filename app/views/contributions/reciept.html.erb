@@ -3,7 +3,7 @@
 <div class='row my-3'>
   <div class='col-md-8 offset-md-2'>
     <div class='card card-block'>
-      <h4 class='mx-2 my-3'>Your confirmation number is <%= @payment.confirmation_number %><a href='#' class='btn btn-secondary pull-right'><i class='fa fa-print'></i></a></h4>
+      <h4 class='mx-2 my-3'>Your confirmation number is <%= @payment.confirmation_number %><button onclick="window.print();" class='btn btn-secondary pull-right'><i class='fa fa-print'></i></button></h4>
       <h4 class='mx-2 my-3'>Your payment was processed for the amount of <%= number_to_currency(@payment.amount) %></h4>
       <h5 class='mx-2 my-3'>You will recieve a confirmation email shortly at <%= @contribution.user.email %></h5>
       <div class='row'>

@@ -63,7 +63,7 @@ private
   
   def approved_payment 
     if context.payments.any?
-      if context.payments.where(success: true)
+      if context.payments.where(success: true).any?
         redirect_to :back, :flash => { :success => "Payment has already been approved for this item" }
       end
     end
