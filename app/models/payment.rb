@@ -54,7 +54,7 @@ class Payment < ApplicationRecord
           errors.add(:base, "The credit card you provided was declined.  Please double check your information and try again.") and return
           false
         end
-        update_columns({authorization_code: transaction.id, success: true, last4: credit_card.number[-4..-1]})
+        update_columns({authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1]})
         true
       else
         update_columns({last4: credit_card.number[-4..-1]})
