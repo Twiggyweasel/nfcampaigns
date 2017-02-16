@@ -45,7 +45,7 @@ class Payment < ApplicationRecord
 
   def process
     if valid_card
-      response = GATEWAY.authorize((amount * 100).floor, credit_card)
+      response = GATEWAY.authorize((amount * 100).floor, credit_card, { :billing_address => { :address1 => "13308 w 96th ter", :city => "lenexa", :state => "ks", :zip => "66215" } })
       if response.success?
         transaction = GATEWAY.capture((amount * 100).floor, response.authorization)
         if !transaction.success?
