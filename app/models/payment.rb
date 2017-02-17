@@ -5,6 +5,11 @@ class Payment < ApplicationRecord
   attr_accessor :credit_card_number
   attr_accessor :expiration_month
   attr_accessor :expiration_year
+  attr_accessor :street
+  attr_accessor :apt
+  attr_accessor :city
+  attr_accessor :state
+  attr_accessor :zip
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -33,6 +38,19 @@ class Payment < ApplicationRecord
       last_name:           last_name
     )
   end
+  
+  def purchase_options
+    {
+      :billing_address => {
+        :address1 => street,
+        :address2 => apt,
+        :city => city,
+        :state => state,
+        :zip => zip
+      
+      }
+    }
+  end
 
   def valid_card
     if !credit_card.valid?
@@ -45,7 +63,7 @@ class Payment < ApplicationRecord
 
   def process
     if valid_card
-      response = GATEWAY.authorize((amount * 100).floor, credit_card, { :billing_address => { :address1 => "13308 w 96th ter", :city => "lenexa", :state => "ks", :zip => "66215" } })
+      response = GATEWAY.authorize((amount * 100).floor, credit_card, purchase_options)
       if response.success?
         transaction = GATEWAY.capture((amount * 100).floor, response.authorization)
         if !transaction.success?
