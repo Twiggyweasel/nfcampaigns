@@ -1,3 +1,4 @@
-<h2 class='text-center my-3'>Edit Contribution for <%= @context.name %></h2>
+<%= render 'shared/title', title: "Edit Contribution for #{ @context.name }", display: 4 %>
+
 
 <%= render 'form' %>

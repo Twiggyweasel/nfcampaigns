@@ -19,6 +19,12 @@ class Payment < ApplicationRecord
   validates :expiration_year, presence: true
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
+  validates :street, presence: true
+  validates :apt, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zip, presence: true, length: { is: 5 }
+  validates :zip, presence: true
   validate :valid_card
   
   def finalize

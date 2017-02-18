@@ -8,12 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Carter+One" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag %>
   </head>
 
   <body>
     <%= render 'shared/nav' %>
     <%= render 'shared/messages' %>
-    <div class='container-fluid mt-0'>
+    <div class='container-fluid'>
       <%= yield %>
     </div>
   </body>

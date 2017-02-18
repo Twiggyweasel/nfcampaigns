@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214034715) do
+ActiveRecord::Schema.define(version: 20170217202830) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -197,6 +197,15 @@ ActiveRecord::Schema.define(version: 20170214034715) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_registration_fees_on_event_id"
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_resources_on_event_id"
   end
 
   create_table "roles", force: :cascade do |t|

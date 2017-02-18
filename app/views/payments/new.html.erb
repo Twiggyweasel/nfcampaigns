@@ -5,38 +5,38 @@
     <%= render 'shared/errors', errors: @payment.errors %>
   <% end %> 
 
-<div class='row'>
+<div class='row mb-3'>
 
   <div class='col-6 offset-1'>
     <div class='card card-block'>
-      <h3>Billing Details</h3>
+      <h3><i class="fa fa-credit-card" aria-hidden="true"></i> Credit Card</h3>
       <div class='row my-3'>
         <div class='col-6'>
-          <%= f.label :first_name, class: "control-label" %>
+          <%= f.label :first_name %>
           <%= f.text_field :first_name, class: "form-control" %>
         </div>
         <div class='col-6'>
-          <%= f.label :last_name, class: "control-label" %>
+          <%= f.label :last_name %>
           <%= f.text_field :last_name,class: "form-control" %>          
         </div>
       </div>
       <div class="row my-3">
         <div class='col-12'>
-          <%= f.label :credit_card_number, class: "control-label" %>
+          <%= f.label :credit_card_number %>
           <%= f.text_field :credit_card_number, class: "form-control" %>          
         </div>
       </div>
       <div class="row my-3">
         <div class='col-4'>
-          <%= f.label :expiration_month, class: "control-label" %>
+          <%= f.label :expiration_month %>
           <%= f.select :expiration_month, months, {}, class: "form-control" %>
         </div>  
         <div class='col-4'>
-          <%= f.label :expiration_year, class: "control-label" %>
+          <%= f.label :expiration_year %>
           <%= f.select :expiration_year, years, {}, class: "form-control" %>          
         </div>  
         <div class='col-4'>
-          <%= f.label :card_security_code, class: "control-label" %>
+          <%= f.label :card_security_code %>
           <%= f.text_field :card_security_code, class: "form-control" %>          
         </div>  
       </div>
@@ -55,30 +55,39 @@
     </div>
     
     
-    <div class='card card-block'>
-      <h3>Billing Address</h3>
+    <div class='card card-block mt-3'>
+      <h3><i class="fa fa-address-card-o" aria-hidden="true"></i> Billing Address</h3>
+      <div class='row my-3'>
+        <div class='col-12'>
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id='custom-address'>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Use a different address</span>
+          </label>  
+        </div>
+      </div>
       <div class='row my-3'>
         <div class='col-6'>
-          <%= f.label :street, class: "control-label" %>
-          <%= f.text_field :street, class: "form-control" %>
+          <%= f.label :street, "Street Address" %>
+          <%= f.text_field :street, class: "form-control", :value => current_user.profile.street %>
         </div>
         <div class='col-6'>
-          <%= f.label :apt, class: "control-label" %>
-          <%= f.text_field :apt,class: "form-control" %>          
+          <%= f.label :apt, "Apt/Suite #" %>
+          <%= f.text_field :apt,class: "form-control", :value => current_user.profile.apt %>          
         </div>
       </div>
       <div class="row my-3">
         <div class='col-4'>
-          <%= f.label :city, class: "control-label" %>
-          <%= f.text_field :city, class: "form-control" %>  
+          <%= f.label :city %>
+          <%= f.text_field :city, class: "form-control", :value => current_user.profile.city %>  
         </div>  
         <div class='col-4'>
-                 <%= f.label :state, class: "control-label" %>
-          <%= f.text_field :state, class: "form-control" %> 
+          <%= f.label :state %>
+          <%= f.text_field :state, class: "form-control", :value => current_user.profile.state %> 
         </div>  
         <div class='col-4'>
-                    <%= f.label :zip, class: "control-label" %>
-          <%= f.text_field :zip, class: "form-control" %>  
+          <%= f.label :zip, "Zip Code" %>
+          <%= f.text_field :zip, class: "form-control", :value => current_user.profile.zipcode %>  
         </div>  
       </div>
     </div>
@@ -88,7 +97,7 @@
   <div class='col-md-4'>
   <div class='card'>
     <div class='card-block'>
-      <h2><i class='fa fa-shopping-cart'></i> Cart Information</h2>
+      <h2><i class='fa fa-shopping-cart'></i> Cart</h2>
       <table class='table'>
         <thead>
           <tr>
@@ -105,7 +114,7 @@
           </tr>
            <tr id='processing-block'>
                 <td>Cover Processing Fee:</td>
-                <td id='processing-count'>x1</td>
+                <td id='processing-count'>1x</td>
                 <td id='processing-amount'><%= number_to_currency(@payment.fee(@context.amount)) %></td>
             </tr>
             <tr>
@@ -126,7 +135,7 @@
       <div class='col-md-4'>
       <div class='card'>
         <div class='card-block'>
-          <h2><i class='fa fa-shopping-cart'></i> Cart Information</h2>
+          <h2><i class='fa fa-shopping-cart'></i> Cart</h2>
           <table class='table'>
             <thead>
               <tr>
@@ -184,18 +193,43 @@
       if($(this).is(":checked")) {
         console.log("checked");
         // $('#processing-block').show();
-        $('#processing-count').text('x1')
+        $('#processing-count').text('1x')
         $('#processing-amount').text(feeClean);
         $('#final-total').text(totalwfee);
         $('#payment_amount').val(amountwfeeRaw);
       } else {
         console.log('not checked');
         // $('#processing-block').hide(); 
-        $('#processing-count').text('x0');
+        $('#processing-count').text('0x');
         $('#processing-amount').text('$0.00');
         $('#final-total').text(total);
         $('#payment_amount').val(amountRaw); 
       }
   });
-  
+  $('#custom-address').click(function() {
+    
+    var profile_address = "<%= current_user.profile.street %>"
+    var profile_apt = "<%= current_user.profile.apt %>"
+    var profile_city = "<%= current_user.profile.city %>"
+    var profile_state = "<%= current_user.profile.state %>"
+    var profile_zip = "<%= current_user.profile.zipcode %>"
+    if($(this).is(":checked")) {
+        console.log("checked");
+        // $('#processing-block').show();
+        $('#payment_street').val('');
+        $('#payment_apt').val('');
+        $('#payment_city').val('');
+        $('#payment_state').val('');
+        $('#payment_zip').val('');
+        $('#payment_street').focus();
+      } else {
+        console.log('not checked');
+        // $('#processing-block').hide(); 
+        $('#payment_street').val(profile_address);
+        $('#payment_apt').val(profile_apt);
+        $('#payment_city').val(profile_city);
+        $('#payment_state').val(profile_state);
+        $('#payment_zip').val(profile_zip);
+      }
+  });
 </script>

@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'
-    resources :events
+    resources :events do 
+      resources :resources, except: [:show, :index]
+    end
     resources :promotions 
     resources :users
     resources :applications, only: [:index, :show, :destroy]
+    resources :resources, only: [:index]
   end
   
   resources :events, except: [:new, :create] do 
