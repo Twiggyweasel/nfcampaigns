@@ -50,11 +50,11 @@ Take your first step towards a cure by finding, registering, and then fundraisin
   </div>
 
   <div class='row mt-5' style='background-color: white'>
-          <div class='col-5 offset-1 pr-0 mt-3'>
+          <div class='col-5 offset-1 mt-3 pr-0'>
             <img src='<%= image_url('bodybuilderclear.png') %>' class='img-fluid d-block mx-auto'>
           </div>
-          <div class='col-4 offset-1 text-center pl-0 mt-5' style=''>
-            <h4 class=""style="font-family: 'Carter One', cursive;">Join us in our fight to make everyone NF Strong<br><br> Raised so far...</h4>
+          <div class='col-4 offset-1 text-center mt-5 pl-0' style=''>
+            <h2 class=""style="font-family: 'Just Another Hand', cursive;">Join us in our fight to make everyone NF Strong<br> Raised so far...</h2>
             <h2 class=""><%= number_to_currency(@total_raised) %></span></h2>
             <%= link_to "Contribute Today", contribution_select_path, class: 'btn btn-warning mt-3 px-5' %>
           </div>
