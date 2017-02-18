@@ -33,39 +33,52 @@
   </div>
 </div>
 
-
-
-<div class='row pt-3'>
+<div class='row mt-3'>
   <% @events.each do |event| %>
-    <% if !event.is_private? %>
-    <div class='col-md-4 col-sm-6 col-xl-3'>
-      <div class='card item-square my-2'>
-        <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
-        <% if event.event_cover? %>
-          <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
-        <% else %>
-          <%= image_tag "dock.jpg", class: 'card-img-top img-fluid' %>
-        <% end %>
-        <div class='card-block'>
-          <h4 class='card-title'> <%= event.name %></h6>
-          <p class='card-text'><%= event.venue_name %> - <%= event.city %>, <%= event.state %><br /> <%= event.event_date.strftime("%A, %B %d %Y") %>
-            <br />
-            <%= link_to "View Event", event_path(event), class: "btn btn-primary mt-3 item-square" %>
-            <%= link_to "Contribute", new_event_contribution_path(event), class: "btn btn-warning mt-3 item-square" %>
-          </p>
-        </div>
-        <div class="card-footer text-muted">
-          <div class='row'>
-              <!--<div class='col-xs-4'><p class='text-xs-left mb-0'><i class='fa fa-user'></i> <#%= event.attendees.count %></p></div> -->
-              <div class='col-4'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <%= event.teams.count %></p></div>            
-              <div class='col-4 pl-0'><p class='text-xs-center mb-0'><i class='fa fa-usd'></i> <%= number_to_currency(event.raised) %></p></div>
-          </div>
-        </div>
-      </div>
+  <div class='col-lg-4 col-md-6 event-card' style='background-image: url(<%= event.event_card.url %>);'>
+    <div class='date-overlay py-3 px-4 text-center'>
+      <%= event.event_date.strftime("%b") %><h4><%= event.event_date.strftime("%d") %></h4>
     </div>
-    <% end %>
+    <div class='title-overlay px-3 py-2'>
+      <h4><%= event.city %>, <%= event.state %> - <%= event.name %></h4>
+      <h4>Walk</h4>
+    </div>
+  </div>
   <% end %>
 </div>
+
+
+<!--<div class='row pt-3'>-->
+<!--  <#% @events.each do |event| %>-->
+<!--    <#% if !event.is_private? %>-->
+<!--    <div class='col-md-4 col-sm-6 col-xl-3'>-->
+<!--      <div class='card item-square my-2'>-->
+        <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
+<!--        <#% if event.event_cover? %>-->
+<!--          <#%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>-->
+<!--        <#% else %>-->
+<!--          <#%= image_tag "dock.jpg", class: 'card-img-top img-fluid' %>-->
+<!--        <%# end %>-->
+<!--        <div class='card-block'>-->
+<!--          <h4 class='card-title'> <%#= event.name %></h6>-->
+<!--          <p class='card-text'><%#= event.venue_name %> - <%#= event.city %>, <%#= event.state %><br /> <%#= event.event_date.strftime("%A, %B %d %Y") %>-->
+<!--            <br />-->
+<!--            <#%= link_to "View Event", event_path(event), class: "btn btn-primary mt-3 item-square" %>-->
+<!--            <#%= link_to "Contribute", new_event_contribution_path(event), class: "btn btn-warning mt-3 item-square" %>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--        <div class="card-footer text-muted">-->
+<!--          <div class='row'>-->
+              <!--<div class='col-xs-4'><p class='text-xs-left mb-0'><i class='fa fa-user'></i> <#%= event.attendees.count %></p></div> -->
+<!--              <div class='col-4'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <#%= event.teams.count %></p></div>            -->
+<!--              <div class='col-4 pl-0'><p class='text-xs-center mb-0'><i class='fa fa-usd'></i> <#%= number_to_currency(event.raised) %></p></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <#% end %>-->
+<!--  <#% end %>-->
+<!--</div>-->
 
 <!--<h1>Events</h1>-->
 
