@@ -58,9 +58,12 @@ Take your first step towards a cure by finding, registering, and then fundraisin
           <div class='col-6 mt-3 pr-0'>
                 <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp.jpg") %>'>
           </div>
-          <div class='col-4 offset-1 text-center mt-5 pl-0' style=''>
+          <div class='col-4 offset-1 text-center pl-0' style=''>
             <h3 class=""style="font-family: 'Boogaloo', cursive;">We’re making strong progress<br><br> Raised so far...</h3>
             <h2 class=""><%= number_to_currency(@total_raised) %></span></h2>
+            <br />
+            <h3 class=""style="font-family: 'Boogaloo', cursive;">Our Goal</h3>
+            <h2 class=''>$100,000.00</h2>
             <%= link_to "Contribute Today", contribution_select_path, class: 'btn btn-warning mt-3 px-5' %>
           </div>
         </div>
