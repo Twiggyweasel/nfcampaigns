@@ -238,3 +238,33 @@ body {
 .success {
   color: #5CB85C;
 }
+
+.event-card {
+  min-height: 350px;
+  position: relative; 
+  background-size: cover;
+}
+
+.title-overlay {
+  position: absolute; 
+  bottom:0; left: 0; 
+  color: white; 
+  background-color: rgba(38, 49, 59, 0.54); 
+  width: 100%;
+  transition: all .5s;
+}
+
+.date-overlay {
+  position: absolute; 
+  top: 5%; right:5%; 
+  color: white; 
+  background-color: rgba(38, 49, 59, 0.74);
+}
+
+.event-card:hover .title-overlay {
+    background-color: rgba(38, 49, 59, 1); 
+     transform: translate(0,-10px);
+  -webkit-transform: translate(0,-10px);
+  -o-transform: translate(0,-10px); 
+  -moz-transform: translate(0,-10px);
+}
