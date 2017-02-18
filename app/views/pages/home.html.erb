@@ -9,31 +9,16 @@
 </div>
 </div>
 <div class='container mt-4'>
-  <!--<div class='row'>-->
-  <!--  <div class='col-10 offset-1 text-center'>-->
-  <!--    <h3><i>Take a crazy breath of fresh air and join us for an unforgettable party, and 1-mile fun run this February, benefiting NF research.</i></h3>-->
-  <!--  </div>-->
-  <!--</div>-->
-  <!--<div class='row mt-3'>-->
-  <!--  <div class='col-4 offset-2'>-->
-  <!--    <#% if !logged_in? %>-->
-  <!--      <#%= link_to "Register", register_path, class: "btn btn-primary btn-block" %>-->
-  <!--    <#% else %>-->
-  <!--      <#%= link_to "Find an Event", events_path, class:'btn btn-primary btn-block' %>-->
-  <!--    <#% end %>-->
-  <!--  </div>-->
-
-  <!--  <div class='col-4'>-->
-  <!--  <#%= link_to "Contribute", contribution_select_path, class: "btn btn-info btn-block" %>-->
-  <!--  </div>-->
-  <!--</div>-->
-
   <div class='row mt-5'>
     <div class='col-6'>
       <h3>About Our Events</h3>
-      <p>Walks for Neurofibromatosis take place in communities nationwide.  These inspiring events create strong bonds that build a supportive NF community.  The goal of these strong communities is to rally together and become one great voice in finding affective treatments and an eventual cure for NF.  The walks are a great way to involve family and friends, meet others who are affected by NF, while raising awareness of this disorder and to create funding for NF research.
-
-Take your first step towards a cure by finding, registering, and then fundraising for a walk near you!</p>
+      <p>Walks for Neurofibromatosis take place in communities nationwide.  
+      These inspiring events create strong bonds that build a supportive NF community.  
+      The goal of these strong communities is to rally together and become one great voice in 
+      finding affective treatments and an eventual cure for NF.  The walks are a great way to 
+      involve family and friends, meet others who are affected by NF, while raising awareness 
+      of this disorder and to create funding for NF research. Take your first step towards a cure 
+      by finding, registering, and then fundraising for a walk near you!</p>
       
       
       <h3>Event Activites</h3>
@@ -56,7 +41,7 @@ Take your first step towards a cure by finding, registering, and then fundraisin
 
   <div class='row mt-5 p-3' style='background-color: white'>
           <div class='col-6 mt-3 pr-0'>
-                <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp.jpg") %>'>
+                <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp2.jpg") %>'>
           </div>
           <div class='col-4 offset-1 text-center pl-0 mt-4' style=''>
             <h3 class=""style="font-family: 'Boogaloo', cursive;">We’re making strong progress</h3>
@@ -235,3 +220,4 @@ Take your first step towards a cure by finding, registering, and then fundraisin
   </div>
 </div>
 
+<%= render 'shared/footer' %>
