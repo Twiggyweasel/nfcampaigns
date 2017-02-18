@@ -8,6 +8,8 @@ class Event < ApplicationRecord
   has_many :event_sizes
   has_many :sizes, through: :event_sizes
   mount_uploader :event_cover, EventCoverUploader
+  mount_uploader :event_card, EventCardUploader
+  
   
   after_find do 
     self.set_active

@@ -3,6 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     create_table :events do |t|
       t.string :name
       t.string :event_cover
+      t.string :event_card
       t.string :event_type 
       t.text :teaser
       t.text :desc

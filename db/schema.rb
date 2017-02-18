@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
   create_table "events", force: :cascade do |t|
     t.string   "name"
     t.string   "event_cover"
+    t.string   "event_card"
     t.string   "event_type"
     t.text     "teaser"
     t.text     "desc"
