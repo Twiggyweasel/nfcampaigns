@@ -61,11 +61,11 @@ Rails.application.routes.draw do
   
   resources :applications, except: [:index, :destroy]
   
-  resources :payments, only: [:index, :new, :create, :show]
   resources :referrals
   get 'top_attendees', to: 'pages#attendees'
   get 'top_teams', to: 'teams#index'
   get 'contribution_select', to: 'contributions#contribution_select'
+  get 'about', to: 'pages#about'
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
