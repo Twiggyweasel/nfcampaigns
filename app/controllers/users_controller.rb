@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   def index 
-    @users = User.where.not(id: 1) 
+    @users = User.where.not(id: 1).order(:name).page params[:page] 
   end
   
   def show 
