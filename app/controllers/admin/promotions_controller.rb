@@ -1,6 +1,7 @@
 class Admin::PromotionsController < ApplicationController
   layout "admin"
   before_action :set_promotion, except: [:index, :new, :create]
+  before_action :require_user, :require_admin
   
   def index
     @promotions = Promotion.all

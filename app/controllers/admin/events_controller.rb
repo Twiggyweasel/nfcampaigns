@@ -1,6 +1,8 @@
 class Admin::EventsController < ApplicationController
   layout "admin"
   before_action :set_event, except: [:index, :new, :create]
+  before_action :require_user, :require_admin
+  
   
   def index
     @events = Event.all

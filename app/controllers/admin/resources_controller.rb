@@ -1,6 +1,7 @@
 class Admin::ResourcesController < ApplicationController
-  before_action :set_event, only: [:new, :create, :edit, :update]
   layout 'admin'
+  before_action :set_event, only: [:new, :create, :edit, :update]
+  before_action :require_user, :require_admin
   
   def new
     @resource = @event.resources.new
