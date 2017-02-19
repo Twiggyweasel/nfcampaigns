@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   before_action :require_user, only: [:new, :edit, :destroy]
   
   def index
-    @teams = Team.order(raised: :desc)
+    @teams = Team.order(raised: :desc).page params[:page] 
   end
   
   def show

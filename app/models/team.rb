@@ -26,5 +26,5 @@ class Team < ApplicationRecord
     self.update_column(:raised, total_raised)
   end
   
-  
+  paginates_per 6
 end
