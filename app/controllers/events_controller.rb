@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @top_fundraisers = @event.contributions.order(amount: :desc).limit(5)
+    @top_fundraisers = @event.attendees.order(raised: :desc).limit(5)
   end
 
   # GET /events/new

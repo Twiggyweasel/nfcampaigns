@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   has_many :registration_fees
   has_many :event_sizes
   has_many :sizes, through: :event_sizes
+  has_many :resources
   mount_uploader :event_cover, EventCoverUploader
   mount_uploader :event_card, EventCardUploader
   
@@ -27,15 +28,20 @@ class Event < ApplicationRecord
     
     self.teams.pluck(:raised).sum
   end
+  
   def percent_raised
     if self.raised > 0
-      (self.raised/ self.goal) * 100
+       (self.raised / self.goal) * 100
     end
   end
   
-  after_save do 
+  after_create do 
     self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
     self.update_raised
+  end
+  
+  after_save do
+    self.update_raised    
   end
   
   def update_raised

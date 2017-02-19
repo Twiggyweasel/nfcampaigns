@@ -20,7 +20,7 @@
       of this disorder and to create funding for NF research. Take your first step towards a cure 
       by finding, registering, and then fundraising for a walk near you!</p>
       
-      
+      <br>
       <h3>Event Activites</h3>
       <p>Join us at #NFStrong events for fun, food, face painting, a raffle with fabulous prizes, NF tattoos, 
       NF Champion medals, top fundraising certificates, and new friends.</p>
@@ -68,10 +68,12 @@
       <!--  <div class='date-overlay py-3 px-4 text-center'>-->
       <!--    <#%= event.event_date.strftime("%b") %><h4><#%= event.event_date.strftime("%d") %></h4>-->
       <!--  </div>-->
-      <!--  <div class='title-overlay px-3 py-2'>-->
-      <!--    <h4><#%= event.city %>, <#%= event.state %> - <#%= event.name %></h4>-->
-      <!--    <h4>Walk</h4>-->
-      <!--  </div>-->
+            <!--<div class='title-overlay px-3 py-2'>-->
+            <!--  <#%= link_to(event_path(event)) do %>-->
+            <!--    <h4><#%= event.city %>, <#%= event.state %> - <#%= event.name %></h4>-->
+            <!--    <h4><#%= event.event_type %></h4>-->
+            <!--  <#% end %>-->
+            <!--</div>-->
       <!--</div>-->
       <!--<#% end %>-->
       <div class='col-lg-4 col-md-6 event-card' style='background-image: url(<%= image_url('bethlehem.jpg') %>);'>
@@ -204,6 +206,7 @@
     </div>
     <div class='col-md-6 offset-md-1 my-3'>
       <h3>Want to see an NF event in your area?</h3>
+      <br>
       <p>Our NF Events are an excellent way to build the NF community, raise money to fund research, and to spread awareness. 
       We are always looking for individuals who are driven to engage with their locale community and help organize events.
       If this describes you take a moment to fill out an interest form and join us in the fight to stay #NFstrong.</p>

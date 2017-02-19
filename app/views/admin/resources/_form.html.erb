@@ -1,0 +1,28 @@
+<%= form_for([:admin, @event, @resource]) do |f| %>
+  <% if @resource.errors.any? %>
+    <%= render 'shared/errors', errors: @resource.errors %>
+  <% end %>
+
+  <div class='row'>
+    <div class='col-lg-6 offset-lg-3'>
+      <div class='card card-block'>
+        <div class='row my-3'>
+          <div class='col-12'>
+            <%= f.label :name, "Resource Name" %>
+            <%= f.text_field :name, class: 'form-control' %>            
+          </div>
+        </div>
+        <div class='row my-3'>
+          <div class='col-12'>
+            <%= f.label :attachment, 'Resource File' %>
+            <%= f.file_field :attachment, class: 'form-control' %>            
+          </div>
+        </div>
+        <%= f.submit @resource.new_record? ? "Add to Event" : "Update Resource", class: 'btn btn-success btn-block mb-3 mt-4' %>
+        <%= link_to "Cancel", admin_event_path(@event), class: 'btn btn-danger btn-block' %>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>

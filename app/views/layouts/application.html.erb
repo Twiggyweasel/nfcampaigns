@@ -5,9 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Carter+One" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Changa+One|Boogaloo|Just+Another+Hand" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag %>
   </head>
@@ -15,7 +13,7 @@
   <body>
     <%= render 'shared/nav' %>
     <%= render 'shared/messages' %>
-    <div class='container-fluid'>
+    <div class='container-fluid px-0'>
       <%= yield %>
     </div>
   </body>

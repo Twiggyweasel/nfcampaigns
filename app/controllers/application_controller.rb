@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   def require_admin
     if !is_admin?
       flash[:danger] = "You are not authorized for this section of the application"
-      redirect_to :back
+      redirect_to root_path
     end
   end
   
