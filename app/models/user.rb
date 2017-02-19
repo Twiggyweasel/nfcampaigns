@@ -37,4 +37,6 @@ class User < OmniAuth::Identity::Models::ActiveRecord
 
   end
   
+  paginates_per 6
+  
 end
