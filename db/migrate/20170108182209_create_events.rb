@@ -10,6 +10,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.date :registration_date
       t.date :event_date
       t.time :event_start_time
+      t.time :event_end_time
       t.float :goal
       t.float :raised
       t.string :venue_name

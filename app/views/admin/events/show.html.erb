@@ -3,7 +3,7 @@
     <h1><%= @event.name %></h1>
   </div>
 </div>
-
+<%= link_to "Add Resources", new_admin_event_resource_path(@event), class: 'btn btn-success' %>
 <!-- Nav tabs -->
 <ul class="nav nav-pills justify-content-center" role="tablist">
   <li class="nav-item">

@@ -1,14 +1,14 @@
 <div class='event-banner' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:450px; background-size: cover;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
-    <div class='col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 w'>
-      <h1 class='display-4' style="font-family: 'Changa One', cursive;">#NFStrong <%= @event.city %> <%= @event.event_type %></h1>
+    <div class='col-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
+      <h1 class='display-4' style="font-family: 'Changa One', cursive;">#NFStrong - <%= @event.name %></h1>
       <hr style="border-top-color: white; margin-right: 7rem;">
       <p style='font-size: 120%;'>
         <i class="fa fa-calendar" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_date.strftime("%A, %B %d, %Y") %>
         <br>
-        <i class="fa fa-clock-o" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_start_time.strftime("%I:%M %p")  %>
+        <i class="fa fa-clock-o" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_start_time.strftime("%I:%M %p")  %> - 11:00 AM
         <br>
-        <i class='fa fa-map-marker' aria-hidden="true" style='width:20px;'></i>  <%= @event.venue_name %> - <%= @event.state %>
+        <i class='fa fa-map-marker' aria-hidden="true" style='width:20px;'></i>  <%= @event.venue_name %> - <%= @event.city %>, <%= @event.state %>
       </p>
  
       <div class='row'>
