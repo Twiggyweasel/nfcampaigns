@@ -11,12 +11,18 @@ require 'faker'
 Role.create! name: 'admin'
 Role.create! name: 'user'
 
-Size.create! label: 'Small'
-Size.create! label: 'Medium'
-Size.create! label: 'Large'
-Size.create! label: 'XL'
-Size.create! label: 'XXL'
-Size.create! label: 'XXXL'
+Size.create! label: "Y X-Small"
+Size.create! label: 'Y Small'
+Size.create! label: 'Y Medium'
+Size.create! label: 'Y Large'
+Size.create! label: 'Y XL'
+Size.create! label: 'Y XXL'
+Size.create! label: 'A Small'
+Size.create! label: 'A Medium'
+Size.create! label: 'A Large'
+Size.create! label: 'A XL'
+Size.create! label: 'A XXL'
+Size.create! label: 'A XXXL'
 
 User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "test_123", role_id: 1
 
