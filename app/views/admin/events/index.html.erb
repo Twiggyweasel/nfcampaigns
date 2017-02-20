@@ -7,29 +7,75 @@
 </div>
 
 <div class='row'>
-  <div class='col-12'>
-    <table class='table table-bordered table-striped'>
-  <thead class='thead-inverse'>
-    <tr>
-      <th>Event Name</th>
-      <th>Event Venue</th>
-      <th>Event Address</th>
-      <th>Is Private?</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody class: 'table-striped'>
-    <% @events.each do |event| %>
-    <tr>
-      <td><%= link_to event.name, admin_event_path(event) %></td>
-      <td><%= event.venue_name %></td>
-      <td><%= event.street %> <%= event.city %> <%= event.state %> <%= event.zipcode %></td>
-      <td><%= event.is_private %></td>
-      <td><%= link_to "Edit", edit_admin_event_path(event), class: "btn btn-primary btn-sm" %>
-      <%= link_to "Delete", event, method: :destroy, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-sm btn-danger' %></td>
-    </tr>
+  <% @events.each do |event| %>
+    <!--<#% if !event.is_private? %>-->
+    <div class='col-md-6 col-sm-12 col-xl-4'>
+      <div class='card item-square my-2'>
+        <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
+        <% if event.event_cover? %>
+          <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
+        <% else %>
+          <%= image_tag "dock.jpg", class: 'card-img-top img-fluid' %>
+        <% end %>
+        <div class='card-block'>
+          <h4 class='card-title'> <%= event.name %></h6>
+          <p class='card-text'><%= event.venue_name %> - <%= event.city %>, <%= event.state %><br /> <%= event.event_date.strftime("%A, %B %d %Y") %>
+            <br />
+            <%= link_to "User View", event_path(event), class: "btn btn-primary mt-3 item-square" %>
+            <%= link_to "Manage", admin_event_path(event), class: "btn btn-info mt-3 item-square" %>
+            <%= link_to "Edit Event", edit_admin_event_path(event), class: "btn btn-warning mt-3 item-square" %>
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+          <div class='row'>
+              <!--<div class='col-xs-4'><p class='text-xs-left mb-0'><i class='fa fa-user'></i> <#%= event.attendees.count %></p></div> -->
+              <div class='col-4'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <%= event.teams.count %></p></div>            
+              <div class='col-4 pl-0'><p class='text-xs-center mb-0'><i class='fa fa-usd'></i> <%= number_to_currency(event.raised) %></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<#% end %>-->
+  <% end %>
+  <div class='col-lg-4 col-sm-6 col-xl-4'>
+    <%= link_to(new_admin_event_path, class: 'card-link', style:'height:100%') do %>
+    <div class='card item-squaretext-center' class: 'height: 100%'>
+      <table class='text-center' style="width:100%;">
+        <tbody>
+          <tr>
+            <td class="align-middle align-middle"><h2>Create Event <br><i class='fa fa-plus'></i></h2></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <% end %>
-  </tbody>
-</table>
-  </div>
+  </div>  
 </div>
+
+<!--<div class='row'>-->
+<!--  <div class='col-12'>-->
+<!--    <table class='table table-bordered table-striped'>-->
+<!--  <thead class='thead-inverse'>-->
+<!--    <tr>-->
+<!--      <th>Event Name</th>-->
+<!--      <th>Event Venue</th>-->
+<!--      <th>Event Address</th>-->
+<!--      <th>Is Private?</th>-->
+<!--      <th>Actions</th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+<!--  <tbody class: 'table-striped'>-->
+<!--    <#% @events.each do |event| %>-->
+<!--    <tr>-->
+<!--      <td><#%= link_to event.name, admin_event_path(event) %></td>-->
+<!--      <td><#%= event.venue_name %></td>-->
+<!--      <td><#%= event.street %> <#%= event.city %> <#%= event.state %> <#%= event.zipcode %></td>-->
+<!--      <td><#%= event.is_private %></td>-->
+<!--      <td><#%= link_to "Edit", edit_admin_event_path(event), class: "btn btn-primary btn-sm" %>-->
+<!--      <#%= link_to "Delete", event, method: :destroy, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-sm btn-danger' %></td>-->
+<!--    </tr>-->
+<!--    <#% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
+<!--  </div>-->
+<!--</div>-->

@@ -273,3 +273,24 @@ body {
   color: white;
   text-decoration: none;
 }
+
+.footer-link {
+  text-decoration: none;
+  color: white;
+}
+
+.footer-link:hover {
+  text-decoration: none;
+  color: #eee;
+}
+
+#event_event_start_time_4i {
+  float: left;
+  margin-right: 10px;
+  width: 45%;
+}
+
+#event_event_start_time_5i {
+  float: right;
+  width: 50%;
+}

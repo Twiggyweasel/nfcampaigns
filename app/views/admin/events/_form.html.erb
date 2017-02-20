@@ -11,11 +11,11 @@
     <div class='card card-block'>
       <h3 class="card-title">General Event Details</h3>
       <div class='row'>
-        <div class='col-md-9'>
+        <div class='col-md-8'>
           <%= f.label :name, "Event Name" %>
       <%= f.text_field :name, class: "form-control" %>
         </div>
-        <div class='col-md-3'>
+        <div class='col-md-4'>
            <%= f.label :goal, "Event Goal" %>
       <div class="input-group">
         <div class="input-group-addon"><i class='fa fa-usd'></i></div>
@@ -26,13 +26,13 @@
       </div>
       
       
-    <div class='row'>
+    <div class='row my-2'>
        <div class='col-md-4'>
-        <%= f.label :event_cover %>
+        <%= f.label :event_cover, "Event Cover Image" %>
         <%= f.file_field :event_cover, class: 'form-control' %>         
        </div>
       <div class='col-md-4'>
-        <%= f.label :event_card %>
+        <%= f.label :event_card, "Upcoming Event Image" %>
         <%= f.file_field :event_card, class: 'form-control' %>         
       </div>
       <div class='col-md-4'>
@@ -46,9 +46,6 @@
       
       <%= f.label :desc, "Event Summary" %>
       <%= f.text_area :desc, class: "tinymce", :row => 350, :cols => 120 %>
-      
-      <%= f.label :teaser, "Event Teaser Text" %>
-      <%= f.text_area :teaser, class: 'form-control', :row => 10 %>
     </div>
   </div>
 </div>
@@ -70,9 +67,14 @@
 
 
 
-        
-        <%= f.label :event_start_time %>
-        <%= f.time_select :event_start_time %>
+<div class='row mt-3'>
+  <div class='col-md-6 offset-md-3'>
+            <%= f.label :event_start_time %>
+            <br>
+        <%= f.time_select :event_start_time, { ampm: true, minute_step: 15 }, { class: "form-control" } %></div>
+</div>        
+
+
      </div>
   </div>
 </div>
@@ -80,7 +82,7 @@
 <div class='row my-3'>
   <div class='col-10 offset-1'>
     <div class='card card-block'>
-      <h3 class="card-title">Event Location Details</h3>
+      <h3 class="card-title">Google Map Generator</h3>
       <div class='row my-3'>
         <div class='col-12'>
           <%= f.label :venue_name, "Name of the Venue" %>
@@ -120,3 +122,8 @@
   </div>
 </div>
 <% end %>
+
+
+<script>
+
+</script>

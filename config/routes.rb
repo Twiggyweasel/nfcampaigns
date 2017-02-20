@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'home', to: 'pages#home'
     resources :events do 
       resources :resources, except: [:show, :index]
+      resources :registration_fees
     end
     resources :promotions 
     resources :users
@@ -66,6 +67,7 @@ Rails.application.routes.draw do
   get 'top_teams', to: 'teams#index'
   get 'contribution_select', to: 'contributions#contribution_select'
   get 'about', to: 'pages#about'
+  get 'privacy', to: 'pages#privacy'
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

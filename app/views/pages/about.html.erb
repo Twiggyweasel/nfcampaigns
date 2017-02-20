@@ -73,3 +73,17 @@
     </div>
   </div>
 </div>
+<div class='row my-5 py-5'>
+  <div class='container'>
+    <div class='row'>
+      <div class='col-12'>
+        <h3>How many people have NF near you:</h3>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6 offset-3'>
+        <%= select_tag("states", options_for_select(states), class: 'form-control' )%>
+      </div>
+    </div>
+  </div>
+</div>
