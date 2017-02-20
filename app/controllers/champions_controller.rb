@@ -17,7 +17,7 @@ class ChampionsController < ApplicationController
     @champion = Champion.create(champion_params)
     
     if @champion.save
-      redirect_to champion_path(@champion), :flash => { :success => "Champion Successfully Created" }
+      redirect_to champions_path, :flash => { :success => "Champion Successfully Created" }
     else
       render :new
     end
