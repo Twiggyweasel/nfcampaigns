@@ -4,7 +4,6 @@ class Contribution < ApplicationRecord
   belongs_to :user
   
   validates :amount, presence: true, numericality: { only_integer: false }
-  validates :channel, presence: true
   
   after_create do
     self.backable.update_raised

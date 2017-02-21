@@ -76,13 +76,14 @@ ActiveRecord::Schema.define(version: 20170217202830) do
   create_table "contributions", force: :cascade do |t|
     t.decimal  "amount"
     t.string   "honoree"
-    t.string   "processing"
-    t.boolean  "paid",          default: false
+    t.string   "payment_channel"
+    t.string   "category"
+    t.boolean  "paid",            default: false
     t.string   "backable_type"
     t.integer  "backable_id"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["backable_type", "backable_id"], name: "index_contributions_on_backable_type_and_backable_id"
     t.index ["user_id"], name: "index_contributions_on_user_id"
   end
