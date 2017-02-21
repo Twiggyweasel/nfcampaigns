@@ -1,7 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Interest Recieved | NFStrong</title>
+<title>Salted | A Responsive Email Template</title>
+<!--
+
+    SALTED | A RESPONSIVE EMAIL TEMPLATE
+    =====================================
+
+    Based on code used and tested by Litmus (@litmusapp)
+    Originally developed by Kevin Mandeville (@KEVINgotbounce)
+    Cleaned up by Jason Rodriguez (@rodriguezcommaj)
+    Presented by A List Apart (@alistapart)
+
+    Email is surprisingly hard. While this has been thoroughly tested, your mileage may vary.
+    It's highly recommended that you test using a service like Litmus and your own devices.
+
+    Enjoy!
+
+ -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <style type="text/css">
@@ -123,13 +139,9 @@
                         <td style="padding: 20px 0px 30px 0px;" class="logo">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
-                                    <td bgcolor="#ffffff" width="100" align="left"><a href="http://alistapart.com" target="_blank"><img alt="Logo" src="<%= image_url('logo.jpg') %>" width="75" height="125" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #666666; font-size: 16px;" border="0"></a></td>
+                                    <td bgcolor="#ffffff" width="100" align="left"><a href="nfnetwork.org" target="_blank"><img alt="Logo" src="nflogo.jpg <%= image_url('nflogo.jpg') %>" width="250" height="125" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #666666; font-size: 16px;" border="0"></a></td>
                                     <td bgcolor="#ffffff" width="400" align="right" class="mobile-hide">
-                                        <table border="0" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td align="right" style="padding: 0 0 5px 0; font-size: 14px; font-family: Arial, sans-serif; color: #666666; text-decoration: none;"><span style="color: #666666; text-decoration: none;">NFStrong - Interest Request Received </span></td>
-                                            </tr>
-                                        </table>
+
                                     </td>
                                 </tr>
                             </table>
@@ -159,7 +171,7 @@
                                                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                           <tr>
                                                               <td>
-                                                                  <a href="https://nfcampaigns.herokuapp.com" target="_blank"><img src="<%= image_url('received.jpg') %>" width="500" height="200" border="0" alt="sendgraphic" style="display: block; padding: 0; color: #666666; text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px; width: 500px; height: 200px;" class="img-max"></a>
+                                                                  <a href="http://www.nfstrong.org" target="_blank"><img src="<%= image_url('emailgears.jpg') %>" width="500" height="200" border="0" alt="sendgraphic" style="display: block; padding: 0; color: #666666; text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px; width: 500px; height: 200px;" class="img-max"></a>
                                                               </td>
                                                             </tr>
                                                         </table>
@@ -177,9 +189,9 @@
                                             <td align="center" style="font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333; padding-top: 30px;" class="padding-copy">Interest Request Recieved</td>
                                         </tr>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy"><%= @application.name %>, thank you for your interest in starting an NF Event in <%= @application.city %>, <%= @application.state %>. A member of our team will review your informaton and be in touch with you shortly!
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Thank you for your interest in starting an NF event. A member of our team will review your informaton and be in touch with you shortly!
                                             <br><br>
-                                                In the mean time checkout events already going on.
+                                                In the meantime, check out our upcoming events.
                                             </td>
                                         </tr>
                                     </table>
@@ -233,4 +245,3 @@
 
 </body>
 </html>
-

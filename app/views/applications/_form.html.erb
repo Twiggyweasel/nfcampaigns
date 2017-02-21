@@ -27,11 +27,11 @@
       </div>  
       <div class='row my-2'>
         <div class='col-7'>
-          <%= f.label :city, "City where event would be hosted" %>
+          <%= f.label :city, "Event City" %>
           <%= f.text_field :city, class: 'form-control' %>    
         </div>
         <div class='col-5'>
-          <%= f.label :state, "State where event would be hosted" %>
+          <%= f.label :state, "Event State" %>
           <%= f.select :state, options_for_select(states), { }, {class:'form-control', prompt: 'Select a State' } %>
         </div>
       </div>
