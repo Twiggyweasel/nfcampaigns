@@ -3,7 +3,7 @@ class CreateContributions < ActiveRecord::Migration[5.0]
     create_table :contributions do |t|
       t.decimal :amount
       t.string :honoree
-      t.sting :channel
+      t.string :channel
       
       t.boolean :paid, default: false
       
