@@ -13,7 +13,7 @@ class ApplicationsController < ApplicationController
     
     if @application.save
       CoordinatorInterestMailer.coordinator_interest_email(@application).deliver_later
-      redirect_to application_path(@application), :flash => { :success => "Your Interest has been logged" }
+      redirect_to root_path, :flash => { :success => "Your Interest has been logged" }
     else
       render :new
     end

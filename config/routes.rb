@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     resources :contributions
   end
   
-  resources :applications, except: [:index, :destroy]
+  resources :applications, only: [:new, :create]
   
   resources :referrals
   get 'top_attendees', to: 'pages#attendees'
