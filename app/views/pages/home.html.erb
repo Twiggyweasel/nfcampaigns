@@ -111,7 +111,7 @@
         </table>
       </div>
     </div>
-    <div class='col-lg-6 mb-5'>
+    <div class='col-lg-6 my-5 mb-5'>
       <div class='card card-block' style='min-height: 395px;'>
         <h2>TOP 5 TEAMS <small class='text-muted float-right'><%= link_to(top_teams_path, class: 'anchor-styled') do %><span>See All</span><% end %></small></h2>
         <table class='table  table-striped'>
@@ -137,7 +137,10 @@
 <div class='row mb-5 px-3' style='background-color: #015F88;'>
   <div class='container'>
     <div class='row'>
-    <div class='col-md-5 my-5 w'>
+    <div class='col-md-7 push-md-5 my-5'>
+      <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("supermanchamp.jpg") %>'>
+    </div>
+    <div class='col-md-5 pull-md-7 my-5 w'>
       <h3>Meet Our NF Champs</h3>
       <br>
       <p>Their strength, courage, and happiness despite
@@ -154,9 +157,7 @@
         </div>
       </div>
     </div>
-    <div class='col-md-7 my-5'>
-      <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("supermanchamp.jpg") %>'>
-    </div>
+
   </div>
   </div>
 </div>

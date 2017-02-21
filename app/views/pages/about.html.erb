@@ -1,4 +1,5 @@
 <div class="row banner-image">
+    <img src="<%= image_url('walk-wide.jpg') %>" class='img-fluid' style='width:100% z-index: -1;'>
   <h1 class='display-1 text-center w' style="position: absolute; bottom:30%; width: 100%; font-family: 'Changa One', cursive;">#NFSTRONG</h1>
   <h4 class='display-2 text-center w' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">About Us</h4>
 </div>
@@ -74,16 +75,82 @@
   </div>
 </div>
 <div class='row my-5 py-5 px-3'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-12'>
+  <div class='col-12'>
+    <div class='col-12 text-center'>
         <h3>How many people have NF near you:</h3>
+    </div>
+  </div>
+  <div class='col-12'>
+    <div class='row'>
+      <div class='col-md-6 offset-md-3'>
+        <%= select_tag("states", options_for_select(about_states), class: 'form-control', id:'state_select' )%>
       </div>
     </div>
-    <div class='row'>
-      <div class='col-md-6 offset-3'>
-        <%= select_tag("states", options_for_select(states), class: 'form-control' )%>
+
+    <div class='row my-3'>
+      <div class='col-6 offset-3 text-center'>
+        <h1 id='state'>United States</h1>
+      </div>
+    </div>
+    <div class='row text-center'>
+      <div class='col-md-4 my-3'>
+        <div class='card card-block'>
+          <h4>NF 1</h4>
+          <h2 id='nfone' class='display-2'>107,140</h2>
+        </div>
+      </div>
+      <div class='col-md-4 my-3'>
+        <div class='card card-block'>
+          <h4>NF 2</h4>
+          <h2 id='nftwo' class='display-2'>12,857</h2>
+        </div>
+      </div>
+      <div class='col-md-4 my-3'>
+        <div class='card card-block'>
+          <h4>Schwannomatosis</h4>
+          <h2 id='swan' class='display-2'>8,035</h2>
+        </div>
       </div>
     </div>
   </div>
+  <div class='col-12'>
+    <p class='lead float-right'>*NF estimates are based on 2015 Census Data from the U.S. Census Bureau, Population Division</p>
+  </div>
 </div>
+
+
+
+<script>
+  $('#state_select').change(function() {
+    
+    var state_value = $(this).val();
+    var nfone = (state_value / 3000).toFixed();
+    var nftwo = (state_value / 25000).toFixed();
+    var swan = (state_value / 40000).toFixed();
+    var total = ((state_value / 3000) + (state_value / 25000).toFixed() + (state_value / 40000));
+
+    $('#state').text($('#state_select option:selected').text());
+    $('#nfone').text(addCommas(nfone));
+    $('#nftwo').text(addCommas(nftwo));
+    $('#swan').text(addCommas(swan));
+    
+    console.log(state_value);
+    console.log(nfone);
+    console.log(nftwo);
+    console.log(total);
+  });
+  
+  
+  function addCommas(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+</script>

@@ -3,6 +3,7 @@ class Contribution < ApplicationRecord
   has_many :payments, as: :payable
   belongs_to :user
   validates :amount, presence: true 
+  validates :channel 
   
   after_create do
     self.backable.update_raised
