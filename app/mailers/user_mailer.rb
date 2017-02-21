@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
   
   def welcome_email(user)
     @user = user
-    @url = 'https://nfcampaigns.herokuapp.com/login'
+    @url = 'http://www.nfstrong.org/login'
     mail(to: @user.email, subject: 'Welcome to NFCampaigns')
   end
 end
