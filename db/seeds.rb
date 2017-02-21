@@ -63,7 +63,7 @@ if Rails.env == "development"
   
   10.times do 
     Team.create(
-      name: Faker::Address.unique.city + " Team",
+      name: Faker::Team.name,
       max_members: 999,
       goal: 10000,
       event_id: rand(1..2),
@@ -72,12 +72,12 @@ if Rails.env == "development"
   
   
   
-  
-  
+  @sizes = ["Small", "Medium", "Large"]
+  @fees = [25.00, 35.00, 150.00, 12.00]
   55.times do
     Attendee.create(
-      fee: 25.00,
-      shirt_size: 'medium',
+      fee: @fees.sample,
+      shirt_size: @sizes.sample,
       event_id: rand(1..2),
       team_id: rand(3..12),
       user_id: rand(2..25)
@@ -125,13 +125,13 @@ if Rails.env == "development"
   end
   
   
-  RegistrationFee.create! name: "Adult", amount: 25.00, event_id: 1
-  RegistrationFee.create! name: "Child Under 13", amount: 15.00, event_id: 1
-  RegistrationFee.create! name: "Child Under 3", amount: 0.00, event_id: 1
+  RegistrationFee.create! name: "Adult", amount: 25.00, registration_type: "Personal", event_id: 1
+  RegistrationFee.create! name: "Child Under 13", amount: 15.00,  registration_type: "Personal", event_id: 1
+  RegistrationFee.create! name: "Child Under 3", amount: 0.00,  registration_type: "Personal", event_id: 1
   
-  RegistrationFee.create! name: "Adult", amount: 25.00, event_id: 2
-  RegistrationFee.create! name: "Child Under 13", amount: 15.00, event_id: 2
-  RegistrationFee.create! name: "Child Under 3", amount: 0.00, event_id: 2
+  RegistrationFee.create! name: "Adult", amount: 25.00,  registration_type: "Personal", event_id: 2
+  RegistrationFee.create! name: "Child Under 13", amount: 15.00,  registration_type: "Personal", event_id: 2
+  RegistrationFee.create! name: "Child Under 3", amount: 0.00,  registration_type: "Personal", event_id: 2
   
   Promotion.create! name: "$20 Discount", desc: "grants $20 discount to entire cart", code: "NF20OFF", is_active: true 
 

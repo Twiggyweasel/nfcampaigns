@@ -99,11 +99,13 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "event_cover"
     t.string   "event_card"
     t.string   "event_type"
+    t.string   "gallery"
     t.text     "teaser"
     t.text     "desc"
     t.date     "registration_date"
     t.date     "event_date"
     t.time     "event_start_time"
+    t.time     "event_end_time"
     t.float    "goal"
     t.float    "raised"
     t.string   "venue_name"
@@ -132,6 +134,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "last4"
+    t.string   "promo_code"
     t.integer  "confirmation_number"
     t.decimal  "amount",              precision: 12, scale: 3
     t.boolean  "success"
@@ -193,10 +196,11 @@ ActiveRecord::Schema.define(version: 20170217202830) do
 
   create_table "registration_fees", force: :cascade do |t|
     t.string   "name"
+    t.string   "registration_type"
     t.decimal  "amount"
     t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.index ["event_id"], name: "index_registration_fees_on_event_id"
   end
 

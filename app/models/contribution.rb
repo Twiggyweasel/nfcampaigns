@@ -7,4 +7,6 @@ class Contribution < ApplicationRecord
   after_create do
     self.backable.update_raised
   end
+  
+  paginates_per 6
 end

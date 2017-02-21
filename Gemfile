@@ -43,6 +43,9 @@ gem 'activemerchant'
 
 gem 'faker'
 gem 'kaminari'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem "chartkick"
+gem 'groupdate'
 
 
 gem 'rubyzip', '~> 1.1.0'

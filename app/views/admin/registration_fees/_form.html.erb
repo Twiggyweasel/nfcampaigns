@@ -1,6 +1,6 @@
 <%= form_for([:admin, @event, @fee]) do |f| %>
 <% if @fee.errors.any? %>
-  <%= render 'shared/errors', errors: @fee.errrors %>
+  <%= render 'shared/errors', errors: @fee.errors %>
 <% end %> 
 
 <div class='row'>
@@ -11,6 +11,14 @@
       <div class='col-12'>
         <%= f.label :name, "Fee Name" %>
         <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div>
+      <div class='row'>
+        <div class='col-12'>
+          <%= f.label :registration_type %>
+          <%= f.select :registration_type, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
+        </div>
       </div>
     </div>
     <div class='row'>

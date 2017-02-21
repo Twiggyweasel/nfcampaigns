@@ -1,6 +1,6 @@
-<tr>
+<tr id='registration_fee_<%= registration_fee.id %>'>
   <td><%= registration_fee.name %></td>
   <td><%= number_to_currency(registration_fee.amount) %></td>
   <td><%= registration_fee.created_at.strftime("%B %d, %Y") %></td>
-  <td><%= link_to 'Edit', edit_event_registration_fee_path(@event, registration_fee) %> | <a href=''>Delete</a></td>
+  <td><%= link_to 'Edit', edit_admin_event_registration_fee_path(@event, registration_fee) %> | <%= link_to "Delete", admin_event_registration_fee_path(registration_fee.event, registration_fee), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, remote: true%></td>
 </tr>

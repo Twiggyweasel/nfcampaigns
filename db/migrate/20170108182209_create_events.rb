@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.string :event_cover
       t.string :event_card
       t.string :event_type 
+      t.string :gallery
       t.text :teaser
       t.text :desc
       t.date :registration_date

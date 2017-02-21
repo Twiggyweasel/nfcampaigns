@@ -10,10 +10,12 @@
 
   <body>
     <%= render 'shared/nav' %>
+    <div class='message'>
     <%= render 'shared/messages' %>
+    </div>
     <div class='container-fluid mt-0'>
       <div class='row'>
-        <div class='col-md-2 bg-inverse' id='sidebar'>
+        <div class='col-md-2 bg-inverse hidden-sm-down' id='sidebar'>
           <%= render 'shared/sidebar' %>
         </div>
         <div class='col-md-10'>

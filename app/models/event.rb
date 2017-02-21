@@ -11,6 +11,30 @@ class Event < ApplicationRecord
   mount_uploader :event_cover, EventCoverUploader
   mount_uploader :event_card, EventCardUploader
   
+  validates :name, presence: true, length: {minimun: 5, maximum: 25 }
+  validates :goal, presence: true
+  validates :desc, presence: true 
+  validates :event_type, presence: true 
+  validates :venue_name, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zipcode, presence: true
+  validate :event_date_cannot_be_in_the_past
+  validate :registration_date_cannot_be_after_event_date
+  
+  
+  def event_date_cannot_be_in_the_past
+    if event_date.present? && event_date < Date.today
+      errors.add(:event_date, "can't be in the past")
+    end
+  end
+  
+  def registration_date_cannot_be_after_event_date
+    if event_date.present? && registration_date.present? && registration_date > event_date
+      errors.add(:registration_date, "can't be after the start of the event")
+    end
+  end
   
   after_find do 
     self.set_active

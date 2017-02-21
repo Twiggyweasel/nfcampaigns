@@ -1,100 +1,71 @@
+<%= render 'shared/title', title: "#{@event.name}", display: 2 %>
 <div class='row'>
-  <div class='col-12 text-center'>
-    <h1><%= @event.name %></h1>
+  <div class='col-md-8 offset-md-2 mt-3 mb-5'>
+    <%= link_to "Attendees", admin_event_attendees_path(@event), class: 'btn btn-primary' %>
+    <%= link_to "Pledge Pages", "", class: 'btn btn-primary' %> 
+    <%= link_to "Contributions", admin_event_contributions_path(@event), class: 'btn btn-primary' %>
+    <%= link_to "User View", event_path(@event), class: 'btn btn-primary' %>
+    <%= link_to "Edit", edit_admin_event_path(@event), class: 'btn btn-warning' %>
+    <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger' %>
   </div>
 </div>
-<%= link_to "Add Resources", new_admin_event_resource_path(@event), class: 'btn btn-success' %>
-<!-- Nav tabs -->
-<ul class="nav nav-pills justify-content-center" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#geninfo" role="tab">General Information</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#registrations" role="tab">Registations</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#fees" role="tab">Registration Fees</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#contributions" role="tab">Contributions</a>
-  </li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content mt-5">
-  <div class="tab-pane active" id="geninfo" role="tabpanel">
-    <div class='row'>
-      <div class='col-12'>
-        <h2>Event Cover Photo</h2>
-        <% if @event.event_cover? %>
-          <img src="<%= @event.event_cover.url %>" class='img-fluid' style='max-height: 250px'>
-        <% else %>
-          <img src="<%= image_url('calvin-default.jpg') %>" class='img-fluid'>
-        <% end %>
-      </div>
-    </div>
-    
-    <div class='row'>
-      <div class='col-12'>
-        <h2>Event Description</h2>
-        <%= @event.desc.html_safe %>
-      </div>
-    </div>  
-  </div>
-  <div class="tab-pane" id="registrations" role="tabpanel">
-    <div class='row'>
-      <div class='col-12'>
-        <div class='card card-block'>
-          <h3>All Registrations</h3>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Registration Fee</th>
-                <th>Guests</th>
-                <th>Shirt Size</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @event.attendees.each do |attendee| %>
-                <tr>
-                  <td><%= attendee.user.name %></td>
-                  <td><%= number_to_currency(attendee.fee) %></td>
-                  <td><%= attendee.guests.count %></td>
-                  <td><%= attendee.shirt_size %></td>
-                  <td>Nothing to see here</td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+<div class='row'>
+  <div class='col-6'>
+    <div class='card card-block'>
+      <h3 class='text-center'>Shirt Sizes</h3>
+      <%= column_chart @event.attendees.group(:shirt_size).count, backgroundColor: ["pink", "#999"] %>
     </div>
   </div>
-  <div class="tab-pane" id="fees" role="tabpanel">
-    <div class='col-12'>
-      <div class='card card-block'>
-
-          <%= render 'registration_fees/new', event: @event %>
-
-        <table class='table mt-3'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Created On</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id='reg_fees'>
-            <%= render @event.registration_fees %>
-          </tbody>
-        </table>
-      </div>
+  <div class='col-6'>
+    <div class='card card-block'>
+      <h3 class='text-center'>Registrations By Type</h3>
+      <%= pie_chart @event.attendees.group(:fee).count %>
     </div>
-  </div>  
-  <div class="tab-pane" id="contributions" role="tabpanel">...</div>
+  </div>
+</div>
+
+<div class='row my-3'>
+  <div class='col-12'>
+    <div class='card card-block'>
+      <h3>Registration Fees</h3>
+      <%= render 'admin/registration_fees/new', event: @event %>
+      <table class='table mt-3'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Created On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id='reg_fees'>
+          <%= render @event.registration_fees %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class='row mb-5'>
+  <div class='col-12'>
+    <div class='card card-block'>
+      <h3>Event Resources</h3>
+      <%= render 'admin/resources/new', event: @event %>
+      <table class='table mt-3'>
+        <thead>
+          <tr>
+            <th>Resource Name</th>
+            <th>Resource Attachment</th>
+            <th>Created On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id='resouces'>
+          <%= render @event.resources %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 

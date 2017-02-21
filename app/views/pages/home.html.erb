@@ -1,6 +1,7 @@
 <div class="row banner-image">
-  <h1 class='display-1 text-center w' style="position: absolute; bottom:30%; width: 100%; font-family: 'Changa One', cursive;">#NFSTRONG</h1>
-  <h4 class='display-2 text-center w' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
+  <img src="<%= image_url('walk-wide.jpg') %>" class='img-fluid' style='width:100% z-index: -1;'>
+  <h1 class='display-1 text-center w hidden-sm-down' style="position: absolute; bottom:25%; width: 100%; font-family: 'Changa One', cursive; z-index:100;">#NFSTRONG</h1>
+  <h4 class='display-2 text-center w hidden-sm-down' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
   <div class='col-md-3 hidden-sm-down offset-3 text-center' style="position: absolute; bottom:5%; width: 100%;">
     <%= link_to "Register", register_path, class: 'btn btn-primary btn-block' %>
   </div>
@@ -39,11 +40,14 @@
     </div>
   </div>
 
-  <div class='row mt-5 p-3' style='background-color: white'>
-          <div class='col-6 mt-3 pr-0'>
-                <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp.jpg") %>'>
+  <div class='row mt-5 mx-1 px-2' style=''>
+    <div class='col-12'>
+      <div class='card card-block'>
+        <div class='row'>
+          <div class='col-md-6 mt-3'>
+            <img class='img-fluid rounded d-block mx-auto' src='<%= image_url("nfchamp.jpg") %>'>
           </div>
-          <div class='col-4 offset-1 text-center pl-0 mt-4' style=''>
+          <div class='col-md-4 offset-md-1 text-center mt-4' style=''>
             <h3 class=""style="font-family: 'Boogaloo', cursive;">We’re making strong progress</h3>
             <h2 class=""><%= number_to_currency(@total_raised) %></span></h2>
             <br />
@@ -52,8 +56,11 @@
             <%= link_to "Contribute Today", contribution_select_path, class: 'btn btn-warning mt-3 px-5' %>
           </div>
         </div>
-        
+      </div>
+    </div>  
+  </div>
 </div>
+
 
 <div class='row my-5' style=''>
   <div class='container'>
@@ -104,7 +111,7 @@
         </table>
       </div>
     </div>
-    <div class='col-lg-6 my-5'>
+    <div class='col-lg-6 mb-5'>
       <div class='card card-block' style='min-height: 395px;'>
         <h2>TOP 5 TEAMS <small class='text-muted float-right'><%= link_to(top_teams_path, class: 'anchor-styled') do %><span>See All</span><% end %></small></h2>
         <table class='table  table-striped'>
@@ -153,9 +160,9 @@
   </div>
   </div>
 </div>
-<div class='row mb-5 px-3'>
+<div class='row mb-5'>
   <div class='container'>
-    <div class='row'>
+    <div class='row px-3'>
           <div class='col-md-5 my-3'>
       <img class='img-fluid rounded d-block mx-auto' style='style:275px' src='<%= image_url("ftlauderdalewalk.jpg") %>'>
     </div>
@@ -167,7 +174,7 @@
       If this describes you take a moment to fill out an interest form and join us in the fight to stay #NFstrong.</p>
       
       <div class='row'>
-        <div class='col-lg-6 offset-3 my-2'>
+        <div class='col-lg-6 offset-lg-3 my-2'>
           <%= link_to "Click Here", new_application_path, class: 'btn btn-block btn-primary' %>
         </div>
         

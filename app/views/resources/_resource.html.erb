@@ -1,0 +1,6 @@
+<tr>
+  <td><%= resource.name %></td>
+  <td><%= resource.attachment.url %></td>
+  <td><%= resource.created_at.strftime("%B %d, %Y") %></td>
+  <td><%= link_to 'Edit', edit_admin_event_resource_path(@event, resource) %> | <%= link_to "delete", admin_event_resource_path(resource.event, resource), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: '' %></td>
+</tr>

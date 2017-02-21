@@ -1,6 +1,6 @@
 class Admin::ResourcesController < ApplicationController
   layout 'admin'
-  before_action :set_event, only: [:new, :create, :edit, :update]
+  before_action :set_event, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user, :require_admin
   
   def new
@@ -10,10 +10,13 @@ class Admin::ResourcesController < ApplicationController
   def create 
     @resource = @event.resources.create(resource_params)
     
-    if @resource.save 
-      redirect_to admin_event_path(@event), :flash => { :success => "Resource Successfully created" }
-    else
-      render :new
+    respond_to do |format|
+      if @resource.save 
+        format.html { redirect_to admin_event_path(@event), :flash => { :success => "Resource Successfully created" } }
+        format.js
+      else
+        format.html render :new
+      end
     end
   end
 
@@ -29,6 +32,16 @@ class Admin::ResourcesController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @resource = Resource.find(params[:id])
+    @resource.destroy
+    
+    respond_to do |format|
+      format.html { redirect_to admin_event_path(@event), :flash => { :danger => "Resource successfully removed"} }
+      format.js
+    end 
   end
   
   private 

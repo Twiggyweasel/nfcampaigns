@@ -17,11 +17,9 @@
         </div>
         <div class='col-md-4'>
            <%= f.label :goal, "Event Goal" %>
-      <div class="input-group">
-        <div class="input-group-addon"><i class='fa fa-usd'></i></div>
+
         <%= f.number_field :goal, class: 'form-control' %>
-        <div class="input-group-addon">.00</div>
-      </div>
+
         </div>
       </div>
       
@@ -37,12 +35,12 @@
       </div>
       <div class='col-md-4'>
         <%= f.label :event_type %>
-        <%= f.select :event_type, options_for_select([["Walk", "Walk"], ["Bowling", "Bowling"], ["Golf", "Golf"], ["Concert", "Concert"], ["Gala", "Gala"]]), { }, class: 'form-control' %>
+        <%= f.select :event_type, options_for_select([["Walk", "Walk"], ["Bowling", "Bowling"], ["Golf", "Golf"], ["Concert", "Concert"], ["Gala", "Gala"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
       </div>
     </div>
 
-          <%= f.label :size_ids, 'Select Available Shirt Sizes (Ctrl click to select multiple)' %>
-    <%= f.select :size_ids, Size.all.collect {|x| [x.label, x.id]}, {}, class: 'form-control', :multiple => true, size: 6 %>
+      <%= f.label :size_ids, 'Select Available Shirt Sizes (Ctrl click to select multiple)' %>
+      <%= f.select :size_ids, Size.all.collect {|x| [x.label, x.id]}, {}, class: 'form-control', :multiple => true, size: 6 %>
 
       
       <%= f.label :desc, "Event Summary" %>
@@ -68,13 +66,18 @@
 
 
 
-<div class='row mt-3'>
-  <div class='col-md-6 offset-md-3'>
-            <%= f.label :event_start_time %>
-            <br>
-        <%= f.time_select :event_start_time, { ampm: true, minute_step: 15 }, { class: "form-control" } %></div>
-</div>        
-
+      <div class='row mt-3'>
+        <div class='col-md-6'>
+          <%= f.label :event_start_time %>
+          <br />
+          <%= f.time_select :event_start_time, { ampm: true, minute_step: 15 }, { class: "form-control" } %>
+        </div>
+        <div class='col-md-6'>
+          <%= f.label :event_end_time %>
+          <br />
+          <%= f.time_select :event_end_time, { ampm: true, minute_step: 15 }, { class: "form-control" } %>
+        </div>
+      </div>        
 
      </div>
   </div>

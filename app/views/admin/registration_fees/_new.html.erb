@@ -1,0 +1,21 @@
+
+<%= form_for( [:admin, @event, RegistrationFee.new ], remote: true) do |f| %>
+    <div class='row'>
+    <div class='col-md-3'>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', id: 'name' %>  
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :registration_type %>
+      <%= f.select :registration_type, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
+
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :amount %>
+      <%= f.number_field :amount, class: 'form-control', id: 'amount' %>
+    </div>    
+    <div class='col-md-3' style='padding-top: 1.80rem;'>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div> 
+    </div>
+<% end %>
