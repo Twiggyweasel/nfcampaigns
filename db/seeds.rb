@@ -104,6 +104,7 @@ User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "tes
     Contribution.create(
       amount: rand(1..550),
       backable: Event.find(rand(1..2)),
+      channel: "online";
       user_id: rand(2..26),
     )
   end
@@ -112,6 +113,7 @@ User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "tes
     Contribution.create(
       amount: rand(1..550),
       backable: Attendee.find(rand(1..15)),
+      channel: "online";
       user_id: rand(2..26),
     )
   end
@@ -120,6 +122,7 @@ User.create! name: 'Master User', email: "admin@nfcampaigns.org", password: "tes
     Contribution.create(
       amount: rand(1..550),
       backable: Team.find(rand(3..12)),
+      channel: "online";
       user_id: rand(2..26),
     )
   end
