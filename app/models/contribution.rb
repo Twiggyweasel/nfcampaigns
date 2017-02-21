@@ -2,7 +2,8 @@ class Contribution < ApplicationRecord
   belongs_to :backable, polymorphic: true
   has_many :payments, as: :payable
   belongs_to :user
-  validates :amount, presence: true 
+  
+  validates :amount, presence: true, numericality: { only_integer: false }
   validates :channel, presence: true
   
   after_create do

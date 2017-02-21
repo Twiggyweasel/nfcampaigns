@@ -3,7 +3,7 @@ class CoordinatorInterestMailer < ApplicationMailer
   
   def coordinator_interest_email(application)
     @application = application
-    mail(to: @application.email, subject: 'NF Events - Coordinator Interest')
+    mail(to: @application.email, subject: '#NFStrong - Event Interest')
   end
   
 end
