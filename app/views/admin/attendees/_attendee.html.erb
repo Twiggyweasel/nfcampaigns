@@ -1,0 +1,18 @@
+<% if attendee.category == 'Corporate' %>
+  <tr>
+    <td><%= attendee.business_name %></td>
+    <td><%= attendee.user.name %></td>
+    <td><%= attendee.fee %> </td>
+    <td><%= attendee.shirt_size %> </td>
+    <td><%= attendee.guests.count %></td>
+    <td>Edit | Delete</td>
+  </tr>
+<% else %>
+  <tr>
+    <td><%= attendee.user.name %></td>
+    <td><%= attendee.fee %> </td>
+    <td><%= attendee.shirt_size %></td>
+    <td><%= attendee.guests.count %></td>
+    <td>Edit | Delete</td>
+  </tr>
+<% end %>

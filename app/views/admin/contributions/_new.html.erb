@@ -1,0 +1,9 @@
+<%= form_for([:admin, @event, Contribution.new], :html => { class: 'form-inline' }, remote: true) do |f| %>
+
+        <%= f.hidden_field(:user_id, :value => 1) %>
+        <%= f.hidden_field(:category, :value => 'offline') %>
+        <%= f.hidden_field(:paid, :value => true) %>
+        <%= f.number_field :amount, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "0.00" %>
+        <%= f.text_field :honoree, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => 'Dedication' %>
+        <%= f.submit 'Create Contribution', class: 'btn btn-success' %>
+<% end %>

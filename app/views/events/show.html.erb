@@ -18,7 +18,8 @@
               Register
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to 'Single Registation', new_event_attendee_path(@event), class: 'dropdown-item' %>
+              <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
+              <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
               <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
             </div>
           </div>  
@@ -140,9 +141,6 @@
           <ul>
             <% @event.resources.each do |resource| %>
               <li><%= resource.name %> - <%= link_to "Download", resource.attachment_url, class: '', target: '_blank' %></li>
-            <% end %>
-            <% 11.times do %>
-              <li>Test - Download </li>
             <% end %>
           </ul>
         </div>

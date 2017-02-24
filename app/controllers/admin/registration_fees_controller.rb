@@ -10,8 +10,8 @@ class Admin::RegistrationFeesController < ApplicationController
     
     respond_to do |format|
       if @fee.save
-        format.html redirect_to admin_event_path(@event), :flash => { :success => "Fee has been sucessfully created" }
-        format.js { flash[:success] = 'Created Successfully' }
+        # format.html redirect_to admin_event_path(@event), :flash => { :success => "Fee has been sucessfully created" }
+        format.js
       else
         format.html render :new
       end
@@ -49,6 +49,6 @@ class Admin::RegistrationFeesController < ApplicationController
     end
     
     def fee_params
-      params.require(:registration_fee).permit(:name, :amount, :registration_type, :event_id)
+      params.require(:registration_fee).permit(:name, :amount, :category, :event_id)
     end
 end

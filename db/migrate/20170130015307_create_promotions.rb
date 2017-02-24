@@ -5,6 +5,10 @@ class CreatePromotions < ActiveRecord::Migration[5.0]
       t.string :desc
       t.string :code
       t.float :discount
+      
+      t.date :start
+      t.date :stop
+      
       t.boolean :is_active, default: false
       
       t.timestamps

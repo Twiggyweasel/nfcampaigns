@@ -70,6 +70,9 @@ Rails.application.routes.draw do
   get 'contribution_select', to: 'contributions#contribution_select'
   get 'about', to: 'pages#about'
   get 'privacy', to: 'pages#privacy'
+  
+  post 'check_promotion_code', to: 'promotions#check_promotion_code'
+  
   root to: "pages#home"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

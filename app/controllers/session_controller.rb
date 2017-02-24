@@ -43,6 +43,9 @@ class SessionController < ApplicationController
           u = User.find(@authentication.uid)
           # If the provider is identity, then it means we already created a user
           # So we just load it up
+          
+          # self.current_user = u
+          # redirect_to root_path :flash => { :success => "You have been signed in!" } and return
         else
           # otherwise we have to create a user with the auth hash
           u = User.create_with_omniauth(auth)
@@ -52,9 +55,12 @@ class SessionController < ApplicationController
         # We can now link the authentication with the user and log him in
         u.authentications << @authentication
         self.current_user = u
-        redirect_to new_user_profile_path(current_user)
+        if u.profile.nil?
+          redirect_to new_user_profile_path(current_user)
+        else
+          redirect_to root_path, :flash => { :success => "You have been signed in"}
         # :flash => { :success => 'Welcome to The App!' }
-        
+        end
       end
     end
   end

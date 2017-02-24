@@ -1,0 +1,14 @@
+$('#promotion_code').val('');
+
+$.notify({
+	// options
+	icon: 'fa fa-times-circle-o',
+	message:  "Promo code is invalid. Please try again."
+},{
+	// settings
+	type: 'danger',
+	placement: {
+		from: "top",
+		align: "right"
+	},
+});

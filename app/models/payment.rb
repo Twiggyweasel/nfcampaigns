@@ -20,7 +20,7 @@ class Payment < ApplicationRecord
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
   validates :street, presence: true
-  validates :apt, presence: true
+
   validates :city, presence: true
   validates :state, presence: true
   validates :zip, presence: true, length: { is: 5 }
@@ -58,6 +58,29 @@ class Payment < ApplicationRecord
     }
   end
 
+  def final_amount
+    fee_amount = fee(self.amount)
+    
+    if !self.promo_code.empty?
+    promo = (Promotion.where(code: self.promo_code).first.discount / 100)
+    promo_reduction = (self.amount * promo)
+    end
+    
+    if self.cover_processing
+      if self.promo_code.empty? 
+        (self.amount + fee_amount)  
+      else
+        ((self.amount - promo_reduction) + fee_amount)
+      end
+    else
+      if self.promo_code.empty? 
+        self.amount
+      else
+        (self.amount - promo_reduction)
+      end
+      end
+  end
+
   def valid_card
     if !credit_card.valid?
       errors.add(:base, "The credit card information you provided is not valid.  Please double check the information you provided and then try again.")
@@ -67,22 +90,23 @@ class Payment < ApplicationRecord
     end
   end
 
+
+
   def process
     if valid_card
-      response = GATEWAY.authorize((amount * 100).floor, credit_card, purchase_options)
+      response = GATEWAY.authorize((final_amount * 100).floor, credit_card, purchase_options)
       if response.success?
-        transaction = GATEWAY.capture((amount * 100).floor, response.authorization)
+        transaction = GATEWAY.capture((final_amount * 100).floor, response.authorization)
         if !transaction.success?
-          update_columns({last4: credit_card.number[-4..-1], success: false})
+          update_columns({last4: credit_card.number[-4..-1], success: false, amount: (final_amount).floor2(2)})
           # errors.add(:base, "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}")
           errors.add(:base, "The credit card you provided was declined.  Please double check your information and try again.") and return
           false
         end
-        update_columns({authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1]})
+        update_columns({authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1], amount: (final_amount).floor2(2) })
         true
       else
-        update_columns({last4: credit_card.number[-4..-1]})
-        errors.add(:base, "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}")
+        update_columns({last4: credit_card.number[-4..-1], amount: (final_amount).floor2(2)})
         errors.add(:base, "The credit card you provided could not be authorized.  Please double check your information and try again.") and return
         false
       end
@@ -91,5 +115,33 @@ class Payment < ApplicationRecord
   
   def fee(amount)
     (amount * 0.029) + 0.30  
+  end
+end
+
+class BigDecimal
+  def ceil2(exp = 0)
+   multiplier = 10 ** exp
+   ((self * multiplier).ceil).to_f/multiplier.to_f
+  end
+end
+
+class BigDecimal
+  def floor2(exp = 0)
+   multiplier = 10 ** exp
+   ((self * multiplier).floor).to_f/multiplier.to_f
+  end
+end
+
+class Float
+  def ceil2(exp = 0)
+   multiplier = 10 ** exp
+   ((self * multiplier).ceil).to_f/multiplier.to_f
+  end
+end
+
+class Float
+  def floor2(exp = 0)
+   multiplier = 10 ** exp
+   ((self * multiplier).floor).to_f/multiplier.to_f
   end
 end

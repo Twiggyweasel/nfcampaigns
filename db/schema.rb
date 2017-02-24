@@ -27,14 +27,17 @@ ActiveRecord::Schema.define(version: 20170217202830) do
   create_table "attendees", force: :cascade do |t|
     t.decimal  "fee"
     t.string   "shirt_size"
-    t.boolean  "paid",       default: false
-    t.boolean  "is_leader",  default: false
+    t.string   "business_name"
+    t.string   "category"
+    t.integer  "guest_limit"
+    t.boolean  "paid",          default: false
+    t.boolean  "is_leader",     default: false
     t.float    "raised"
     t.integer  "team_id"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["team_id"], name: "index_attendees_on_team_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
@@ -139,6 +142,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.integer  "confirmation_number"
     t.decimal  "amount",              precision: 12, scale: 3
     t.boolean  "success"
+    t.boolean  "cover_processing"
     t.string   "authorization_code"
     t.string   "payable_type"
     t.integer  "payable_id"
@@ -179,6 +183,8 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "desc"
     t.string   "code"
     t.float    "discount"
+    t.date     "start"
+    t.date     "stop"
     t.boolean  "is_active",  default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -197,11 +203,12 @@ ActiveRecord::Schema.define(version: 20170217202830) do
 
   create_table "registration_fees", force: :cascade do |t|
     t.string   "name"
-    t.string   "registration_type"
+    t.string   "category"
+    t.integer  "guest_limit"
     t.decimal  "amount"
     t.integer  "event_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["event_id"], name: "index_registration_fees_on_event_id"
   end
 

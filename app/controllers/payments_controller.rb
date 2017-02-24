@@ -13,24 +13,24 @@ class PaymentsController < ApplicationController
   def new
     @context = context
     @payment = @context.payments.new
+    @promo = Promotion.new
   end
 
   def create
     @context = context
     @payment = @context.payments.new(payment_params)
-
+    @promo = Promotion.new
     if @payment.save
       if @payment.process
         @payment.finalize
-
-        redirect_to context_url(@context), :flash => { :success => "Your card has been successfully charged." }
+        redirect_to context_url(@context), :flash => { :success => "Your card has been successfully charged." } and return
         # redirect_to event_contribution_reciept_path(@payable.backable, @payable), :flash => { :success => "Your card has been successfully charged." } and return
       else
-        redirect_to context_url_decline(context), :flash => { :danger => "Your card was declined please try again." } 
+
+        redirect_to context_url_decline(context), :flash => { :danger => "Your card was declined please try again." } and return
       end
-    else
-      render :new
     end
+      render :new 
   end
 
 private
@@ -56,7 +56,7 @@ private
     if Contribution === context
       event_contribution_decline_path(context.backable, context)  
     elsif Attendee === context
-    
+      attendee_decline_path(context)
     end
       
   end
@@ -70,6 +70,6 @@ private
   end
   
   def payment_params
-    params.require(:payment).permit(:first_name, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount, :confirmation_number, :street, :apt, :city, :state, :zip)
+    params.require(:payment).permit(:first_name, :promo_code, :cover_processing, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount, :confirmation_number, :street, :apt, :city, :state, :zip)
   end
 end

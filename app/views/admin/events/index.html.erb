@@ -29,8 +29,8 @@
         <div class="card-footer text-muted">
           <div class='row'>
               <!--<div class='col-xs-4'><p class='text-xs-left mb-0'><i class='fa fa-user'></i> <#%= event.attendees.count %></p></div> -->
-              <div class='col-4'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <%= event.teams.count %></p></div>            
-              <div class='col-4 pl-0'><p class='text-xs-center mb-0'><i class='fa fa-usd'></i> <%= number_to_currency(event.raised) %></p></div>
+              <div class='col-6'><p class='text-xs-center mb-0'><i class='fa fa-group'></i> <%= event.teams.count %></p></div>            
+              <div class='col-6'><p class='text-right mb-0'><i class='fa fa-usd'></i> <%= number_to_currency(event.raised) %></p></div>
           </div>
         </div>
       </div>

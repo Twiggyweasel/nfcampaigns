@@ -11,9 +11,12 @@ class Attendee < ApplicationRecord
   
   validates :fee, presence: true
   validates :shirt_size, presence: true
-  # validates :user_id, presence: true, :uniqueness => { :scope => :event_id,
-  #   :message => "You can only register to attend this event once!" }
+  validates :user_id, presence: true 
+  # validates :user_id, :uniqueness => { :scope => :event_id,
+  #   :message => "You can only register to attend this event once!" }, if: "category == 'Personal'"
   
+  scope :is_corporate, -> { where(category: 'Corporate') }
+  scope :is_personal, -> { where(category: 'Personal') }
   after_create do
     self.create_pledge_page(summary: "test", goal: 1000, attendee_id: self.id)
 
@@ -37,15 +40,24 @@ class Attendee < ApplicationRecord
   end
   
   def total_raised 
-    self.contributions.pluck(:amount).sum + attendee_total
+    if self.paid 
+      self.contributions.where(paid: true).pluck(:amount).sum + attendee_total
+    else
+      self.contributions.where(paid: true).pluck(:amount).sum
+    end
   end
   
   def update_raised
+    
     self.update_column(:raised, total_raised)
   end
   
   def amount
     attendee_total
+  end
+  
+  def processing_fee
+    (self.attendee_total * 0.029) + 0.30
   end
   
 end

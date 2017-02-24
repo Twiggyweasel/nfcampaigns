@@ -1,8 +1,7 @@
-<div class='row my-3'>
-  <div class='col-12'>
-    <h2 class='text-center'>Update Registration Details</h2>    
-  </div>
-</div>
+<%= render 'shared/title', title: "Update Registration Details", display: 4 %>
 
-
-<%= render 'form' %>
+<% if params[:category] == 'personal' %>
+  <%= render 'personal_form' %>
+<% else %>
+  <%= render 'corporate_form' %>
+<% end %>

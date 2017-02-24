@@ -1,3 +1,8 @@
 <%= render 'shared/title', title: "#{@event.name} Registration", display: 4 %>
 
-<%= render 'form' %>
+
+<% if params[:category] == 'personal' || @attendee.category == 'Personal' %>
+<%= render 'personal_form' %>
+<% else %>
+<%= render 'corporate_form' %>
+<% end %>

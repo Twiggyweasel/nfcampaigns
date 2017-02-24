@@ -9,5 +9,5 @@ class Contribution < ApplicationRecord
     self.backable.update_raised
   end
   
-  paginates_per 6
+  paginates_per 15
 end

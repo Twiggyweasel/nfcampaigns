@@ -6,8 +6,8 @@
       <%= f.text_field :name, class: 'form-control', id: 'name' %>  
     </div>
     <div class='col-md-3'>
-      <%= f.label :registration_type %>
-      <%= f.select :registration_type, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
+      <%= f.label :category %>
+      <%= f.select :category, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"], ["Fundraising", "Fundraising"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
 
     </div>
     <div class='col-md-3'>

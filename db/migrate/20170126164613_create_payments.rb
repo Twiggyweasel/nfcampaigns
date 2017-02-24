@@ -8,6 +8,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.integer :confirmation_number
       t.decimal :amount, precision: 12, scale: 3
       t.boolean :success
+      t.boolean :cover_processing
       t.string :authorization_code
       
       t.references :payable, polymorphic:true, index: true

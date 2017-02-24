@@ -4,7 +4,7 @@ class Admin::AttendeesController < ApplicationController
   before_action :require_user, :require_admin
   
   def index
-    @attendees = Attendee.where(event_id: @event.id)
+    @attendees = Attendee.includes(:pledge_page).where(event_id: @event.id)
   end
   
   private 

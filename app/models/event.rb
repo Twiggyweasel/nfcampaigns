@@ -61,7 +61,17 @@ class Event < ApplicationRecord
   
   after_create do 
     self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
+    self.registration_fees.create(name: "Adult: 18 and over", category: "Personal", amount: 25.00, guest_limit: 99)
+    self.registration_fees.create(name: "Child: under 18", category: "Personal", amount: 15.00, guest_limit: 99)
+    self.registration_fees.create(name: "Child: under 7", category: "Personal", amount: 7.00, guest_limit: 99)    
+    self.registration_fees.create(name: "Corporate Team", category: "Corporate", amount: 100.00, guest_limit: 6)    
+    self.registration_fees.create(name: "Corporate Sponsor and Team", category: "Corporate", amount: 175.00, guest_limit: 10)    
     self.update_raised
+    self.resources.create(name: "NF Network Brochure", remote_attachment_url: "https://s3.amazonaws.com/nfeventimages/documents/NF+Network+Brochure.pdf")
+    self.resources.create(name: "Fundraising Sample Letter", remote_attachment_url: "https://s3.amazonaws.com/nfeventimages/documents/Personal+Story-NF+Hero+Letter.pdf")
+    self.resources.create(name: "Donor Form", remote_attachment_url: "https://s3.amazonaws.com/nfeventimages/documents/GS4NF+Donor+Form.pdf")
+    self.resources.create(name: "NF Network Pledge Sheet", remote_attachment_url: "https://s3.amazonaws.com/nfeventimages/documents/Great+Steps+Pledge+Sheet.pdf")
+    self.resources.create(name: "Fundraising Ideas A-Z", remote_attachment_url: "https://s3.amazonaws.com/nfeventimages/documents/Fundraising+A-Z.pdf")
   end
   
   after_save do

@@ -16,12 +16,15 @@ class AttendeesController < ApplicationController
   end
   
   def create
+
     @attendee = @event.attendees.new(attendee_params)
+    @guest_limit = RegistrationFee.where(event_id: @event.id, amount: @attendee.fee).first.guest_limit
     respond_to do |format|
       if @attendee.save
+        @attendee.update_column(:guest_limit,  @guest_limit)
         format.html { redirect_to event_attendee_url(@attendee.event_id, @attendee.id), :flash => { :success => 'Your registration was successfully completed.' }}
       else
-        format.html { render :new }
+        format.html { render :new, :category => @attendee.category }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
       end
     end
@@ -54,13 +57,17 @@ class AttendeesController < ApplicationController
     @payment = @attendee.payments.where(success: true).last
   end
   
+  def decline
+    @attendee = Attendee.find(params[:attendee_id])
+  end
+  
   private 
     def set_event
       @event = Event.find(params[:event_id])
     end
     
     def attendee_params
-      params.required(:attendee).permit(:fee, :shirt_size, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
+      params.required(:attendee).permit(:fee, :shirt_size, :category, :business_name, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
     end
 
 end

@@ -6,15 +6,30 @@ class Admin::ContributionsController < ApplicationController
   
   def index
     
-    @search = @event.contributions.ransack(params[:q])
-    @contributions = @search.result(distinct: true).includes(:user).page(params[:page])
+    # @search = @event.contributions.ransack(params[:q])
+    # @contributions = @search.result(distinct: true).includes(:user).page(params[:page])
     
-    # @contributions = Contribution.where(backable: @event).page params[:page] 
+    @contributions = Contribution.where(backable: @event).page params[:page] 
     
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+  
+
+  def create 
+    
+    @contribution = @event.contributions.create(contribution_params)
+    
+    respond_to do |format|
+      if @contribution.save
+        format.js
+        
+      else
+        format.js
+      end
+    end
   end
   
   
@@ -24,7 +39,7 @@ class Admin::ContributionsController < ApplicationController
     end
     
     def contribution_params
-      params.require(:contribution).permit(:amount, :honoree)
+      params.require(:contribution).permit(:amount, :honoree, :category, :paid, :user_id)
     end
   
 end

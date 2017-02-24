@@ -7,6 +7,20 @@ class Admin::PromotionsController < ApplicationController
     @promotions = Promotion.all
   end
   
+  def create
+    @promotion = Promotion.create(promotion_params)
+    
+    respond_to do |format|
+      if @promotion.save
+        format.js
+        
+      else
+        format.js
+      end
+    end
+  end
+  
+  
   def edit 
     #promotion var set by before_action
   end
@@ -16,6 +30,15 @@ class Admin::PromotionsController < ApplicationController
       redirect_to admin_promotions_path, :flash => { :success => "Promotion Successfully Updated!" }
     else
       render :edit
+    end
+  end
+  
+  def destroy
+    
+    @promotion.destroy
+    
+    respond_to do |format|
+      format.js
     end
   end
   

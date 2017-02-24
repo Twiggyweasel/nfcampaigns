@@ -10,8 +10,9 @@ class Team < ApplicationRecord
   validates :name, presence: true
   
   after_find do
-    self.update_raised
-
+    if Contribution.where(backable_id: self.id, backable_type: "Team", paid: true).where('created_at >= ?', 1.hour.ago).count != 0
+      self.update_raised
+    end
   end
   
   after_save do
@@ -19,7 +20,7 @@ class Team < ApplicationRecord
   end
   
   def total_raised
-    self.contributions.pluck(:amount).sum + self.attendees.pluck(:raised).sum
+    self.contributions.where(paid: true).pluck(:amount).sum + self.attendees.pluck(:raised).sum
   end
   
   def update_raised

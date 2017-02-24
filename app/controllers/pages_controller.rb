@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   
   def home
     @events = Event.order(:event_date).limit(5)
-    @top_attendees = Attendee.order(raised: :desc).limit(5)
+    @top_attendees = Attendee.where(paid: true).order(raised: :desc).limit(5)
     @top_teams = Team.where.not(name: 'No Team').order(raised: :desc).limit(5)
     
     @total_raised = Event.all.pluck(:raised).sum
