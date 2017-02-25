@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row mt-1">
     <div class="col-12">
       <h1 class="display-3 my-4  text-center">#NFStrong Events</h1>
@@ -21,7 +19,7 @@
     </div>
 </div>
 <div class='container'>
-<div class='row mt-5'>
+<div class='row my-5'>
   <% @events.each do |event| %>
 
       <div class='col-lg-4 col-md-6 event-card' style='background-image: url(<%= event.event_card.url %>);'>
@@ -41,6 +39,30 @@
 
 </div>
 
+<div class='row w py-5' style='margin-top: 7rem; background-color: #015F88;'>
+  <div class='container'>
+    <div class='row px-3'>
+          <div class='col-md-5 my-3'>
+      <img class='img-fluid rounded d-block mx-auto' style='style:275px' src='<%= image_url("ftlauderdalewalk.jpg") %>'>
+    </div>
+    <div class='col-md-6 offset-md-1 my-3'>
+      <h3>Want to see an NF event in your area?</h3>
+      <br>
+      <p>Our NF Events are an excellent way to build the NF community, raise money to fund research, and to spread awareness. 
+      We are always looking for individuals who are driven to engage with their locale community and help organize events.
+      If this describes you take a moment to fill out an interest form and join us in the fight to stay #NFstrong.</p>
+      
+      <div class='row'>
+        <div class='col-lg-6 offset-lg-3 my-2'>
+          <%= link_to "Click Here", new_application_path, class: 'btn btn-block btn-info' %>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
 
 
 <%= render 'shared/footer' %>

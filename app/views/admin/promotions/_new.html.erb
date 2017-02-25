@@ -6,6 +6,12 @@
 <%= f.label :code, class: 'sr-only' %>
 <%= f.text_field :code, class: 'form-control mb-2 mr-sm-2 mb-sm-0 mt-sm-2', placeholder: "Promotion Code" %>
 
+<%= f.label :start, "Start Date" %>
+<%= f.date_field :start, class: 'form-control' %>
+
+<%= f.label :stop, "End Date" %>
+<%= f.date_field :stop, class: 'form-control' %>
+
 <%= f.label :discount, class: 'sr-only' %>
 <div class="input-group mb-2 mr-sm-2 mb-sm-0 mt-sm-2">
   <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></div>

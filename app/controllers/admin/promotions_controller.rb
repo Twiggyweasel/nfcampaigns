@@ -10,6 +10,7 @@ class Admin::PromotionsController < ApplicationController
   def create
     @promotion = Promotion.create(promotion_params)
     
+    
     respond_to do |format|
       if @promotion.save
         format.js
