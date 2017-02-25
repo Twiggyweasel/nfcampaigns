@@ -5,7 +5,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.string :team_photo
       t.float :goal
       t.integer :max_members
-      t.decimal :raised
+      t.float :raised
       t.boolean :is_private, default: false
       
       t.references :event, foreign_key: true

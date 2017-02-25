@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
   end
 
   create_table "attendees", force: :cascade do |t|
-    t.decimal  "fee"
+    t.float    "fee"
     t.string   "shirt_size"
     t.string   "business_name"
     t.string   "category"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
   end
 
   create_table "contributions", force: :cascade do |t|
-    t.decimal  "amount"
+    t.float    "amount"
     t.string   "honoree"
     t.string   "payment_channel"
     t.string   "category"
@@ -140,21 +140,24 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "last4"
     t.string   "promo_code"
     t.integer  "confirmation_number"
-    t.decimal  "amount",              precision: 12, scale: 3
+    t.float    "amount"
     t.boolean  "success"
     t.boolean  "cover_processing"
     t.string   "authorization_code"
     t.string   "payable_type"
     t.integer  "payable_id"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id"
   end
 
   create_table "pledge_pages", force: :cascade do |t|
-    t.text    "summary"
+    t.string  "nf_connection"
+    t.text    "custom_story"
     t.float   "goal"
     t.string  "pledge_pic"
+    t.boolean "has_custom"
+    t.boolean "has_customized"
     t.integer "attendee_id"
     t.index ["attendee_id"], name: "index_pledge_pages_on_attendee_id"
   end
@@ -205,7 +208,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "name"
     t.string   "category"
     t.integer  "guest_limit"
-    t.decimal  "amount"
+    t.float    "amount"
     t.integer  "event_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -234,7 +237,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "team_photo"
     t.float    "goal"
     t.integer  "max_members"
-    t.decimal  "raised"
+    t.float    "raised"
     t.boolean  "is_private",  default: false
     t.integer  "event_id"
     t.datetime "created_at",                  null: false

@@ -4,7 +4,7 @@ class CreateRegistrationFees < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :category
       t.integer :guest_limit
-      t.decimal :amount
+      t.float :amount
       
       t.references :event, foreign_key: true
       t.timestamps

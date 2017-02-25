@@ -24,15 +24,9 @@
   <div class='col-md-8 offset-md-2'>
     <div class='card card-block'>
       <div class='row'>
-        <div class='col-md-4'>
-          <%= link_to "View Your Profile", user_path(current_user), class: 'btn btn-block btn-warning' %>
-        </div>
-        <div class='col-md-4'>
-          <%= link_to "View Events", events_path, class: 'btn btn-block btn-primary' %>
+        <div class='col-md-12'>
+          <%= link_to(attendee_pledge_page_path(@attendee, @attendee.pledge_page), class: 'btn btn-success btn-lg float-right') do %> Create Your Pledge Page  <i class="fa fa-long-arrow-right" aria-hidden="true"></i><% end %> 
         </div>  
-        <div class='col-md-4'>
-          <%= link_to 'Back to Context', attendee_path(@attendee), class: 'btn btn-block btn-info' %>
-        </div>
       </div>
     </div>
   </div>

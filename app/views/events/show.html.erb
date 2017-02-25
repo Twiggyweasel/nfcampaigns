@@ -13,6 +13,7 @@
  
       <div class='row'>
         <div class='col-lg-3'>
+          <% if current_user.attendees.empty? || !current_user.attendees.find(@event.id) %>
           <div class="dropdown">
             <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Register
@@ -23,6 +24,9 @@
               <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
             </div>
           </div>  
+          <% else %>
+          <%= link_to 'Manage Registration', event_attendee_path(@event, current_user.attendees.where(event_id: @event.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
+          <% end %>
         </div>
         <div class='col-lg-3'>
           <%= link_to 'Contribute', new_event_contribution_path(@event), class: 'btn btn-success btn-block mt-3 mb-5' %>
@@ -70,7 +74,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @event.teams.limit(5).each do |team| %>
+              <% @top_teams.each do |team| %>
               <tr>
                 <td><%= link_to team.name, event_team_path(team.event, team) %></td>
                 <td><%= number_to_currency(team.raised) %></td>

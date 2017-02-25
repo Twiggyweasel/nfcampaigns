@@ -27,12 +27,9 @@
         <div class='col-md-4'>
           <%= link_to "View Your Profile", user_path(current_user), class: 'btn btn-block btn-warning' %>
         </div>
-        <div class='col-md-4'>
+        <div class='col-md-4 offset-md-4'>
           <%= link_to "View Events", events_path, class: 'btn btn-block btn-primary' %>
         </div>  
-        <div class='col-md-4'>
-          <%= link_to 'Back to Context', event_path(@contribution.backable), class: 'btn btn-block btn-info' %>
-        </div>
       </div>
     </div>
   </div>

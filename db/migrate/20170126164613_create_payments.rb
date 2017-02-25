@@ -6,7 +6,7 @@ class CreatePayments < ActiveRecord::Migration[5.0]
       t.string :last4
       t.string :promo_code
       t.integer :confirmation_number
-      t.decimal :amount, precision: 12, scale: 3
+      t.float :amount
       t.boolean :success
       t.boolean :cover_processing
       t.string :authorization_code

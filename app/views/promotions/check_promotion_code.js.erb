@@ -2,7 +2,7 @@
 
 $('#promotion_code').hide();
 $('#promo-btn').hide();
-$('#promo-box').text("<%= escape_javascript(@promotion.code) %> Promo Added! <%= escape_javascript(@attendee.fee.to_s) %>"); 
+$('#promo-box').text("<%= escape_javascript(@promotion.code) %> Promo - <%= (@promotion.discount).round.to_json %>% off applied!"); 
 $('#payment_promo_code').val('<%= escape_javascript(@promotion.code) %>');
 
 $('#promo-block').show();
@@ -10,10 +10,13 @@ $('#promo-code-name').text("<%= escape_javascript(@promotion.code) %>");
 $('#promo-percent').text("- <%= escape_javascript((@promotion.discount.round).to_s) %>%");
 $('#promo-discount').text("-$<%= escape_javascript((@attendee.attendee_total * (@promotion.discount / 100)).to_s) %>0");
 
-if($('#cover-fee').attr('checked')) {
-  $('#final-total').text("$<%= escape_javascript( ((@attendee.attendee_total + @attendee.processing_fee) - (@attendee.attendee_total * (@promotion.discount / 100))).round(2).to_s ) %>")
+$('#hidden_total_fee').val(<%=  ((@attendee.attendee_total + @attendee.processing_fee) - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_json %>);
+$('#hidden_total').val(<%= (@attendee.attendee_total - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_json %>);
+
+if($('#payment_cover_processing').is(':checked')) {
+  $('#final-total').text("$<%= escape_javascript( ((@attendee.attendee_total + @attendee.processing_fee) - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_s ) %>")
 } else {
-	$('#final-total').text("$<%= escape_javascript( (@attendee.attendee_total - (@attendee.attendee_total * (@promotion.discount / 100))).to_s ) %>")
+	$('#final-total').text("$<%= escape_javascript( (@attendee.attendee_total - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_s ) %>")
 }
 
 $.notify({

@@ -18,7 +18,9 @@ class AttendeesController < ApplicationController
   def create
 
     @attendee = @event.attendees.new(attendee_params)
-    @guest_limit = RegistrationFee.where(event_id: @event.id, amount: @attendee.fee).first.guest_limit
+    if @attendee.fee 
+      @guest_limit = RegistrationFee.where(event_id: @event.id, amount: @attendee.fee).first.guest_limit
+    end
     respond_to do |format|
       if @attendee.save
         @attendee.update_column(:guest_limit,  @guest_limit)

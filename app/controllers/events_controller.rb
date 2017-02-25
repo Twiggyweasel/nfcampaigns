@@ -11,7 +11,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @top_fundraisers = @event.attendees.order(raised: :desc).limit(5)
+    @top_fundraisers = @event.attendees.where.not(raised: 0, user_id: 1 ).order(raised: :desc).limit(5)
+    @top_teams = @event.teams.where.not(raised: 0).offset(1).order(raised: :desc).limit(5)
   end
 
   # GET /events/new

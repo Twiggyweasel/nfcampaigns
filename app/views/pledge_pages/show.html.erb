@@ -12,7 +12,7 @@
       <div class='card event-card-shadow primary-pledge-card' style='margin-top: -250px;'>
         <div style='margin-top:-115px; margin-left: 25px; width:600px;'>
           <img class='img-fluid img-thumbnail rounded-circle' src='<%= image_url('no_user.png') %>' style='height: 250px;'>
-          <h4 style='margin-top:-125px; margin-left: 275px; margin-bottom:100px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>I'm NFStrong for: Test Test</small></h4>
+          <h4 style='margin-top:-120px; margin-left: 275px; margin-bottom:95px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>I'm NFStrong for <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %></small></h4>
         </div>
         <div class='card-block'>
           <div class="row">
@@ -45,6 +45,14 @@
           <div class='row mb-5'>
             <div class='col-12'>
               <h4>My NF Story</h4>
+              <% if @pledge_page.has_custom %>
+                <%= @pledge_page.custom_story %>
+              <% else %>
+              <p>
+                On <%= @pledge_page.event.event_date.strftime("%A, %B %d") %>, I’ll be participating at <%= @pledge_page.event.name %> on behalf of <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %>, and we’d love your support.
+                Whether participating alongside us or contributing to our fundraising efforts, you can make a difference in the lives of 
+                the more than 100,000 Americans living with NF.</p>
+              <% end %>
             </div>
           </div>
         </div>
@@ -55,11 +63,25 @@
     <div class='col-12'>
       <div class='card'>
         <div class='card-block'>
+          <div class='row'>
+            <div class='col-12'>
+              <h4>What is NF?</h4>
+              <p>
+                Neurofibromatosis (NF) is a genetic disorder of the nervous system that causes tumors to form on the nerves anywhere
+                body at any time. This progressive disorder affects all races, all ethnic groups and both sexes equally. NF is one of the most common 
+                genetic disorders in the United States (one in every 2,500 to 3,000 births). The neurofibromatoses affects more than 100,000 
+                Americans; this makes NF more prevalent than Cystic Fibrosis, hereditary Muscular Dystrophy, Huntington’s Disease and Tay Sachs 
+                combined.
+              </p>
+            </div>
+          </div>
+          <hr />
            <div class='row'>
             <div class='col-12'>
-              <h4>What is NF Network</h4>
-              Nf Network is a great cause that needs to be supported so you should do that....Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel nulla eu metus posuere semper. Nam egestas magna ac ipsum lobortis posuere. Suspendisse id lorem gravida, aliquet augue at, cursus nulla. Donec dignissim suscipit sagittis. Pellentesque mollis tellus eu imperdiet varius. Fusce cursus porta purus. Sed volutpat rhoncus finibus. Aliquam leo tellus, ornare euismod sollicitudin vitae, egestas non nulla.
+              <h4>About the NF Network</h4>
+              The NF Network network provides opportunities for local NF organizations to share experiences.  
+              The network is a dynamic and growing open space for shared resources, development of new tools, 
+              and creation of innovative programs.  It brings together groups from around the country to speak as one voice on national issues.
             </div>
           </div>
         </div>
@@ -131,8 +153,43 @@
 
 
 
+<div class="modal fade" id="AnnouceModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Welcome to your pledge page!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your pledge page is the perfect place your friends, family members, and co-workers to join you
+        in helping those with neurofibromatosis. <br>
+        <br>
+        We've populated your page with information from your registration form. 
+        Click "Customize" to add your personal NF connection to the prefilled text or write about your own experiences with NF. 
+        You can also set a custom donation goal and change your profile picture.<br>
+        <br>
+        
+        Please take a few minutes to add your personal touch and join us in the fight to stay #NFStrong.</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Customize", edit_attendee_pledge_page_path(@attendee, @pledge_page), class: 'btn btn-success' %>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
 
+<script>
+$( document ).ready(function() {
+  <% if current_user.id === @pledge_page.user.id && !@pledge_page.has_customized %>
+      $('#AnnouceModal').modal('show');
+  <% end %>
+});
 
+
+</script>

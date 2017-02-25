@@ -94,16 +94,16 @@ class Payment < ApplicationRecord
 
   def process
     if valid_card
-      response = GATEWAY.authorize((final_amount * 100).floor, credit_card, purchase_options)
+      response = GATEWAY.authorize((final_amount * 100), credit_card, purchase_options)
       if response.success?
         transaction = GATEWAY.capture((final_amount * 100).floor, response.authorization)
         if !transaction.success?
-          update_columns({last4: credit_card.number[-4..-1], success: false, amount: (final_amount).floor2(2)})
+          update_columns({ last4: credit_card.number[-4..-1], success: false, amount: (final_amount.floor2(2)) })
           # errors.add(:base, "Error: credit card is not valid. #{credit_card.errors.full_messages.join('. ')}")
           errors.add(:base, "The credit card you provided was declined.  Please double check your information and try again.") and return
           false
         end
-        update_columns({authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1], amount: (final_amount).floor2(2) })
+        update_columns({ authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1], amount: (final_amount.floor2(2)) })
         true
       else
         update_columns({last4: credit_card.number[-4..-1], amount: (final_amount).floor2(2)})

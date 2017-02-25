@@ -1,4 +1,4 @@
-<%= form_for([@attendee, @pledge_page]) do |f| %>
+<%= form_for([@attendee, @pledge_page], method: :patch) do |f| %>
   <% if @pledge_page.errors.any? %>
     <%= render "shared/errors", errors: @pledge_page.errors %>
   <% end %>
@@ -7,14 +7,16 @@
   <div class='col-12 col-md-8 offset-md-2'>
     <div class='card'>
       <div class='card-block'>
-        <%= f.label :summary %>
-        <%= f.text_area :summary, class: 'form-control', rows: 10 %>
+        <%= f.label :nf_connection %>
+        <%= f.text_field :nf_connection, class: 'form-control' %>
+        <%= f.label :custom_story %>
+        <%= f.text_area :custom_story, class: 'form-control', rows: 10 %>
         <%= f.label :goal %>
         <%= f.number_field :goal, class: 'form-control', placeholder: '100.00' %>
         <%= f.label :pledge_pic %>
         <%= f.file_field :pledge_pic, class: 'form-control' %>
-        
-        <%= f.submit %>
+        <%= f.hidden_field(:has_customized, :value => true) %>
+        <%= f.submit "Submit", class: 'btn btn-success' %>
       </div>
     </div>
   </div>

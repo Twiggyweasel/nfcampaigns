@@ -1,7 +1,7 @@
 class CreateAttendees < ActiveRecord::Migration[5.0]
   def change
     create_table :attendees do |t|
-      t.decimal :fee
+      t.float :fee
       t.string :shirt_size
       t.string :business_name
       t.string :category

@@ -1,5 +1,5 @@
 class PledgePagesController < ApplicationController
-  before_action :set_attendee, only: [:show, :new, :create]
+  before_action :set_attendee, only: [:show, :new, :create, :edit, :update]
   before_action :no_pledge_page, only: [:show]
   
   def index 
@@ -25,6 +25,20 @@ class PledgePagesController < ApplicationController
     end
   end
   
+  def edit
+    @pledge_page = PledgePage.find(params[:id])
+  end
+  
+  def update
+    @pledge_page = PledgePage.find(params[:id])
+    
+    if @pledge_page.update(pledge_page_params)
+      redirect_to attendee_pledge_page_path(@attendee, @pledge_page), :flash => { :success => "Your pledge page has been updated!"}
+    else
+      :edit
+    end
+  end
+  
   private 
     def no_pledge_page
       if !@attendee.pledge_page
@@ -38,6 +52,6 @@ class PledgePagesController < ApplicationController
     end
   
     def pledge_page_params
-      params.require(:pledge_page).permit(:goal)
+      params.require(:pledge_page).permit(:goal, :has_custom, :has_customized, :nf_connection, :custom_story)
     end
 end

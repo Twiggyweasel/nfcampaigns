@@ -34,8 +34,9 @@ Rails.application.routes.draw do
     # resources :pledge_pages, only: [:edit, :update]
     resources :payments
     get 'reciept', to: 'attendees#reciept'
-     get 'decline', to: 'attendees#decline'
-    get 'pledge_page', to: 'pledge_pages#show', as: :pledge_page
+    get 'decline', to: 'attendees#decline'
+    # get 'pledge_page', to: 'pledge_pages#show', as: :pledge_page
+    resources :pledge_pages, only: [:edit, :update, :show]
     resources :guests, except: [:show]
     resources :contributions, only: [:show, :new, :create, :edit, :update]
   end
