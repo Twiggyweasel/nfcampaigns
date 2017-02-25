@@ -13,11 +13,8 @@
 <%= f.date_field :stop, class: 'form-control' %>
 
 <%= f.label :discount, class: 'sr-only' %>
-<div class="input-group mb-2 mr-sm-2 mb-sm-0 mt-sm-2">
-  <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></div>
-  <%= f.number_field :discount, class: 'form-control mb-2 mb-sm-0', placeholder: "Discount" %>
-  <div class="input-group-addon">.00</div>
-</div>
+
+<%= f.number_field :discount, class: 'form-control mb-2 mb-sm-0', placeholder: "Discount" %>
 
 <%= f.submit "Create Promotion", class: "btn btn-success mt-sm-2" %>
 <% end %>
