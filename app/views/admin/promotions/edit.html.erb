@@ -14,6 +14,12 @@
       <%= f.label :code, "Promotion Code" %>
       <%= f.text_field :code, class: 'form-control' %>
       
+      <%= f.label :start, "Promotion Start Date" %>
+      <%= f.date_field :start, class: "form-control" %>
+      
+      <%= f.label :stop, "Promotion Stop Date" %>
+      <%= f.date_field :stop, class: "form-control" %>
+      
       <%= f.label :discount, "Discount" %>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></div>

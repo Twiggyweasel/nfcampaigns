@@ -1,6 +1,8 @@
 <tr id="promotion_<%= promotion.id %>">
   <td><%= promotion.name %></td>
   <td><%= promotion.code %></td>
+  <td><%= promotion.start.strftime("%m/%d/%y") %></td>
+  <td><%= promotion.stop.strftime("%m/%d/%y") %></td>
   <td><%= promotion.discount.round() %>%</td>
   <td><%= promotion.is_active %></td>
   <td><%= link_to "Edit", edit_admin_promotion_path(promotion), class: 'btn btn-primary btn-sm' %>

@@ -48,6 +48,6 @@ class Admin::PromotionsController < ApplicationController
     end
     
     def promotion_params
-      params.require(:promotion).permit(:name, :discount, :code, :is_active)
+      params.require(:promotion).permit(:name, :discount, :code, :start, :stop, :is_active)
     end
 end

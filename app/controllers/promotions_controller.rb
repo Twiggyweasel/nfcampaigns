@@ -2,7 +2,7 @@ class PromotionsController < ApplicationController
   
   def check_promotion_code
     @attendee = Attendee.find(params[:promotion][:attendee_id])
-    if !Promotion.where(:code => params[:promotion][:code]).first.nil?
+    if !Promotion.where(:code => params[:promotion][:code]).first.nil? && Promotion.where(:code => params[:promotion][:code]).first.is_active
       @promotion = Promotion.where(:code => params[:promotion][:code]).first
     else 
       @promotion = nil
