@@ -13,6 +13,7 @@
  
       <div class='row'>
         <div class='col-lg-4'>
+          <% if current_user %>
           <% if current_user.attendees.empty? || !current_user.attendees.find(@event.id) %>
           <div class="dropdown">
             <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,6 +27,18 @@
           </div>  
           <% else %>
           <%= link_to 'Manage Registration', event_attendee_path(@event, current_user.attendees.where(event_id: @event.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
+          <% end %>
+          <% else %>
+              <div class="dropdown">
+            <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Register
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
+              <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
+              <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
+            </div>
+          </div>  
           <% end %>
         </div>
         <div class='col-lg-3'>
