@@ -24,7 +24,7 @@ Size.create! label: 'Adult XL'
 Size.create! label: 'Adult XXL'
 Size.create! label: 'Adult XXXL'
 
-User.create! name: 'System Admin', email: "admin@nfstrong.org", password: "test_123", role_id: 1
+User.create! name: 'System Admin', email: "admin@nfstrong.org", password: "N17F#Strong", role_id: 1
 
 if Rails.env == "development"
 
