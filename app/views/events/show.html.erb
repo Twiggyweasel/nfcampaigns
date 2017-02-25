@@ -13,7 +13,7 @@
  
       <div class='row'>
         <div class='col-lg-4'>
-          <% if current_user %>
+          <% if logged_in? %>
           <% if current_user.attendees.empty? || !current_user.attendees.find(@event.id) %>
           <div class="dropdown">
             <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
