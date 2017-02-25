@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :pledge_pages, only: [:edit, :update, :show]
     resources :guests, except: [:show]
     resources :contributions, only: [:show, :new, :create, :edit, :update]
+    post 'join_team', to: 'attendees#join_team'
   end
   
   resources :pledge_pages do

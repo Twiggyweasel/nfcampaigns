@@ -24,9 +24,9 @@ Size.create! label: 'Adult XL'
 Size.create! label: 'Adult XXL'
 Size.create! label: 'Adult XXXL'
 
-User.create! name: 'System Admin', email: "admin@nfcampaigns.org", password: "test_123", role_id: 1
+User.create! name: 'System Admin', email: "admin@nfstrong.org", password: "test_123", role_id: 1
 
-# if Rails.env == "development"
+if Rails.env == "development"
 
   Event.create! name: 'Event One', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2017-3-08', event_start_time: "2000-01-01 8:30:00", event_end_time: "2000-01-01 10:30:00", goal: 10000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: true, size_ids: [1,2,3,4,5]
   Event.create! name: 'Event Two', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2017-5-16', event_start_time: "2000-01-01 19:30:00", event_end_time: "2000-01-01 10:30:00", goal: 40000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: false, size_ids: [1,2,3,4,5]
@@ -131,4 +131,4 @@ User.create! name: 'System Admin', email: "admin@nfcampaigns.org", password: "te
   
   Promotion.create! name: "$5 Discount", desc: "$5 of entire cart", code: "NF5OFF", discount: 20.0, is_active: true 
 
-# end 
+end 

@@ -20,8 +20,17 @@
           <br />
           Shirt Size Requested: <%= @attendee.shirt_size %>
           <br />
-          Team: <%= @attendee.team.name %> <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to @attendee.is_leader? ? "Manage" : "View", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
+          Team: <span id='team_name'><%= @attendee.team.name %></span> 
+          <% if @attendee.team === @attendee.event.teams.first %> 
+            <button class="btn btn-warning btn-sm" type="button" data-toggle="collapse" data-target="#jointeam" aria-expanded="false" aria-controls="collapseExample">
+              Join Team 
+            </button>
+          <% end %> 
+          <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to @attendee.is_leader? ? "Manage" : "View", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
         </p>
+        <div class="collapse" id="jointeam">
+          <%= render 'join' %>  
+        </div>
       </div>
     </div>
     <div class='card mt-3'>

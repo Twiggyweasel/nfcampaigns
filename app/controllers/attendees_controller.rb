@@ -63,6 +63,17 @@ class AttendeesController < ApplicationController
     @attendee = Attendee.find(params[:attendee_id])
   end
   
+  def join_team
+    @attendee = Attendee.find(params[:attendee_id])
+    @team = Team.find(params[:attendee][:team_id])
+    
+    @attendee.update_column(:team_id, @team)
+    
+    respond_to do |format|
+      format.js { }
+    end
+  end
+  
   private 
     def set_event
       @event = Event.find(params[:event_id])
