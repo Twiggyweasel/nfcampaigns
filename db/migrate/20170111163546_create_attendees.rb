@@ -4,6 +4,7 @@ class CreateAttendees < ActiveRecord::Migration[5.0]
       t.float :fee
       t.string :shirt_size
       t.string :business_name
+      t.string :business_logo
       t.string :category
       t.integer :guest_limit
       

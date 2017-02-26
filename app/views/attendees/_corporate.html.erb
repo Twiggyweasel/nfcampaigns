@@ -18,9 +18,9 @@
           <br />
           Registration Type: <%= number_to_currency(@attendee.fee) %>
           <br />
-          Shirt Size Requested: <%= @attendee.shirt_size %>
-          <br />
           Business: <%= @attendee.business_name.titleize %>
+          <br /> 
+          Business Logo: <% if !@attendee.business_logo.blank? %> <%= link_to "View", @attendee.business_logo.url, target: "_blank" %> <% else %> <%= link_to "Add", edit_event_attendee_path(@event, :category => "Corporate"), class: '' %> <% end %>
       </div>
     </div>
     <div class='card mt-3'>
@@ -30,11 +30,11 @@
 
             <i class="fa fa-info-circle" tabindex="0" id='info' data-trigger="focus" aria-hidden="true" data-toggle="popover" title="Corporate Guests" data-content="You can add the guests that are allowed with your corporate registration here"></i></a>
 
-            <% if @attendee.guests.count < (@attendee.guest_limit - 1) %>
+            <% if @attendee.guests.count < (@attendee.guest_limit) %>
               <button class='btn btn-primary float-right' data-toggle="collapse" href="#collapseAddGuest" aria-expanded="false" aria-controls="collapseAddGuest">Add Guest</button>
             <% end %>
           </h3>
-          <h5 id='slots'><%= @attendee.guest_limit - (@attendee.guests.count + 1) %> Slots Remaining</h5>
+          <h5 id='slots'><%= @attendee.guest_limit - (@attendee.guests.count) %> Slots Remaining</h5>
           <br />
           <div class="collapse my-3" id="collapseAddGuest">
             <%= render 'guests/new' %>
@@ -90,17 +90,10 @@
 
         </div>
         <div class='card-footer'>  
-        <% if !@attendee.payments.where(success: true) %>
-  
+        <% if @attendee.payments.empty? || !@attendee.payments.where(success: true) %>
           <%= link_to "Submit Payment", new_attendee_payment_path(@attendee), class: 'btn btn-success btn-block' %>
         <% end %>
         <%= link_to "Return to Event", event_path(@event), class: 'btn btn-primary btn-block mt-3' %>
-          <!--<#% if @attendee.pledge_page %>-->
-          <!--  <#%= link_to 'View Fundraising Page', attendee_pledge_page_path(@attendee, @attendee.pledge_page), class: 'btn btn-primary' %>-->
-          <!--<#% else %>-->
-          <!--  <#%= link_to 'Create Fundraising Page', new_attendee_pledge_page_path(@attendee), class: 'btn btn-primary' %>-->
-          <!--<#% end %>-->
-
         </div>
       </div>
     </div>

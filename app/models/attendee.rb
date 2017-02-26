@@ -9,6 +9,8 @@ class Attendee < ApplicationRecord
   has_many :payments, as: :payable
   accepts_nested_attributes_for :guests, allow_destroy: true, reject_if: :reject_guest
   
+  mount_uploader :business_logo, EventCardUploader
+  
   validates :fee, presence: true
   validates :shirt_size, presence: true
   validates :user_id, presence: true 
@@ -60,4 +62,7 @@ class Attendee < ApplicationRecord
     (self.attendee_total * 0.029) + 0.30
   end
   
+  def name_w_description
+    "#{name}" - "#{description}"
+  end
 end

@@ -7,4 +7,4 @@ $("#guest-count").text("x<%= escape_javascript(@guest.attendee.guests.count.to_s
 $("#guest-total").text("<%= escape_javascript(number_to_currency(@guest.attendee.guests_fee_total.to_s)) %>");
 $("#attendee-total").text("<%= escape_javascript(number_to_currency(@guest.attendee.attendee_total.to_s)) %>");
 
-$('#slots').text("<%= escape_javascript((@guest.attendee.guest_limit - (@guest.attendee.guests.count + 1)).to_s)  %> Slots Remaining"); 
+$('#slots').text("<%= escape_javascript((@guest.attendee.guest_limit - (@guest.attendee.guests.count)).to_s)  %> Slots Remaining"); 

@@ -1,7 +1,7 @@
 <%= render 'shared/title', title: "Registration for #{@event.name}", display: 4 %>
 
 
-<% if @attendee.category == 'Personal' %>
+<% if @attendee.category == 'Personal' || @attendee.category == "Personal Fundraising" %>
 
 <%= render 'personal' %>
 

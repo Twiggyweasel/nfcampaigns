@@ -129,6 +129,6 @@ if Rails.env == "development"
     )
   end
   
-  Promotion.create! name: "$5 Discount", desc: "$5 of entire cart", code: "NF5OFF", discount: 20.0, is_active: true 
+  Promotion.create! name: "$5 Discount", desc: "$5 of entire cart", code: "NF5OFF", discount: 20.0, is_active: true, start: "2017-01-08", stop: "2017-12-08"
 
 end 

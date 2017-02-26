@@ -17,7 +17,7 @@
       <div class='row'>
         <div class='col-12'>
           <%= f.label :category %>
-          <%= f.select :category, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"]]), { :prompt => "Make a Selection" }, class: 'form-control' %>
+          <%= f.select :category, options_for_select([["Personal", "Personal"], ["Corporate", "Corporate"], ["Fundraising", "Fundraising"]], f.object.category), { :prompt => "Make a Selection" }, class: 'form-control' %>
         </div>
       </div>
     </div>
@@ -25,6 +25,18 @@
       <div class='col-12'>
         <%= f.label :amount, "Fee Amount" %>
         <%= f.number_field :amount, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-3'>
+        <%= f.label :guest_limit, "Guest Limit" %>
+        <%= f.number_field :guest_limit, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-12'>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control', rows: 5 %>
       </div>
     </div>
 
@@ -36,3 +48,5 @@
 
 
 <% end %> 
+
+

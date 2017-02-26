@@ -1,0 +1,124 @@
+<%= form_for([:admin, @event, @promocard]) do |f| %>
+
+<% if @promocard.errors.any? %>
+
+<%= render 'shared/errors', errors: @promocard.errors %>
+<% end %>
+<div class='row'>
+  <div class='col-10 offset-1'>
+    <div class='card card-block'>
+      <div class='row'>
+        <div class='col-12'>
+          <h3>Background Image</h3>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-12' style='min-height:250px'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/diamonds.JPG' class='img-fluid d-block mx-auto float-right'>
+              <br>
+      <%= f.radio_button(:remote_background_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/gplaypattern.png", class: 'float-left')  %>
+        </div>
+        <div class='col-md-12' style=''>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/spirals.JPG' class='img-fluid d-block mx-auto float-right'>
+              <br>
+      <%= f.radio_button(:remote_background_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/dimension.png", class: 'float-left;')  %>
+        </div>
+        <div class='col-md-12'>
+          <div class='col-md-12' style=''>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/redborder.JPG' class='img-fluid d-block mx-auto float-right'>
+              <br>
+              <%= f.radio_button(:remote_background_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/redborder.JPG", class: 'float-left;')  %>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <h3>Coupon Image</h3>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-4'>
+          <div class='col-md-12 text-center' style=''>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/diamondblue.png' class='img-fluid d-block mx-auto'>
+              <br>
+              <%= f.radio_button(:remote_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/diamondblue.png", class: '')  %>
+          </div>
+        </div>
+        <div class='col-md-4'>
+          <div class='col-md-12 text-center' style=''>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/diamondred.png' class='img-fluid d-block mx-auto'>
+              <br>
+              <%= f.radio_button(:remote_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/diamondred.png", class: '')  %>
+          </div>
+        </div>
+        <div class='col-md-4'>
+          <div class='col-md-12 text-center' style=''>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/promo_card/customimage.png' class='img-fluid d-block mx-auto'>
+              <br>
+              <%= f.radio_button(:remote_image_url, "https://s3.amazonaws.com/nfeventimages/images/promo_card/customimage.png", class: '')  %>
+          </div>
+        </div>   
+        <div class='col-12' id='custom-fields' style='display:none;'>
+          <%= f.label :image, "Custom Image" %>
+          <%= f.file_field :image, class: 'form-control', disabled: true %>
+        </div>
+      </div>
+      <div class='row'>
+                <div class='col-6'>
+          <%= f.label :align_image, "Image Alignment" %>
+          <%= f.select( :align_image, options_for_select([["Right", "Right"], ["Left", "Left"]]) , {}, class: 'form-control') %>
+        </div>
+        <div class='col-6'>
+          <%= f.label :promotion_id %>
+          <%= f.select( :promotion_id, options_for_select(Promotion.all.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <%= f.submit @promocard.new_record? ? "Create" : "Update", class: 'btn btn-success btn-block my-3' %>
+          <%= link_to "Cancel", admin_event_path(@event), class: 'btn btn-danger btn-block mb-2' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<% end %>
+
+
+<script>
+
+$('#promo_card_remote_image_url_httpss3amazonawscomnfeventimagesimagespromo_cardcustomimagepng').click(function() {
+  
+  if($(this).is(":checked")) { 
+    $('#custom-fields').show();
+    $(this).prop("disabled", true);
+    $('#promo_card_image').prop("disabled", false);
+  }
+  
+  });
+
+$('#promo_card_remote_image_url_httpss3amazonawscomnfeventimagesimagespromo_carddiamondredpng').click(function() {
+  if($(this).is(":checked")) { 
+    $('#custom-fields').hide();
+    $('#promo_card_remote_image_url_httpss3amazonawscomnfeventimagesimagespromo_cardcustomimagepng').prop("disabled", false);
+    $('#promo_card_image').prop("disabled", true);
+  }
+  
+});
+
+$('#promo_card_remote_image_url_httpss3amazonawscomnfeventimagesimagespromo_carddiamondbluepng').click(function() {
+  if($(this).is(":checked")) { 
+    $('#custom-fields').hide();
+    $('#promo_card_remote_image_url_httpss3amazonawscomnfeventimagesimagespromo_cardcustomimagepng').prop("disabled", false);
+    $('#promo_card_image').prop("disabled", true);
+  }
+  
+});
+
+</script>
+
+
+

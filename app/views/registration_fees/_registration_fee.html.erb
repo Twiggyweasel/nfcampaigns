@@ -2,6 +2,6 @@
   <td><%= registration_fee.name %></td>
   <td><%= number_to_currency(registration_fee.amount) %></td>
   <td><%= registration_fee.category %></td>
-  <td><%= registration_fee.created_at.strftime("%B %d, %Y") %></td>
+  <td><%= registration_fee.guest_limit %></td>
   <td><%= link_to 'Edit', edit_admin_event_registration_fee_path(@event, registration_fee) %> | <a href=''>Delete</a></td>
 </tr>

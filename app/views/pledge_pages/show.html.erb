@@ -1,8 +1,8 @@
 <% if @pledge_page.event.event_cover? %>
-  <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+  <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:250px;'>
   </div>
 <% else %>
-  <div class='row cover-img-block' style='background-image: url("<%= image_url('dock.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed;'>
+  <div class='row cover-img-block' style='background-image: url("<%= image_url('walk-wide.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;'>
   </div>
 <% end %>
 
@@ -10,7 +10,7 @@
   <div class='row'>
     <div class='col-12'>
       <div class='card event-card-shadow primary-pledge-card' style='margin-top: -250px;'>
-        <div style='margin-top:-115px; margin-left: 25px; width:600px;'>
+        <div style='margin-top:-115px; margin-left: 25px; width:600px; display: inline-block'>
           <img class='img-fluid img-thumbnail rounded-circle' src='<%= image_url('no_user.png') %>' style='height: 250px;'>
           <h4 style='margin-top:-120px; margin-left: 275px; margin-bottom:95px;'><%= @pledge_page.user.name.titleize %> <br /><small class='text-muted'>I'm NFStrong for <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %></small></h4>
         </div>
@@ -27,7 +27,7 @@
                 <div class="progress-bar" role="progressbar" aria-valuenow="<%= @pledge_page.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @pledge_page.percent_raised.to_f.ceil %>%;'></div>
               </div>
             </div>
-            <div class='col-md-4' style='margin-top: -125px;'>
+            <div class='col-md-4' style='margin-top: -150px;'>
               <h4>Share This Page:</h4>
               <ul class='nav'>
                 <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
@@ -163,7 +163,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Your pledge page is the perfect place your friends, family members, and co-workers to join you
+        <p>Your pledge page is the perfect place for your friends, family members, and co-workers to join you
         in helping those with neurofibromatosis. <br>
         <br>
         We've populated your page with information from your registration form. 

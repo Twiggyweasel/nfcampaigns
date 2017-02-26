@@ -1,0 +1,33 @@
+
+
+
+
+<div class='row'>
+  <% if @event.promo_card.background_image.file.filename === 'redborder.JPG' %>
+    <div class='col-lg-12 col-md-12 py-3 my-3'  style='border-top: 5px #99002C solid; border-bottom: 5px #99002C solid; background-color: white;'>
+  <% else %>
+      <div class='col-lg-10 offset-lg-1 col-md-12 py-3 my-3 event-card-shadow'  style='background-image: url(<%= @event.promo_card.background_image.url %>); border-radius: 15px;'> 
+  <% end %>
+    <div class='row'>
+      <% if @event.promo_card.align_image == "Right" %>
+        <div class='col-lg-8 col-md-7'>
+          <h1 class='display-3 mt-4 text-center' style="font-family: 'Just Another Hand', cursive;">Join in the fun!</h1>
+          <h1 style='font-size: 3rem; font-weight: 300; line-height: 1.1;'>Use promocode <%= @event.promo_card.promotion.code %> to recieve <%= @event.promo_card.promotion.discount.round() %>% off at checkout</h1>
+        </div>
+        <div class='col-lg-4 col-md-5'>
+          <img src='<%= @event.promo_card.image.url %>' class='img-fluid d-block mx-auto'> 
+        </div>
+      <% else %>
+        <div class='col-lg-4 col-md-5'>
+          <img src='<%= @event.promo_card.image.url %>' class='img-fluid d-block mx-auto'> 
+        </div>
+        <div class='col-lg-8 col-md-7'>
+          <h1 class='display-3 mt-4 text-center' style="font-family: 'Just Another Hand', cursive;">Join in the fun!</h1>
+          <h1 style='font-size: 3rem; font-weight: 300; line-height: 1.1;'>Use promocode <%= @event.promo_card.promotion.code %> to recieve <%= @event.promo_card.promotion.discount.round() %>% off at checkout</h1>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+

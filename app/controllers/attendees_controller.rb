@@ -39,7 +39,7 @@ class AttendeesController < ApplicationController
   def update
     @attendee = @event.attendees.find(params[:id])
     
-    if @attendee.save(attendee_params)
+    if @attendee.update(attendee_params)
       redirect_to event_attendee_url(@attendee.event, @attendee), :flash => { :success => "Your registration has been updated."}
     else
       render :edit
@@ -80,7 +80,7 @@ class AttendeesController < ApplicationController
     end
     
     def attendee_params
-      params.required(:attendee).permit(:fee, :shirt_size, :category, :business_name, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
+      params.require(:attendee).permit(:fee, :shirt_size, :category, :business_name, :business_logo, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
     end
 
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :registration_fees
       resources :attendees
       resources :contributions
+      resources :promo_cards, except:[:index]
     end
     resources :promotions 
     resources :users

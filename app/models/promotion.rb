@@ -1,4 +1,5 @@
 class Promotion < ApplicationRecord
+  has_many :promo_cards
   attr_accessor :attendee_id
   
 after_find do 

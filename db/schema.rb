@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217202830) do
+ActiveRecord::Schema.define(version: 20170226025417) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.float    "fee"
     t.string   "shirt_size"
     t.string   "business_name"
+    t.string   "business_logo"
     t.string   "category"
     t.integer  "guest_limit"
     t.boolean  "paid",          default: false
@@ -181,6 +182,19 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "promo_cards", force: :cascade do |t|
+    t.string   "image"
+    t.string   "background_image"
+    t.string   "align_image"
+    t.integer  "text"
+    t.integer  "event_id"
+    t.integer  "promotion_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["event_id"], name: "index_promo_cards_on_event_id"
+    t.index ["promotion_id"], name: "index_promo_cards_on_promotion_id"
+  end
+
   create_table "promotions", force: :cascade do |t|
     t.string   "name"
     t.string   "desc"
@@ -209,6 +223,7 @@ ActiveRecord::Schema.define(version: 20170217202830) do
     t.string   "category"
     t.integer  "guest_limit"
     t.float    "amount"
+    t.text     "description"
     t.integer  "event_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

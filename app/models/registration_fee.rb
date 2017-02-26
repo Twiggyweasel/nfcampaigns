@@ -7,4 +7,9 @@ class RegistrationFee < ApplicationRecord
   
   scope :is_corporate, -> { where(category: 'Corporate') }
   scope :is_personal, -> { where(category: 'Personal') }
+  scope :is_fundraise, -> { where(category: 'Fundraising')}
+  
+  def name_w_description
+    "#{name} $#{amount.round()} - #{description}"
+  end
 end

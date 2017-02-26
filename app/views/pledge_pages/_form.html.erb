@@ -7,19 +7,45 @@
   <div class='col-12 col-md-8 offset-md-2'>
     <div class='card'>
       <div class='card-block'>
-        <%= f.label :nf_connection %>
-        <%= f.text_field :nf_connection, class: 'form-control' %>
-        <%= f.label :custom_story %>
-        <%= f.text_area :custom_story, class: 'form-control', rows: 10 %>
-        <%= f.label :goal %>
-        <%= f.number_field :goal, class: 'form-control', placeholder: '100.00' %>
-        <%= f.label :pledge_pic %>
-        <%= f.file_field :pledge_pic, class: 'form-control' %>
+        <div class='row'>
+          <div class='col-12'>
+            
+          </div>
+        </div>
+        <div class='row mb-2'>
+          <div class='col-12'>
+        <%= f.label :nf_connection, "NF Connection" %>
+        <%= f.text_field :nf_connection, class: 'form-control' %>            
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12'>
+        <%= f.label :custom_story, "Custom Story" %>
+        <%= f.text_area :custom_story, class: 'form-control', rows: 10 %>            
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12'>
+        <%= f.label :goal, "My Goal" %>
+        <%= f.number_field :goal, class: 'form-control', value: '100.00' %>            
+          </div>
+        </div>    
+        <div class='row my-2'>
+          <div class='col-12'>
+
+        <%= f.label :pledge_pic, "Pledge Page Picture" %>
+        <%= f.file_field :pledge_pic, class: 'form-control' %>      
+          </div>
+        </div>        
         <%= f.hidden_field(:has_customized, :value => true) %>
-        <%= f.submit "Submit", class: 'btn btn-success' %>
+        <%= f.submit "Submit", class: 'btn btn-success btn-block mt-3' %>
+        <%= link_to "Cancel", attendee_pledge_page_path(@pledge_page.attendee, @pledge_page), class: 'btn btn-danger btn-block' %>
       </div>
     </div>
   </div>
 </div>
 
 <% end %>
+
+
+

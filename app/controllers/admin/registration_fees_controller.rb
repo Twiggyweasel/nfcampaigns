@@ -49,6 +49,6 @@ class Admin::RegistrationFeesController < ApplicationController
     end
     
     def fee_params
-      params.require(:registration_fee).permit(:name, :amount, :category, :event_id)
+      params.require(:registration_fee).permit(:name, :amount, :category, :description, :event_id, :guest_limit)
     end
 end

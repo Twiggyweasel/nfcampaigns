@@ -12,22 +12,33 @@
           <div class='row' id='corp-fields'>
             <div class='col-lg-10 offset-lg-1'>
               <div class='row my-2'>
-                <h5 class='text-center'>Registering as: <%= current_user.name.titleize %></h5>
                 <div class='col-12 my-2'>
-                  <%= f.label :business_name, "Name of Business" %>
+                  <%= f.label :business_name, "Name of Business", style: 'font-weight:700; font-size: 120%;' %>
                   <%= f.text_field :business_name, class: 'form-control' %>                  
                 </div>
               </div>
               <div class='row my-2'>
                 <div class='col-12'>
-                  <%= f.label :shirt_size %>
-                  <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>                  
+                  <%= f.hidden_field(:shirt_size, :value => "N/A") %>
+                  <%= f.label :business_logo, "Company Logo", style: 'font-weight:700; font-size: 120%;' %>
+                  <%= f.file_field :business_logo, class: 'form-control' %>
+                  <p id="imagehelpblock" class="form-text text-muted">
+                    Artwork for logos should be submitted in b/w in the following formats: <br> JPEG, TIFF, Adobe Illustrator, Adobe
+Photoshop and PDF
+                  </p>
                 </div>
               </div>
-              <div class='row my-2'>
+              <div class='row mb-3'>
                 <div class='col-12'>
-                  <%= f.label :fee, "Corporate Level" %>
+                  <%= f.label :fee, "Corporate Level", style: 'font-weight:700; font-size: 120%;' %>
+                  <% if @event.event_type === "Walk" %>
+                  <%= f.collection_radio_buttons(:fee, @event.registration_fees.is_corporate.all, :amount, :name_w_description, style: 'display: inline-block') do |b|
+                   b.label(class: "form-check-label", style: 'display: block; margin-bottom: 1rem;')  {b.radio_button(class: "form-check-label") + b.text}
+                  end %>
+                  <% else %>
+                  
                   <%= f.select(:fee, options_for_select(@event.registration_fees.is_corporate.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>                 
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -57,3 +68,10 @@
 
 <% end %>
 
+<% if @event.event_type === "Walk" %>
+<div class='row mt-5'>
+  <div class='col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4'>
+    test
+  </div>
+</div>
+<% end %>

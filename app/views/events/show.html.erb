@@ -71,9 +71,22 @@
     </div>
   </div>
 <% end %>
-          <%= @event.desc.html_safe %>
 
-      </div>
+  <div class='row'>
+    <div class='col-12'>
+      <%= @event.desc.html_safe %>
+    </div>
+  </div>
+
+  <% if !@event.promo_card.nil? %>
+    <%= render 'promocard' %>
+  <% end %>
+
+
+
+
+
+</div>
     </div>
     <div class='row'>
       <div class='col-lg-6 my-5'>
