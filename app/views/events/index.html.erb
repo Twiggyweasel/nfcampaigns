@@ -23,7 +23,7 @@
 <div class='row my-5'>
   <% @events.each do |event| %>
 
-      <div class='col-lg-4 col-md-6 event-card' style='background-image: url(<%= event.event_card.url %>);'>
+      <div class='col-lg-4 col-md-6 event-card' onclick='location.href="events/<%= event.id %>";' style='background-image: url(<%= event.event_card.url %>);'>
         <div class='date-overlay py-3 px-4 text-center'>
           <%= event.event_date.strftime("%b") %><h4><%= event.event_date.strftime("%d") %></h4>
         </div>
