@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= tinymce %>
+<%= tinymce :content_css => asset_path('application.css') %>
 
 <%= form_for [:admin, @event] do |f| %>
   <% if @event.errors.any? %>
