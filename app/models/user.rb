@@ -11,7 +11,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :contributions
   has_many :champions
   
-  has_many :authentications
+  has_many :authentications, dependent: :destroy
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
