@@ -24,6 +24,7 @@ class AttendeesController < ApplicationController
     respond_to do |format|
       if @attendee.save
         @attendee.update_column(:guest_limit,  @guest_limit)
+        AttendeeConfirmationMailer.confirmation(current_user, @attendee).deliver_later
         format.html { redirect_to event_attendee_url(@attendee.event_id, @attendee.id), :flash => { :success => 'Your registration was successfully completed.' }}
       else
         format.html { render :new, :category => @attendee.category }

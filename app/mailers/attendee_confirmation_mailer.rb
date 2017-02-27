@@ -1,8 +1,9 @@
 class AttendeeConfirmationMailer < ApplicationMailer
   
-  def confirmation_email(user, attendee_record)
+  def confirmation(user, attendee_record)
     @user = user
-    @url = event_attendee_path(attendee_record.event_id, attendee_record.id)
+    @attendee = attendee_record
+    @url = event_attendee_path(@attendee.event_id, @attendee.id)
     mail(to: @user.email, subject: '#NFStrong Registration Confirmation')
   end
   
