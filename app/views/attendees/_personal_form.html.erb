@@ -50,13 +50,14 @@
                   
                   </div>
                 </div>
+                <% if @event.registration_fees.is_fundraise.count > 0 %>
                 <div class='row my-2' id='fundraise_box' style='display: none;'>
                   <div class='col-12'>
                     <%= f.label :fee, "Fundraising Commitment" %>
                     <%= f.select(:fee, options_for_select(@event.registration_fees.is_fundraise.collect {|x| [x.name, x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control') %>
-                  
                   </div>
                 </div>
+                <% end %>
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :shirt_size %>
