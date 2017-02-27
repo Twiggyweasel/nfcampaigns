@@ -4,7 +4,7 @@ class PaymentsMailer < ApplicationMailer
   def registration_payment(user, payment)
     @user = user
     @payment = payment
-    mail(to: @user.email, subject: '#NFStrong Payment Receipt')
+    mail(to: @user.email, subject: '#NFStrong Registration Payment Receipt')
   end
   
 end
