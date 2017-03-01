@@ -1,7 +1,6 @@
-<div class='header-img'></div>
 <div class='container'>
 <div class='row mt-5'>
-<div class='card mt-5 card-rel card-block main-raised'>
+<div class='card card-block' style='margin-top: 7rem;'>
   <% if @user.profile_pic? %>
     <%= image_tag(@user.profile_pic, class: 'img-fluid d-block mx-auto img-thumbnail rounded-circle', style: "margin-top: -100px ") %>
   <% else %>
@@ -11,7 +10,7 @@
     <h3 class='card-title text-center'><%= @user.name %> - <%= @user.profile.state %></h3>
     <div class='row mt-2'>
       <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
-        <h3><%= @user.attendees.count %></h3>
+        <h3><%= @user.attendees.is_personal.count %></h3>
         Events Attending
       </div>
       <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout'>

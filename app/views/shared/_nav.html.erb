@@ -23,10 +23,24 @@
     <ul class="navbar-nav ml-auto" >
       <% if logged_in? %>
         <% if is_admin? %>
-          <l1 class='nav-item'><%= link_to(admin_events_path, class: 'nav-link') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></l1>
+          <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>
         <% end %>
-        <li class='nav-item'><%= link_to(user_path(current_user), class: 'nav-link') do %><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile <% end %></li>
-        <li class='nav-item'><%= link_to(logout_path, class: 'nav-link') do %><i class="fa fa-sign-out" aria-hidden="true"></i> Signout<% end %></li>
+        
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <% if current_user.profile_pic? %>
+            <img src='<%= current_user.profile_pic %>' class='img-fluid rounded-circle' style='height: 25px;' >
+          <% else %>
+            <img src='<%= image_url('no_user.png') %>' class='img-fluid rounded-circle' style='height: 25px;' >
+          <% end %>
+          <%= current_user.name %>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
+          <%= link_to "Account Settings", user_account_settings_path(current_user), class: 'dropdown-item' %>
+          <%= link_to(logout_path, class: 'dropdown-item') do %> Logout<% end %>
+        </div>
+      </li>
       <% else %>
         <li class='nav-item'><%= link_to(register_path, class: 'nav-link') do %><i class='fa fa-user-plus'></i> Register <% end %></li>
         <li class='nav-item'><%= link_to(login_path, class: 'nav-link') do %><i class='fa fa-sign-in'></i> login <% end %></li>
