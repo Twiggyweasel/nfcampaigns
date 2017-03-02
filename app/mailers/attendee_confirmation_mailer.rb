@@ -1,5 +1,5 @@
 class AttendeeConfirmationMailer < ApplicationMailer
-  default from: 'orsusbass@gmail.com'
+  default from: 'yglass@nfnetwork.org'
   
   def confirmation(user, attendee_record)
     @user = user

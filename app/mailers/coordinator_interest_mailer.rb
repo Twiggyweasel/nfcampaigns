@@ -1,5 +1,5 @@
 class CoordinatorInterestMailer < ApplicationMailer
-  default from: 'orsusbass@gmail.com'
+  default from: 'yglass@nfnetwork.org'
   
   def coordinator_interest_email(application)
     @application = application

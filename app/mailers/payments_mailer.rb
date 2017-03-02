@@ -1,5 +1,5 @@
 class PaymentsMailer < ApplicationMailer
-  default from: 'orsusbass@gmail.com'
+  default from: 'yglass@nfnetwork.org'
   
   def registration_payment(user, payment)
     @user = user
