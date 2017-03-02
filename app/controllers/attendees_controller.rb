@@ -91,7 +91,7 @@ class AttendeesController < ApplicationController
     end
     
     def require_same_user
-      if current_user != @attendee
+      if current_user != @attendee.user
         flash[:danger] = "You can only view your own registration"
         redirect_to event_path(@event)
       end    
