@@ -7,7 +7,7 @@
   <%= link_to(root_path, class: 'navbar-brand') do %> <img src='<%= image_url('logo.png') %>' class='d-inline-block align-top' style='height:30px;'> STRONG <% end %>
 
   <div class="collapse navbar-collapse" id="navbarNav" style='color:white;'>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" style="margin-top: .25rem;">
       <li class="nav-item">
         <%= link_to "Events", events_path, class: 'nav-link' %>
       </li>
@@ -20,7 +20,7 @@
     </ul>
     
     
-    <ul class="navbar-nav ml-auto" >
+    <ul class="navbar-nav ml-auto" style="margin-top: .25rem;" >
       <% if logged_in? %>
         <% if is_admin? %>
           <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>
