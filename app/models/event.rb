@@ -1,13 +1,13 @@
 class Event < ApplicationRecord
   has_many :contributions, as: :backable
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :teams, dependent: :destroy
   has_many :attendees
   has_many :guests, through: :attendees
   has_many :registration_fees, dependent: :destroy
   has_many :event_sizes
   has_many :sizes, through: :event_sizes
-  has_many :resources
+  has_many :resources, dependent: :destroy
   has_one :promo_card 
   
   mount_uploader :event_cover, EventCoverUploader
