@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   has_many :teams, dependent: :destroy
   has_many :attendees
   has_many :guests, through: :attendees
-  has_many :registration_fees
+  has_many :registration_fees, dependent: :destroy
   has_many :event_sizes
   has_many :sizes, through: :event_sizes
   has_many :resources
