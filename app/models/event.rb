@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   has_many :contributions, as: :backable
   has_many :comments, as: :commentable
-  has_many :teams
+  has_many :teams, dependent: :destroy
   has_many :attendees
   has_many :guests, through: :attendees
   has_many :registration_fees
