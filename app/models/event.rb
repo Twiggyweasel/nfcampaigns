@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   has_many :sizes, through: :event_sizes
   has_many :resources
   has_one :promo_card 
+  
   mount_uploader :event_cover, EventCoverUploader
   mount_uploader :event_card, EventCardUploader
   
@@ -96,5 +97,11 @@ name on nationwide T-shirt & event websites")
     elsif self.registration_date.to_date.future? && !self.is_private?
         self.update_column(:is_private, true)
     end
+  end
+end
+
+class NilClass
+  def to_date
+    Date.today
   end
 end
