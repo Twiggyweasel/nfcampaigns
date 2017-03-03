@@ -22,6 +22,10 @@ class Event < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
+  validates :event_start_time, presence: true
+  validates :event_end_time, presence: true
+  validates :registration_date, presence: true
+  validates :event_date, presence: true
   validate :event_date_cannot_be_in_the_past
   validate :registration_date_cannot_be_after_event_date
   
