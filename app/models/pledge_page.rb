@@ -8,6 +8,7 @@ class PledgePage < ApplicationRecord
   
   validates :goal, presence: true
   
+  mount_uploader :pledge_pic, ChampionImageUploader
   
   def percent_raised
     if self.attendee.total_raised > 0
