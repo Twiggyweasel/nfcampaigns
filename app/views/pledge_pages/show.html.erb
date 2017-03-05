@@ -186,7 +186,7 @@
 
 <script>
 $( document ).ready(function() {
-  <% if current_user.id === @pledge_page.user.id && !@pledge_page.has_customized %>
+  <% if logged_in? && current_user.id === @pledge_page.user.id && !@pledge_page.has_customized %>
       $('#AnnouceModal').modal('show');
   <% end %>
 });
