@@ -4,6 +4,7 @@ class Team < ApplicationRecord
   has_many :contributions, as: :backable
   has_many :attendees, inverse_of: :team
   
+  mount_uploader :team_photo, ChampionImageUploader
   
   accepts_nested_attributes_for :attendees, allow_destroy: true
   
@@ -29,4 +30,12 @@ class Team < ApplicationRecord
   end
   
   paginates_per 6
+  
+  def raised_percent
+    if raised != 0 
+      (self.total_raised / self.goal) * 100
+    else 
+      0
+    end
+  end
 end
