@@ -20,6 +20,11 @@ class Admin::UsersController < ApplicationController
     
   end
   
+  def destroy
+    @user.destroy 
+    redirect_to admin_user_path, :flash => { :sucess => "User Successfully Deleted" }
+  end
+  
   private
     def set_user
       @user = User.find(params[:id])
