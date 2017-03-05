@@ -17,3 +17,46 @@ templates: [
     ]
 
 font_formats: "Roboto=Roboto;Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats"    
+
+
+textcolor_map: [
+    "000000", "Black",
+    "333300", "Dark olive",
+    "003300", "Dark green",
+    "003366", "Dark azure",
+    "000080", "Navy Blue",
+    "333399", "Indigo",
+    "333333", "Very dark gray",
+    "800000", "Maroon",
+    "FF6600", "Orange",
+    "808000", "Olive",
+    "008000", "Green",
+    "008080", "Teal",
+    "0000FF", "Blue",
+    "666699", "Grayish blue",
+    "808080", "Gray",
+    "FF0000", "Red",
+    "FF9900", "Amber",
+    "99CC00", "Yellow green",
+    "339966", "Sea green",
+    "33CCCC", "Turquoise",
+    "3366FF", "Royal blue",
+    "800080", "Purple",
+    "999999", "Medium gray",
+    "FF00FF", "Magenta",
+    "FFCC00", "Gold",
+    "FFFF00", "Yellow",
+    "00FF00", "Lime",
+    "00FFFF", "Aqua",
+    "00CCFF", "Sky blue",
+    "993366", "Red violet",
+    "FFFFFF", "White",
+    "FFFF99", "Light yellow",
+    "CCFFCC", "Pale green",
+    "CCFFFF", "Pale cyan",
+    "99CCFF", "Light sky blue",
+    "CC99FF", "Plum",
+    "015F88", "NF Blue",
+    "98002e", "NF Red",
+    "FF6550", "NF Salmon"
+  ]
