@@ -52,6 +52,6 @@ class PledgePagesController < ApplicationController
     end
   
     def pledge_page_params
-      params.require(:pledge_page).permit(:goal, :has_custom, :has_customized, :nf_connection, :custom_story)
+      params.require(:pledge_page).permit(:goal, :pledge_pic, :has_custom, :has_customized, :nf_connection, :custom_story)
     end
 end
