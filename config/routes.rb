@@ -73,6 +73,7 @@ Rails.application.routes.draw do
   get 'contribution_select', to: 'contributions#contribution_select'
   get 'about', to: 'pages#about'
   get 'privacy', to: 'pages#privacy'
+  get 'nf', to: "pages#nf"
   
   post 'check_promotion_code', to: 'promotions#check_promotion_code'
   

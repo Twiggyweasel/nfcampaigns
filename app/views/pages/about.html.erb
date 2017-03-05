@@ -1,85 +1,10 @@
 <% title "About" %>
 <div class="row banner-image">
-    <img src="<%= image_url('walk-wide.jpg') %>" class='img-fluid' style='width:100% z-index: -1; height:550px;'>
+    <!--<img src="<#%= image_url('walk-wide.jpg') %>" class='img-fluid' style='width:100% z-index: -1; height:550px;'>-->
   <h1 class='display-1 text-center w' style="position: absolute; bottom:30%; width: 100%; font-family: 'Changa One', cursive;">#NFSTRONG</h1>
-  <h4 class='display-2 text-center w' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">About Us</h4>
+  <h4 class='display-2 text-center w' style="position: absolute; bottom:10%; width: 100%; font-family: 'Just Another Hand', cursive;">About Us</h4>
 </div>
-
-<div class='row my-5 px-3'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-12'>
-        <h3>What is Neurofibromatosis (NF):</h3>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='col-12'>
-        <p>
-          Neurofibromatosis (NF) is a genetic disorder of the nervous system which causes tumors to form on the nerves anywhere in the body at any time. 
-          This progressive disorder affects all races, all ethnic groups and both sexes equally. NF is one of the most common genetic disorders in the 
-          United States (one in every 2,500 to 3,000 births). The neurofibromatoses affects more than 100,000 Americans; this makes NF more prevalent 
-          than Cystic Fibrosis, hereditary Muscular Dystrophy, Huntington’s Disease and Tay Sachs combined.
-          <br />
-          <br />
-          NF has three genetically distinct forms: NF-1, NF-2 and Schwannomatosis. They are caused by different genes and chromosomes. 
-          The effects of NF are unpredictable and have varying manifestations and degrees of severity. 
-          There is no known cure for any form of NF, although the genes for both NF-1 and NF-2 have been identified.
-          <br />
-          <br />
-          NF is an autosomal dominant genetic condition; it is not contagious. 
-          Approximately 50% of those affected with Neurofibromatosis have a prior family history of NF. 
-          The other 50% of cases are the result of spontaneous genetic mutation
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class='row my-5 py-5 px-3' style='background-color: #015F88;'>
-  <div class='col-12'>
-    <div class='col-12 text-center' style='color: #ccc;'>
-        <h3>How many people have NF near you:</h3>
-    </div>
-  </div>
-  <div class='col-12'>
-    <div class='row'>
-      <div class='col-md-6 offset-md-3'>
-        <%= select_tag("states", options_for_select(about_states), class: 'form-control', id:'state_select', style: 'background-color: #E9EBEE;' )%>
-      </div>
-    </div>
-
-    <div class='row my-3'>
-      <div class='col-6 offset-3 text-center'>
-        <h1 id='state' style='color: #ccc;'>United States</h1>
-      </div>
-    </div>
-    <div class='row text-center'>
-      <div class='col-md-4 my-3'>
-        <div class='card card-block' style='background-color: #E9EBEE;'>
-          <h4>NF 1</h4>
-          <h2 id='nfone' class='display-2'>107,140</h2>
-        </div>
-      </div>
-      <div class='col-md-4 my-3'>
-        <div class='card card-block' style='background-color: #E9EBEE;'>
-          <h4>NF 2</h4>
-          <h2 id='nftwo' class='display-2'>12,857</h2>
-        </div>
-      </div>
-      <div class='col-md-4 my-3'>
-        <div class='card card-block' style='background-color: #E9EBEE;'>
-          <h4>Schwannomatosis</h4>
-          <h2 id='swan' class='display-2'>8,035</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class='col-12'>
-    <p class='lead float-right' style='color: #ccc;'>*NF estimates are based on 2015 Census Data from the U.S. Census Bureau, Population Division</p>
-  </div>
-</div>
-
-<div class='row my-5 py-5 px-3'>
+<div class='row my-5 py-2 px-3'>
   <div class='container'>
     <div class='row'>
       <div class='col-12'>
@@ -123,39 +48,3 @@
 
 <%= render 'shared/footer' %>
 
-<script>
-  $('#state_select').change(function() {
-    
-    var state_value = $(this).val();
-    var nfone = (state_value / 3000).toFixed();
-    var nftwo = (state_value / 25000).toFixed();
-    var swan = (state_value / 40000).toFixed();
-    var total = ((state_value / 3000) + (state_value / 25000).toFixed() + (state_value / 40000));
-
-
-    $('#state').text($('#state_select option:selected').text());
-    $('#nfone').text(addCommas(nfone));
-    $('#nftwo').text(addCommas(nftwo));
-    $('#swan').text(addCommas(swan));
-
-    
-    console.log(state_value);
-    console.log(nfone);
-    console.log(nftwo);
-    console.log(total);
-  });
-  
-  
-  function addCommas(nStr)
-{
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    return x1 + x2;
-}
-</script>

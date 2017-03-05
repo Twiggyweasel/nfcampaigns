@@ -1,14 +1,14 @@
 <div class='container-fluid px-0'>
-<nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #FF6550;">  
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse" style="background-color: #FF6550;">  
 <!--navbar-inverse-->
   <div class='container'>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <%= link_to(root_path, class: 'navbar-brand') do %> <img src='<%= image_url('nfstrong icon_2.png') %>' class='d-inline-block align-top' style='height:30px;'> <% end %>
+  <%= link_to(root_path, class: 'navbar-brand') do %> <img src='<%= image_url('nfstrong icon_2.png') %>' class='d-inline-block align-top' style='height:45px;'> <% end %>
 
   <div class="collapse navbar-collapse" id="navbarNav" style='color:white;'>
-    <ul class="navbar-nav" style="margin-top: .25rem;">
+    <ul class="navbar-nav" style="margin-top: .10rem;">
       <li class="nav-item">
         <%= link_to "Events", events_path, class: 'nav-link' %>
       </li>
@@ -18,10 +18,13 @@
       <li class="nav-item">
         <%= link_to "About Us", about_path, class: 'nav-link' %>
       </li>
+      <li class="nav-item">
+        <%= link_to "About NF", nf_path, class: 'nav-link' %>
+      </li>
     </ul>
     
     
-    <ul class="navbar-nav ml-auto" style="margin-top: .25rem;" >
+    <ul class="navbar-nav ml-auto" style="margin-top: .10rem;" >
       <% if logged_in? %>
         <% if is_admin? %>
           <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>

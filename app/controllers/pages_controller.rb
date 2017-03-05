@@ -25,4 +25,8 @@ class PagesController < ApplicationController
   
   end
 
+
+  def nf
+    
+  end
 end
