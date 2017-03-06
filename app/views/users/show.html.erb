@@ -9,15 +9,15 @@
   <div class='raised-content'>
     <h3 class='card-title text-center'><%= @user.name %> - <%= @user.profile.state %></h3>
     <div class='row mt-2'>
-      <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout'>
+      <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout my-3'>
         <h3><%= @user.attendees.is_personal.count %></h3>
         Events Attending
       </div>
-      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout'>
+      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout my-3'>
         <h3><%= @user.contributions.count %></h3>
         Contributions
       </div>
-      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout'>
+      <div class='col-md-2 offset-md-1 text-xs-center card card-block card-callout my-3'>
         <h3><%= number_to_currency(@user.total_raised) %></h3>
         Funds Raised
       </div>
