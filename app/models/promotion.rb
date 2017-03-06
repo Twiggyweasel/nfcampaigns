@@ -3,7 +3,7 @@ class Promotion < ApplicationRecord
   attr_accessor :attendee_id
   
   validates :discount, presence: true
-  validates :promo_code, presence: true
+  validates :code, presence: true
   validates :stop, presence: true
   validates :start, presence: true
 after_find do 
