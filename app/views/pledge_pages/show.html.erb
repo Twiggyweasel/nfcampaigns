@@ -58,7 +58,7 @@
           <div class='row mb-5'>
             <div class='col-12' style='width: 100%'>
               <h4>My NF Story</h4>
-              <% if @pledge_page.custom_story.blank? %>
+              <% if !@pledge_page.custom_story.blank? %>
               <p>
                 <%= @pledge_page.custom_story %>
               </p>  
