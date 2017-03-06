@@ -1,5 +1,5 @@
 <div class='container-fluid px-0'>
-<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded" style="background-color: #e3f2fd; border: 1px solid; border-color: #e5e6e9 #dfe0e4 #d0d1d5;" >  
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse" style="background-color: #8CBCDF;">  
 <!--navbar-inverse-->
   <div class='container'>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,16 +10,16 @@
   <div class="collapse navbar-collapse" id="navbarNav" style='color:white;'>
     <ul class="navbar-nav" style="margin-top: .10rem;">
       <li class="nav-item">
-        <%= link_to "Events", events_path, class: 'nav-link'%>
+        <%= link_to "Events", events_path, class: 'nav-link', style:'color:white;'%>
       </li>
       <li class="nav-item">
-        <%= link_to "Users", users_path, class: 'nav-link' %>
+        <%= link_to "Users", users_path, class: 'nav-link', style:'color:white;' %>
       </li>
       <li class="nav-item">
-        <%= link_to "About Us", about_path, class: 'nav-link' %>
+        <%= link_to "About Us", about_path, class: 'nav-link', style:'color:white;' %>
       </li>
       <li class="nav-item">
-        <%= link_to "About NF", nf_path, class: 'nav-link' %>
+        <%= link_to "About NF", nf_path, class: 'nav-link', style:'color:white;' %>
       </li>
     </ul>
     
@@ -27,13 +27,13 @@
     <ul class="navbar-nav ml-auto" style="margin-top: .10rem;" >
       <% if logged_in? %>
         <% if is_admin? %>
-          <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>
+          <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link', style: 'color:white;') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>
         <% end %>
         
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if current_user.profile_pic? %>
-            <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px; color:' >
+            <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
           <% else %>
             <img src='<%= image_url('no_user.png') %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
           <% end %>
@@ -46,8 +46,8 @@
         </div>
       </li>
       <% else %>
-        <li class='nav-item'><%= link_to(register_path, class: 'nav-link') do %><i class='fa fa-user-plus'></i> Register <% end %></li>
-        <li class='nav-item'><%= link_to(login_path, class: 'nav-link') do %><i class='fa fa-sign-in'></i> login <% end %></li>
+        <li class='nav-item'><%= link_to(register_path, class: 'nav-link', style: 'color: white;') do %><i class='fa fa-user-plus'></i> Register <% end %></li>
+        <li class='nav-item'><%= link_to(login_path, class: 'nav-link', style: 'color: white;') do %><i class='fa fa-sign-in'></i> login <% end %></li>
       <% end %>
     </ul>
   </div>
