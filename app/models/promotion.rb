@@ -2,12 +2,16 @@ class Promotion < ApplicationRecord
   has_many :promo_cards
   attr_accessor :attendee_id
   
+  validates :discount, presence: true
+  validates :promo_code, presence: true
+  validates :stop, presence: true
+  validates :start, preence: true
 after_find do 
-  if self.stop < Time.now
-    self.update_column(:is_active, false)
-  elsif !self.is_active && self.stop > Time.now
-    self.update_column(:is_active, true)
-  end
+  # if self.stop < Time.now
+  #   self.update_column(:is_active, false)
+  # elsif !self.is_active && self.stop > Time.now
+  #   self.update_column(:is_active, true)
+  # end
 end
   
   
