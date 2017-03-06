@@ -1,5 +1,6 @@
-<%= render 'shared/title', title: "#{@team.name}", display: 2 %>
-
+<!--<#%= render 'shared/title', title: "#{@team.name}", display: 2 %>-->
+<div class='event-banner' style='position: relative; background-image: url(<%= @team.event.event_cover? ? @team.event.event_cover.url : image_url('walk-wide.jpg') %>); height:450px; background-size: cover; margin-top: -46px;'>
+</div>
 
 <div class='row'>
   <div class='col-8'>
