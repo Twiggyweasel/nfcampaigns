@@ -27,7 +27,7 @@ class TeamsController < ApplicationController
   
   private 
     def set_event
-      @event = Event.find_by(params[:event_name])
+      @event = Event.find_by(params[:event_title])
     end
     
     def team_params

@@ -46,7 +46,7 @@ class Admin::ResourcesController < ApplicationController
   
   private 
     def set_event
-      @event = Event.find(params[:event_id])
+      @event = Event.find(params[:event_title])
     end
   
     def resource_params

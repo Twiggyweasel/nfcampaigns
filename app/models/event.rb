@@ -30,7 +30,9 @@ class Event < ApplicationRecord
   validate :registration_date_cannot_be_after_event_date
   
   def slug
-    name.downcase.gsub(" ", "-")  
+    if title?
+      title.downcase.gsub(" ", "-")  
+    end
   end
   
   def to_param
@@ -97,6 +99,11 @@ name on nationwide T-shirt & event websites")
   
   after_save do
     self.update_raised    
+    self.set_title
+  end
+  
+  def set_title
+    self.update_column(:title, "#{Date.today.year} #{name} #{state}")
   end
   
   def update_raised

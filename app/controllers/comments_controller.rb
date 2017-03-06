@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     
     def context
       if params[:event_id]
-        id = params[:event_id]
+        id = params[:event_title]
         Event.find(params[:event_id])
       elsif params[:pledge_page_id]
         id = params[:pledge_page_id]

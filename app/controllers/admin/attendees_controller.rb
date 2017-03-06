@@ -9,7 +9,7 @@ class Admin::AttendeesController < ApplicationController
   
   private 
     def set_event 
-      @event = Event.find_by(params[:event_name])  
+      @event = Event.find_by(params[:event_title])  
     end
     
     def attendee_params
