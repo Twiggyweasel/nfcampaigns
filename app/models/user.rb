@@ -41,9 +41,9 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   
   def total_raised
     if self.attendees.where(paid: true).pluck(:raised).blank? && self.contributions.where(paid: true).pluck(:amount).blank?
-      0
+      (0).to_f
     else  
-      self.attendees.where(paid: true).pluck(:raised) + self.contributions.where(paid: true).pluck(:amount)
+      (self.attendees.where(paid: true).pluck(:raised) + self.contributions.where(paid: true).pluck(:amount)).to_f
     end
   end
   
