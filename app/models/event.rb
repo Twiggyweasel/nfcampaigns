@@ -36,7 +36,7 @@ class Event < ApplicationRecord
   end
   
   def to_param
-    slug
+    title
   end
   
   
@@ -103,7 +103,7 @@ name on nationwide T-shirt & event websites")
   end
   
   def set_title
-    self.update_column(:title, "#{Date.today.year} #{name} #{state}")
+    self.update_column(:title, "#{Date.today.year}-#{name.downcase.gsub(" ", "-")  }-#{state}")
   end
   
   def update_raised

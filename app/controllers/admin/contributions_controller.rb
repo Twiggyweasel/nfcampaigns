@@ -35,7 +35,7 @@ class Admin::ContributionsController < ApplicationController
   
   private 
     def set_event 
-      @event = Event.find(params[:event_title])
+      @event = Event.find_by_title(params[:event_id])
     end
     
     def contribution_params

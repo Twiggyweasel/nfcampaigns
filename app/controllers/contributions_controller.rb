@@ -66,7 +66,7 @@ class ContributionsController < ApplicationController
     def context
       if params[:event_id]
         id = params[:event_id]
-        Event.find(params[:event_title])
+        Event.find_by_title(params[:event_id])
       elsif params[:attendee_id]
         id = params[:attendee_id]
         Attendee.find(params[:attendee_id])
