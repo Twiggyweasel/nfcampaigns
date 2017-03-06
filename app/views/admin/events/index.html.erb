@@ -15,7 +15,7 @@
         <% if event.event_cover? %>
           <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
         <% else %>
-          <%= image_tag "dock.jpg", class: 'card-img-top img-fluid' %>
+          <%= image_tag "walk-wide.jpg", class: 'card-img-top img-fluid' %>
         <% end %>
         <div class='card-block'>
           <h4 class='card-title'> <%= event.title %></h6>
