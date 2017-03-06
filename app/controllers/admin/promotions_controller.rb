@@ -45,7 +45,7 @@ class Admin::PromotionsController < ApplicationController
   
   private
     def set_promotion
-      @event = Event.find_by_title(params[:event_id])
+      @promotion = Promotion.find(params[:id])
     end
     
     def promotion_params
