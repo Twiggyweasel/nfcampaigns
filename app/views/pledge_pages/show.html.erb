@@ -18,7 +18,7 @@
           <div class="row">
             <div class="col-md-8">
               <h5>
-              <span><%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name %></span>
+              <%= link_to(event_path(@pledge_page.event)) do %> #NFStrong <%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name %><% end %>
               <br />
               <%= @pledge_page.event.event_date.strftime("%A, %B %d %Y") %>
               </h5>
@@ -45,7 +45,7 @@
           <div class='row mb-5'>
             <div class='col-12' style='width: 100%'>
               <h4>My NF Story</h4>
-              <% if @pledge_page.has_custom.blank? %>
+              <% if @pledge_page.custom_story.blank? %>
               <p>
                 <%= @pledge_page.custom_story %>
               </p>  
