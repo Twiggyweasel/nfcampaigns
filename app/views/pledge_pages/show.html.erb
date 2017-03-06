@@ -21,7 +21,15 @@
               <br />
               <%= @pledge_page.event.event_date.strftime("%A, %B %d %Y") %>
               </h5>
-              <h4>Achieved: <%= number_to_currency(@pledge_page.attendee.total_raised) %> (<%= @pledge_page.percent_raised.to_f.ceil %>%) <span class='float-right'>Goal: <%= number_to_currency(@pledge_page.goal) %></span></h4>
+              <div class='row'>
+                <div class='col-lg-6'>
+                  <h4>Achieved: <%= number_to_currency(@pledge_page.attendee.total_raised) %> (<%= @pledge_page.percent_raised.to_f.ceil %>%)
+                </div>
+                <div class='col-lg-6'>
+                  <h4><span class='float-lg-right'>Goal: <%= number_to_currency(@pledge_page.goal) %></span></h4>
+                </div>
+              </div>
+               
               <div class="progress mt-3">
                 <div class="progress-bar" role="progressbar" aria-valuenow="<%= @pledge_page.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @pledge_page.percent_raised.to_f.ceil %>%;'></div>
               </div>
