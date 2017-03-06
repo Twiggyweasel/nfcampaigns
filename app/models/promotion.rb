@@ -6,13 +6,14 @@ class Promotion < ApplicationRecord
   validates :code, presence: true
   validates :stop, presence: true
   validates :start, presence: true
-after_find do 
-  # if self.stop < Time.now
-  #   self.update_column(:is_active, false)
-  # elsif !self.is_active && self.stop > Time.now
-  #   self.update_column(:is_active, true)
-  # end
-end
+  
+  after_find do 
+    if self.stop < Time.now
+      self.update_column(:is_active, false)
+    elsif !self.is_active && self.stop > Time.now
+      self.update_column(:is_active, true)
+    end
+  end
   
   
   
