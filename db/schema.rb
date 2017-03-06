@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306020319) do
+ActiveRecord::Schema.define(version: 20170306222539) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -118,11 +118,13 @@ ActiveRecord::Schema.define(version: 20170306020319) do
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.boolean  "has_shirts",        default: true
-    t.boolean  "is_private",        default: true
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "has_shirts",                default: true
+    t.boolean  "is_private",                default: true
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "title"
+    t.boolean  "has_external_registration", default: false
+    t.string   "external_url"
   end
 
   create_table "guests", force: :cascade do |t|

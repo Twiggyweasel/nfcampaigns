@@ -22,7 +22,20 @@
 
         </div>
       </div>
-      
+    <div class='row my-2'>
+      <div class='col-6'>
+        <label class="custom-control custom-checkbox mt-4">
+            <%= f.check_box :has_external_registration, class: 'custom-control-input' %>
+            <!--<input type="checkbox" class="custom-control-input" id='cover-fee' checked>-->
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Has External Registration</span>
+        </label>  
+      </div>
+      <div class='col-6'>
+        <%= f.label :external_url %>
+        <%= f.text_field :external_url, class: 'form-control' %>
+      </div>
+    </div>  
       
     <div class='row my-2'>
        <div class='col-md-4'>
