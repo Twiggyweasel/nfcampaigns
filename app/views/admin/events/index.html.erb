@@ -38,31 +38,3 @@
     <!--<#% end %>-->
   <% end %>
 </div>
-
-<!--<div class='row'>-->
-<!--  <div class='col-12'>-->
-<!--    <table class='table table-bordered table-striped'>-->
-<!--  <thead class='thead-inverse'>-->
-<!--    <tr>-->
-<!--      <th>Event Name</th>-->
-<!--      <th>Event Venue</th>-->
-<!--      <th>Event Address</th>-->
-<!--      <th>Is Private?</th>-->
-<!--      <th>Actions</th>-->
-<!--    </tr>-->
-<!--  </thead>-->
-<!--  <tbody class: 'table-striped'>-->
-<!--    <#% @events.each do |event| %>-->
-<!--    <tr>-->
-<!--      <td><#%= link_to event.name, admin_event_path(event) %></td>-->
-<!--      <td><#%= event.venue_name %></td>-->
-<!--      <td><#%= event.street %> <#%= event.city %> <#%= event.state %> <#%= event.zipcode %></td>-->
-<!--      <td><#%= event.is_private %></td>-->
-<!--      <td><#%= link_to "Edit", edit_admin_event_path(event), class: "btn btn-primary btn-sm" %>-->
-<!--      <#%= link_to "Delete", event, method: :destroy, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-sm btn-danger' %></td>-->
-<!--    </tr>-->
-<!--    <#% end %>-->
-<!--  </tbody>-->
-<!--</table>-->
-<!--  </div>-->
-<!--</div>-->
