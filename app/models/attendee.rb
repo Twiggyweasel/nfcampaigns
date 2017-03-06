@@ -29,6 +29,10 @@ class Attendee < ApplicationRecord
     self.team.update_raised
   end
   
+  after_find do 
+    self.update_raised
+  end
+  
   def reject_guest(attributes)
     attributes['name'].blank?
   end
