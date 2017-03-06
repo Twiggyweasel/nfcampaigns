@@ -5,7 +5,7 @@ class Promotion < ApplicationRecord
   validates :discount, presence: true
   validates :promo_code, presence: true
   validates :stop, presence: true
-  validates :start, preence: true
+  validates :start, presence: true
 after_find do 
   # if self.stop < Time.now
   #   self.update_column(:is_active, false)
