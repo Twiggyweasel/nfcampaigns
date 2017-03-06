@@ -41,7 +41,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
-          <%= link_to "Account Settings", user_account_settings_path(current_user), class: 'dropdown-item', style: 'color: white;' %>
+          <%= link_to "Account Settings", user_account_settings_path(current_user), class: 'dropdown-item' %>
           <%= link_to(logout_path, class: 'dropdown-item') do %> Logout<% end %>
         </div>
       </li>

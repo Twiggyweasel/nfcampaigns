@@ -45,7 +45,7 @@
           <div class='row mb-5'>
             <div class='col-12'>
               <h4>My NF Story</h4>
-              <% if @pledge_page.has_custom %>
+              <% if @pledge_page.has_custom? %>
                 <%= @pledge_page.custom_story %>
               <% else %>
               <p>

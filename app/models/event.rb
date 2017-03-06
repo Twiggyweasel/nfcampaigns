@@ -29,6 +29,14 @@ class Event < ApplicationRecord
   validate :event_date_cannot_be_in_the_past
   validate :registration_date_cannot_be_after_event_date
   
+  def slug
+    name.downcase.gsub(" ", "-")  
+  end
+  
+  def to_param
+    slug
+  end
+  
   
   def event_date_cannot_be_in_the_past
     if event_date.present? && event_date < Date.today
@@ -102,6 +110,9 @@ name on nationwide T-shirt & event websites")
         self.update_column(:is_private, true)
     end
   end
+  
+  
+
 end
 
 class NilClass
