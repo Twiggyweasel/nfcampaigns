@@ -1,5 +1,5 @@
 <% if @pledge_page.event.event_cover? %>
-  <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;'>
+  <div class='row cover-img-block' style='background-image: url("<%= @pledge_page.event.event_cover.url %>"); margin-top: -46px; background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;'>
   </div>
 <% else %>
   <div class='row cover-img-block' style='background-image: url("<%= image_url('walk-wide.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;'>
