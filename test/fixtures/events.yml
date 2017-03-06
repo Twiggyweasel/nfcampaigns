@@ -2,9 +2,11 @@
 
 one:
   name: MyString
+  desc: MyString
   registration_date: 2017-01-08
   event_date: 2017-01-08
-  event: 2017-01-08 18:22:10
+  event_start_time: 2017-01-08 18:22:10
+  event_end_time: 2017-01-08 20:22:10  
   goal: 1
   raised: 1
   venue_name: MyString
@@ -14,12 +16,13 @@ one:
   zipcode: MyString
   has_shirts: false
   is_private: false
+  title: MyString
 
 two:
   name: MyString
   registration_date: 2017-01-08
   event_date: 2017-01-08
-  event: 2017-01-08 18:22:10
+  event_start_time: 2017-01-08 18:22:10
   goal: 1
   raised: 1
   venue_name: MyString
@@ -29,3 +32,4 @@ two:
   zipcode: MyString
   has_shirts: false
   is_private: false
+  title: MyStringS
