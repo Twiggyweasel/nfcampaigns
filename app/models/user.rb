@@ -39,6 +39,10 @@ class User < OmniAuth::Identity::Models::ActiveRecord
 
   end
   
+  def total_raised
+    self.attendees.where(raised: true).pluck(:amount)
+  end
+  
   paginates_per 6
   
 end
