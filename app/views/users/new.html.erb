@@ -1,6 +1,6 @@
 <% title "Register" %>
 <div class='container pt-5'>
-<div class='col-md-6 offset-md-3 mt-3'>
+<div class='col-md-6 offset-md-3 mt-2 mb-5'>
   <div class='card card-rel text-center'>
     <div class='header header-primary'>
       <h3>Register with:</h3> 
@@ -12,7 +12,7 @@
     </div>
     
     <p class='text-divide'>Or</p>
-
+    
     <%= form_tag '/auth/identity/register' do %>
     <div class="input-group px-5 py-3">
       <div class="input-group-addon"><i class='fa fa-user'></i></div>
@@ -34,6 +34,7 @@
 
 
     </div>
+    <p class='float-right pt-1'>Already have an account? <%= link_to "Click Here", login_path %></p>
   </div>
 </div>
     <% if @user.errors.any? %>

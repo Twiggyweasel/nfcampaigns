@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     post 'join_team', to: 'attendees#join_team'
   end
   
-  resources :pledge_pages do
+  resources :pledge_page do
     resources :comments, only: [:new, :create]
   end
   
