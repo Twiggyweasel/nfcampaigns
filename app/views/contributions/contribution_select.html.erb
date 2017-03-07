@@ -28,8 +28,8 @@
       <div class='card card-block'>
 
             <h3 class='text-center'>Events</h3>
-            <%= select_tag 'event_id', options_from_collection_for_select(@events, 'id', 'name'), class: 'form-control', prompt: 'Select an Event' %>
-            <a href='#' id='event_link' class='btn btn-success btn-block'>Sumbit</a>
+            <%= select_tag 'event_id', options_from_collection_for_select(@events, 'id', 'title'), class: 'form-control', prompt: 'Select an Event' %>
+            <a href='#' id='event_link' class='btn btn-success btn-block'>Submit</a>
           </div>
 
     </div>
