@@ -27,10 +27,17 @@ class Attendee < ApplicationRecord
   after_save do 
     self.update_raised
     self.team.update_raised
+    self.check_guest_limit
   end
   
   after_find do 
     self.update_raised
+  end
+  
+  def check_guest_limit
+    if self.guest_limit.nil?
+      self.update_column(:guest_limit, 99)
+    end
   end
   
   def reject_guest(attributes)
