@@ -29,13 +29,13 @@
                       </label>
                       <% else %>
                       <label class="custom-control custom-radio">
-                        <input id="Registration_select" name="registration_type" type="radio" class="custom-control-input">
+                        <input id="Registration_select" name="registration_type" type="radio" class="custom-control-input" checked>
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Pay Registration</span>
                       </label>
                       
                       <label class="custom-control custom-radio">
-                        <input id="fundraise_select" name="registration_type" type="radio" class="custom-control-input" checked>
+                        <input id="fundraise_select" name="registration_type" type="radio" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Fundraise</span>
                       </label>
@@ -46,7 +46,7 @@
                 <div class='row my-2' id="reg_fee_box">
                   <div class='col-12'>
                     <%= f.label :fee, "Registration Type" %>
-                    <%= f.select(:fee, options_for_select(@event.registration_fees.is_personal.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control') %>
+                    <%= f.select(:fee, options_for_select(@event.registration_fees.is_personal.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control', id: 'fee_form_element') %>
                   
                   </div>
                 </div>
@@ -54,7 +54,7 @@
                 <div class='row my-2' id='fundraise_box' style='display: none;'>
                   <div class='col-12'>
                     <%= f.label :fee, "Fundraising Commitment" %>
-                    <%= f.select(:fee, options_for_select(@event.registration_fees.is_fundraise.collect {|x| [x.name, x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control') %>
+                    <%= f.select(:fee, options_for_select(@event.registration_fees.is_fundraise.collect {|x| [x.name, x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control', id:'fundraise_form_element') %>
                   </div>
                 </div>
                 <% end %>
@@ -103,6 +103,8 @@
       $('#fundraise_box').show()
       $('#reg_fee_box').hide();
       $('#attendee_category').val("Personal Fundraising")
+    } else {
+      $('#fundraise_form_element').attr("disabled", true);
     }
   });
   $('#Registration_select').click(function() {
@@ -111,6 +113,8 @@
     $('#reg_fee_box').show();
     $('#fundraise_box').hide()
     $('#attendee_category').val("Personal")
+    $('#fundraise_form_element').attr("disabled", true);
+    $('#fee_form_element').attr("disabled", false);
   }
   
   });
@@ -120,6 +124,8 @@
   if($(this).is(":checked")) { 
     $('#fundraise_box').show()
     $('#reg_fee_box').hide();
+    $('#fundraise_form_element').attr("disabled", false);
+    $('#fee_form_element').attr("disabled", true);
     $('#attendee_category').val("Personal Fundraising")
   }
   
