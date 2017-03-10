@@ -53,7 +53,7 @@ class Event < ApplicationRecord
   end
   
   after_find do 
-    self.set_active
+    # self.set_active
   end
 
   def all_attendees
