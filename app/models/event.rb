@@ -29,6 +29,8 @@ class Event < ApplicationRecord
   validate :event_date_cannot_be_in_the_past
   validate :registration_date_cannot_be_after_event_date
   
+  scope :is_active, -> { where(is_private: false) } 
+  
   def slug
     if title?
       title.downcase.gsub(" ", "-")  

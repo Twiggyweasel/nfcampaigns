@@ -71,7 +71,7 @@
         <p> #NF Strong events happen throughout the country. Find one near you!</p>
         <%= link_to 'All Events', events_path, class: "btn btn-outline-secondary" %>
       </div>
-      <% @events.each do |event| %>
+      <% @events.is_active.each do |event| %>
       <div class='col-lg-4 col-md-6 event-card' onclick='location.href="<%= url_for controller: 'events', action: 'show', id: event.title %>";' style='background-image: url(<%= event.event_card.url %>);'>
         <div class='date-overlay py-3 px-4 text-center'>
           <%= event.event_date.strftime("%b") %><h4><%= event.event_date.strftime("%d") %></h4>
