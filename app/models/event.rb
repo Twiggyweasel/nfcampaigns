@@ -110,13 +110,13 @@ name on nationwide T-shirt & event websites")
       self.update_column(:raised, total_raised)
   end
   
-  def set_active
-    if self.registration_date.to_date.past? && self.is_private?
-        self.update_column(:is_private, false)
-    elsif self.registration_date.to_date.future? && !self.is_private?
-        self.update_column(:is_private, true)
-    end
-  end
+  # def set_active
+  #   if self.registration_date.to_date.past? && self.is_private?
+  #       self.update_column(:is_private, false)
+  #   elsif self.registration_date.to_date.future? && !self.is_private?
+  #       self.update_column(:is_private, true)
+  #   end
+  # end
   
   
 
