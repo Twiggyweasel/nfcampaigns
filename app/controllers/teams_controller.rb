@@ -19,7 +19,7 @@ class TeamsController < ApplicationController
     @team = @event.teams.create(team_params)
     
     if @team.save
-      redirect_to event_attendee_path(@team.event_id, @team.attendees.first), flash: { :success => "Team Successfully Created!"}
+      redirect_to event_attendee_path(@team.event, @team.attendees.first), flash: { :success => "Team Successfully Created!"}
     else
       render :new
     end
@@ -27,7 +27,7 @@ class TeamsController < ApplicationController
   
   private 
     def set_event
-      @event = Event.find_by(params[:event])
+      @event = Event.find_by_title(params[:event_id])
     end
     
     def team_params

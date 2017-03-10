@@ -1,6 +1,7 @@
 class AttendeesController < ApplicationController
   before_action :set_event, only: [:show, :new, :create, :edit, :update]
-  before_action :set_attendee, except: [:new, :create, :index, :receipt, :decline]
+  before_action :set_attendee, only: [:show]
+  # before_action :set_attendee, except: [:new, :create, :index]
   before_action :require_user, only: [:show, :new, :edit, :destroy]
   before_action :require_same_user, only: [:show, :destroy, :edit, :update]
   
@@ -10,7 +11,7 @@ class AttendeesController < ApplicationController
   end
   
   def show
-    @attendee = @event.attendees.find(params[:id])
+
   end
   
   def new
@@ -28,7 +29,7 @@ class AttendeesController < ApplicationController
       if @attendee.save
         @attendee.update_column(:guest_limit,  @guest_limit)
         AttendeeConfirmationMailer.confirmation(current_user, @attendee).deliver_later
-        format.html { redirect_to event_attendee_url(@attendee.event_id, @attendee.id), :flash => { :success => 'Your registration was successfully completed.' }}
+        format.html { redirect_to event_attendee_url(@attendee.event, @attendee.id), :flash => { :success => 'Your registration was successfully completed.' }}
       else
         format.html { render :new, :category => @attendee.category }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
@@ -79,7 +80,7 @@ class AttendeesController < ApplicationController
   
   private 
     def set_event
-      @event = Event.find_by(params[:event])
+      @event = Event.find_by_title(params[:event_id])
     end
     
     def set_attendee
