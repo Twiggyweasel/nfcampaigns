@@ -14,8 +14,8 @@ class Attendee < ApplicationRecord
   validates :fee, presence: true
   validates :shirt_size, presence: true
   validates :user_id, presence: true 
-  # validates :user_id, :uniqueness => { :scope => :event_id,
-    # :message => "You can only register to attend this event once!" }, if: "category == 'Personal'"
+  validates :user_id, :uniqueness => { :scope => :event_id,
+    :message => "You can only register to attend this event once!" }, if: "category == 'Personal'"
   
   scope :is_corporate, -> { where(category: 'Corporate') }
   scope :is_personal, -> { where(category: 'Personal') }

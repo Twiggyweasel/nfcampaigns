@@ -1,6 +1,6 @@
 class AttendeesController < ApplicationController
   before_action :set_event, only: [:show, :new, :create, :edit, :update]
-  before_action :set_attendee, only: [:show]
+  before_action :set_attendee, only: [:show, :edit, :update]
   # before_action :set_attendee, except: [:new, :create, :index]
   before_action :require_user, only: [:show, :new, :edit, :destroy]
   before_action :require_same_user, only: [:show, :destroy, :edit, :update]
