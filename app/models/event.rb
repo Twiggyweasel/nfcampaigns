@@ -63,7 +63,7 @@ class Event < ApplicationRecord
   end
   
   def total_raised
-    self.contributions.pluck(:amount).sum + team_total_raised
+    self.contributions.where(paid: true).pluck(:amount).sum + team_total_raised
   end
   
   def team_total_raised
