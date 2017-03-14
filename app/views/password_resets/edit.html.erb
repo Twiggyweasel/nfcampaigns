@@ -1,3 +1,5 @@
+
+
 <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -9,13 +11,29 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+
+<% title "Password Reset" %>
+<div class='container pt-5'>
+  <div class='col-md-6 offset-md-3 mt-3'>
+    <div class='card card-rel text-center'>
+      <div class='header header-primary'>
+        <h3 class='py-3'>Create New Password</h3>
+      </div>
+
+      <p class='text-divide'></p>
+
+  <div class="field  px-5 my-2">
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+  <div class="field  px-5 my-2">
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
+  <div class="actions px-5"><%= f.submit "Update Password", class: 'btn btn-success btn-block mt-3 mb-5' %></div>
 <% end %>
+
+
+    </div>
+    </div>
+    </div>
