@@ -90,6 +90,6 @@ config.action_mailer.smtp_settings = {
   :enable_starttls_auto => true
 }
   # Do not dump schema after migrations.
-
+config.action_mailer.default_url_options = { :host => "nfstrong.org" }
   
 end

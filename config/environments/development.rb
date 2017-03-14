@@ -57,6 +57,7 @@ BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
 config.web_console.whitelisted_ips = ENV['TRUSTED_IP']
 
 config.action_mailer.perform_deliveries = true
+config.action_mailer.default_url_options = { :host => "nf-event-manager-twiggyweasel.c9users.io" }
 
 config.action_mailer.smtp_settings = {
   :address => "email-smtp.us-west-2.amazonaws.com",
