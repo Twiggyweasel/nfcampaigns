@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   namespace :admin do
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'
@@ -60,7 +59,7 @@ Rails.application.routes.draw do
     end
     get 'account_settings', to: 'profiles#show'
   end
-  
+  resources :password_resets
   resources :champions do 
     resources :contributions
   end

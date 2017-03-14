@@ -6,4 +6,9 @@ class UserMailer < ApplicationMailer
     @url = 'http://www.nfstrong.org/login'
     mail(to: @user.email, subject: 'Welcome to #NFStrong Events')
   end
+  
+  def password_reset(user)
+    @user = user
+    mail :to => user.email, :subject => "NFStrong - Password Reset"
+  end
 end
