@@ -17,7 +17,11 @@ class Admin::UsersController < ApplicationController
   end
   
   def update
-    
+    if @user.update(user_params)
+      redirect_to admin_users_path, :flash => { :success => "User record successfully updated"}
+    else
+      render :edit
+    end
   end
   
   def destroy
@@ -29,5 +33,8 @@ class Admin::UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-  
+    
+    def user_params
+      params.require(:user).permit(:email, :name, :password)
+    end
 end

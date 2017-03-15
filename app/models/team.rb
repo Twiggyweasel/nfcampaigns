@@ -11,9 +11,9 @@ class Team < ApplicationRecord
   validates :name, presence: true
   
   after_find do
-    if Contribution.where(backable_id: self.id, backable_type: "Team", paid: true).where('created_at >= ?', 1.hour.ago).count != 0
+    # if Contribution.where(backable_id: self.id, backable_type: "Team", paid: true).where('created_at >= ?', 1.hour.ago).count != 0
       self.update_raised
-    end
+    # end
   end
   
   after_save do
