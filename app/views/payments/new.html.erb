@@ -195,21 +195,20 @@
 
 
 <% end %>
-<% if !@context.instance_of? Contribution %>
+<% if @context.instance_of? Attendee %>
   <% if !@context.category === "Corporate" %>
-<div class='row mt-3'>
-  <div class='col-6 offset-1'>
-    <div class='card card-block' id='promo-box'>
-      <%= form_for @promo, method: :post, url: check_promotion_code_path, remote: true, :html => { class: 'form-inline' } do |fp| %>
-        <%= fp.text_field :code, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "Coupon Code..." %>
-        <%= fp.hidden_field(:attendee_id, :value => @context.id) %>
-        <%= fp.submit "Submit Coupon", class: 'btn btn-success', id: 'promo-btn' %>
-        
-      <% end %>
+    <div class='row mt-3'>
+      <div class='col-6 offset-1'>
+        <div class='card card-block' id='promo-box'>
+          <%= form_for @promo, method: :post, url: check_promotion_code_path, remote: true, :html => { class: 'form-inline' } do |fp| %>
+            <%= fp.text_field :code, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "Coupon Code..." %>
+            <%= fp.hidden_field(:attendee_id, :value => @context.id) %>
+            <%= fp.submit "Submit Coupon", class: 'btn btn-success', id: 'promo-btn' %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<% end %>
+  <% end %>
 <% end %>
 
 <script>
