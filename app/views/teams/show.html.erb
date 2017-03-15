@@ -20,7 +20,7 @@
             <% @team.attendees.each do |attendee| %>
               <div class='col-3 my-3'>
                 <% if attendee.user.profile_pic? %>
-                <img class='img-fluid rounded-circle float-left' src='<%= attendee.user.profile_pic %>' style='height: 75px;'>
+                <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= attendee.user.profile_pic %>' style='height: 75px;'>
                 <% else %>
                 <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= image_url('no_user.png') %>' style='height: 75px;'>
                 <% end %>
