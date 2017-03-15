@@ -33,7 +33,7 @@
                 <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= image_url('no_user.png') %>' style='height: 75px;'>
               </div>
               <div class='col-9 my-3'>
-                <h6 class='mt-4'><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee) %> | <small class='muted-text'><%= number_to_currency(attendee.raised) %> Raised</small></h6>
+                <h6 class='mt-4'><%= guest.name.titleize %> | <small class='muted-text'><%= number_to_currency(guest.fee) %> Raised</small></h6>
               </div>
               <% end %>
             <% end %>
