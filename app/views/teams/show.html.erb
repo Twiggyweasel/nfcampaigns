@@ -2,7 +2,7 @@
 <div class='event-banner' style='position: relative; background-image: url(<%= @team.event.event_cover? ? @team.event.event_cover.url : image_url('walk-wide.jpg') %>); height:450px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
     <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
-      <h1 class='display-4' style="font-family: 'Changa One', cursive;">Wecome to Team <%= @team.name %>'s Page</h1>
+      <h1 class='display-4' style="font-family: 'Changa One', cursive;">Team <%= @team.name %></h1>
       <hr style="border-top-color: white; margin-right: 7rem;">
       <p style='font-size: 120%;'>
         #NFStrong - <%= @team.event.name %>
@@ -19,7 +19,6 @@
 
 <div class='row'>
   <div class='col-8'>
-
     <div class='row mt-3'>
       <div class='col-12'>
         <div class='card card-block'>
@@ -28,13 +27,13 @@
             <% @team.attendees.each do |attendee| %>
               <div class='col-3 my-3'>
                 <% if attendee.user.profile_pic? %>
-                <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= attendee.user.profile_pic %>' style='height: 75px;'>
+                <img class='img-fluid rounded-circle d-block mx-auto' src='<%= attendee.user.profile_pic %>' style='height: 75px;'>
                 <% else %>
                 <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= image_url('no_user.png') %>' style='height: 75px;'>
                 <% end %>
               </div>
               <div class='col-9 my-3'>
-                <h6 class='mt-4'><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee) %> | <small class='muted-text'><%= number_to_currency(attendee.raised) %> Raised</small></h6>
+                <h6 class='mt-4'><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee) %> | <small class='muted-text'><%= number_to_currency(attendee.fee) %> Raised</small></h6>
               </div>
               <% attendee.guests.each do |guest| %>
               <div class='col-3 my-3'>
