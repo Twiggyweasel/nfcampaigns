@@ -10,9 +10,11 @@
 <% else %>
   <tr>
     <td><%= attendee.user.name %></td>
+    <td><%= attendee.category %></td>
     <td><%= attendee.fee %> </td>
     <td><%= attendee.shirt_size %></td>
     <td><%= attendee.guests.count %></td>
+    <td><%= attendee.paid %></td>
     <td>Edit | Delete</td>
   </tr>
 <% end %>
