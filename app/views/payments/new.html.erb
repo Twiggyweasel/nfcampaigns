@@ -196,7 +196,7 @@
 
 <% end %>
 <% if @context.instance_of? Attendee %>
-  <% if !@context.category === "Corporate" %>
+  <% if @context.category == "Personal" %>
     <div class='row mt-3'>
       <div class='col-6 offset-1'>
         <div class='card card-block' id='promo-box'>
