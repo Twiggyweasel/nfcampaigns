@@ -20,6 +20,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
             :uniqueness => { :case_sensitive => false }
+
+  
   
   def self.create_with_omniauth(auth)
     pass_gen = rand(36**10).to_s(36)
