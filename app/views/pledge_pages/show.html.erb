@@ -19,7 +19,7 @@
                   <img class='img-fluid img-thumbnail rounded-circle d-block mx-auto' src='<% if @pledge_page.pledge_pic? %> <%= @pledge_page.pledge_pic.url %><% elsif @pledge_page.user.profile_pic? %><%= @pledge_page.user.profile_pic.url %> <% else %><%= image_url('no_user.png') %> <% end %>' style='height: 250px; width:250px'>
                 </div>
                 <div class='col-lg-7 text-center text-md-center text-lg-left text-sm-center'>
-                  <h4><%= @pledge_page.user.name.titleize %> <% if logged_in? && current_user === @pledge_page.user %> <%= link_to(edit_attendee_pledge_page_path(@pledge_page.attendee, @pledge_page)) do %> <i class='fa fa-pencil' style='color: black;'></i>  <% end %> <% end %> <br /><small class='text-muted'>I'm NFStrong for <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %></small></h4>
+                  <h4><%= @pledge_page.user.name.titleize %> <% if logged_in? && current_user === @pledge_page.user %> <%= link_to(edit_attendee_pledge_page_path(@pledge_page.attendee)) do %> <i class='fa fa-pencil' style='color: black;'></i>  <% end %> <% end %> <br /><small class='text-muted'>I'm NFStrong for <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %></small></h4>
                 </div>                
               </div>
               <h5>
