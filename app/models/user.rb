@@ -13,6 +13,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   
   has_many :authentications, dependent: :destroy
   
+  scope :admins, -> { where(role_id: 1) } 
   mount_uploader :profile_pic, ChampionImageUploader
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
