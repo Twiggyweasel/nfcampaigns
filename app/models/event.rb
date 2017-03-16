@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   
   mount_uploader :event_cover, EventCoverUploader
   mount_uploader :event_card, EventCardUploader
+  mount_uploader :organizer_logo, EventCardUploader
   
   validates :name, presence: true, length: {minimun: 5, maximum: 25 }
   validates :goal, presence: true

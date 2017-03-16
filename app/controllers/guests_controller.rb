@@ -1,7 +1,7 @@
 class GuestsController < ApplicationController
   before_action :set_attendee
   def create
-    if @attendee.guests.count == (@attendee.guest_limit - 1)
+    if @attendee.guests.count == (@attendee.guest_limit)
       redirect_to event_attendee_path(@attendee.event, @attendee), :flash => { :danger => "Guest could not be added. You have reached the guest limit" }
     else
       @guest = @attendee.guests.create! guest_params

@@ -76,7 +76,44 @@
     </div>
   </div>
 <% end %>
+    <div class='row'>
+      <div class='col-12'>
+        <!--<h3 class='sm-header mb-4'>Event Stats</h3>-->
+        <div class='card card-block'>
+          <h4>Raised: <%= number_to_currency(@event.raised) %> <span class='float-right'>Goal: <%= number_to_currency(@event.goal) %></span></h4>
+          <div class="progress mt-3">
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;'></div>
+          </div>
 
+        </div>
+        
+      </div>
+    </div>
+              <div class='row mb-2 mt-4 text-center'>
+            <div class='col-4'>
+              <div class='card card-block callout'>
+              <i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  
+              <h2><%= @event.attendees.count %><br />
+              Attendees
+              </h2>
+              </div>
+            </div>
+            <div class='col-4'>
+              <div class='card card-block callout'>
+              <i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>
+              <h2><%= @event.teams.count - 1%><br />
+                            Teams</h2>
+            </div>
+            </div>
+            <div class='col-4'>
+              <div class='card card-block callout'>
+              <i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>
+                <h2><%= @event.contributions.count %>  </br>
+                              Donations
+                              </h2> 
+            </div>
+            </div>
+          </div>
   <div class='row'>
     <div class='col-12'>
       <%= @event.desc.html_safe %>
@@ -145,35 +182,35 @@
       <div class='col-12'>
         <h3 class='sm-header mb-4'>Organizers</h3>
         <div class='card card-block mb-3'>
-          <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='height:150px; width: 150px;'></a>
+          <% if !@event.organizer_url? %>
+            <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='height:150px; width: 150px;'></a>
+          <% else %>
+          <div class='row'>
+            <div class='col-6'>
+              <a href='<% @event.organizer_url %>' target='_blank'><img src='<%= @event.organizer_logo.url %>' class="img-fluid d-block mx-auto" style='width: 150px;'></a> 
+            </div>
+            <div class='col-6'>
+            <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='width: 150px;'></a>
+            </div>
+          </div>             
+          <% end %>
         </div>
       </div>
     </div>
     <div class='row'>
       <div class='col-12'>
-        <h3 class='sm-header mb-4'>Event Stats</h3>
-        <div class='card card-block'>
-          <h4>Raised: <%= number_to_currency(@event.raised) %> <span class='float-right'>Goal: <%= number_to_currency(@event.goal) %></span></h4>
-          <div class="progress mt-3">
-                              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;'></div>
-          </div>
-          <div class='row mb-2 mt-4 text-center'>
-            <div class='col-4'>
-              <i class="fa fa-user fa-3x" aria-hidden="true"></i>  
-              <h3><%= @event.attendees.count %></h3>
-            </div>
-            <div class='col-4'>
-              <i class="fa fa-users fa-3x" aria-hidden="true"></i>
-              <h3><%= @event.teams.count - 1%></h3>
-            </div>
-            <div class='col-4'>
-              <i class="fa fa-gift fa-3x" aria-hidden="true"></i>
-                <h3><%= @event.contributions.count %></h3>   
-            </div>
-          </div>
+        <h3 class='sm-header mb-4'>Share</h3>
+        <div class='card card-block mb-3'>
+ <ul class='nav justify-content-center pr-1 mt-2'>
+      <li class='nav-item'><a class='nav-link facebook-popup' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+      <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href="mailto:?subject=Sharing <%= @event.name %> - <%= @event.state %>"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
+    </ul>
         </div>
       </div>
     </div>
+
     <div class='row mb-3'>
       <div class='col-md-6 col-xl-12 mt-3'>
         <h3 class='sm-header mb-4'>Event Resources</h3>

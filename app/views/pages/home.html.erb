@@ -12,7 +12,7 @@
 </div>
 <div class='container mt-4'>
   <div class='row mt-5'>
-    <div class='col-md-12'>
+    <div class='col-md-6'>
       <h3>About Our Events</h3>
       <p>#NFStrong events take place in communities nationwide.  
       These inspiring events create strong bonds that build a supportive NF community.  
@@ -27,15 +27,16 @@
       <p>Join us at #NFStrong events for fun, food, face painting, a raffle with fabulous prizes, NF tattoos, 
       NF Champion medals, top fundraising certificates, and new friends.</p>
     </div>
-    <div class='col-md-6 hidden-xl-down'>
+    <div class='col-md-6'>
       <div class="embed-responsive embed-responsive-16by9 hidden-xl-down">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/018O0TMy8fc?rel=0&showinfo=0" allowfullscreen></iframe>
       </div>
       <h3 class='text-center mt-4' style="font-family: 'Boogaloo', cursive;">Share With Friends</h3>
     <ul class='nav justify-content-center pr-1 mt-2'>
-      <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+      <li class='nav-item'><a class='nav-link facebook-popup' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+      <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
       <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+      <li class='nav-item'><a class='nav-link' href="mailto:?subject=Sharing #NFSTRONG Events"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
       <!--<li class='nav-item'><a class='nav-link' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-3x social-icon' style='color:#FF5700;'></i></a></li>-->
     </ul>
     </div>
@@ -192,3 +193,33 @@
 </div>
 
 <%= render 'shared/footer' %>
+
+
+<script>
+  $('.popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    
+    window.open(url, 'twitter', opts);
+ 
+    return false;
+  });
+  
+  $('.facebook-popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href;
+        
+        
+        });
+</script>
