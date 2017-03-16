@@ -7,6 +7,6 @@ class AdminMailer < ApplicationMailer
   #
   def new_users(user)
     @user = user    
-    mail(to: user.email, subject: "NFStrong - New User Summary")
+    mail(to: "orsusbass@gmail.com", subject: "NFStrong - New User Summary")
   end
 end
