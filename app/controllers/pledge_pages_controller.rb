@@ -30,7 +30,7 @@ class PledgePagesController < ApplicationController
   end
   
   def update
-    @pledge_page = PledgePage.find_by(params[:pledge_page])
+    @pledge_page = attendee.pledge_page
     
     if @pledge_page.update(pledge_page_params)
       redirect_to attendee_pledge_page_path(@attendee, @pledge_page), :flash => { :success => "Your pledge page has been updated!"}
