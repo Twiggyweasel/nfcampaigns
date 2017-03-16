@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :registration_fees
   end
   
-  resources :contributions do
+  resources :contributions, except: [:destroy, :index] do
       resources :payments, only: [:new, :create]
   end
   
