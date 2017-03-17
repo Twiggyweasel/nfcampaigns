@@ -25,6 +25,7 @@
             <td><%= payment.success == true ? "Yes" : "No" %></td>
             <td><%= payment.authorization_code %></td>
             <td><%= payment.payable_type %></td>
+            <td><%= payment.created_at.strftime("%m %d, %Y") %></td>
           </tr>
         <% end %>
       <% else %>

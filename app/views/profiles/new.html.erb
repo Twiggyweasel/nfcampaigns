@@ -1,7 +1,5 @@
 <%= render 'shared/title', title: 'Tell us more about you' %>
 
-
-
 <%= form_for([@user, @profile]) do |f| %>
 <% if @profile.errors.any? %>
   <%= render 'shared/errors', errors: @profile.errors %>
@@ -101,3 +99,13 @@
 </div>
 
 <% end %> 
+
+
+<script>
+  window.addEventListener("beforeunload", function (e) {
+  var confirmationMessage = "\o/";
+
+  e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+  return confirmationMessage;              // Gecko, WebKit, Chrome <34
+});
+</script>
