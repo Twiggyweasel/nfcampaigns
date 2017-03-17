@@ -3,7 +3,7 @@ class AttendeesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update]
   # before_action :set_attendee, except: [:new, :create, :index]
   before_action :require_user, only: [:show, :new, :edit, :destroy]
-  before_action :require_same_user, only: [:show, :destroy, :edit, :update]
+  # before_action :require_same_user, only: [:show, :destroy, :edit, :update]
   
   
   def index
@@ -91,10 +91,10 @@ class AttendeesController < ApplicationController
       params.require(:attendee).permit(:fee, :shirt_size, :category, :business_name, :business_logo, :paid, :team_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
     end
     
-    def require_same_user
-      if current_user != @attendee.user
-        flash[:danger] = "You can only view your own registration"
-        redirect_to event_path(@event)
-      end    
-    end
+    # def require_same_user
+    #   if current_user != @attendee.user
+    #     flash[:danger] = "You can only view your own registration"
+    #     redirect_to event_path(@event)
+    #   end    
+    # end
 end

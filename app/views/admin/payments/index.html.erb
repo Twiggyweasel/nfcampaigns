@@ -14,6 +14,7 @@
         <th>Approved</th>
         <th>Authorization Code</th>
         <th>Payable Reference</th>
+        <th>Transaction Date</th>
       </tr>
       <% if @payments.size > 0 %>
         <% @payments.each do |payment| %>
@@ -25,7 +26,7 @@
             <td><%= payment.success == true ? "Yes" : "No" %></td>
             <td><%= payment.authorization_code %></td>
             <td><%= payment.payable_type %></td>
-            <td><%= payment.created_at.strftime("%m %d, %Y") %></td>
+            <td><%= payment.created_at.strftime("%m/%d/%Y") %></td>
           </tr>
         <% end %>
       <% else %>
