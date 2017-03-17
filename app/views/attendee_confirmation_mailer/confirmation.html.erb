@@ -174,7 +174,7 @@
                                             <td align="center" style="font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333; padding-top: 30px;" class="padding-copy">Thanks for registering!</td>
                                         </tr>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy"> Great news—you’re in! We can't wait to see you <%= @attendee.event.event_date.strftime("%A, %B %d") %> at <%= @attendee.event.event_date.strftime("%I:%M %p") %> for <%= @attendee.event.name %>.
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy"> Great news—you’re in! We can't wait to see you <%= @attendee.event.event_date.strftime("%A, %B %d") %> at <%= @attendee.event.event_start_time.strftime("%I:%M %p") %> for <%= @attendee.event.name %>.
 Be sure to share your fundraising page on social media or through email to encourage friends, family, and co-workers to support you in the fight to stay #NFStrong.
 <br><br>For more information, business sponsorships, outside fundraisers, or to volunteer, please contact Yvonne Glass, event coordinator, at 630-510-1115 or <a href='mailto:yglass@nfnetwork.org'>yglass@nfnetwork.org</a>.
                                             <br><br><br>

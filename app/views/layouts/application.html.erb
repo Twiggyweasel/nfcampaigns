@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <link href="https://fonts.googleapis.com/css?family=Changa+One|Boogaloo|Just+Another+Hand" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta property="og:image" content="<% if content_for?(:og_image) then yield(:og_image) %> <% else %> https://s3.amazonaws.com/nfeventimages/images/emails/nfstrongemail.jpg <% end %>"/>
   </head>
 
   <body>

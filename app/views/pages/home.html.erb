@@ -33,7 +33,7 @@
       </div>
       <h3 class='text-center mt-4' style="font-family: 'Boogaloo', cursive;">Share With Friends</h3>
     <ul class='nav justify-content-center pr-1 mt-2'>
-      <li class='nav-item'><a class='nav-link facebook-popup' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+      <li class='nav-item'><a class='nav-link facebook-popup' href="javascript:fbShare('<%= request.original_url %>', 'NFStrong', 'Facebook share popup', 'http://goo.gl/dS52U', 520, 350)" target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
       <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
       <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
       <li class='nav-item'><a class='nav-link' href="mailto:?subject=Sharing #NFSTRONG Events"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
@@ -213,13 +213,9 @@
     return false;
   });
   
-  $('.facebook-popup').click(function(event) {
-    var width  = 575,
-        height = 400,
-        left   = ($(window).width()  - width)  / 2,
-        top    = ($(window).height() - height) / 2,
-        url    = this.href;
-        
-        
-        });
+function fbShare(url, title, descr, image, winWidth, winHeight) {
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width='+winWidth+',height='+winHeight);
+    }
 </script>
