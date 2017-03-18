@@ -63,7 +63,7 @@
 </div>
 
 
-<div class='row px-5 mt-5'>
+<div class='row px-2 px-md-5 mt-5'>
   <div class='col-xl-6 col-xl-8'>
     <div class='row'>
       <div class='col-12'>
@@ -99,7 +99,7 @@
         <div class='card card-block'>
           <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">We're Making Strong Progress!</h1>
           <div class="progress mt-3" style='border-radius:50px; padding: 10px; border-radius: 25px;'>
-            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <#%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
+            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px; background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);'></div>
