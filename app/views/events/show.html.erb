@@ -7,6 +7,10 @@
 <% if @event.social_image? %>
   <% og_image @event.social_image.url %>
 <% end %>
+
+<% if @event.event_type == "Concert" %>
+  <%= render 'concert' %>
+<% else %>
 <div class='event-banner' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:450px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
     <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
@@ -274,6 +278,8 @@
   </div>
   
 </div>
+<% end %>
+
 <% end %>
 
 <script>
