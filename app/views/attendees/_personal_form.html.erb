@@ -58,6 +58,10 @@
                   </div>
                 </div>
                 <% end %>
+                <% if @event.event_type == "Concert" %>
+                  <%= hidden_field(:shirt_size, :value => "N/A") %>
+                  <%= hidden_field(:event_id, :value => @event.teams.first.id) %>
+                <% else %>
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :shirt_size %>
