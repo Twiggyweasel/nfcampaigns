@@ -3,8 +3,9 @@
 <% else %>
 
 <% title @event.name %>
+
 <% if @event.social_image? %>
-<% og_image @event.social_image.url %>
+  <% og_image @event.social_image.url %>
 <% end %>
 <div class='event-banner' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:450px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
@@ -37,16 +38,16 @@
               <%= link_to 'Manage Registration', event_attendee_path(@event, @event.attendees.where(user_id: current_user.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
             <% end %>
           <% else %>
-              <div class="dropdown">
-            <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Register
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
-              <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
-              <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
-            </div>
-          </div>  
+            <div class="dropdown">
+              <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
+                <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
+                <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
+              </div>
+            </div>  
           <% end %>
         </div>
         <div class='col-lg-3'>
@@ -62,23 +63,33 @@
   <div class='col-xl-6 col-xl-8'>
     <div class='row'>
       <div class='col-12'>
-<% if is_admin? %>
-  <div class='row'>
-    <div class='col-md-8 offset-md-2'>
-      <div class='card card-block'>
-        <div class='row'>
-          <div class='col-md-6'>
-            <%= link_to "Admin View", admin_event_path(@event), class: "btn btn-block btn-primary" %>
-          </div>
-          <div class='col-md-6'>
-            <%= link_to "Edit", edit_admin_event_path(@event), class: "btn btn-block btn-warning" %>
+    <% if is_admin? %>
+      <div class='row' style='position: fixed; right:50px; top: 75px; z-index: 1003;'>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin Actions
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to "Admin View", admin_event_path(@event), class: "dropdown-item" %>
+            <%= link_to "Edit", edit_admin_event_path(@event), class: "dropdown-item" %>
+
           </div>
         </div>
-
+        <!--<div class='col-md-8 offset-md-2'>-->
+        <!--  <div class='card card-block'>-->
+        <!--    <div class='row'>-->
+        <!--      <div class='col-md-6'>-->
+        <!--        <#%= link_to "Admin View", admin_event_path(@event), class: "btn btn-block btn-primary" %>-->
+        <!--      </div>-->
+        <!--      <div class='col-md-6'>-->
+        <!--        <#%= link_to "Edit", edit_admin_event_path(@event), class: "btn btn-block btn-warning" %>-->
+        <!--      </div>-->
+        <!--    </div>-->
+    
+        <!--  </div>-->
+        <!--</div>-->
       </div>
-    </div>
-  </div>
-<% end %>
+    <% end %>
     <div class='row'>
       <div class='col-12'>
         <!--<h3 class='sm-header mb-4'>Event Stats</h3>-->
@@ -95,24 +106,26 @@
               <div class='row mb-2 mt-4 text-center'>
             <div class='col-4'>
               <div class='card card-block callout'>
-              <i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  
-              <h2><%= @event.attendees.count %><br />
+                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
+              <h2 class='mb-0'><%= @event.attendees.count %><br />
               Attendees
               </h2>
               </div>
             </div>
             <div class='col-4'>
               <div class='card card-block callout'>
-              <i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>
-              <h2><%= @event.teams.count - 1%><br />
+                                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/groupredaccent.png' class='img-fluid d-block mx-auto pb-1' style='height:90px'>
+              <!--<i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>-->
+              <h2 class='mb-0'><%= @event.teams.count - 1%><br />
                             Teams</h2>
             </div>
             </div>
             <div class='col-4'>
               <div class='card card-block callout'>
-                <!--<img src='https://s3.amazonaws.com/nfeventimages/images/misc/Gift%402x.png' class='d-block mx-auto mt-2' style='height: 50px; width: 50px;'>-->
-              <i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>
-                <h2><%= @event.contributions.count %>  </br>
+                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
+                <h2 class='mb-0'><%= @event.contributions.count %>  </br>
                               Donations
                               </h2> 
             </div>
@@ -134,51 +147,7 @@
 
 </div>
     </div>
-    <!--<div class='row'>-->
-    <!--  <div class='col-lg-6 my-5'>-->
-    <!--    <div class='card card-block' style='min-height: 395px;'>-->
-    <!--      <h2>TOP 5 TEAMS <small class='text-muted float-right'><#%= link_to(top_teams_path, class: 'anchor-styled') do %><span>See All</span><#% end %></small></h2>-->
-    <!--      <table class='table  table-striped'>-->
-    <!--        <thead>-->
-    <!--          <tr>-->
-    <!--            <td>Team Name</td>-->
-    <!--            <td>Raised</td>-->
-    <!--          </tr>-->
-    <!--        </thead>-->
-    <!--        <tbody>-->
-    <!--          <#% @top_teams.each do |team| %>-->
-    <!--          <tr>-->
-    <!--            <td><#%= link_to team.name, event_team_path(team.event, team) %></td>-->
-    <!--            <td><#%= number_to_currency(team.raised) %></td>-->
-    <!--          </tr>-->
-    <!--          <#% end %>-->
-    <!--        </tbody>-->
-    <!--      </table>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--<div class='col-lg-6 my-5'>-->
-    <!--  <div class='card card-block' style='min-height: 395px;'>-->
-    <!--    <h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'><#%= link_to(top_attendees_path, class: 'anchor-styled') do %><span>See All</span><#% end %></small></h2>-->
-    <!--    <table class='table  table-striped'>-->
-    <!--      <thead>-->
-    <!--        <tr>-->
-    <!--          <td>Name</td>-->
-    <!--          <td>Raised</td>-->
-    <!--        </tr>-->
-    <!--      </thead>-->
-    <!--      <tbody>-->
-    <!--        <#% @top_fundraisers.each do |attendee| %>-->
-    <!--        <tr>-->
-    <!--          <td><#%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee, attendee.pledge_page) %></td>-->
-    <!--          <td><#%= number_to_currency(attendee.raised) %> </td>-->
-    <!--        </tr>-->
-    <!--        <#% end %>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
-    <!--  </div>-->
-    <!--</div>-->
 
-    <!--</div>-->
 
   </div>
   <div class='col-lg-12 col-xl-4'>
@@ -231,7 +200,6 @@
         <div class="tab-content my-3">
           <div class="tab-pane fade show active" id="teams" role="tabpanel">
             <div class='card card-block' style='min-height: 395px;'>
-              <!--<h2>TOP 5 TEAMS <small class='text-muted float-right'><#%= link_to(top_teams_path, class: 'anchor-styled') do %><span>See All</span><#% end %></small></h2>-->
               <table class='table'>
                 <thead>
                   <tr>

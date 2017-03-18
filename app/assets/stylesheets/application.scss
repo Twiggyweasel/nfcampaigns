@@ -55,7 +55,7 @@ body {
   transition: all 1s;
 }
 
-.callout i {
+.callout i, .callout img {
   transition: all 1s;
 }
 
@@ -68,7 +68,7 @@ body {
   background-color: #7ea9c8;
 }
 
-.callout:hover i {
+.callout:hover i, .callout:hover img {
   transform: scale(1.3, 1.3);
 }
 
