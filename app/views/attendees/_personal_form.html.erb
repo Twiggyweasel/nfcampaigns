@@ -74,6 +74,7 @@
                     <%= f.select( :team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
                   </div>
                 </div>
+                <% end %>
             </div>
           </div>
         </div>
