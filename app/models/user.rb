@@ -23,6 +23,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
             :uniqueness => { :case_sensitive => false }
 
   
+  scope :is_new, -> { where(created_at: (Time.now - 24.hours)..Time.now) }
   
   def self.create_with_omniauth(auth)
     pass_gen = rand(36**10).to_s(36)
