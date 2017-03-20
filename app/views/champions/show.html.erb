@@ -1,0 +1,148 @@
+<% if @champion.event.event_cover? %>
+  <div class='row banner-image' style='background-image: url("<%= @champion.event.event_cover.url %>"); margin-top: -46px; background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;  margin-top: -46px;'>
+  </div>
+<% else %>
+  <div class='row banner-image' style='background-image: url("<%= image_url('walk-wide.jpg') %>"); background-color: #cccccc; background-size: cover; background-attachment: fixed; min-height:450px;  margin-top: -46px;'>
+  </div>
+<% end %>
+
+<div class='container mb-5'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card event-card-shadow primary-pledge-card' style='margin-top: -250px; width: 100%;'>
+
+        <div class='card-block'>
+          <div class="row">
+            <div class="col-lg-8">
+              <div class='row mb-3'>
+                <div class='col-lg-5'  style='margin-top: -115px;'>
+                  <img class='img-fluid img-thumbnail rounded-circle d-block mx-auto' src='<% if @champion.champion_image? %> <%= @champion.champion_image.url %><% else %><%= image_url('no_user.png') %> <% end %>' style='height: 250px; width:250px'>
+                </div>
+                <div class='col-lg-7 text-center text-md-center text-lg-left text-sm-center'>
+                  <h4><%= @champion.name.titleize %> 
+                </div>                
+              </div>
+              <h5>
+              <%= link_to(event_path(@champion.event)) do %> #NFStrong <%= @champion.event.name %> @ <%= @champion.event.venue_name %><% end %>
+              <br />
+              <%= @champion.event.event_date.strftime("%A, %B %d %Y") %>
+              </h5>
+              
+            </div>
+            <div class='col-lg-4 mt-4'>
+              <h4>Share This Page:</h4>
+              <ul class='nav'>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+                <li class='nav-item'><a class='nav-link' style='padding: .5em .5em' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+              </ul>
+              <hr />
+              <h4>Support <%= @champion.name %></h4>
+              <%= link_to "View Event", event_path(@champion.event), class: 'btn btn-primary btn-block' %>
+              <%= link_to "Donate", new_champion_contribution_path(@champion), class: 'btn btn-success btn-block' %>
+            </div>
+          </div>
+          <hr />
+          <div class='row mb-5'>
+            <div class='col-12' style='width: 100%'>
+              <h4>Champion Story</h4>
+              <p>
+                <%= @champion.story %>
+              </p>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row my-3'>
+    <div class='col-12'>
+      <div class='card event-card-shadow'>
+        <div class='card-block'>
+          <div class='row'>
+            <div class='col-12'>
+              <h4>What is NF?</h4>
+              <p>
+                Neurofibromatosis (NF) is a genetic disorder of the nervous system that causes tumors to form on the nerves anywhere
+                body at any time. This progressive disorder affects all races, all ethnic groups and both sexes equally. NF is one of the most common 
+                genetic disorders in the United States (one in every 2,500 to 3,000 births). The neurofibromatoses affects more than 100,000 
+                Americans; this makes NF more prevalent than Cystic Fibrosis, hereditary Muscular Dystrophy, Huntington’s Disease and Tay Sachs 
+                combined.
+              </p>
+            </div>
+          </div>
+          <hr />
+           <div class='row'>
+            <div class='col-12'>
+              <h4>About the NF Network</h4>
+              The NF Network network provides opportunities for local NF organizations to share experiences.  
+              The network is a dynamic and growing open space for shared resources, development of new tools, 
+              and creation of innovative programs.  It brings together groups from around the country to speak as one voice on national issues.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class='row mt-3'>-->
+  <!--  <div class='col-12'>-->
+  <!--    <div class='card event-card-shadow'>-->
+  <!--      <div class='card-block'>-->
+  <!--        <div class='row'>-->
+  <!--          <div class='col-md-4'>-->
+  <!--            <h4>Guests</h4>-->
+  <!--            <hr />-->
+  <!--            <table class='table'>-->
+  <!--              <thead>-->
+  <!--                <tr>-->
+  <!--                  <th colspan="2">Name</th>-->
+  <!--                  <th>Amount Raised</th>-->
+  <!--                </tr>-->
+  <!--              </thead>-->
+  <!--              <tbody>-->
+  <!--              <#% @pledge_page.guests.each do |guest| %>-->
+  <!--              <tr>-->
+  <!--                <td colspan="2"><#%= guest.name %></td>-->
+  <!--                <td><#%= number_to_currency(guest.fee) %></td>-->
+  <!--              </tr>-->
+  <!--              <#% end %>  -->
+  <!--              </tbody>-->
+  <!--            </table>-->
+  <!--          </div>-->
+  <!--          <div class='col-md-4'>-->
+  <!--            <h4>Team Members</h4>-->
+  <!--            <hr />-->
+  <!--            <#% if @pledge_page.attendee.team == @pledge_page.event.teams.first %>-->
+  <!--            <h5<#%= @pledge_page.user.name %> has not joined a team.</h5>-->
+  <!--            <#% end %>-->
+  <!--          </div>-->
+  <!--          <div class='col-md-4'>-->
+  <!--            <h4>Contributions</h4>-->
+  <!--            <hr />-->
+  <!--            <table class='table'>-->
+  <!--              <thead>-->
+  <!--                <tr>-->
+  <!--                  <th colspan="2">Name</th>-->
+  <!--                  <th>Contribution</th>-->
+  <!--                </tr>  -->
+  <!--              </thead>-->
+  <!--              <tbody>-->
+  <!--              <#% @pledge_page.contributions.each do |contribution| %>-->
+  <!--              <tr>-->
+  <!--                <td colspan="2"><#%= contribution.user.name.titleize %></td>-->
+  <!--                <td><#%= number_to_currency(contribution.amount) %></td>-->
+  <!--              </tr>-->
+  <!--              <#% end %>-->
+  <!--              </tbody>-->
+  <!--            </table>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+    </div>
+  </div>
+<!--  <#%= render 'comments/new', context: @pledge_page %>-->
+<!--  <div id='comments_container'>-->
+<!--    <#%= render @pledge_page.comments %>-->
+<!--  </div>-->
+<!--</div>-->
