@@ -6,3 +6,5 @@ task :send_new_users => :environment do
   end
   puts "done."
 end
+
+
