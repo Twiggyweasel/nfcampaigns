@@ -33,6 +33,12 @@
           <%= f.text_area :story, class: 'form-control', :rows => 15 %>
         </div>
       </div>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :event_id, "Which Event would you like donations to be applied to:" %>
+          <%= f.select :event_id, Event.all.collect { |c| [ c.city + " - " + c.name, c.id ] }, { prompt: "Select One" } , class: 'form-control' %>
+        </div>
+      </div>
       <%= f.hidden_field(:user_id, :value => current_user.id) %>
       <%= f.submit @champion.new_record? ? "Create Champion" : "Update Champion Details", class: 'btn btn-block btn-success mt-3' %>
       <%= link_to "Cancel", :back, class: 'btn btn-block btn-danger mt-3' %>
