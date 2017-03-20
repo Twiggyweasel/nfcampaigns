@@ -48,11 +48,13 @@
     <div class='row my-2'>
        <div class='col-md-4'>
         <%= f.label :event_cover, "Event Cover Image" %>
-        <%= f.file_field :event_cover, class: 'form-control' %>         
+        <%= f.file_field :event_cover, class: 'form-control' %>  
+        <%= f.hidden_field :event_cover_cache %>
        </div>
       <div class='col-md-4'>
         <%= f.label :event_card, "Upcoming Event Image" %>
-        <%= f.file_field :event_card, class: 'form-control' %>         
+        <%= f.file_field :event_card, class: 'form-control' %>     
+        <%= f.hidden_field :event_card_cache %>
       </div>
       <div class='col-md-4'>
         <%= f.label :event_type %>
