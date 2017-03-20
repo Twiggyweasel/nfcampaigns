@@ -50,13 +50,13 @@
         <%= f.label :event_cover, "Event Cover Image" %>
         <%= f.file_field :event_cover, class: 'form-control' %>  
         <%= f.hidden_field :event_cover_cache %>
-        <%= image_tag(@event.event_cover_url) if @event.event_cover? %>
+        <%= image_tag(@event.event_cover_url, class: 'img-fluid') if @event.event_cover? %>
        </div>
       <div class='col-md-4'>
         <%= f.label :event_card, "Upcoming Event Image" %>
         <%= f.file_field :event_card, class: 'form-control' %>     
         <%= f.hidden_field :event_card_cache %>
-        <%= image_tag(@event.event_card_url) if @event.event_card? %>
+        <%= image_tag(@event.event_card_url, class: 'img-fluid') if @event.event_card? %>
       </div>
       <div class='col-md-4'>
         <%= f.label :event_type %>
