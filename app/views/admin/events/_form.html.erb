@@ -50,13 +50,13 @@
         <%= f.label :event_cover, "Event Cover Image" %>
         <%= f.file_field :event_cover, class: 'form-control' %>  
         <%= f.hidden_field :event_cover_cache %>
-        <%= image_tag(@event.event_cover_url, class: 'img-fluid mx-auto d-block') if @event.event_cover? %>
+        <%= image_tag(@event.event_cover_url, class: 'img-fluid mx-auto d-block mt-3') if @event.event_cover? %>
        </div>
       <div class='col-md-4'>
         <%= f.label :event_card, "Upcoming Event Image" %>
         <%= f.file_field :event_card, class: 'form-control' %>     
         <%= f.hidden_field :event_card_cache %>
-        <%= image_tag(@event.event_card_url, class: 'img-fluid mx-auto d-block') if @event.event_card? %>
+        <%= image_tag(@event.event_card_url, class: 'img-fluid mx-auto d-block mt-3') if @event.event_card? %>
       </div>
       <div class='col-md-4'>
         <%= f.label :event_type %>
@@ -156,6 +156,7 @@
         <div class='col-12'>
           <%= f.label :organizer_logo, "Organizer Logo" %>
           <%= f.file_field :organizer_logo, class: 'form-control' %>
+          <%= image_tag(@event.organizer_logo_url, class: 'img-fluid d-block mx-auto mt-3') if @event.organizer_logo? %>
         </div>
       </div>
     </div>
@@ -168,8 +169,9 @@
       <h3 class="card-title">Custom Social Image</h3>
       <div class='row my-3'>
         <div class='col-12'>
-          <%= f.label :organizer_logo, "Organizer Logo" %>
+          <%= f.label :social_image, "Social Image" %>
           <%= f.file_field :social_image, class: 'form-control' %>
+          <%= image_tag(@event.social_image_url, class: 'img-fluid d-block mx-auto mt-3') if @event.social_image? %>
         </div>
       </div>
     </div>
