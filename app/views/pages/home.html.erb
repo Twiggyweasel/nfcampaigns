@@ -3,8 +3,8 @@
   <!--<img src="<#%= image_url('walk-wide.jpg') %>" class='img-fluid' style='width:100% z-index: -1; max-height:550px;'>-->
   <h1 class='display-1 text-center w hidden-sm-down' style="position: absolute; bottom:30%; width: 100%; font-family: 'Changa One', cursive; z-index:100;">#NFSTRONG</h1>
   <h1 class='display-3 text-center w hidden-md-up' style="position: absolute; bottom:50%; width: 100%; font-family: 'Changa One', cursive; z-index:100;">#NFSTRONG</h1>
-  <h4 class='display-2 text-center w' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
-  <h4 class='display-4 text-center w' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
+  <h4 class='display-2 text-center w hidden-sm-down' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
+  <h4 class='display-4 text-center w hidden-md-up' style="position: absolute; bottom:15%; width: 100%; font-family: 'Just Another Hand', cursive;">Striding toward a future without NF</h4>
   <div class='col-md-3 offset-3 text-center hidden-sm-down' style="position: absolute; bottom:5%; width: 100%;">
     <%= link_to "Events", events_path, class: 'btn btn-primary btn-block' %>
   </div>
@@ -13,6 +13,14 @@
   </div>
 </div>
 <div class='container mt-4'>
+  <div class='row hidden-md-up'>
+    <div class='col-12 my-3'>
+          <%= link_to "Events", events_path, class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class='col-12 my-3'>
+          <%= link_to "Donate", contribution_select_path, class: 'btn btn-success btn-block' %>
+    </div>
+  </div>
   <div class='row mt-5'>
     <div class='col-md-6'>
       <h3>About Our Events</h3>
