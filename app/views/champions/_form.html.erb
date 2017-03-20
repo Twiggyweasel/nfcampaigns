@@ -6,37 +6,30 @@
 <div class='row mb-3'>
   <div class='col-md-8 offset-md-2'>
     <div class='card card-block'>
-
-      
       <div class='row my-2'>
         <div class='col-12'>
           <%= f.label :name, "Champion's Name" %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
       </div>
-      
       <div class='row my-2'>
-        <div class='col-8'>
+        <div class='col-4'>
           <%= f.label :champion_image %>
           <%= f.file_field :champion_image, class: 'form-control-file' %>
         </div>
-      </div>
-      <div class='row my-2'>
-        <div class='col-4'>
+        <div class='col-3'>
           <%= f.label :age, "Age of Your Champion" %>
           <%= f.number_field :age, class: 'form-control' %>
+        </div>
+        <div class='col-5'>
+          <%= f.label :event_id, "Select your NF event:" %>
+          <%= f.select :event_id, Event.all.collect { |c| [ c.city + " - " + c.name, c.id ] }, { prompt: "Select One" } , class: 'form-control' %>
         </div>
       </div>
       <div class='row my-2'>
         <div class='col-12'>
           <%= f.label :story, "Your Champion's Story" %>
           <%= f.text_area :story, class: 'form-control', :rows => 15 %>
-        </div>
-      </div>
-      <div class='row my-2'>
-        <div class='col-12'>
-          <%= f.label :event_id, "Which Event would you like donations to be applied to:" %>
-          <%= f.select :event_id, Event.all.collect { |c| [ c.city + " - " + c.name, c.id ] }, { prompt: "Select One" } , class: 'form-control' %>
         </div>
       </div>
       <%= f.hidden_field(:user_id, :value => current_user.id) %>

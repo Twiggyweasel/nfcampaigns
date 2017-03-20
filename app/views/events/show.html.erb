@@ -67,101 +67,101 @@
   <div class='col-xl-6 col-xl-8'>
     <div class='row'>
       <div class='col-12'>
-    <% if is_admin? %>
-      <div class='row' style='position: fixed; right:50px; top: 75px; z-index: 1003;'>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin Actions
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Admin View", admin_event_path(@event), class: "dropdown-item" %>
-            <%= link_to "Edit", edit_admin_event_path(@event), class: "dropdown-item" %>
-
+      <% if is_admin? %>
+        <div class='row' style='position: fixed; right:50px; top: 75px; z-index: 1003;'>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin Actions
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <%= link_to "Admin View", admin_event_path(@event), class: "dropdown-item" %>
+              <%= link_to "Edit", edit_admin_event_path(@event), class: "dropdown-item" %>
+            </div>
           </div>
         </div>
-        <!--<div class='col-md-8 offset-md-2'>-->
-        <!--  <div class='card card-block'>-->
-        <!--    <div class='row'>-->
-        <!--      <div class='col-md-6'>-->
-        <!--        <#%= link_to "Admin View", admin_event_path(@event), class: "btn btn-block btn-primary" %>-->
-        <!--      </div>-->
-        <!--      <div class='col-md-6'>-->
-        <!--        <#%= link_to "Edit", edit_admin_event_path(@event), class: "btn btn-block btn-warning" %>-->
-        <!--      </div>-->
-        <!--    </div>-->
-    
-        <!--  </div>-->
-        <!--</div>-->
-      </div>
-    <% end %>
-    <div class='row'>
-      <div class='col-12'>
-        <div class='card card-block'>
-          <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">We're Making Strong Progress!</h1>
-          <div class="progress mt-3" style='border-radius:50px; padding: 10px; border-radius: 25px;'>
-            <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px; background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);'></div>
-          </div>
-
-<div class='row mt-3'>
-  <div class='col-md-6'>
-    <h4>Raised: <%= number_to_currency(@event.raised) %></h4>
-  </div>
-  <div class='col-md-6'>
-    <h4 class='float-md-right'>Goal: <%= number_to_currency(@event.goal) %></h4>
-  </div>
-</div>
-          
-
-        </div>
-        
-      </div>
-    </div>
-              <div class='row mb-2 mt-4 text-center'>
-            <div class='col-md-4 my-2'>
-              <div class='card card-block callout'>
-                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
-              <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
-              <h2 class='mb-0'><%= @event.attendees.count %><br />
-              Attendees
-              </h2>
+      <% end %>
+        <div class='row'>
+          <div class='col-12'>
+            <div class='card card-block'>
+              <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">We're Making Strong Progress!</h1>
+              <div class="progress mt-3" style='border-radius:50px; padding: 10px; border-radius: 25px;'>
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
+                  border-bottom-right-radius: 20px;
+                  border-top-left-radius: 20px;
+                  border-bottom-left-radius: 20px; 
+                  background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);'>
+                </div>
+              </div>
+              <div class='row mt-3'>
+                <div class='col-md-6'>
+                  <h4>Raised: <%= number_to_currency(@event.raised) %></h4>
+                </div>
+                <div class='col-md-6'>
+                  <h4 class='float-md-right'>Goal: <%= number_to_currency(@event.goal) %></h4>
+                </div>
               </div>
             </div>
-            <div class='col-md-4 my-2'>
-              <div class='card card-block callout'>
-                                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/groupredaccent.png' class='img-fluid d-block mx-auto pb-1' style='height:90px'>
-              <!--<i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>-->
-              <h2 class='mb-0'><%= @event.teams.count - 1%><br />
-                            Teams</h2>
-            </div>
-            </div>
-            <div class='col-md-4 my-2'>
-              <div class='card card-block callout'>
-                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
-              <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
-                <h2 class='mb-0'><%= @event.contributions.count %>  </br>
-                              Donations
-                              </h2> 
-            </div>
+          </div>
+        </div>
+        <div class='row mb-2 mt-4 text-center'>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
+              <h2 class='mb-0'><%= @event.attendees.count %><br />Attendees</h2>
             </div>
           </div>
-  <div class='row'>
-    <div class='col-12'>
-      <%= @event.desc.html_safe %>
-    </div>
-  </div>
-
-  <% if !@event.promo_card.nil? %>
-    <%= render 'promocard' %>
-  <% end %>
-
-
-
-
-
-</div>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/groupredaccent.png' class='img-fluid d-block mx-auto pb-1' style='height:90px'>
+              <!--<i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>-->
+              <h2 class='mb-0'><%= @event.teams.count - 1%><br />Teams</h2>
+          </div>
+          </div>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
+              <h2 class='mb-0'><%= @event.contributions.count %></br>Donations</h2> 
+            </div>
+          </div>
+        </div>
+      <div class='row'>
+        <div class='col-12'>
+          <%= @event.desc.html_safe %>
+        </div>
+      </div>
+    
+      <% if !@event.promo_card.nil? %>
+        <%= render 'promocard' %>
+      <% end %>
+      
+      <div class='row my-3'>
+        <% if @event.champions.empty? %>
+        <div class='col-lg-12 w' style='background-color: #8CBCDF; border-radius: 15px;'>
+          <h3 class='my-3'>NF Champs</h3>
+          <p>Our NF Champs are chosen for their strength, courage, and happiness despite difficult circumstances. View their stories or upload your own and join us in the fight to stay #NFstrong.</p>
+          <%= link_to "Share Your Champ", new_champion_path, class: "btn btn-success my-3" %>
+        </div>
+        <% else %>
+        <div class='col-lg-4 w' style='background-color: #8CBCDF'>
+          <h3 class='my-3'>NF Champs</h3>
+          <p>Our NF Champs are chosen for their strength, courage, and happiness despite difficult circumstances. View their stories or upload your own and join us in the fight to stay #NFstrong.</p>
+          <%= link_to "Share Your Champ", new_champion_path, class: "btn btn-success my-3" %>
+        </div>        
+        <% end %>
+        <% @event.champions.each do |champ| %>
+        <div class='col-lg-4 col-md-6 champ-card' style='background-image: url("<%= champ.champion_image.url %>"); height: 300px; background-size: cover; background-position: center; '>
+          <div class='title-overlay px-3 py-2'>
+              <%= link_to(champion_path(champ)) do %>
+                <h4><%= champ.name %></h4>
+              <% end %>
+            </div>
+        </div>
+        <% end %>
+      </div>
+      
+      </div>
     </div>
 
 
