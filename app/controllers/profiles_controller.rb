@@ -45,6 +45,6 @@ class ProfilesController < ApplicationController
     end
     
     def profile_params
-      params.require(:profile).permit(:street, :apt, :city, :state, :zipcode, :referral_code, :has_nf, :child_with_nf, :news_letter, :event_notifications, :is_private, :user_id)
+      params.require(:profile).permit(:street, :apt, :city, :state, :zipcode, :phone, :referral_code, :has_nf, :child_with_nf, :news_letter, :event_notifications, :is_private, :user_id)
     end
 end
