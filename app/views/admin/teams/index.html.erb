@@ -19,7 +19,7 @@
         <tbody>
           <% @event.teams.each do |team| %>
           <tr>
-            <td><%= team.name %></td>
+            <td><%= link_to team.name, event_team_path(@event, team) %></td>
             <td><%= team.attendees.count %></td>
             <td><%= number_to_currency(team.raised) %></td>
             <td><%= link_to "edit", edit_admin_event_team_path(@event, team) %></td>

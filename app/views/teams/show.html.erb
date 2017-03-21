@@ -2,10 +2,11 @@
 <div class='event-banner' style='position: relative; background-image: url(<%= @team.event.event_cover? ? @team.event.event_cover.url : image_url('walk-wide.jpg') %>); height:450px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
     <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
-      <h1 class='display-4' style="font-family: 'Changa One', cursive;">Team <%= @team.name %></h1>
+      <h1 class='display-4' style="font-family: 'Changa One', cursive;"><%= @team.name %></h1>
       <hr style="border-top-color: white; margin-right: 7rem;">
       <p style='font-size: 120%;'>
         #NFStrong - <%= @team.event.name %>
+        <br>
         <i class="fa fa-calendar" aria-hidden="true" style='width:20px;'></i>  <%= @team.event.event_date.strftime("%A, %B %d, %Y") %>
         <br>
         <i class="fa fa-clock-o" aria-hidden="true" style='width:20px;'></i>  <%= @team.event.event_start_time.strftime("%I:%M %p")  %> - <%= @team.event.event_end_time.strftime("%I:%M %p")  %>
