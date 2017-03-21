@@ -8,6 +8,10 @@
   <% og_image @event.social_image.url %>
 <% end %>
 
+<% if @event.social_desc? %>
+  <% og_description @event.social_desc %>
+<% end %>
+
 <% if @event.event_type == "Concert" %>
   <%= render 'concerts' %>
 <% else %>

@@ -166,12 +166,18 @@
 <div class='row my-3'>
   <div class='col-10 offset-1'>
     <div class='card card-block'>
-      <h3 class="card-title">Custom Social Image</h3>
+      <h3 class="card-title">Custom Social Items</h3>
       <div class='row my-3'>
         <div class='col-12'>
           <%= f.label :social_image, "Social Image" %>
           <%= f.file_field :social_image, class: 'form-control' %>
           <%= image_tag(@event.social_image_url, class: 'img-fluid d-block mx-auto mt-3') if @event.social_image? %>
+        </div>
+      </div>
+      <div class='row my-3'>
+        <div class='col-12'>
+          <%= f.label :social_desc, "Custom Social Description" %>
+          <%= f.text_area :social_desc, class: 'form-control', :row => 10 %>
         </div>
       </div>
     </div>

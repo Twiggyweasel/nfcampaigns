@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320013750) do
+ActiveRecord::Schema.define(version: 20170321014603) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170320013750) do
     t.string   "organizer_url"
     t.string   "organizer_logo"
     t.string   "social_image"
+    t.text     "social_desc"
   end
 
   create_table "guests", force: :cascade do |t|

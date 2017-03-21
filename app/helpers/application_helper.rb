@@ -6,4 +6,8 @@ module ApplicationHelper
   def og_image(image)
     content_for :og_image, image
   end
+  
+  def og_description(desc)
+    content_for :og_description, desc
+  end
 end
