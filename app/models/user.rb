@@ -1,7 +1,7 @@
 #User class is responsible for creating user records 
 class User < OmniAuth::Identity::Models::ActiveRecord
   belongs_to :role
-  has_one :profile, :dependent => :destroy
+  has_one :profile, :dependent => :destroy, inverse_of: :user
   has_many :team_leaders
   has_many :attendees
   has_many :guests, through: :attendees
@@ -12,6 +12,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :champions
   
   has_many :authentications, dependent: :destroy
+  
+  accepts_nested_attributes_for :profile
   
   scope :admins, -> { where(role_id: 1) } 
   mount_uploader :profile_pic, ChampionImageUploader

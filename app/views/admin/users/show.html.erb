@@ -1,0 +1,22 @@
+<div class='row my-5 header-primary' style='border-radius: 0px 25px 25px 0px;'>
+  <img src='<%= image_url('no_user.png') %>' class='img-fluid img-thumbnail rounded-circle' style='z-index: 100;width: 150px; position: absolute; margin-top:10px; margin-left:10px;'>
+  <div class='col-12 w' style='margin-left: 150px; margin-top: 10px;'>
+    <h3><%= @user.name.titleize %></h3>
+  </div>
+  <div class='card card-block mx-5' style='height: 250px; margin-top: 40px;'>
+    <div class='row'>
+      <div class='col-8 offset-2' style='margin-left: 100px;'>
+        <h4>Profile</h4>
+        <p>
+          <i class="fa fa-home fa-2x float-left"></i>
+          <br>
+          <%= @user.profile.street %>
+          <br>
+          <%= @user.profile.city %>, <%= @user.profile.state %> <%= @user.profile.zipcode %>
+        </p>
+      </div>
+    </div>
+  </div>
+    
+
+</div>

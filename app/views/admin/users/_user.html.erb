@@ -1,5 +1,5 @@
 <tr>
-  <td><%= user.name %></td>
+  <td><%= link_to user.name, admin_user_path(user) %></td>
   <td><%= user.email %></td>
   <td><% user.authentications.each do |auth| %>
     <%= auth.provider %>
@@ -8,6 +8,6 @@
   <td><%= user.created_at.strftime("%m - %d - %Y") %></td>
   <td>
     <%= link_to "Edit", edit_admin_user_path(user), class: 'btn btn-primary btn-sm' %>
-    <%= link_to "Delete", admin_user_path(user), method: :destroy, data: { confirm: "Are you sure, this action cannot be undone" }, class: 'btn btn-danger btn-sm' %>
+    <!--<#%= link_to "Delete", admin_user_path(user), method: :destroy, data: { confirm: "Are you sure, this action cannot be undone" }, class: 'btn btn-danger btn-sm' %>-->
   </td>
 </tr>
