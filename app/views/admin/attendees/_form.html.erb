@@ -1,0 +1,21 @@
+<%= form_for([:admin, @event, @attendee]) do |f| %>
+  <div class='row'>
+    <div class='col-12 col-lg-8 offset-lg-2'>
+      <div class='card card-block'>
+        <div class='row'>
+          <div class='col-12'>
+            <%= @attendee.user.name %>
+            
+            
+            <%= f.label :team_id, "Current Team" %>
+            <%= f.select( :team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
+          </div>
+        </div>
+        
+        <%= f.submit %>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>

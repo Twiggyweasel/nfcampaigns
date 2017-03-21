@@ -14,7 +14,8 @@
     <td><%= attendee.fee %> </td>
     <td><%= attendee.shirt_size %></td>
     <td><%= attendee.guests.count %></td>
+    <td><%= attendee.team.name %></td>
     <td><%= attendee.paid %></td>
-    <td>Edit | Delete</td>
+    <td><%= link_to "edit", edit_admin_event_attendee_path(@event, attendee) %> | Delete</td>
   </tr>
 <% end %>
