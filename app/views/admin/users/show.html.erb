@@ -1,18 +1,44 @@
 <div class='row my-5 header-primary' style='border-radius: 0px 25px 25px 0px;'>
   <img src='<%= @user.profile_pic? ? @user.profile_pic.url : image_url('no_user.png') %>' class='img-fluid img-thumbnail rounded-circle' style='z-index: 100;width: 150px; position: absolute; margin-top:10px; margin-left:10px;'>
-  <div class='col-12 w' style='margin-left: 150px; margin-top: 10px;'>
+  <div class='col-12 w' style='margin-left: 160px; margin-top: 10px;'>
     <h3><%= @user.name.titleize %></h3>
+    <div class="dropdown">
+      <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Actions
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Edit", edit_admin_user_path(@user), class: "dropdown-item" %>
+        <%= link_to "Register for an Event", "", class: "dropdown-item" %>
+        <%= link_to "Create a Contribution", "", class: "dropdown-item" %>
+      </div>
+    </div>
   </div>
-  <div class='card card-block mx-5' style='height: 250px; margin-top: 40px;'>
+  <div class='card card-block mx-5' style='height: 250px; margin-top: 15px;'>
     <div class='row'>
-      <div class='col-8 offset-2' style='margin-left: 100px;'>
-        <h4>Profile</h4>
+      <div class='col-12' style='margin-left: 110px;'>
+        <h4>Contact Info</h4>
+        <div class='row my-3'>
+          <div class='col-lg-6'>
+            <i class="fa fa-home fa-2x float-left"></i>         
+            <span class='ml-3'><%= @user.profile.street %></span>
+          <br><span class='ml-3'>
+          <%= @user.profile.city %>, <%= @user.profile.state %> <%= @user.profile.zipcode %></span>
+          </div>
+          <div class='col-lg-6'>
+            <i class='fa fa-phone fa-2x float-left'></i>
+            <span class='ml-3'><%= @user.profile.phone %></span>
+          </div>
+        </div>
+        <div class='row my-3'>
+          <div class='col-md-12'>
+            <i class='fa fa-envelope fa-2x float-left'></i>
+            <span class='ml-3'><%= @user.email %></span>
+          </div>
+        </div>
         <p>
-          <i class="fa fa-home fa-2x float-left"></i>
+
           <br>
-          <%= @user.profile.street %>
-          <br>
-          <%= @user.profile.city %>, <%= @user.profile.state %> <%= @user.profile.zipcode %>
+
         </p>
       </div>
     </div>
