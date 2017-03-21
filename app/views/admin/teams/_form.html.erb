@@ -1,0 +1,22 @@
+<%= form_for([:admin, @event, @team]) do |f| %>
+  <div class='row'>
+    <div class='col-12 col-lg-8 offset-lg-2'>
+      <div class='card card-block'>
+        <div class='row mt-3'>
+          <div class='col-12'>
+            <%= f.label :name, "Team Name" %>
+            <%= f.text_field :name, class: 'form-control' %>           
+          </div>
+        </div>
+        <div class='row mt-3'>
+          <div class='col-12'>
+            <%= f.label :goal, "Team Goal" %>
+            <%= f.number_field :goal, class: 'form-control' %>
+          </div>
+        </div>
+          <%= f.submit(@team.new_record? ? "Create Team" : "Edit Team", class: 'btn btn-success btn-block mt-3') %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

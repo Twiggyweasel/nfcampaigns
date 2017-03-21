@@ -1,0 +1,34 @@
+<div class='row my-2'>
+  <div class='col-12'>
+    <%= link_to(admin_event_path(@event), class: 'btn btn-success') do %><i class="fa fa-arrow-left" aria-hidden="true"></i> Return To Event <% end %>
+    <%= link_to "Create Team", new_admin_event_team_path(@event), class: 'btn btn-primary float-right' %>
+  </div>
+</div>
+<div class='row'>
+  <div class="col-12">
+    <div class='card card-block'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Team Name</th>
+            <th>Members</th>
+            <th>Raised</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @event.teams.each do |team| %>
+          <tr>
+            <td><%= team.name %></td>
+            <td><%= team.attendees.count %></td>
+            <td><%= number_to_currency(team.raised) %></td>
+            <td><%= link_to "edit", edit_admin_event_team_path(@event, team) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>
+  </div>
+</div>
+
+
