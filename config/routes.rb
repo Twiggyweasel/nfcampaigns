@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :attendees
       resources :contributions
       resources :promo_cards, except:[:index]
+      resources :teams
     end
     resources :promotions 
     resources :users
