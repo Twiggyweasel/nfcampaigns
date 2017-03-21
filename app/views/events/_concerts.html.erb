@@ -52,7 +52,7 @@
             <!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
             <!--    <#%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>-->
             <!--    <#%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>-->
-            <!--    <#%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>-->
+            <!--    <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>-->
             <!--  </div>-->
             <!--</div>  -->
           <% end %>
@@ -109,16 +109,16 @@
         
       </div>
     </div>
-              <div class='row mb-2 mt-4 text-center'>
-            <div class='col-md-6 my-2'>
-              <div class='card card-block callout'>
-                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+          <!--    <div class='row mb-2 mt-4 text-center'>-->
+          <!--  <div class='col-md-6 my-2'>-->
+          <!--    <div class='card card-block callout'>-->
+          <!--      <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>-->
               <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
-              <h2 class='mb-0'><%= @event.attendees.count %><br />
-              Attendees
-              </h2>
-              </div>
-            </div>
+          <!--    <h2 class='mb-0'><#%= @event.attendees.count %><br />-->
+          <!--    Attendees-->
+          <!--    </h2>-->
+          <!--    </div>-->
+          <!--  </div>-->
             <!--<div class='col-4'>-->
             <!--  <div class='card card-block callout'>-->
             <!--                    <img src='https://s3.amazonaws.com/nfeventimages/images/misc/groupredaccent.png' class='img-fluid d-block mx-auto pb-1' style='height:90px'>-->
@@ -127,16 +127,16 @@
             <!--                Teams</h2>-->
             <!--</div>-->
             <!--</div>-->
-            <div class='col-md-6 my-2'>
-              <div class='card card-block callout'>
-                <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+          <!--  <div class='col-md-6 my-2'>-->
+          <!--    <div class='card card-block callout'>-->
+          <!--      <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>-->
               <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
-                <h2 class='mb-0'><%= @event.contributions.count %>  </br>
-                              Donations
-                              </h2> 
-            </div>
-            </div>
-          </div>
+          <!--      <h2 class='mb-0'><#%= @event.contributions.count %>  </br>-->
+          <!--                    Donations-->
+          <!--                    </h2> -->
+          <!--  </div>-->
+          <!--  </div>-->
+          <!--</div>-->
   <div class='row'>
     <div class='col-12'>
       <%= @event.desc.html_safe %>
