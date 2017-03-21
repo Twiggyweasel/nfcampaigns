@@ -60,7 +60,7 @@
           <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: <%= @team.raised_percent %>%" aria-valuenow="<%= @team.raised_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<%= link_to "Join This Team", new_event_attendee_path(@team.event), class: 'btn btn-success btn-block mt-3' %>
+<%= link_to "Join This Team", new_event_attendee_path(@team.event, :category => "personal"), class: 'btn btn-success btn-block mt-3' %>
         </div>  
       </div>
     </div>
