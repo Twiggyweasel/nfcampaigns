@@ -8,7 +8,7 @@
   <% og_image @event.social_image.url %>
 <% end %>
 
-<% if @event.social_desc? %>
+<% if !@event.social_desc.blank? %>
   <% og_description @event.social_desc %>
 <% end %>
 
