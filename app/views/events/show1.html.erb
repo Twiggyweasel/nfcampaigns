@@ -1,0 +1,350 @@
+<% if @event.has_external_registration? %>
+  <%= render 'external' %>
+<% else %>
+
+<% title @event.name %>
+
+<% if @event.social_image? %>
+  <% og_image @event.social_image.url %>
+<% end %>
+
+<% if !@event.social_desc.blank? %>
+  <% og_description @event.social_desc %>
+<% end %>
+
+<% if @event.event_type == "Concert" %>
+  <%= render 'concerts' %>
+<% else %>
+<div class='event-banner row' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:600px; background-size: cover; margin-top: -46px;'>
+  <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
+    <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
+      <h1 class='display-4' style="font-family: 'Changa One', cursive;">#NFStrong - <%= @event.name %></h1>
+      <hr style="border-top-color: white; margin-right: 7rem;">
+      <p style='font-size: 120%;'>
+        <i class="fa fa-calendar" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_date.strftime("%A, %B %d, %Y") %>
+        <br>
+        <i class="fa fa-clock-o" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_start_time.strftime("%I:%M %p")  %> - <%= @event.event_end_time.strftime("%I:%M %p")  %>
+        <br>
+        <i class='fa fa-map-marker' aria-hidden="true" style='width:20px;'></i>  <%= @event.venue_name %> - <%= @event.city %>, <%= @event.state %>
+      </p>
+ 
+      <div class='row'>
+        <div class='col-lg-4'>
+          <% if logged_in? %>
+            <% if !current_user.attendees.where(event_id: @event.id).any? %>
+              <div class="dropdown">
+                <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Register
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
+                  <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
+                  <%= link_to 'Business Sponsor', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
+                </div>
+              </div>  
+            <% else %>
+              <%= link_to 'Manage Registration', event_attendee_path(@event, @event.attendees.where(user_id: current_user.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
+            <% end %>
+          <% else %>
+            <div class="dropdown">
+              <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>
+                <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>
+                <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>
+              </div>
+            </div>  
+          <% end %>
+        </div>
+        <div class='col-lg-3'>
+          <%= link_to 'Donate', new_event_contribution_path(@event), class: 'btn btn-success btn-block mt-3 mb-5' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class='row px-2 px-md-5 mt-5'>
+  <div class='col-xl-6 col-xl-8'>
+    <div class='row'>
+      <div class='col-12'>
+      <% if is_admin? %>
+        <div class='row' style='position: fixed; right:50px; top: 75px; z-index: 1003;'>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin Actions
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <%= link_to "Admin View", admin_event_path(@event), class: "dropdown-item" %>
+              <%= link_to "Edit", edit_admin_event_path(@event), class: "dropdown-item" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+        <div class='row'>
+          <div class='col-12'>
+            <div class='card card-block'>
+              <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">We're Making Strong Progress!</h1>
+              <div class="progress mt-3" style='border-radius:50px; padding: 10px; border-radius: 25px;'>
+                <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
+                  border-bottom-right-radius: 20px;
+                  border-top-left-radius: 20px;
+                  border-bottom-left-radius: 20px; 
+                  background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);'>
+                </div>
+              </div>
+              <div class='row mt-3'>
+                <div class='col-md-6'>
+                  <h4>Raised: <%= number_to_currency(@event.raised) %></h4>
+                </div>
+                <div class='col-md-6'>
+                  <h4 class='float-md-right'>Goal: <%= number_to_currency(@event.goal) %></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class='row mb-2 mt-4 text-center'>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
+              <h2 class='mb-0'><%= @event.attendees.count %><br />Attendees</h2>
+            </div>
+          </div>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/groupredaccent.png' class='img-fluid d-block mx-auto pb-1' style='height:90px'>
+              <!--<i class="fa fa-users fa-3x mt-2" aria-hidden="true"></i>-->
+              <h2 class='mb-0'><%= @event.teams.count - 1%><br />Teams</h2>
+          </div>
+          </div>
+          <div class='col-md-4 my-2'>
+            <div class='card card-block callout'>
+              <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
+              <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
+              <h2 class='mb-0'><%= @event.contributions.count %></br>Donations</h2> 
+            </div>
+          </div>
+        </div>
+      <div class='row'>
+        <div class='col-12'>
+          <%= @event.desc.html_safe %>
+        </div>
+      </div>
+    
+      <% if !@event.promo_card.nil? %>
+        <%= render 'promocard' %>
+      <% end %>
+      
+      <div class='row my-3'>
+        <% if @event.champions.empty? %>
+        <div class='col-lg-12 w' style='background-color: #8CBCDF; border-radius: 15px;'>
+          <h3 class='my-3'>NF Champs</h3>
+          <p>Our NF Champs are chosen for their strength, courage, and happiness despite difficult circumstances. View their stories or upload your own and join us in the fight to stay #NFstrong.</p>
+          <%= link_to "Share Your Champ", new_champion_path, class: "btn btn-success my-3" %>
+        </div>
+        <% else %>
+        <div class='col-lg-4 w' style='background-color: #8CBCDF'>
+          <h3 class='my-3'>NF Champs</h3>
+          <p>Our NF Champs are chosen for their strength, courage, and happiness despite difficult circumstances. View their stories or upload your own and join us in the fight to stay #NFstrong.</p>
+          <%= link_to "Share Your Champ", new_champion_path, class: "btn btn-success my-3" %>
+        </div>        
+        <% end %>
+        <% @event.champions.each do |champ| %>
+        <div class='col-lg-4 col-md-6 champ-card' style='background-image: url("<%= champ.champion_image.url %>"); height: 300px; background-size: cover; background-position: center; '>
+          <div class='title-overlay px-3 py-2'>
+              <%= link_to(champion_path(champ)) do %>
+                <h4><%= champ.name %></h4>
+              <% end %>
+            </div>
+        </div>
+        <% end %>
+      </div>
+      
+      </div>
+    </div>
+
+
+  </div>
+  <div class='col-lg-12 col-xl-4'>
+    <div class='row'>
+      <div class='col-12'>
+        <h3 class='sm-header mb-4'>Organizers</h3>
+        <div class='card card-block mb-3'>
+          <% if !@event.organizer_url? %>
+            <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='height:150px; width: 150px;'></a>
+          <% else %>
+          <div class='row'>
+            <div class='col-6'>
+              <a href='<% @event.organizer_url %>' target='_blank'><img src='<%= @event.organizer_logo.url %>' class="img-fluid d-block mx-auto" style='width: 150px;'></a> 
+            </div>
+            <div class='col-6'>
+            <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='width: 150px;'></a>
+            </div>
+          </div>             
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-12'>
+        <h3 class='sm-header mb-4'>Share</h3>
+        <div class='card card-block mb-3'>
+          <ul class='nav justify-content-center pr-1 mt-2'>
+            <li class='nav-item'><a class='nav-link' id='fbshare'><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+            <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+            <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+            <li class='nav-item'><a class='nav-link' href="mailto:?subject=Sharing <%= @event.name %> - <%= @event.state %>"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-12'>
+        <h3 class='sm-header mb-4'>Top Fundraisers</h3>
+        <ul class="nav nav-pills nav-justified" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#teams" role="tab">Teams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#individuals" role="tab">Individuals</a>
+          </li>
+        </ul>
+        
+        <!-- Tab panes -->
+        <div class="tab-content my-3">
+          <div class="tab-pane fade show active" id="teams" role="tabpanel">
+            <div class='card card-block' style='min-height: 395px;'>
+              <table class='table'>
+                <thead>
+                  <tr>
+                    <td>Team Name</td>
+                    <td>Raised</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @top_teams.each do |team| %>
+                  <tr>
+                    <td><%= link_to team.name, event_team_path(team.event, team) %></td>
+                    <td><%= number_to_currency(team.raised) %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="individuals" role="tabpanel">
+            <div class='card card-block' style='min-height: 395px;'>
+              <!--<h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'><#%= link_to(top_attendees_path, class: 'anchor-styled') do %><span>See All</span><#% end %></small></h2>-->
+              <table class='table  table-striped'>
+                <thead>
+                  <tr>
+                    <td>Name</td>
+                    <td>Raised</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @top_fundraisers.each do |attendee| %>
+                  <tr>
+                    <td><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee, attendee.pledge_page) %></td>
+                    <td><%= number_to_currency(attendee.raised) %> </td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='row mb-3'>
+      <div class='col-md-6 col-xl-12 mt-3'>
+        <h3 class='sm-header mb-4'>Event Resources</h3>
+        <!--<div class='card card-block'>-->
+          <div class='list-group'>
+            <% @event.resources.reverse_each do |resource| %>
+              <%= link_to(resource.attachment_url, class: 'list-group-item list-group-item-action', target: '_blank') do %> <i class="fa fa-file-<%= resource.attachment.file.extension.downcase %>-o pr-2" aria-hidden="true"></i>   <%= resource.name %> - Download <% end %></li>
+            <% end %>
+          </div>
+        <!--</div>-->
+      </div>
+      <div class='col-md-6 col-xl-12 mt-3'>
+         <h3 class='sm-header mb-4'>Event Location</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkh8FKeW5f8K0ms_1lNh6QGrBBtBpPY_Y&q=<%= @event.street %>,<%= @event.city %>+<%= @event.state %>" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>         
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row px-5'>
+  <div class='col-xl-8'>
+   <%= render 'comments/new', context: @event %>
+  <div id="comments_container">
+    <%= render @event.comments %>
+  </div>   
+    
+  </div>
+  
+</div>
+<% end %>
+
+<% end %>
+
+<script>
+  $('.popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    
+    window.open(url, 'twitter', opts);
+ 
+    return false;
+  });
+  
+</script>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '438500613204488',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+    
+
+
+<script>
+document.getElementById('fbshare').onclick = function() {
+  FB.ui({
+    method: 'share',
+    mobile_iframe: true,
+    href: '<%= request.original_url %>',
+  }, function(response){});
+}
+</script>
