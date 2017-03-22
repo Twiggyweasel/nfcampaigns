@@ -1,9 +1,4 @@
 class EventsController < ApplicationController
-  force_ssl if: :ssl_configured?
-
-  def ssl_configured?
-    !Rails.env.development?
-  end
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events

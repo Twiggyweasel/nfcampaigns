@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?, :require_user, :require_admin, :is_admin?, :single_profile
   
+  force_ssl if: :ssl_configured?
+
+  def ssl_configured?
+    !Rails.env.development?
+  end
   
   
   def current_user
