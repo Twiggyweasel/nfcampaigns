@@ -22,5 +22,8 @@
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>
+    <% if Rails.env.production? %>
+      <%= render 'shared/analytics_include' %>
+    <% end %>
   </body>
 </html>

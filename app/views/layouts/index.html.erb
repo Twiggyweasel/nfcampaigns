@@ -20,6 +20,9 @@
     <div class='container-fluid mt-0 px-0'>
       <%= yield %>
     </div>
+    <% if Rails.env.production? %>
+      <%= render 'shared/analytics_include' %>
+    <% end %>
   </body>
 </html>
 
