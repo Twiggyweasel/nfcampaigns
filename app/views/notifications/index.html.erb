@@ -1,0 +1,27 @@
+<%= render 'shared/title', title: "#{@user.name}'s Notifications", display: 4 %>
+
+<div class='row'>
+  <div class='col-md-8 offset-md-2'>
+      <% if @user.attendees.where(paid: false).any? %>
+        <div class="list-group">
+          <% @user.attendees.where(paid: false).each do |attendee| %>
+            <div class="list-group-item list-group-item-action flex-column align-items-start py-3">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Event Registration - <%= attendee.event.name %></h5>
+                <small><%= time_ago_in_words(attendee.created_at, include_seconds: false) %> ago</small>
+              </div>
+              <p class="mb-1">You have registered for this event but no payment has been submitted</p>
+              <div class='d-flex w-100 my-3'>
+                                <%= link_to 'View Registration', event_attendee_path(attendee.event, attendee), class: 'btn btn-primary'%>
+                <%= link_to 'Submit Payment', new_attendee_payment_path(attendee), class: 'btn btn-success ml-3' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class='card card-block'>
+          <h4>You currently have no notifications</h4>
+        </div>
+      <% end %>
+  </div>
+</div>

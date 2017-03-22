@@ -60,7 +60,7 @@
                 <% end %>
                 <% if @event.event_type == "Concert" %>
                   <%= f.hidden_field(:shirt_size, :value => "N/A") %>
-                  <%= f.hidden_field(:event_id, :value => @event.teams.first.id) %>
+                  <%= f.hidden_field(:team_id, :value => @event.teams.first.id) %>
                 <% else %>
                 <div class='row my-2'>
                   <div class='col-12'>
@@ -71,7 +71,7 @@
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :team_id, "Choose a Team" %>
-                    <%= f.select( :team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
+                    <%= f.select(:team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
                   </div>
                 </div>
                 <% end %>

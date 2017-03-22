@@ -33,14 +33,17 @@
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color: white;'>
           <% if current_user.profile_pic? %>
-            <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
+            <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px; position: relative;' >
+            <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
           <% else %>
             <img src='<%= image_url('no_user.png') %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
+            <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
           <% end %>
-          <%= current_user.name %>
+          <%= current_user.name.titleize %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
+          <%= link_to(user_notifications_path(current_user), class: 'dropdown-item') do %> Notifications <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-default badge-pill"> <%= current_user.attendees.where(paid: false).count %> </span> <% end %> <% end %>
           <%= link_to "Account Settings", user_account_settings_path(current_user), class: 'dropdown-item' %>
           <%= link_to(logout_path, class: 'dropdown-item') do %> Logout<% end %>
         </div>

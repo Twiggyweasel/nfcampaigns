@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'session#failure'
   
   resources :users do  #needed by omniauth-identity
+    resources :notifications
     resources :profiles, only: [:new, :create, :edit, :update] do
       member { put :has_nf }
     end
