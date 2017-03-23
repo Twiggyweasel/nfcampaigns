@@ -24,10 +24,10 @@ class PaymentsController < ApplicationController
       if @payment.process
         @payment.finalize
         if @payment.payable_type === "Attendee"
-          if @payment.payable.category === "Walk"
-            PaymentsMailer.registration_payment(current_user, @payment).deliver_later
-          elsif
+          if @payment.payable.category === "Concert"
             PaymentsMailer.concert_payment.(current_user, @payment).deliver_later
+          else
+            PaymentsMailer.registration_payment(current_user, @payment).deliver_later
           end  
         end
         
