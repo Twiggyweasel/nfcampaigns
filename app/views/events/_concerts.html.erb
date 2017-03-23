@@ -194,7 +194,7 @@
 
     <div class='row'>
       <div class='col-12'>
-        <h3 class='sm-header mb-4'>Top Fundraisers</h3>
+        <h3 class='sm-header mb-4'>Our Sponsors</h3>
         <!--<ul class="nav nav-pills nav-justified" role="tablist">-->
           <!--<li class="nav-item">-->
           <!--  <a class="nav-link active" data-toggle="tab" href="#teams" role="tab">Teams</a>-->
@@ -227,24 +227,16 @@
           <!--  </div>-->
           <!--</div>-->
           <div class="tab-pane show fade active" id="individuals" role="tabpanel">
-            <div class='card card-block' style='min-height: 395px;'>
-              <!--<h2>TOP 5 INDIVIDUALS <small class='text-muted float-right'><#%= link_to(top_attendees_path, class: 'anchor-styled') do %><span>See All</span><#% end %></small></h2>-->
-              <table class='table  table-striped'>
-                <thead>
-                  <tr>
-                    <td>Name</td>
-                    <td>Raised</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @top_fundraisers.each do |attendee| %>
-                  <tr>
-                    <td><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee, attendee.pledge_page) %></td>
-                    <td><%= number_to_currency(attendee.raised) %> </td>
-                  </tr>
+            <div class='row'>
+              <% @event.attendees.is_corporate.each do |corp| %>
+                <div class='col-12'>
+                  <% if corp.business_logo? %>
+                  <img src='<% corp.business_logo.url %>' class='img-fluid d-block mx-auto'>
+                  <% else %>
+                  <h3><% corp.business_name.titleize %></h3>
                   <% end %>
-                </tbody>
-              </table>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
