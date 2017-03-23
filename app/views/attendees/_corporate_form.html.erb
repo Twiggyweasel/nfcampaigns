@@ -37,7 +37,7 @@ Photoshop and PDF
                   end %>
                   <% else %>
                   
-                  <%= f.select(:fee, options_for_select(@event.registration_fees.is_corporate.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>                 
+                  <%= f.select(:fee, options_for_select(@event.registration_fees.is_corporate.order(amount: :desc).collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>                 
                   <% end %>
                 </div>
               </div>
