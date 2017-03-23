@@ -87,7 +87,7 @@
     <div class='row'>
       <div class='col-12'>
         <div class='card card-block'>
-          <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">We're Making Strong Progress!</h1>
+          <h1 class='text-center mt-3' style="font-family: 'Just Another Hand', cursive; font-size: 310%;">Help Us Reach Our Fundraising Goal!</h1>
           <div class="progress mt-3" style='border-radius:50px; padding: 10px; border-radius: 25px;'>
             <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -182,7 +182,7 @@
         <div class='card card-block mb-3'>
           <ul class='nav justify-content-center pr-1 mt-2'>
             <li class='nav-item'><a class='nav-link' id='fbshare'><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
-            <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20you%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+            <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/intent/tweet?url=<%= request.original_url %>&text=I%20just%20got%20my%20%23NYC%20%23NFHopeConcert%20tickets%21%20Get%20yours%20%26%20come%20join%20me%20on%20May%208%21"><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
             <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
             <li class='nav-item'><a class='nav-link' href="mailto:?subject=Sharing <%= @event.name %> - <%= @event.state %>"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
           </ul>
@@ -280,3 +280,4 @@
   </div>
   
 </div>
+
