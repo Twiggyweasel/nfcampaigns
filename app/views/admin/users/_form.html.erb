@@ -31,7 +31,7 @@
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :role_id, "System Access" %>
-            <%= f.select :role_id, options_from_collection_for_select(Role.all, "id", "name"), { prompt: "Make a Selection" } , class: 'form-control' %>            
+            <%= f.select :role_id, options_from_collection_for_select(Role.all, "id", "name", 2), { prompt: "Make a Selection" } , class: 'form-control' %>            
           </div>
         </div>
         

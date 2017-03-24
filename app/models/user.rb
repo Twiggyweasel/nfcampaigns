@@ -15,6 +15,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   
   accepts_nested_attributes_for :profile
   
+  validates :name, presence: true
+  
   scope :admins, -> { where(role_id: 1) } 
   mount_uploader :profile_pic, ChampionImageUploader
   
