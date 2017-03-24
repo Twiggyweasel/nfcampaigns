@@ -13,11 +13,16 @@ $('#promo-discount').text("-$<%= escape_javascript((@attendee.attendee_total * (
 $('#hidden_total_fee').val(<%=  ((@attendee.attendee_total + @attendee.processing_fee) - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_json %>);
 $('#hidden_total').val(<%= (@attendee.attendee_total - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_json %>);
 
+
+
 if($('#payment_cover_processing').is(':checked')) {
   $('#final-total').text("$<%= escape_javascript( ((@attendee.attendee_total + @attendee.processing_fee) - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_s ) %>")
 } else {
 	$('#final-total').text("$<%= escape_javascript( (@attendee.attendee_total - (@attendee.attendee_total * (@promotion.discount / 100))).floor2(2).to_s ) %>")
 }
+
+$('#hidden_total').remove();
+$('#hidden_total_fee').remove();
 
 $.notify({
 	// options
