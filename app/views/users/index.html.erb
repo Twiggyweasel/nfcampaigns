@@ -14,7 +14,7 @@
           <img src='<%= image_url('no_user.png') %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
         <% end %>
         <div class='card-block'>
-          <h3 class='mt-2'><%= user.name %> <br> <small class='text-muted'><%= user.profile.city %> - <%= user.profile.state %></small></h3>
+          <h3 class='mt-2'><%= user.name %> <br> <small class='text-muted'><%= user.profile.city if user.profile? && user.profile.city? %> - <%= user.profile.state user.profile? && user.profile.state? %></small></h3>
           <%= link_to "View Profile", user_path(user), class: 'btn btn btn-primary'%>
         </div>
       </div>

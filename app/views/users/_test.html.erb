@@ -1,0 +1,68 @@
+<div class='row'>
+  <div class='col-12' style='height:100px; background: #43cea2; background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); 
+background: linear-gradient(to left, #B0DAB9 , #DAD299 ); margin-top:-46px;'>
+     <img src="<%= image_url('no_user.png') %>" class='rounded-circle img-fluid img-thumbnail ml-4 mt-3' style='height:150px; position: absolute; z-index: 100;'> 
+  <div class='col-12 w' style='margin-left: 175px; margin-top: 5px; margin-bottom:25px;'>
+    <h2><%= @user.name %>
+    <div class="dropdown">
+      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Actions
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
+    </h2>
+  </div>
+  </div>
+  <div class='col-12'>
+
+    <div class='card card-block' style='box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14); margin-top: -17px; height:250px; margin-left: 5rem; margin-right: 5rem;'>
+      
+    </div>
+  
+  </div>
+</div>
+
+
+<div class='row mt-5'>
+  <div class='col-12'>
+    <h2 class='text-center'>Registrations</h2>
+  </div>
+  <div class='col-12'>
+    <div class='row my-3 mx-5'>
+      <% @user.attendees.each do |attendee| %>
+      <div class='col-xl-6 my-3'>
+        <div class='card card-inverse' style=''>
+          <img class="card-img img-fluid" src='<%= image_url('walk-wide.jpg') %>' style='max-height: 250px;'>
+          <div class="card-img-overlay" style='background: rgba(38, 49, 59, 0.54)'>
+            <h4 class="card-title"><%= attendee.event.name %></h4>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+            <br><br>
+            <%= link_to "Contribute", attendee_pledge_page_path(attendee), class:'btn btn-outline-secondary' %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+
+
+<div class='row mt-5'>
+  <div class='col-12'>
+    <h2 class='text-center'>Champions</h2>
+  </div>
+  <div class='col-12'>
+    <div class='row my-5 mx-3'>
+      <div class='col-12'>
+        <div class='card card-block mx-5'>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
