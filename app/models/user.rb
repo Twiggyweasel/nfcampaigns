@@ -68,6 +68,11 @@ class User < OmniAuth::Identity::Models::ActiveRecord
     end while User.exists?(column => self[column])
   end
   
+  before_save do 
+    name.downcase!
+    email.downcase!
+  end
+  
   paginates_per 6
   
 end
