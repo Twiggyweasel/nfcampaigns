@@ -83,6 +83,7 @@ class Event < ApplicationRecord
   
   after_create do 
     self.teams.create( name: "No Team", max_members: 999 , event_id: self.id)
+    self.registration_fees.create(name: "Raise $100 (No Payment Now)", category: "Fundraising", amount: 100.00, guest_limit: 0)
     self.registration_fees.create(name: "Adult: 12 and over", category: "Personal", amount: 25.00, guest_limit: 99)
     self.registration_fees.create(name: "Child: 4 to 11", category: "Personal", amount: 12.00, guest_limit: 99)
     self.registration_fees.create(name: "Child: 3 and under", category: "Personal", amount: 6.00, guest_limit: 99)    

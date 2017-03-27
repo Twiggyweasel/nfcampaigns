@@ -3,12 +3,12 @@
     <%= link_to(admin_event_path(@event), class: 'btn btn-success') do %><i class="fa fa-arrow-left" aria-hidden="true"></i> Return To Event <% end %>
   </div>
 </div>
-<%= render 'shared/title', title: "Contributions for #{@event.name}", display: 4 %>
+<%= render 'shared/title', title: "Donations for #{@event.name}", display: 4 %>
 
 <div class='row mb-3'>
   <div class='col-12'>
     <div class='card card-block'>
-      <h3>Create Offline Contribution</h3>
+      <h3>Create Offline Donation</h3>
         <%= render 'admin/contributions/new', event: @event %>
 
     </div>
