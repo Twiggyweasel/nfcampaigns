@@ -35,6 +35,17 @@ class Admin::AttendeesController < ApplicationController
     end
   end
   
+  def destroy 
+    @attendee = Attendee.find(params[:id]) 
+    
+    @attendee.destroy
+    if @attendee.destroyed?
+      redirect_to admin_event_attendees_path(@event), flash => { :danger => "Registration Deleted" }
+    else 
+      redirect_to admin_event_attendees_path(@event), flash => { :danger => "Registration could not be deleted"}
+    end
+  end
+  
   private 
     def set_event 
       @event = Event.find_by_title(params[:event_id])

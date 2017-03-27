@@ -5,7 +5,7 @@ class Attendee < ApplicationRecord
   
   has_one :pledge_page, dependent: :destroy
   has_many :contributions, as: :backable
-  has_many :guests, inverse_of: :attendee
+  has_many :guests, inverse_of: :attendee, dependent: :destroy
   has_many :payments, as: :payable
   accepts_nested_attributes_for :guests, allow_destroy: true, reject_if: :reject_guest
   
