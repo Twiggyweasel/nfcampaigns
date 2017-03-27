@@ -4,6 +4,7 @@
     <td><%= attendee.user.name %></td>
     <td><% if attendee.business_logo? %><%= link_to "Logo", attendee.business_logo.url, :target => "_blank" %><% else %> No Logo Uploaded <% end %></td>
     <td><%= attendee.fee %> </td>
+    <td><%= attendee.paid %></td>
     <td><%= attendee.shirt_size %> </td>
     <td><%= attendee.guests.count %></td>
     <td>Edit | Delete</td>
