@@ -1,15 +1,24 @@
 <%= render 'shared/title', title: "#{@event.name}", display: 2 %>
-<div class='row'>
-  <div class='col-md-8 offset-md-2 mt-3 mb-5'>
-    <%= link_to "Attendees", admin_event_attendees_path(@event), class: 'btn btn-primary' %>
-    <%= link_to "Pledge Pages", "", class: 'btn btn-primary' %> 
-    <%= link_to "Teams", admin_event_teams_path(@event), class: 'btn btn-primary' %>
-    <%= link_to "Contributions", admin_event_contributions_path(@event), class: 'btn btn-primary' %>
-    <%= link_to "User View", event_path(@event), class: 'btn btn-primary' %>
-    <%= link_to "Edit", edit_admin_event_path(@event), class: 'btn btn-warning' %>
-    <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger' %>
-  </div>
-</div>
+  <ul class='nav justify-content-center my-4'>
+    <li class="nav-item">
+      <%= link_to "Attendees", admin_event_attendees_path(@event), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Teams", admin_event_teams_path(@event), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Contributions", admin_event_contributions_path(@event), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "User View", event_path(@event), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
+    </li>
+  </ul>
 <div class='row'>
   <div class='col-6'>
     <div class='card card-block'>
