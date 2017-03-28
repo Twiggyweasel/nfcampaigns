@@ -53,7 +53,7 @@ class SessionController < ApplicationController
         else
           # otherwise we have to create a user with the auth hash
           if !User.find_by_email(auth['info']['email']).blank?
-            render register_path, :flash => { :warning => "Your email address is already associated with an account, please sign in using or reset your password." }
+            redirect_to login_path, :flash => { :warning => "Your email address is already associated with an account, please sign in using or reset your password." }
           else
             u = User.create_with_omniauth(auth)
           end
