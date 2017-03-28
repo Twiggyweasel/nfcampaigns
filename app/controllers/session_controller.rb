@@ -33,7 +33,11 @@ class SessionController < ApplicationController
         # The authentication we found had a user associated with it so let's 
         # just log them in here
         self.current_user = @authentication.user
-        redirect_to root_path, :flash => { :success => 'You have been signed in!' }
+        if current_user.profile.nil?
+          redirect_to new_user_profile_path(current_user)
+        else
+          redirect_to root_path, :flash => { :success => 'You have been signed in!' }
+        end 
       else
         # The authentication has no user assigned and there is no user signed in
         # Our decision here is to create a new account for the user
