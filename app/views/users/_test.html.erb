@@ -1,9 +1,10 @@
 <div class='row'>
-  <div class='col-12' style='height:100px; background: #43cea2; background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); 
-background: linear-gradient(to left, #B0DAB9 , #DAD299 ); margin-top:-46px;'>
+  <div class='col-12' style='height:120px; background: #43cea2; background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); 
+background: linear-gradient(to left, #FF512F , #DD2476); margin-top:-46px;'>
      <img src="<%= image_url('no_user.png') %>" class='rounded-circle img-fluid img-thumbnail ml-4 mt-3' style='height:150px; position: absolute; z-index: 100;'> 
   <div class='col-12 w' style='margin-left: 175px; margin-top: 5px; margin-bottom:25px;'>
     <h2><%= @user.name %>
+    <% if @user == current_user %>
     <div class="dropdown">
       <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Actions
@@ -14,12 +15,13 @@ background: linear-gradient(to left, #B0DAB9 , #DAD299 ); margin-top:-46px;'>
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div>
+    <% end %>
     </h2>
   </div>
   </div>
   <div class='col-12'>
 
-    <div class='card card-block' style='box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14); margin-top: -17px; height:250px; margin-left: 5rem; margin-right: 5rem;'>
+    <div class='card card-block' style='box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14); margin-top: -25px; height:250px; margin-left: 5rem; margin-right: 5rem;'>
       
     </div>
   
@@ -38,10 +40,10 @@ background: linear-gradient(to left, #B0DAB9 , #DAD299 ); margin-top:-46px;'>
         <div class='card card-inverse' style=''>
           <img class="card-img img-fluid" src='<%= image_url('walk-wide.jpg') %>' style='max-height: 250px;'>
           <div class="card-img-overlay" style='background: rgba(38, 49, 59, 0.54)'>
-            <h4 class="card-title"><%= attendee.event.name %></h4>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-            <br><br>
-            <%= link_to "Contribute", attendee_pledge_page_path(attendee), class:'btn btn-outline-secondary' %>
+            <h4 class="card-title"><%= attendee.event.name %> - <%= attendee.event.name %></h4>
+            <p class="card-text"><i class='fa fa-calendar'></i></i> <%= attendee.event.event_date.strftime(" %m/%d/%Y") %> -  <i class='fa fa-clock-o'></i> <%= attendee.event.event_start_time.strftime("%l:%M %p") + " - " + attendee.event.event_end_time.strftime("%l:%M %p") %>
+            <br /> <br />
+            <%= link_to "View Event", event_path(attendee.event), class: 'btn btn-primary mx-2' %><%= link_to "Contribute", attendee_pledge_page_path(attendee), class:'btn btn-success mx-2' %>
             </p>
           </div>
         </div>
