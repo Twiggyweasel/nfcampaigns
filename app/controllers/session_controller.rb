@@ -52,7 +52,11 @@ class SessionController < ApplicationController
           # redirect_to root_path :flash => { :success => "You have been signed in!" } and return
         else
           # otherwise we have to create a user with the auth hash
-          u = User.create_with_omniauth(auth)
+          if !User.find_by_email(auth['info']['email']).empty?
+            redirect_to register_path, :flash => { :warning => "Your email address is already associated with an account, please sign in using or reset your password." }
+          else
+            u = User.create_with_omniauth(auth)
+          end
           # NOTE: we will handle the different types of data we get back
           # from providers at the model level in create_with_omniauth
         end
