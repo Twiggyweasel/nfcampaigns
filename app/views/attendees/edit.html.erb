@@ -1,6 +1,6 @@
 <%= render 'shared/title', title: "Update Registration Details", display: 4 %>
 
-<% if params[:category] == 'personal' %>
+<% if params[:category] == 'personal' || @attendee.category == 'Personal' || @attendee.category == 'Personal Fundraising' %>
   <%= render 'personal_form' %>
 <% else %>
   <%= render 'corporate_form' %>
