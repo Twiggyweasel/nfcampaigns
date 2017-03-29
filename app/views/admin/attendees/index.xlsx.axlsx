@@ -7,7 +7,7 @@ wb.add_worksheet(name: "Registration Checkin List") do |sheet|
   @attendees.each do |attendee|
     sheet.add_row [attendee.user.name, attendee.shirt_size, attendee.paid, ]
     attendee.guests.each do |guest|
-      sheet.add_row [guest.name, guest.shirt_size]
+      sheet.add_row [guest.name, guest.shirt_size, "N/A"]
     end
   end
 end
