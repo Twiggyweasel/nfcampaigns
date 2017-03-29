@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321014603) do
+ActiveRecord::Schema.define(version: 20170329031720) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170321014603) do
     t.integer  "attendee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "paid"
     t.index ["attendee_id"], name: "index_guests_on_attendee_id"
   end
 
