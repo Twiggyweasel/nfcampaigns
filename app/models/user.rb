@@ -73,7 +73,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
     email.downcase!
   end
   
-  def is_new
+  def is_new?
     self.created_at.between?((Time.now - 24.hours), Time.now)
 
   end
