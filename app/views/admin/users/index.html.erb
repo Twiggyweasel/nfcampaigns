@@ -1,5 +1,17 @@
 <%= render 'shared/title', title: 'All Users' %>
 <div class='container mt-3'>
+  <div class='row my-4'>
+    <div class='col-lg-4'>
+      <div class='card card-block callout text-center'>
+        <h2 class='mb-0'><%= @users.count %><br />Total Users</h2>
+      </div>
+    </div>
+    <div class='col-lg-4'>
+      <div class='card card-block callout text-center'>
+        <h2 class='mb-0'><%= @users.is_new.count %><br />New Users</h2>
+      </div>
+    </div>
+  </div>
   <div class='row'>
     <div class='col-12'>
       <%= link_to "Create User", new_admin_user_path, class: 'btn btn-success' %><%= link_to(admin_users_path(format: :xlsx), class: 'btn btn-primary btn-sm float-right') do %><i class='fa fa-download'></i> Export to Excel <% end %>
