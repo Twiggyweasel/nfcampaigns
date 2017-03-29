@@ -12,6 +12,10 @@ class Admin::AttendeesController < ApplicationController
     
   end
   
+  def show
+    @attendee.find(params[:id])
+  end
+  
   def new
     @attendee = @event.attendees.new
   end
