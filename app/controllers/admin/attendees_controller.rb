@@ -5,6 +5,11 @@ class Admin::AttendeesController < ApplicationController
   
   def index
     @attendees = Attendee.includes(:pledge_page).where(event_id: @event.id)
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end  
+    
   end
   
   def new

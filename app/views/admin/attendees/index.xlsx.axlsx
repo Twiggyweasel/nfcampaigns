@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Registration Checkin List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  
+  sheet.add_row ["Name", "Shirt Size", "Has Paid"]
+  @attendees.each do |attendee|
+    sheet.add_row [attendee.user.name, attendee.shirt_size, attendee.paid, ]
+    attendee.guests.each do |guest|
+      sheet.add_row [guest.name, guest.shirt_size]
+    end
+  end
+end

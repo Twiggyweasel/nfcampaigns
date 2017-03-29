@@ -2,8 +2,8 @@
   <div class='col-12' style='height:120px; background: #43cea2; background: -webkit-linear-gradient(to left, #43cea2 , #185a9d); 
 background: linear-gradient(to left, #FF512F , #DD2476); margin-top:-46px;'>
      <img src="<%= image_url('no_user.png') %>" class='rounded-circle img-fluid img-thumbnail ml-4 mt-3' style='height:150px; position: absolute; z-index: 100;'> 
-  <div class='col-12 w' style='margin-left: 175px; margin-top: 5px; margin-bottom:25px;'>
-    <h2><%= @user.name %>
+  <div class='col-12 w hidden-md-down' style='margin-left: 175px; margin-top: 5px; margin-bottom:25px;'>
+    <h2 class=''><%= @user.name %>
     <% if @user == current_user %>
     <div class="dropdown">
       <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,50 +21,78 @@ background: linear-gradient(to left, #FF512F , #DD2476); margin-top:-46px;'>
   </div>
   <div class='col-12'>
 
-    <div class='card card-block' style='box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14); margin-top: -25px; height:250px; margin-left: 5rem; margin-right: 5rem;'>
-      
+    <div class='card card-block mx-md-5' style='box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14); margin-top: -25px; min-height:250px;'>
+      <div class='row px-5 mx-md-5 py-md-5'>
+        <div class='col-lg-4 text-center my-5'>
+          <h3>Events</h3>
+          <h1><%= @user.attendees.count %></h1>
+        </div>
+         <div class='col-lg-4 text-center my-5'>
+          <h3>Donations</h3>
+          <h1><%= @user.contributions.where(paid: true).count %></h1>
+        </div>
+         <div class='col-lg-4 text-center my-5'>
+          <h3>Total Raised</h3>
+          <h1><%= number_to_currency(@user.total_raised) %></h1>
+        </div>
+      </div>
     </div>
   
   </div>
 </div>
 
+<% if @user.attendees.blank? %>
+<!--<div class='row mt-5'>-->
+<!--  <div class='col-12'>-->
+<!--    <h2 class='text-center'>Registrations</h2>-->
+<!--  </div>-->
+<!--  <div class='col-12'>-->
 
-<div class='row mt-5'>
+      <!--<div class='row my-3 mx-5'>-->
+      <!--  <div class='col-xl-6 offset-xl-3 my-3'>-->
+      <!--    <div class='card card-block'>-->
+      <!--      <h3 class='text-center'><#%= @user.name.titleize %> hasn't registered for any events</h3>-->
+      <!--    </div>-->
+      <!--  </div>    -->
+      <!--</div>-->
+    <% else %>
+    <div class='row mt-5'>
   <div class='col-12'>
     <h2 class='text-center'>Registrations</h2>
   </div>
   <div class='col-12'>
-    <div class='row my-3 mx-5'>
-      <% @user.attendees.each do |attendee| %>
-      <div class='col-xl-6 my-3'>
-        <div class='card card-inverse' style=''>
-          <img class="card-img img-fluid" src='<%= image_url('walk-wide.jpg') %>' style='max-height: 250px;'>
-          <div class="card-img-overlay" style='background: rgba(38, 49, 59, 0.54)'>
-            <h4 class="card-title"><%= attendee.event.name %> - <%= attendee.event.name %></h4>
-            <p class="card-text"><i class='fa fa-calendar'></i></i> <%= attendee.event.event_date.strftime(" %m/%d/%Y") %> -  <i class='fa fa-clock-o'></i> <%= attendee.event.event_start_time.strftime("%l:%M %p") + " - " + attendee.event.event_end_time.strftime("%l:%M %p") %>
-            <br /> <br />
-            <%= link_to "View Event", event_path(attendee.event), class: 'btn btn-primary mx-2' %><%= link_to "Contribute", attendee_pledge_page_path(attendee), class:'btn btn-success mx-2' %>
-            </p>
+      <div class='row my-3 mx-5'>
+        <% @user.attendees.each do |attendee| %>
+        <div class='col-xl-6 my-3'>
+          <div class='card card-inverse' style=''>
+            <img class="card-img img-fluid" src='<%= image_url('walk-wide.jpg') %>' style='max-height: 250px;'>
+            <div class="card-img-overlay" style='background: rgba(38, 49, 59, 0.54)'>
+              <h4 class="card-title"><%= attendee.event.name %> - <%= attendee.event.name %></h4>
+              <p class="card-text"><i class='fa fa-calendar'></i></i> <%= attendee.event.event_date.strftime(" %m/%d/%Y") %> -  <i class='fa fa-clock-o'></i> <%= attendee.event.event_start_time.strftime("%l:%M %p") + " - " + attendee.event.event_end_time.strftime("%l:%M %p") %>
+              <br /> <br />
+              <%= link_to "View Event", event_path(attendee.event), class: 'btn btn-primary mx-2' %><%= link_to "Contribute", attendee_pledge_page_path(attendee), class:'btn btn-success mx-2' %>
+              </p>
+            </div>
           </div>
         </div>
+        <% end %>
       </div>
-      <% end %>
-    </div>
-    </div>
-  </div>
 
-
-<div class='row mt-5'>
-  <div class='col-12'>
-    <h2 class='text-center'>Champions</h2>
-  </div>
-  <div class='col-12'>
-    <div class='row my-5 mx-3'>
-      <div class='col-12'>
-        <div class='card card-block mx-5'>
-          
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+    <% end %>
+
+<!--<div class='row mt-5'>-->
+<!--  <div class='col-12'>-->
+<!--    <h2 class='text-center'>Champions</h2>-->
+<!--  </div>-->
+<!--  <div class='col-12'>-->
+<!--      <div class='row my-3 mx-5'>-->
+<!--        <div class='col-xl-6 offset-xl-3 my-3'>-->
+<!--        <div class='card card-block'>-->
+<!--          <h3 class="text-center"><#%= @user.name.titleize %> hasn't submitted any champions</h3>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

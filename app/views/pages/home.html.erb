@@ -119,7 +119,7 @@
           <tbody>
             <% @top_attendees.each do |attendee| %>
             <tr>
-              <td><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee, attendee.pledge_page) %></td>
+              <td><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee) %></td>
               <td><%= number_to_currency(attendee.raised) %> </td>
             </tr>
             <% end %>

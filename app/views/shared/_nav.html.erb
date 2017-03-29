@@ -55,5 +55,12 @@
     </ul>
   </div>
   </div>
+
 </nav>
+<% if !browser.modern? %>
+<nav class='navbar navbar-nav fixed-top navbar-inverse w text-center' id='browser-notice' style='top: 65px; background-color: #d9534f'>
+  <h6 class='p-2'>The browser you are using is out of date. Some features on this site may not work correctly. Please consider updating your browser.</h6>
+
+</nav>
+<% end %>
 </div>

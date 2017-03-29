@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
-  
+  require 'browser'
+
   def show 
     @application = Application.find(params[:id])
   end
