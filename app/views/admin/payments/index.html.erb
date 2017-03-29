@@ -19,7 +19,7 @@
       <% if @payments.size > 0 %>
         <% @payments.each do |payment| %>
           <tr>
-            <td><%= payment.first_name %></td>
+            <td><%= link_to  payment.first_name, admin_user_path(payment.user_id) %></td>
             <td><%= payment.last_name %></td>
             <td><%= payment.last4 %></td>
             <td><%= number_to_currency payment.amount %></td>
