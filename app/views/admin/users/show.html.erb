@@ -17,6 +17,9 @@
     <div class='row'>
       <div class='col-12' style='margin-left: 110px;'>
         <h4>Contact Info</h4>
+        <% if @user.profile.nil? %>
+        
+        <% else %>
         <div class='row my-3'>
           <div class='col-lg-6'>
             <i class="fa fa-home fa-2x float-left"></i>         
@@ -35,6 +38,7 @@
             <span class='ml-3'><%= @user.email %></span>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
