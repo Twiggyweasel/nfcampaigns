@@ -13,7 +13,7 @@ class Admin::AttendeesController < ApplicationController
   end
   
   def show
-    @attendee.find(params[:id])
+    @attendee = Attendee.find(params[:id])
   end
   
   def new
