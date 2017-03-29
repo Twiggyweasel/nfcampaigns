@@ -9,6 +9,17 @@
     <td><%= attendee.guests.count %></td>
     <td><%= link_to "Edit", edit_admin_event_attendee_path(attendee.event, attendee) %> | <%= link_to "Delete", admin_event_attendee_path(attendee.event, attendee), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' } %></td>
   </tr>
+  <% attendee.guests.each do |guest| %>
+  <tr>
+    <td><%= attendee.business_name %></td>
+    <td><%= guest.name %></td>
+    <td></td>
+    <td><%= guest.fee %></td>
+    <td><%= attendee.paid %></td>
+    <td><%= guest.shirt_size %></td>
+    <td></td>
+  </tr>
+  <% end %>
 <% else %>
   <tr>
     <td><%= attendee.user.name %></td>
@@ -19,5 +30,15 @@
     <td><%= attendee.team.name %></td>
     <td><%= attendee.paid %></td>
     <td><%= link_to "Donation Page", attendee_pledge_page_path(attendee) %> | <%= link_to "Edit", edit_admin_event_attendee_path(@event, attendee) %> | <%= link_to "Delete", admin_event_attendee_path(attendee.event, attendee), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' } %></td>
+  </tr>
+  <%= attendee.guests.each do |guest| %>
+  <tr>
+    <td><%= guest.name %></td>
+    <td>Guest</td>
+    <td><%= number_to_currency(guest.fee) %></td>
+    <td><%= guest.shirt_size %></td>
+    <td></td>
+    <td><%= attendee.team.name %></td>
+    <td><%= attendee.paid %></td>
   </tr>
 <% end %>
