@@ -1,7 +1,7 @@
 <% if attendee.category == 'Corporate' %>
   <tr>
     <td><%= attendee.business_name %></td>
-    <td><%= attendee.user.name %></td>
+    <td><%= attendee.user.name.titleize %></td>
     <td><% if attendee.business_logo? %><%= link_to "Logo", attendee.business_logo.url, :target => "_blank" %><% else %> No Logo Uploaded <% end %></td>
     <td><%= number_to_currency(attendee.fee) %> </td>
     <td><%= attendee.paid %></td>
@@ -11,8 +11,8 @@
   </tr>
   <% attendee.guests.each do |guest| %>
   <tr>
-    <td><%= attendee.business_name %></td>
-    <td><%= guest.name %></td>
+    <td>Corporate Guests</td>
+    <td><%= guest.name.titleize %></td>
     <td></td>
     <td><%= number_to_currency(guest.fee) %></td>
     <td><%= attendee.paid %></td>
@@ -22,7 +22,7 @@
   <% end %>
 <% else %>
   <tr>
-    <td><%= attendee.user.name %></td>
+    <td><%= attendee.user.name.titleize %></td>
     <td><%= attendee.category %></td>
     <td><%= number_to_currency(attendee.fee) %> </td>
     <td><%= attendee.shirt_size %></td>
@@ -33,7 +33,7 @@
   </tr>
   <% attendee.guests.each do |guest| %>
   <tr>
-    <td><%= guest.name %></td>
+    <td><%= guest.name.titleize %></td>
     <td>Guest</td>
     <td><%= number_to_currency(guest.fee) %></td>
     <td><%= guest.shirt_size %></td>
