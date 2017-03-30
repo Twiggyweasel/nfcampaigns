@@ -108,7 +108,7 @@ class Payment < ApplicationRecord
         update_columns({ authorization_code: transaction.authorization, success: true, last4: credit_card.number[-4..-1], amount: (final_amount.floor2(2)) })
         true
       else
-        update_columns({last4: credit_card.number[-4..-1], amount: (final_amount).floor2(2), authorization_code: StandardError.new( response.message ).to_s})
+        update_columns({last4: credit_card.number[-4..-1], success: false, amount: (final_amount).floor2(2), authorization_code: StandardError.new( response.message ).to_s})
         errors.add(:base, "The credit card you provided could not be authorized.  Please double check your information and try again.") and return
         false
       end
