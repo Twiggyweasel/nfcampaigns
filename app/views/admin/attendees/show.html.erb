@@ -1,1 +1,9 @@
 <%= render 'shared/title', title: "Coming Soon", display: 2 %>
+
+<ul>
+  <li>Registration for: <%= @attendee.user.name %></li>
+  <li>Event Name: <%= @attendee.event.name %></li>
+  <li>Shirt Size: <%= @attendee.shirt_size %></li>
+  <li>Registration Category: <%= @attendee.category %></li>
+  <li>Paid: <%= @attendee.guests.count %></li>
+</ul>
