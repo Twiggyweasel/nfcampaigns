@@ -176,13 +176,13 @@
                                         <% if @users.empty? %>
                                         <tr>
                                             <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
-                                            No new users joined the app today.
+                                            No new users joined the app in the last 2 hours.
                                             </td>
                                         </tr>
                                         <% else %>
                                         <tr>
                                             <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
-                                              Today <%= @users.count %> new users joined the app!
+                                              <%= @users.count %> new users joined the app in the last 2 hours!
                                             </td>
                                         </tr>
 
@@ -200,7 +200,7 @@
                                                   	<tr>
                                                           <td style="padding: 15px;"><%= new.name.titleize %></td>
                                                           <td style="padding: 15px;"><%= new.email %></td>
-                                                          <td style="padding: 15px; alignment: center;"><%= new.profile.state %></td>
+                                                          <td style="padding: 15px; alignment: center;"><%= new.profile.state if !new.profile.nil? %></td>
                                                       </tr>
                                                     <% end %>  
                                                   </tbody>
