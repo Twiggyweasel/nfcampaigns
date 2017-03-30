@@ -10,7 +10,7 @@ end
 task :send_new_actions => :environment do
   puts "building new actions summary"
   User.admins.offset(1).each do |user|
-    AdminMailer.new_actions(user, User.is_new_2_hours, Attendee.is_new_2_hours, Payments.is_new_2_hours).deliver
+    AdminMailer.new_actions(user, User.is_new_2_hours, Attendee.is_new_2_hours, Payment.is_new_2_hours).deliver
   end
   puts "done."
 end

@@ -173,7 +173,7 @@
                                         <tr>
                                             <td align="center" style="font-size: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333; padding-top: 30px;" class="padding-copy">New Users Summary</td>
                                         </tr>
-                                        <% if @new.empty? %>
+                                        <% if @users.empty? %>
                                         <tr>
                                             <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
                                             No new users joined the app today.
@@ -182,7 +182,7 @@
                                         <% else %>
                                         <tr>
                                             <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
-                                              Today <%= @new.count %> new users joined the app!
+                                              Today <%= @users.count %> new users joined the app!
                                             </td>
                                         </tr>
 
@@ -196,7 +196,7 @@
                                                       
                                                   </thead>
                                                   <tbody>
-                                                    <% @new.each do |new| %>
+                                                    <% @users.each do |new| %>
                                                   	<tr>
                                                           <td style="padding: 15px;"><%= new.name.titleize %></td>
                                                           <td style="padding: 15px;"><%= new.email %></td>
