@@ -28,7 +28,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
 
   
   scope :is_new, -> { where(created_at: (Time.now - 24.hours)..Time.now) }
-  
+  scope :is_new_2_hours, -> { where(created_at: (Time.now - 2.hours)..Time.now) }
   def self.create_with_omniauth(auth)
     pass_gen = rand(36**10).to_s(36)
     auth_name = auth['info']['name']

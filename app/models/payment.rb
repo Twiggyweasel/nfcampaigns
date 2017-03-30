@@ -27,6 +27,8 @@ class Payment < ApplicationRecord
   validates :zip, presence: true
   validate :valid_card
   
+  scope :is_new_2_hours, -> { where(created_at: (Time.now - 2.hours)..Time.now) }
+  
   def finalize
     if self.success == true 
       self.payable.update_column(:paid, true)

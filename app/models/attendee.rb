@@ -19,6 +19,8 @@ class Attendee < ApplicationRecord
   
   scope :is_corporate, -> { where(category: 'Corporate') }
   scope :is_personal, -> { where(category: 'Personal') }
+  scope :is_new_2_hours, -> { where(created_at: (Time.now - 2.hours)..Time.now) }
+  
   after_create do
     self.create_pledge_page(goal: 1000, attendee_id: self.id)
 
