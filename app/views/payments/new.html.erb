@@ -1,4 +1,4 @@
-<% if @context.event.event_type === "Concert" %>
+<% if @context.event.event_type === "Concert" && @context.instance_of? Order %>
 
   <%= render 'concert' %>
 <% else %>
