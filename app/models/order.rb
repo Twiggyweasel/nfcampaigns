@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   belongs_to :user
   
   accepts_nested_attributes_for :order_items
-  
+
   def amount
     amount = 0
     self.order_items.each do |item|

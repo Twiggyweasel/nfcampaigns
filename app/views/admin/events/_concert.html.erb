@@ -1,18 +1,39 @@
 <%= render 'shared/title', title: "#{@event.name}", display: 2 %>
-  <ul class='nav justify-content-center my-4'>
-    <li class="nav-item">
-      <%= link_to "Orders", admin_event_attendees_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Donations", admin_event_contributions_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "User View", event_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
-    </li>
-  </ul>
+<ul class='nav justify-content-center my-4'>
+  <li class="nav-item">
+    <%= link_to "Orders", admin_event_orders_path(@event), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Donations", admin_event_contributions_path(@event), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "User View", event_path(@event), class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
+  </li>
+</ul>
+  
+<div class='row'>
+  <div class='col-12'>
+    <div class='card card-block'>
+      Tickets Available
+      <table class='table'>
+        <thead>
+          <th>Ticket Name</th>
+          <th>Ticket Price</th>
+          <th>Quantity</th>
+          <th>Sold</th>
+          <th>Sold Out</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <%= render @event.tickets %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<tr>
+  <td><%= ticket.name %></td>
+  <td><%= ticket.fee %></td>
+  <td><%= ticket.quantity %></td>
+  <td><%= ticket.sold %></td>
+  <td><%= ticket.is_soldout %></td>
+  <td><%= link_to "Edit", edit_admin_event_ticket_path(ticket.event, ticket) %></td>
+</tr>

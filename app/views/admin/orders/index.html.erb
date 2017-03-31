@@ -1,0 +1,29 @@
+<div class='row my-2'>
+  <div class='col-12'>
+    <%= link_to(admin_event_path(@event), class: 'btn btn-success') do %><i class="fa fa-arrow-left" aria-hidden="true"></i> Return To Event <% end %>
+  </div>
+</div>
+<%= render 'shared/title', title: "Orders for #{@event.name.titleize}", display: 2 %>
+
+<table class='table'>
+  <thead>
+    <th>Purchaser</th>
+    <th>Ticket Type</th>
+    <th>Quantity</th>
+    <th>Total</th>
+    <th>Paid</th>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <% order.order_items.has_quant.each do |item| %>
+      <tr>
+        <td><%= order.user.name %></td>
+        <td><%= item.ticket.name %></td>
+        <td><%= item.quantity %></td>
+        <th><%= number_to_currency(item.total) %></th>
+        <th><%= order.paid %></th>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

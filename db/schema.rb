@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331010426) do
+ActiveRecord::Schema.define(version: 20170331051708) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -146,17 +146,21 @@ ActiveRecord::Schema.define(version: 20170331010426) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "quantity"
-    t.integer "order_id"
-    t.integer "ticket_id"
+    t.integer  "quantity"
+    t.integer  "order_id"
+    t.integer  "ticket_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["ticket_id"], name: "index_order_items_on_ticket_id"
   end
 
   create_table "orders", force: :cascade do |t|
-    t.boolean "paid"
-    t.integer "event_id"
-    t.integer "user_id"
+    t.boolean  "paid"
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["event_id"], name: "index_orders_on_event_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -287,13 +291,15 @@ ActiveRecord::Schema.define(version: 20170331010426) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.string  "name"
-    t.float   "fee"
-    t.date    "date_available"
-    t.integer "quantity"
-    t.integer "sold"
-    t.boolean "is_soldout",     default: false
-    t.integer "event_id"
+    t.string   "name"
+    t.float    "fee"
+    t.date     "date_available"
+    t.integer  "quantity"
+    t.integer  "sold"
+    t.boolean  "is_soldout",     default: false
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 

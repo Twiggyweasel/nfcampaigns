@@ -1,4 +1,5 @@
 class Admin::TicketsController < ApplicationController
+  layout 'admin'
   before_action :set_event, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user, :require_admin
   def new

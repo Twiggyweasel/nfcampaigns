@@ -29,7 +29,7 @@
       <h2 class='card-title'><i class='fa fa-shopping-cart'></i> Cart</h2>
       <hr />
       <p class='py-2'>
-        <h4>Total: <span class='float-right' id='total'>$0.00</span></h4>
+        <h4>Total: <span class='float-right' id='total'><%= @order.new_record? ? "$0.00" : number_to_currency(@order.amount) %></span></h4>
       </p>
         </div>
       <div class='card-footer'>
