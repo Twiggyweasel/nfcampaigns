@@ -6,4 +6,13 @@ module PaymentsHelper
   def years
     (Time.now.year..Time.now.year+15)
   end
+  
+  def get_instance(object)
+    if object.is_a Order
+      true
+    else
+      false
+    end
+  end
 end
+
