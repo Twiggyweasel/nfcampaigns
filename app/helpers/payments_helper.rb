@@ -8,7 +8,7 @@ module PaymentsHelper
   end
   
   def get_instance(object)
-    if object.is_a Order
+    if object.is_a? Order
       true
     else
       false
