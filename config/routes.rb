@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :contributions
       resources :promo_cards, except:[:index]
       resources :teams
+      resources :orders
+      resources :tickets
     end
     resources :promotions 
     resources :users
@@ -25,6 +27,13 @@ Rails.application.routes.draw do
     resources :teams, except: [:index]
     resources :attendees, except: [:index]
     resources :registration_fees
+    resources :orders
+  end
+  
+  resources :orders do
+    resources :payments
+    get 'reciept', to: 'orders#reciept'
+    get 'decline', to: 'orders#decline'
   end
   
   resources :contributions, except: [:destroy, :index] do

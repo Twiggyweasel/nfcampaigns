@@ -1,0 +1,25 @@
+<%= form_for([:admin, @event, @ticket]) do |f| %>
+  <% if @ticket.errors.any? %>
+    <%= render 'shared/errors', errors: @ticket.errors %>
+  <% end %>
+  <div class='row'>
+    <div class='col-lg-6 offset-lg-3'>
+        <%= f.label :name, "Ticket Display Name" %>
+  <%= f.text_field :name, class: "form-control" %>
+  
+  <%= f.label :fee, "Ticket Price" %>
+  <%= f.text_field :fee, class: "form-control" %>
+  
+    <%= f.label :date_available, "Date tickets are available for purchase" %>
+  <%= f.date_field :date_available, class: "form-control" %>
+  
+    <%= f.label :quantity, "Number of Tickets Available" %>
+  <%= f.number_field :quantity, class: "form-control" %>
+  
+  <%= f.submit(@ticket.new_record? ? "Create New Ticket" : "Update Ticket Information", class: 'btn btn-success btn-block my-3') %>
+  <%= link_to "Cancel", admin_event_path(@event), class: 'btn btn-danger btn-block my-3' %>
+    </div>
+  </div>
+
+  
+<% end %>

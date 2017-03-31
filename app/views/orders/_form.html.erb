@@ -1,0 +1,87 @@
+<%= form_for([@event, @order]) do |f| %>
+<% if @order.errors.any? %>
+  <%= render "shared/errors", errors: @order.errors %>
+<% end %>
+
+<div class='row'>
+  <div class='col-lg-4 offset-lg-3'>
+    <div class='card card-block'>
+      <h2 class='card-title'><i class='fa fa-ticket'></i> Select Tickets</h2>
+      <hr />
+      <%= f.hidden_field(:user_id, :value => current_user.id) %>  
+      <%= f.fields_for :order_items do |ff| %>
+        <div class='row my-2'>
+          <div class='col-6'>
+            <%= ff.hidden_field(:ticket_id, :value => @ticket_ids[ff.index]) %>
+            <%= @ticket_names[ff.index] %><br><%= number_to_currency(@ticket_fees[ff.index]) %>
+          </div>
+          <div class='col-6'>
+            <%= ff.label :quantity %>
+            <%= ff.select(:quantity, options_for_select([0,1,2,3,4,5,6,7,8,9,10], ff.object.quantity), { }, class: 'form-control') %>
+          </div>
+        </div>
+       <% end %>
+    </div>
+  </div>
+  <div class='col-lg-3 offset-lg-1'>
+    <div class='card'>
+      <div class='card-block'>
+      <h2 class='card-title'><i class='fa fa-shopping-cart'></i> Cart</h2>
+      <hr />
+      <p class='py-2'>
+        <h4>Total: <span class='float-right' id='total'>$0.00</span></h4>
+      </p>
+        </div>
+      <div class='card-footer'>
+        <%= f.submit(@order.new_record? ? "Submit Payment" : "Update Order", class: 'btn btn-block btn-success my-3') %>
+        <%= link_to "Cancel", event_path(@event), class: 'btn btn-danger btn-block my-3' %>
+</div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<script>
+  
+  var cart_total = 0
+  var order_item_0 = 0
+  var order_item_1 = 0
+  var order_item_2 = 0
+  
+  $('#order_order_items_attributes_0_quantity').change(function() {
+    var quantity = $(this).val();
+    var fee = <%= @ticket_fees[0] %>;
+    var adjust = quantity * fee;
+    order_item_0 = adjust;
+    calc_cart_total();
+    
+  });
+  
+  $('#order_order_items_attributes_1_quantity').change(function() {
+    var quantity = $(this).val();
+    var fee = <%= @ticket_fees[0] %>;
+    var adjust = quantity * fee;
+    order_item_1 = adjust;
+    calc_cart_total();
+    
+  });
+  
+  $('#order_order_items_attributes_2_quantity').change(function() {
+    var quantity = $(this).val();
+    var fee = <%= @ticket_fees[0] %>;
+    var adjust = quantity * fee;
+    order_item_2 = adjust;
+    calc_cart_total();
+    
+  });
+  
+  function calc_cart_total(){
+    cart_total = order_item_0 + order_item_1 + order_item_2;
+    console.log(cart_total);
+    $('#total').text('$' + cart_total + ".00");
+  }
+  
+  
+  
+</script>

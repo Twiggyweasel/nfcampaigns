@@ -1,100 +1,104 @@
-<%= render 'shared/title', title: "#{@event.name}", display: 2 %>
-  <ul class='nav justify-content-center my-4'>
-    <li class="nav-item">
-      <%= link_to "Attendees", admin_event_attendees_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Teams", admin_event_teams_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Donations", admin_event_contributions_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "User View", event_path(@event), class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
-    </li>
-  </ul>
-<div class='row'>
-  <div class='col-6'>
-    <div class='card card-block'>
-      <h3 class='text-center'>Shirt Sizes</h3>
-      <%= column_chart @event.attendees.group(:shirt_size).count, backgroundColor: ["pink", "#999"] %>
+<% if @event.event_type === "Concert" %>
+  <%= render 'concert' %>
+<% else %>
+  <%= render 'shared/title', title: "#{@event.name}", display: 2 %>
+    <ul class='nav justify-content-center my-4'>
+      <li class="nav-item">
+        <%= link_to "Attendees", admin_event_attendees_path(@event), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Teams", admin_event_teams_path(@event), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Donations", admin_event_contributions_path(@event), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "User View", event_path(@event), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
+      </li>
+    </ul>
+  <div class='row'>
+    <div class='col-6'>
+      <div class='card card-block'>
+        <h3 class='text-center'>Shirt Sizes</h3>
+        <%= column_chart @event.attendees.group(:shirt_size).count, backgroundColor: ["pink", "#999"] %>
+      </div>
+    </div>
+    <div class='col-6'>
+      <div class='card card-block'>
+        <h3 class='text-center'>Registrations By Type</h3>
+        <%= pie_chart @event.attendees.group(:fee).count %>
+      </div>
     </div>
   </div>
-  <div class='col-6'>
-    <div class='card card-block'>
-      <h3 class='text-center'>Registrations By Type</h3>
-      <%= pie_chart @event.attendees.group(:fee).count %>
+  
+  <div class='row my-3'>
+    <div class='col-12 mb-3'>
+      <div class='card card-block'>
+        <h3>Registration Fees</h3>
+        <%= render 'admin/registration_fees/new', event: @event %>
+        <table class='table mt-3'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Guest Limit</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id='reg_fees'>
+            <%= render @event.registration_fees %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='col-12'>
+      <div class='card card-block'>
+        <h3>Event Resources</h3>
+        <%= render 'admin/resources/new', event: @event %>
+        <table class='table mt-3'>
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Resource Attachment</th>
+              <th>Created On</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id='resouces'>
+            <%= render @event.resources %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-
-<div class='row my-3'>
-  <div class='col-12 mb-3'>
-    <div class='card card-block'>
-      <h3>Registration Fees</h3>
-      <%= render 'admin/registration_fees/new', event: @event %>
-      <table class='table mt-3'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Guest Limit</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id='reg_fees'>
-          <%= render @event.registration_fees %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class='col-12'>
-    <div class='card card-block'>
-      <h3>Event Resources</h3>
-      <%= render 'admin/resources/new', event: @event %>
-      <table class='table mt-3'>
-        <thead>
-          <tr>
-            <th>Resource Name</th>
-            <th>Resource Attachment</th>
-            <th>Created On</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id='resouces'>
-          <%= render @event.resources %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-
-<div class='row mb-5'>
-  <div class='col-12'>
-    <div class='card card-block'>
-      <h3>Promo Card       
-        <% if !@event.promo_card.nil? %> 
-          <%= link_to "Edit", edit_admin_event_promo_card_path(@event, @event.promo_card), class: 'btn btn-warning float-right' %> 
-        <% else %>
-          <%= link_to "Create", new_admin_event_promo_card_path(@event), class: 'btn btn-success float-right' %> 
-        <% end %>
-      </h3>
-      <div class='row'>
-        <div class='col-xl-10'>
-          <% if !@event.promo_card.nil? %>
-            <%= render 'promocard' %>
+  
+  
+  <div class='row mb-5'>
+    <div class='col-12'>
+      <div class='card card-block'>
+        <h3>Promo Card       
+          <% if !@event.promo_card.nil? %> 
+            <%= link_to "Edit", edit_admin_event_promo_card_path(@event, @event.promo_card), class: 'btn btn-warning float-right' %> 
+          <% else %>
+            <%= link_to "Create", new_admin_event_promo_card_path(@event), class: 'btn btn-success float-right' %> 
           <% end %>
+        </h3>
+        <div class='row'>
+          <div class='col-xl-10'>
+            <% if !@event.promo_card.nil? %>
+              <%= render 'promocard' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+  
+<% end %>

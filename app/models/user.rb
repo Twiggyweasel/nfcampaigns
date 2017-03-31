@@ -10,6 +10,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :pledge_pages, through: :attendees
   has_many :contributions
   has_many :champions
+  has_many :orders
+  
   
   has_many :authentications, dependent: :destroy
   

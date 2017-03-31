@@ -9,6 +9,8 @@ class Event < ApplicationRecord
   has_many :sizes, through: :event_sizes
   has_many :resources, dependent: :destroy
   has_many :champions
+  has_many :tickets
+  has_many :orders
   has_one :promo_card 
   
   mount_uploader :event_cover, EventCoverUploader

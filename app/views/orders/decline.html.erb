@@ -1,0 +1,11 @@
+<%= render 'shared/title', title: 'Opps something went wrong...', display: 4 %>
+
+<div class='row'>
+  <div class='col-md-8 offset-md-2'>
+    <div class='card card-block'>
+      <h2>There was an issue processing your credit card.</h2>
+      <p>Please attempt the transaction again.</p>
+      <%= link_to "Try Again", new_order_payment_path(@order), class: 'btn btn-success'%>
+    </div>
+  </div>
+</div>

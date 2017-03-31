@@ -14,10 +14,10 @@
       <div class='row'>
         <div class='col-lg-8'>
           <% if logged_in? %>
-            <% if !current_user.attendees.where(event_id: @event.id).any? %>
+            <!--<#% if !current_user.attendees.where(event_id: @event.id).any? %>-->
               <div class='row'>
                 <div class='col-lg-6 my-3'>
-                  <%= link_to "Tickets", new_event_attendee_path(@event, :category => "personal"), class: 'btn btn-primary btn-block' %>
+                  <%= link_to "Tickets", new_event_order_path(@event, :category => "personal"), class: 'btn btn-primary btn-block' %>
                 </div>
                 <div class='col-lg-6 my-3'>
                   <%= link_to "Sponsors", new_event_attendee_path(@event, :category => "corporate"), class: 'btn btn-info btn-block' %>
@@ -33,28 +33,18 @@
               <!--    <#%= link_to 'Business Sponsors', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>-->
               <!--  </div>-->
               <!--</div>  -->
-            <% else %>
-              <%= link_to 'Manage Registration', event_attendee_path(@event, @event.attendees.where(user_id: current_user.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
-            <% end %>
+            <!--<#% else %>-->
+              <!--<#%= link_to 'Manage Registration', event_attendee_path(@event, @event.attendees.where(user_id: current_user.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>-->
+            <!--<#% end %>-->
           <% else %>
             <div class='row'>
                 <div class='col-lg-6 my-3'>
-                  <%= link_to "Tickets", new_event_attendee_path(@event, :category => "personal"), class: 'btn btn-primary btn-block' %>
+                  <%= link_to "Tickets", new_event_order_path(@event), class: 'btn btn-primary btn-block' %>
                 </div>
                 <div class='col-lg-6 my-3'>
                   <%= link_to "Sponsors", new_event_attendee_path(@event, :category => "corporate"), class: 'btn btn-info btn-block' %>
                 </div>
               </div>
-            <!--<div class="dropdown">-->
-            <!--  <a class="btn btn-primary btn-block dropdown-toggle my-3" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-            <!--    Register-->
-            <!--  </a>-->
-            <!--  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">-->
-            <!--    <#%= link_to 'Single Registation', new_event_attendee_path(@event, :category => "personal"), class: 'dropdown-item' %>-->
-            <!--    <#%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'dropdown-item' %>-->
-            <!--    <%= link_to 'Team Registation', new_event_team_path(@event), class: 'dropdown-item' %>-->
-            <!--  </div>-->
-            <!--</div>  -->
           <% end %>
         </div>
         <div class='col-lg-4'>
