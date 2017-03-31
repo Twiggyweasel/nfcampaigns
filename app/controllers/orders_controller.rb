@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_event
+  before_action :require_user, only: [:show, :new, :edit, :destroy]
   def new 
     @order = @event.orders.new 
     @tickets = @event.tickets.not_soldout

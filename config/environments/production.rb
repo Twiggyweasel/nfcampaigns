@@ -92,4 +92,6 @@ config.action_mailer.smtp_settings = {
   # Do not dump schema after migrations.
 config.action_mailer.default_url_options = { :host => "nfstrong.org" }
   
+  
+  config.assets.quiet
 end
