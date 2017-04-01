@@ -63,6 +63,10 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def registration_select
+    @event = Event.find_by_title(params[:event_id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

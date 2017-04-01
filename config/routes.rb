@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :attendees, except: [:index]
     resources :registration_fees
     resources :orders
+    get 'registration-select', to: 'events#registration_select'
   end
   
   resources :orders do
