@@ -10,6 +10,7 @@ class Payment < ApplicationRecord
   attr_accessor :city
   attr_accessor :state
   attr_accessor :zip
+  attr_accessor :fee
 
   validates :first_name, presence: true
   validates :last_name, presence: true
