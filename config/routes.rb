@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     resources :events do 
       resources :resources, except: [:show, :index]
       resources :registration_fees
-      resources :attendees
+      resources :attendees do 
+        resources :guests
+      end
       resources :contributions
       resources :promo_cards, except:[:index]
       resources :teams

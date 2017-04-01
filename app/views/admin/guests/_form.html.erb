@@ -1,0 +1,56 @@
+<%= form_for([:admin, @attendee.event, @attendee, @guest]) do |f| %>
+  <% if @guest.errors.any? %>
+    <%= render 'shared/errors', errors: @guest.errors %>
+  <% end %>
+
+  <div class='row'>
+    <div class='col-lg-6 offset-lg-3'>
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :name, "Guest's Name" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :email, "Guest's Email" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :fee %>
+                <%= f.select(:fee, options_for_select(@attendee.event.registration_fees.is_personal.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}, f.object.fee), {prompt: 'Select a Fee'}, class: 'form-control') %>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <%= f.label :shirt_size %>
+          <%= f.select( :shirt_size, options_for_select(@attendee.event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-12'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :paid, class: "custom-control-input" %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Registration has been paid</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class='row my-2'>
+        <div class='col-md-6 my-2'>
+          <%= f.submit(@guest.new_record? ? "Create New Guest" : "Update Guest Record", class: 'btn btn-success btn-block') %>
+        </div>
+        <div class='col-md-6 my-2'>
+          <%= link_to "Cancel", admin_event_attendees_path(@attendee.event), class: 'btn btn-danger btn-block' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

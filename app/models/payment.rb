@@ -32,6 +32,9 @@ class Payment < ApplicationRecord
   def finalize
     if self.success == true 
       self.payable.update_column(:paid, true)
+      if self.payable.is_a? Attendee 
+        self.payable.guests.update_all(paid: true)
+      end
       self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
     end
   end

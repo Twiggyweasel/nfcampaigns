@@ -21,7 +21,7 @@
   </tr>
   <% end %>
 <% else %>
-  <tr>
+  <tr style='background-color: #eee;'>
     <td><%= attendee.user.name.titleize %></td>
     <td><%= attendee.category %></td>
     <td><%= number_to_currency(attendee.fee) %> </td>
@@ -33,14 +33,14 @@
   </tr>
   <% attendee.guests.each do |guest| %>
   <tr>
-    <td><%= guest.name.titleize %></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= guest.name.titleize %></td>
     <td>Guest</td>
     <td><%= number_to_currency(guest.fee) %></td>
     <td><%= guest.shirt_size %></td>
     <td></td>
     <td><%= attendee.team.name %></td>
     <td><%= guest.paid %></td>
-    <td></td>
+    <td><%= link_to "edit", edit_admin_event_attendee_guest_path(attendee.event, attendee, guest) %></td>
   </tr>
   <% end %>
 <% end %>
