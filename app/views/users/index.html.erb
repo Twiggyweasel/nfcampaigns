@@ -12,7 +12,9 @@
         </span>
         
       </div>
-      <!--<#%= link_to(request.path, class:"btn btn-danger ml-3") do %><i class='fa fa-ban'><#% end %></i>-->
+      <% if !@q.conditions.empty? %>
+        <%= link_to(request.path, class:"btn btn-danger") do %><i class='fa fa-times'><% end %></i>
+      <% end %>
     <% end %>
   </div>
 </div>
