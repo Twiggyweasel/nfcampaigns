@@ -18,24 +18,29 @@
 </div>
 
 <div class='row mt-5'>
-  
-  <% @users.each do |user| %>
-    <div class='col-md-4' style='margin-top: 5rem;'>
-      <div class='card text-center' style='position:relative; display: inline-block; width: 100%'>
-        <% if user.profile_pic? %>
-          <img src='<%= user.profile_pic %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
-        <% else %>
-          <img src='<%= image_url('no_user.png') %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
-        <% end %>
-        <div class='card-block'>
-          <h3 class='mt-2'><%= user.name.titleize %> <br> </h3>
-          <!--<small class='text-muted'><#%= user.profile.city if user.profile.city? %> - <#%= user.profile.state if user.profile.state? %></small>-->
-          <%= link_to "View Profile", user_path(user), class: 'btn btn btn-primary'%>
+  <% if !@users.any? %>
+  <div class='col-lg-4 offset-lg-4 text-center'>
+    <h4>No Results Founds</h4>
+  </div>
+
+  <% else %>
+    <% @users.each do |user| %>
+      <div class='col-md-4' style='margin-top: 5rem;'>
+        <div class='card text-center' style='position:relative; display: inline-block; width: 100%'>
+          <% if user.profile_pic? %>
+            <img src='<%= user.profile_pic %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+          <% else %>
+            <img src='<%= image_url('no_user.png') %>' style='border-radius: 50%; width:150px; margin-top: -50px;' class='img-thumbnail d-block mx-auto'>
+          <% end %>
+          <div class='card-block'>
+            <h3 class='mt-2'><%= user.name.titleize %> <br> </h3>
+            <!--<small class='text-muted'><#%= user.profile.city if user.profile.city? %> - <#%= user.profile.state if user.profile.state? %></small>-->
+            <%= link_to "View Profile", user_path(user), class: 'btn btn btn-primary'%>
+          </div>
         </div>
       </div>
-    </div>
     <% end %>
-</ul>
+  <% end %>
 </div>
 <div class='row my-5'>
   <div class='col-lg-8 offset-lg-2'>
