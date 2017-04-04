@@ -10,7 +10,7 @@
   <% @events.each do |event| %>
     <!--<#% if !event.is_private? %>-->
     <div class='col-md-6 col-sm-12 col-xl-4'>
-      <div class='card item-square my-2'>
+      <div class='card item-square my-2 shadow'>
         <!--<img class="card-img-top img-fluid" src="https://placehold.it/500x150"> -->
         <% if event.event_cover? %>
           <%= image_tag(event.event_cover.url, class: 'card-img-top img-fluid') %>
