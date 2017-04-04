@@ -357,3 +357,35 @@ body {
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
+.selector {
+  height: 425px;
+  transition: .3s all;
+}
+
+.selector .active {
+  background-color: #015F88;
+  transition: .3s all;
+}
+
+.selector .active .card {
+  background-color: #fff;  
+  transition: .3s all;
+}
+
+.selector .col-6 {
+  // background-color: #fff;
+}
+
+.selector .card {
+  background-color: #E9EBEE;  
+  transition: .3s all;
+}
+
+.nav-item-custom {
+  height: 250px;
+  font-family: 'Just Another Hand', cursive;
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1.1;
+}

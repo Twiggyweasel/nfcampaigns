@@ -1,62 +1,117 @@
-<%= render 'shared/title', title: "Where would you like your contribution applied?" %>
-<div class='row my-3'>
-  <div class='col-10 offset-1'>
-    <div class='card card-block'>
-      <h3 class='text-center'>Events or Users</h3>  
-      <div class='col-12 mt-3'>
-        <div class='row'>
-          <div class='col-4 offset-2'>
-            <button type="button" class='btn btn-block btn-secondary' data-toggle="collapse" data-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents" >
-                Events
-              </button>
-          </div>
-          <div class='col-4'>
-            <button type="button" class='btn btn-block btn-secondary' disabled data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">
-                Users
-              </button>
+<div class='row' style='background-color: white; margin-top: -46px;'>
+  <div class='col-12'>
+    <%= render 'shared/title', title: "Where would you like your contribution applied?" %>
+  </div>
+</div>
 
-          </div>
-        </div>
+<ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
+  <li class="nav-item nav-item-custom">
+    <a class="nav-link active" data-toggle="tab" href="#events" role="tab" aria-controls="home">Home</a>
+  </li>
+  <li class="nav-item nav-item-custom">
+    <a class="nav-link" data-toggle="tab" href="#pages" role="tab" aria-controls="profile">Fundraising Pages</a>
+  </li>
+</ul>
+
+
+<!--<div class='row selector' role="tablist">-->
+<!--  <div class='col-md-6 pt-5' data-target="#events" data-toggle="tab" role="tab">-->
+<!--    <div class='row mt-5' >-->
+<!--      <div class='col-6 offset-3 mt-5 w text-center' style="font-family: 'Just Another Hand', cursive;">-->
+<!--          <h2 class='display-3'>Events</h2>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class='col-md-6 pt-5' data-toggle="tab" data-target="#pages" style='background-color: #fff;' role="tab">-->
+<!--    <div class='row mt-5'>-->
+<!--      <div class='col-6 offset-3 mt-5 text-center' style="font-family: 'Just Another Hand', cursive;">-->
+<!--          <h2 class='display-3'>Fundraising Pages</h2>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class='container'>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="events" role="tabpanel">...</div>
+        <div class="tab-pane fade" id="pages" role="tabpanel">weeeee these are pages</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="collapse" id="collapseEvents">
-  <div class='row'>
-    <div class='col-8 offset-2'>
-      <div class='card card-block'>
 
-            <h3 class='text-center'>Events</h3>
-            <%= select_tag 'event_id', options_from_collection_for_select(@events, 'id', 'title'), class: 'form-control', prompt: 'Select an Event' %>
-            <a href='#' id='event_link' class='btn btn-success btn-block'>Submit</a>
-          </div>
 
-    </div>
-  </div>
-</div>
 
-<div class="collapse" id="collapseUsers">
-  <div class='row'>
-    <div class='col-10 offset-1'>
-      <div class='card card-block'>
-        <div class='row'>
-          <div class='col-4'>
-            <label>Users</label>
-            <%= select_tag 'user_id', options_for_select(@attendees.map { |x| [x.user.name, x.id ]} ), class: 'form-control' %>
-          </div>
-          <a href='#' id='user_id' class='btn btn-success btn-block'>Submit</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
-   $(function(){
-      $('#event_id').bind('change', function () {
-         var event = $(this).val();
-         $('#event_link').attr("href", "events/" + event + "/contributions/new");
-      });
-    });
+  // $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+  //   e.target // newly activated tab
+  //   e.relatedTarget // previous active tab
+  // });
 </script>
+
+
+<!--<div class='row my-3'>-->
+<!--  <div class='col-10 offset-1'>-->
+<!--    <div class='card card-block'>-->
+<!--      <h3 class='text-center'>Events or Users</h3>  -->
+<!--      <div class='col-12 mt-3'>-->
+<!--        <div class='row'>-->
+<!--          <div class='col-4 offset-2'>-->
+<!--            <button type="button" class='btn btn-block btn-secondary' data-toggle="collapse" data-target="#collapseEvents" aria-expanded="false" aria-controls="collapseEvents" >-->
+<!--                Events-->
+<!--              </button>-->
+<!--          </div>-->
+<!--          <div class='col-4'>-->
+<!--            <button type="button" class='btn btn-block btn-secondary' disabled data-toggle="collapse" data-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">-->
+<!--                Users-->
+<!--              </button>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseEvents">-->
+<!--  <div class='row'>-->
+<!--    <div class='col-8 offset-2'>-->
+<!--      <div class='card card-block'>-->
+
+<!--            <h3 class='text-center'>Events</h3>-->
+<!--            <#%= select_tag 'event_id', options_from_collection_for_select(@events, 'id', 'title'), class: 'form-control', prompt: 'Select an Event' %>-->
+<!--            <a href='#' id='event_link' class='btn btn-success btn-block'>Submit</a>-->
+<!--          </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="collapse" id="collapseUsers">-->
+<!--  <div class='row'>-->
+<!--    <div class='col-10 offset-1'>-->
+<!--      <div class='card card-block'>-->
+<!--        <div class='row'>-->
+<!--          <div class='col-4'>-->
+<!--            <label>Users</label>-->
+<!--            <#%= select_tag 'user_id', options_for_select(@attendees.map { |x| [x.user.name, x.id ]} ), class: 'form-control' %>-->
+<!--          </div>-->
+<!--          <a href='#' id='user_id' class='btn btn-success btn-block'>Submit</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--   $(function(){-->
+<!--      $('#event_id').bind('change', function () {-->
+<!--         var event = $(this).val();-->
+<!--         $('#event_link').attr("href", "events/" + event + "/contributions/new");-->
+<!--      });-->
+<!--    });-->
+<!--</script>-->
