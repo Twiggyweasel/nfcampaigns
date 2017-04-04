@@ -58,7 +58,7 @@
             <% @pledgepages.each do |pledge| %>
             <div class='col-lg-4 col-md-6 rounded-circle my-3' onclick='location.href="<%= url_for controller: 'pledge_pages', action: 'show', attendee_id: pledge.attendee.id, id: pledge.id %>/contributions/new";' style='background-image: url();'>
 
-              <img src='<% if !pledge.pledge_pic.url.nil? %> <%= pledge.pledge_pic.url %> <% else %> <%= image_url('no_user.png') %> <% end %>' class='img-fluid rounded-circle mx-auto d-block' style='height:250px;'>
+              <img src='<% if !pledge.pledge_pic.url.nil? %> <%= pledge.pledge_pic.url %> <% elsif pledge.user.profile_pic? %><%= pledge.user.profile_pic.url %> <% else %> <%= image_url('no_user.png') %> <% end %>' class='img-fluid rounded-circle mx-auto d-block' style='height:250px;'>
               <div class='card card-block my-3'>
               <h4 class='text-center '><%= pledge.user.name.titleize %><br>
                   <%= pledge.event.name + ' - ' + pledge.event.state %>
