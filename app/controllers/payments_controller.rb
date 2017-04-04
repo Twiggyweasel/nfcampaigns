@@ -78,15 +78,13 @@ private
   end
   
   def approved_payment 
-    # if context.is_a? Attendee 
-      
-    #   if !context.guests.blank? && context.paid && !context.guests.where(paid: false).blank? 
-    #     redirect_to :back, :flash => { :success => "Payment has already been approved for this item" }
-
-    #   end
-    # elsif context.paid
-    #   redirect_to :back, :flash => { :success => "Payment has already been approved for this item" }
-    # end
+    if context.is_a? Attendee 
+      if context.paid && context.guests.where(paid: false).blank? 
+        redirect_to :back, :flash => { :success => "Payment has already been approved for this item" }
+      end
+    elsif context.paid
+      redirect_to :back, :flash => { :success => "Payment has already been approved for this item" }
+    end
   end
   
   def payment_params
