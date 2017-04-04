@@ -56,12 +56,12 @@
         <div class="tab-pane fade" id="pages" role="tabpanel">
           <div class='row my-5'>
             <% @pledgepages.each do |pledge| %>
-            <div class='col-lg-4 col-md-6 event-card' onclick='location.href="<%= url_for controller: 'pledge_pages', action: 'show', attendee_id: pledge.attendee.id, id: pledge.id %>/contributions/new";' style='background-image: url(<%= pledge.pledge_pic.url if !pledge.pledge_pic.nil?%>);'>
+            <div class='col-lg-4 col-md-6 event-card' onclick='location.href="<%= url_for controller: 'pledge_pages', action: 'show', attendee_id: pledge.attendee.id, id: pledge.id %>/contributions/new";' style='background-image: url(<%= pledge.pledge_pic.nil? ? pledge.pledge_pic.url : image_url('no_user.png')  %>);'>
 
                 <div class='title-overlay px-3 py-2'>
                       
                   <h4><%= pledge.user.name %><br>
-                  <%= pledge.event.name + " - " + pledge.event.state %>
+                  <%= pledge.event.name + ' - ' + pledge.event.state %>
                   </h4>
 
                 </div>
