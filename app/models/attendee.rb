@@ -14,6 +14,7 @@ class Attendee < ApplicationRecord
   validates :fee, presence: true
   validates :shirt_size, presence: true
   validates :user_id, presence: true 
+  validates_inclusion_of :accepted_terms, :in => [true], :message => "You must accept the terms before you can register for this event"
   validates :user_id, :uniqueness => { :scope => :event_id,
     :message => "You can only register to attend this event once!" }, if: "category == 'Personal'", on: create
   
@@ -69,6 +70,18 @@ class Attendee < ApplicationRecord
   
   def amount
     attendee_total
+  end
+  
+  def unpaid_amount
+    if self.paid
+      guests_unpaid_total
+    else
+      guests_unpaid_total + self.fee 
+    end
+  end
+  
+  def guests_unpaid_total
+    Guest.where(attendee_id: self.id, paid: false).pluck(:fee).sum
   end
   
   def processing_fee

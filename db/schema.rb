@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331051708) do
+ActiveRecord::Schema.define(version: 20170404042031) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -31,14 +31,15 @@ ActiveRecord::Schema.define(version: 20170331051708) do
     t.string   "business_logo"
     t.string   "category"
     t.integer  "guest_limit"
-    t.boolean  "paid",          default: false
-    t.boolean  "is_leader",     default: false
+    t.boolean  "paid",           default: false
+    t.boolean  "is_leader",      default: false
     t.float    "raised"
     t.integer  "team_id"
     t.integer  "event_id"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "accepted_terms", default: false
     t.index ["event_id"], name: "index_attendees_on_event_id"
     t.index ["team_id"], name: "index_attendees_on_team_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"

@@ -10,4 +10,8 @@ class Contribution < ApplicationRecord
   end
   
   paginates_per 15
+  
+  def unpaid_amount
+    self.amount
+  end
 end

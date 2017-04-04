@@ -88,7 +88,7 @@ class AttendeesController < ApplicationController
     end
     
     def attendee_params
-      params.require(:attendee).permit(:fee, :shirt_size, :category, :business_name, :business_logo, :paid, :team_id, :event_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
+      params.require(:attendee).permit(:fee, :shirt_size, :category, :business_name, :business_logo, :paid, :accepted_terms, :team_id, :event_id, :user_id, guests_attributes: [:id, :fee, :name, :shirt_size, :email])
     end
     
     # def require_same_user

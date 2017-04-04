@@ -18,4 +18,12 @@ class Order < ApplicationRecord
     (self.order_total * 0.029) + 0.30
   end
   
+  def unpaid_amount
+  amount = 0
+    self.order_items.each do |item|
+      amount = amount + item.total
+    end
+    return amount
+  end
+  
 end

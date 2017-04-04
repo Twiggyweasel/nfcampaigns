@@ -57,15 +57,15 @@
           </div>
            
           <!--<label class="custom-control custom-checkbox">-->
-          <!--  <%= f.check_box :cover_processing, class: 'form-control', checked: true %>-->
+          <!--  <#%= f.check_box :cover_processing, class: 'form-control', checked: true %>-->
           <!--  <span class="custom-control-indicator"></span>-->
           <!--  <span class="custom-control-description">Cover the Processing Fees of <#%= number_to_currency(@payment.fee(@context.amount).floor2(2)) %></span>-->
           <!--</label>  -->
         </div>
       </div>
         <div class="form-group">
-          <%= f.hidden_field(:amount, :value => @context.amount) %> 
-          <%= f.hidden_field(:fee, :value => @payment.fee(@context.amount).floor2(2)) %>
+          <%= f.hidden_field(:amount, :value => @context.unpaid_amount) %> 
+          <%= f.hidden_field(:fee, :value => @payment.fee(@context.unpaid_amount).floor2(2)) %>
           <%= f.hidden_field(:promo_code, :value => "", "data-discount" => "0") %>
         </div>
     </div>
@@ -164,20 +164,22 @@
               </tr>
             </thead>
             <tbody>
+              <% if !@context.paid %>
               <tr>
                 <td>Single Registration</td>
                 <td>x1</td>
                 <td><%= number_to_currency(@context.fee) %></td>
               </tr>
+              <% end %>
               <tr>
                 <td>Guests</td>
-                <td id='guest-count'>x<%= @context.guests.count %></td>
-                <td id='guest-total'><%= number_to_currency(@context.guests_fee_total) %></td>
+                <td id='guest-count'>x<%= @context.guests.where(paid: false).count %></td>
+                <td id='guest-total'><%= number_to_currency(@context.guests_unpaid_total) %></td>
               </tr>
               <tr id='processing-block'>
                 <td>Cover Processing Fee:</td>
                 <td id='processing-count'>x1</td>
-                <td id='processing-amount'><%= number_to_currency(@payment.fee(@context.amount).floor2(2)) %></td>
+                <td id='processing-amount'><%= number_to_currency(@payment.fee(@context.unpaid_amount).floor2(2)) %></td>
               </tr>
               <tr id='promo-block' style='display: none;'>
                 <td id='promo-code-name'></td>
@@ -186,7 +188,7 @@
               </tr>
               <tr>
                 <td colspan=2>Total:</td>
-                <td id='final-total'><%= number_to_currency((@context.attendee_total + @payment.fee(@context.amount)).floor2(2)) %></td>
+                <td id='final-total'><%= number_to_currency((@context.unpaid_amount + @payment.fee(@context.unpaid_amount)).floor2(2)) %></td>
               </tr>
             </tbody>
           </table>
