@@ -3,7 +3,9 @@ class ContributionsController < ApplicationController
   
   def contribution_select
     @events = Event.all
-    @attendees = Attendee.all
+    
+
+    @pledgepages = PledgePage.all 
   end
   
   def index
