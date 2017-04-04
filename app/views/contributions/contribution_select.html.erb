@@ -60,7 +60,7 @@
 
               <img src='<% if !pledge.pledge_pic.url.nil? %> <%= pledge.pledge_pic.url %> <% else %> <%= image_url('no_user.png') %> <% end %>' class='img-fluid rounded-circle mx-auto d-block' style='height:250px;'>
               <div class='card card-block my-3'>
-              <h4 class='text-center '><%= pledge.user.name %><br>
+              <h4 class='text-center '><%= pledge.user.name.titleize %><br>
                   <%= pledge.event.name + ' - ' + pledge.event.state %>
                   </h4>
                   </div>
