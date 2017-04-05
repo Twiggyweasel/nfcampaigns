@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :order_items, inverse_of: :order
+  has_many :order_items, inverse_of: :order, dependent: :destroy
   has_many :payments, as: :payable
   belongs_to :event
   belongs_to :user
