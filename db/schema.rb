@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405003355) do
+ActiveRecord::Schema.define(version: 20170405023905) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -281,6 +281,33 @@ ActiveRecord::Schema.define(version: 20170405003355) do
 
   create_table "sizes", force: :cascade do |t|
     t.string "label"
+  end
+
+  create_table "sponsor_levels", force: :cascade do |t|
+    t.string  "name"
+    t.text    "desc"
+    t.float   "price"
+    t.integer "quantity"
+    t.integer "event_id"
+    t.integer "ticket_id"
+    t.index ["event_id"], name: "index_sponsor_levels_on_event_id"
+    t.index ["ticket_id"], name: "index_sponsor_levels_on_ticket_id"
+  end
+
+  create_table "sponsorships", force: :cascade do |t|
+    t.string  "name"
+    t.string  "logo"
+    t.float   "fee"
+    t.integer "quantity"
+    t.boolean "paid",             default: true
+    t.integer "event_id"
+    t.integer "ticket_id"
+    t.integer "sponsor_level_id"
+    t.integer "user_id"
+    t.index ["event_id"], name: "index_sponsorships_on_event_id"
+    t.index ["sponsor_level_id"], name: "index_sponsorships_on_sponsor_level_id"
+    t.index ["ticket_id"], name: "index_sponsorships_on_ticket_id"
+    t.index ["user_id"], name: "index_sponsorships_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|

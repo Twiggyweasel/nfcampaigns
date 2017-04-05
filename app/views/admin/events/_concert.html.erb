@@ -33,12 +33,6 @@
   <% end %>
 </div>
 
-<div class='row my-3'>
-
-  <div class='col-lg-4'>
-    <%= bar_chart @event.tickets.map { |ticket| { name: ticket.name, data: ticket.sold } } %>
-  </div>
-</div>  
   
 <div class='row'>
   <div class='col-12'>

@@ -69,7 +69,19 @@ class Event < ApplicationRecord
   end
   
   def total_raised
-    self.contributions.where(paid: true).pluck(:amount).sum + team_total_raised
+    
+    self.contributions.where(paid: true).pluck(:amount).sum + team_total_raised + order_total
+  end
+  
+  def order_total 
+    amount = 0
+    self.orders.where(paid: true).each do |order|
+      order.order_items.each do |item|
+        amount = amount + item.total
+      end
+    end
+    
+    return amount
   end
   
   def team_total_raised
