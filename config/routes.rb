@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :users
     resources :applications, only: [:index, :show, :destroy]
     resources :resources, only: [:index]
+    resources :gallery_images
+    get 'collect_all', to: 'gallery_images#collect_all'
   end
   
   resources :events, except: [:new, :create] do 

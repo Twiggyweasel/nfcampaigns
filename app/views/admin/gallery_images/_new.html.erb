@@ -1,0 +1,18 @@
+<div class='card card-block my-5'>
+  <h4 class='card-title'>New Image</h4>
+<%= form_for( [:admin, GalleryImage.new ], remote: true, authenticity_token: true) do |f| %>
+    <div class='row'>
+    <div class='col-md-3'>
+      <%= f.label :name, "Image Name" %>
+      <%= f.text_field :name, class: 'form-control', id: 'name' %>  
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+    <div class='col-md-3' style='padding-top: 1.80rem;'>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    </div> 
+    </div>
+<% end %>
+</div>

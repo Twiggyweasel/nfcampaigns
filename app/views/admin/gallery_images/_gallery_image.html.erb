@@ -1,0 +1,6 @@
+<tr>
+  <td><img src='<%= gallery_image.image.url %>' class='img-fluid mx-auto d-block' style='max-height: 200px;'></td>
+  <td><%= gallery_image.name.titleize %></td>
+  <td><%= gallery_image.image.url %></td>
+  <td><%= link_to "Edit", edit_admin_gallery_image_path(gallery_image) %> | <%= link_to "Delete", admin_gallery_image_path(gallery_image), method: :delete %></td>
+</tr>

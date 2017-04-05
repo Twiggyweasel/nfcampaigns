@@ -1,0 +1,28 @@
+<%= form_for( [:admin, @image ]) do |f| %>
+  <% if @image.errors.any? %>
+    <% render 'shared/errors', errors: @image.errors %>
+  <% end %>
+  <div class='row'>
+    <div class='col-lg-6 offset-lg-3'>
+      <div class='card card-block my-5'>
+        <h4 class='card-title'>New Image</h4>
+
+
+        <div class='row'>
+          <div class='col-12'>
+          <%= f.label :name, "Image Name" %>
+          <%= f.text_field :name, class: 'form-control', id: 'name' %>  
+          </div>
+          <div class='col-12'>
+          <%= f.label :image %>
+          <%= f.file_field :image, class: 'form-control' %>
+          </div>
+          <div class='col-12' style='padding-top: 1.80rem;'>
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          </div> 
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<% end %>

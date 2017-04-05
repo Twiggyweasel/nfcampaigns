@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= tinymce :content_css => asset_path('application.css') %>
+<%= tinymce :content_css => asset_path('application.css'), :image_list => admin_collect_all_path(:format => :json) %>
 
 <%= form_for [:admin, @event] do |f| %>
   <% if @event.errors.any? %>
