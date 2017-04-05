@@ -49,6 +49,6 @@ class Admin::SponsorLevelsController < ApplicationController
     end
     
     def sponsor_level_params
-      params.require(:sponsor_level).permit(:name, :amount, :category, :description, :event_id, :guest_limit)
+      params.require(:sponsor_level).permit(:name, :desc, :price, :quantity, :event_id, :ticket_id)
     end
 end

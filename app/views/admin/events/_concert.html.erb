@@ -31,7 +31,17 @@
     </div>
   </div>
   <% end %>
+  <div class='col-lg-4'>
+    <div class='card card-block callout text-center' style='min-height: 178px;'>
+      <h4 class='my-3'>
+      Raised 
+      <br><br>
+      <%= number_to_currency(@event.raised) %>
+      </h4>
+    </div>
+  </div>
 </div>
+
 
   
 <div class='row'>
@@ -57,6 +67,8 @@
   </div>
 </div>
 
+<%= render 'admin/sponsor_levels/new', event: @event %>  
+
 <div class='row'>
   <div class='col-12'>
     
@@ -65,15 +77,15 @@
       
       <table class='table'>
         <thead>
-          <th>Ticket Name</th>
-          <th>Ticket Price</th>
-          <th>Quantity</th>
-          <th>Sold</th>
-          <th>Sold Out</th>
+          <th>Sponsor Level Name</th>
+          <th>Price</th>
+          <th>Ticket Type</th>
+          <th>Quantity of Tickets</th>
+          <th>Desc</th>
           <th>Actions</th>
         </thead>
-        <tbody>
-          <%= render @event.tickets %>
+        <tbody id='sponsor-levels'>
+          <%= render @event.sponsor_levels %>
         </tbody>
       </table>
     </div>

@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   has_many :champions
   has_many :tickets
   has_many :orders
+  has_many :sponsor_levels
   has_one :promo_card 
   
   mount_uploader :event_cover, EventCoverUploader

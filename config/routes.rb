@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :teams
       resources :orders
       resources :tickets
+      resources :sponsor_levels
     end
     resources :promotions 
     resources :users
