@@ -16,12 +16,58 @@
     <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
   </li>
 </ul>
+
+
+<div class='row my-3'>
+  <% @event.tickets.each do |ticket| %>
+  <div class='col-lg-4'>
+    <div class='card card-block callout text-center'>
+      <h4 class='my-3'>
+      <%= ticket.name %>
+      <br><br>
+      <%= ticket.sold %>
+      <br>
+      Sold</h4>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class='row my-3'>
+
+  <div class='col-lg-4'>
+    <%= bar_chart @event.tickets.map { |ticket| { name: ticket.name, data: ticket.sold } } %>
+  </div>
+</div>  
   
 <div class='row'>
   <div class='col-12'>
-    <%= link_to "Create Ticket", new_admin_event_ticket_path(@event), class: 'btn btn-success my-3' %>
+    
     <div class='card card-block'>
-      Tickets Available
+      <h3 class='card-title'>Tickets Available <%= link_to "Create Ticket", new_admin_event_ticket_path(@event), class: 'btn btn-success float-right' %></h3>
+      
+      <table class='table'>
+        <thead>
+          <th>Ticket Name</th>
+          <th>Ticket Price</th>
+          <th>Quantity</th>
+          <th>Sold</th>
+          <th>Sold Out</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <%= render @event.tickets %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12'>
+    
+    <div class='card card-block my-3'>
+      <h3 class='card-title'>Sponsor Levels <%= link_to "Create Ticket", new_admin_event_ticket_path(@event), class: 'btn btn-success float-right' %></h3>
       
       <table class='table'>
         <thead>
