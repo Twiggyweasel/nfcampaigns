@@ -347,11 +347,9 @@ body {
   height: 104px;
 }
 
-.item-rotate i {
-  transition: .3s all;
-}
 
-.item-rotate:hover i  {
+
+.item-rotate  {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -o-transform: rotate(180deg);
@@ -390,4 +388,28 @@ body {
   font-weight: 300;
   line-height: 1.1;
   width: 50%;
+}
+
+#sponsor-form-toggle i {
+  transform: all 2s;
+}
+
+.toggle-rotate[aria-expanded="false"] i {
+  -webkit-transition-duration: .5s; /* Safari */
+  transition-duration: .5s;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.toggle-rotate[aria-expanded="true"] i {
+  -webkit-transition-duration: .5s; /* Safari */
+  transition-duration: .5s;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }

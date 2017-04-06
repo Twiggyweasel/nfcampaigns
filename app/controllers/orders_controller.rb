@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     @ticket_names = @event.tickets.is_available.map do |item| item.name end 
     @ticket_fees = @event.tickets.is_available.map do |item| item.fee end
     @ticket_ids = @event.tickets.is_available.map do |item| item.id end
-    (@event.tickets.count).times { @order.order_items.build }
+    (@event.tickets.is_available.count).times { @order.order_items.build }
   end
   
   def create

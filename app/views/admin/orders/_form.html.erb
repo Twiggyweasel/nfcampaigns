@@ -1,0 +1,46 @@
+<%= form_for([:admin, @event, @order]) do |f| %>
+
+<div class='row'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='row my-3'>
+      <div class='col-12'>
+        <%= f.select(:user_id, options_for_select(User.all.collect { |x| [x.name, x.id] }, f.object.user_id), { prompt: "Please make a selection" }, class: 'form-control') %>
+      </div>
+    </div>
+    <div class='row my-3'>
+      <div class='col-12'>
+        <label class="custom-control custom-checkbox">
+          <%= f.check_box :paid, class: 'custom-control-input' %>
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">Has this order been paid?</span>
+        </label>
+      </div>
+    </div>
+    
+    <%= f.fields_for :order_items do |ff| %>
+      <div class='row my-2'>
+        <div class='col-6'>
+          <%= ff.hidden_field(:ticket_id, :value => @ticket_ids[ff.index]) %>
+          <%= @ticket_names[ff.index] %><br><%= number_to_currency(@ticket_fees[ff.index]) %>
+        </div>
+        <div class='col-6'>
+          <%= ff.label :quantity %>
+          <%= ff.select(:quantity, options_for_select([0,1,2,3,4,5,6,7,8,9,10], ff.object.quantity), { }, class: 'form-control') %>
+        </div>
+      </div>
+     <% end %>
+    
+    <div class='row'>
+      <div class='col-md-6 my-3'>
+        <%= f.submit(@order.new_record? ? "Create Order" : "Update Order", class: 'btn btn-success btn-block') %>
+      </div>
+      <div class='col-md-6 my-3'>
+        <%= link_to 'Cancel', admin_event_orders_path(@event), class: 'btn btn-danger btn-block' %>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<% end %>

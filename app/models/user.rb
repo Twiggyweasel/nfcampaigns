@@ -76,8 +76,8 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   end
   
   def is_new?
-    self.created_at.between?((Time.now - 24.hours), Time.now)
-
+    now = Time.now
+    self.created_at.between?((now - 24.hours), now)
   end
   
   paginates_per 6
