@@ -413,3 +413,10 @@ body {
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+
+.field_with_errors {
+  @extend .has-danger;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
