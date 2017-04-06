@@ -33,13 +33,20 @@ Rails.application.routes.draw do
     resources :attendees, except: [:index]
     resources :registration_fees
     resources :orders
+    resources :sponsorships
     get 'registration-select', to: 'events#registration_select'
   end
   
   resources :orders do
-    resources :payments
+    resources :payments, only: [:new, :create]
     get 'reciept', to: 'orders#reciept'
     get 'decline', to: 'orders#decline'
+  end
+  
+  resources :sponsorships do
+    resources :payments, only: [:new, :create]
+    get 'reciept', to: 'sponsorships#reciept'
+    get 'decline', to: 'sponsorships#decline'
   end
   
   resources :contributions, except: [:destroy, :index] do

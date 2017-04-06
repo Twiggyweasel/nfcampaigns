@@ -5,6 +5,7 @@ class Ticket < ApplicationRecord
   belongs_to :event
   
   scope :not_soldout, -> { where(is_soldout: false) }
+  scope :is_publick, -> { where(is_public: true)}
   
   after_find do
     update_sold    

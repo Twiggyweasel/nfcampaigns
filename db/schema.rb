@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405023905) do
+ActiveRecord::Schema.define(version: 20170406014851) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -135,8 +135,10 @@ ActiveRecord::Schema.define(version: 20170405023905) do
   end
 
   create_table "gallery_images", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "guests", force: :cascade do |t|
@@ -162,7 +164,7 @@ ActiveRecord::Schema.define(version: 20170405023905) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.boolean  "paid"
+    t.boolean  "paid",       default: false
     t.integer  "event_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -295,15 +297,17 @@ ActiveRecord::Schema.define(version: 20170405023905) do
   end
 
   create_table "sponsorships", force: :cascade do |t|
-    t.string  "name"
-    t.string  "logo"
-    t.float   "fee"
-    t.integer "quantity"
-    t.boolean "paid",             default: true
-    t.integer "event_id"
-    t.integer "ticket_id"
-    t.integer "sponsor_level_id"
-    t.integer "user_id"
+    t.string   "name"
+    t.string   "logo"
+    t.float    "fee"
+    t.integer  "quantity"
+    t.boolean  "paid",             default: true
+    t.integer  "event_id"
+    t.integer  "ticket_id"
+    t.integer  "sponsor_level_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["event_id"], name: "index_sponsorships_on_event_id"
     t.index ["sponsor_level_id"], name: "index_sponsorships_on_sponsor_level_id"
     t.index ["ticket_id"], name: "index_sponsorships_on_ticket_id"
@@ -333,6 +337,7 @@ ActiveRecord::Schema.define(version: 20170405023905) do
     t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_public",      default: true
     t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 

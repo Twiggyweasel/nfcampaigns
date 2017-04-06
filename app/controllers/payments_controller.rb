@@ -50,6 +50,9 @@ private
     elsif params[:attendee_id]
       id = params[:attendee_id]
       Attendee.find(params[:attendee_id])
+    elsif params[:sponsorship_id]
+      id = params[:sponorship_id]
+      Sponsorship.find(params[:sponsorship_id])
     else 
       id = params[:order_id]
       Order.find(params[:order_id])
@@ -61,6 +64,8 @@ private
       event_contribution_reciept_path(context.backable, context)
     elsif Attendee === context 
       attendee_reciept_path(context)  
+    elsif Sponsorship === context
+      sponsorship_reciept_path(context)
     else 
       order_reciept_path(context)
     end
@@ -71,6 +76,8 @@ private
       event_contribution_decline_path(context.backable, context)  
     elsif Attendee === context
       attendee_decline_path(context)
+    elsif Sponsorship === context
+      sponsorship_decline_path(context)
     else 
       order_decline_path(context)
     end

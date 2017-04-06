@@ -16,6 +16,12 @@
     <%= f.label :quantity, "Number of Tickets Available" %>
   <%= f.number_field :quantity, class: "form-control" %>
   
+  <label class="custom-control custom-checkbox">
+    <%= f.check_box :is_public, class: 'custom-control-input' %>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Tickets are available to the public</span>
+  </label>
+  
   <%= f.submit(@ticket.new_record? ? "Create New Ticket" : "Update Ticket Information", class: 'btn btn-success btn-block my-3') %>
   <%= link_to "Cancel", admin_event_path(@event), class: 'btn btn-danger btn-block my-3' %>
     </div>

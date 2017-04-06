@@ -1,0 +1,84 @@
+<%= form_for([ @event, @sponsorship ]) do |f| %>
+  <% if @sponsorship.errors.any? %>
+    <%= render 'shared/errors', errors: @sponsorship.errors %>
+  <% end %>
+  
+  <div class='row my-5'>
+    <div class='col-md-6 offset-md-3'>
+      <div class='card card-block'>
+        <div class='row my-2'>
+          <div class='col-12'>
+            <%= f.label :name, "Sponsor Name/Company Name" %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12'>
+            <%= f.label :logo, "Company Logo" %>
+            <%= f.file_field :logo, class: 'form-control' %>
+            
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12'>
+            <%= f.label :sponsorship_id, "Sponsorship Level" %> 
+            <%= f.select(:sponsor_level_id, options_for_select(@event.sponsor_levels.collect { |x| [x.name + " - " + number_to_currency(x.price).to_s, x.id] }, f.object.sponsor_level_id ), { prompt: "Make a Selection" }, class: 'form-control') %> 
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-12'>
+            <h5>Sponsorship Description</h5>
+            <% @event.sponsor_levels.each do |level| %>
+            <div id='sponsor-level-descs' style='min-height: 75px;'>
+            <p id='sponsor-level-<%= level.id %>' style='display: none;' data-quantity="<%= level.quantity %>" data-ticket-id="<%= level.ticket.id %>" data-price="<%= level.price %>"><%= level.desc %></p>
+            
+            </div>
+            <h5>Sponsorship Tickets</h5>
+            <div id='sponsor-level-tickets' style='min-height: 45px;'>
+              <p id='sponsor-level-tickets-<%= level.id %>' style='display: none;'>Tickets: <%= level.ticket.name %> Quantity: <%= level.quantity %></p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-12'>
+            <%= f.hidden_field(:event_id, :value => @event.id) %>
+            <%= f.hidden_field(:ticket_id, :value => 0) %>
+            <%= f.hidden_field(:fee, :value => 0) %>
+            <%= f.hidden_field(:quantity, :value => 0) %>
+            <%= f.hidden_field(:paid, :value => false) %>
+            <%= f.hidden_field(:user_id, :value => current_user.id) %>
+            <%= f.submit(@sponsorship.new_record? ? "Submit" : "Update", class: 'btn btn-success') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $('document').ready(function(){
+      var item = $('#sponsorship_sponsor_level_id').val();
+      $('#sponsor-level-descs').children().hide();
+      $('#sponsor-level-tickets').children().hide();
+      $('#sponsor-level-' + item).show();
+      $('#sponsor-level-tickets-' + item).show();
+      $('#sponsorship_quantity').val($('#sponsor-level-' + item).data('quantity'));
+      $('#sponsorship_fee').val($('#sponsor-level-' + item).data('price'));
+      $('#sponsorship_ticket_id').val($('#sponsor-level-' + item).data('ticket-id'));
+  });
+  
+  $("#sponsorship_sponsor_level_id").change(function () {
+        console.log("Changed");
+        var item = $(this).val();
+        $('#sponsor-level-descs').children().hide();
+        $('#sponsor-level-tickets').children().hide();
+        $('#sponsor-level-' + item).show();
+        $('#sponsor-level-tickets-' + item).show();
+        $('#sponsorship_quantity').val($('#sponsor-level-' + item).data('quantity'));
+        $('#sponsorship_fee').val($('#sponsor-level-' + item).data('price'));
+        $('#sponsorship_ticket_id').val($('#sponsor-level-' + item).data('ticket-id'));
+  });
+  
+  
+</script>

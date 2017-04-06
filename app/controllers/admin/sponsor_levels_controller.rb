@@ -37,8 +37,8 @@ class Admin::SponsorLevelsController < ApplicationController
     @sponsor_level = SponsorLevel.find(params[:id])
     @sponsor_level.destroy
     respond_to do |format|
-    format.html {  redirect_to admin_event_path(@event), :flash => { :danger => "sponsor_level successfully deleted" } }
-    format.js 
+      format.html {  redirect_to admin_event_path(@event), :flash => { :danger => "sponsor_level successfully deleted" } }
+      format.js 
     end
   end
   

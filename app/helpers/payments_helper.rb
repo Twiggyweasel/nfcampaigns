@@ -14,5 +14,13 @@ module PaymentsHelper
       false
     end
   end
+  
+  def is_sponsor(object)
+    if object.is_a? Sponsorship
+      true
+    else
+      false
+    end
+  end
 end
 

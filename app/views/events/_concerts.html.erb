@@ -20,7 +20,7 @@
                   <%= link_to "Tickets", new_event_order_path(@event, :category => "personal"), class: 'btn btn-primary btn-block' %>
                 </div>
                 <div class='col-lg-6 my-3'>
-                  <%= link_to "Sponsors", new_event_attendee_path(@event, :category => "corporate"), class: 'btn btn-info btn-block' %>
+                  <%= link_to "Sponsors", new_event_sponsorship_path(@event), class: 'btn btn-info btn-block' %>
                 </div>
               </div>
               <!--<div class="dropdown">-->
@@ -42,7 +42,7 @@
                   <%= link_to "Tickets", new_event_order_path(@event), class: 'btn btn-primary btn-block' %>
                 </div>
                 <div class='col-lg-6 my-3'>
-                  <%= link_to "Sponsors", new_event_attendee_path(@event, :category => "corporate"), class: 'btn btn-info btn-block' %>
+                  <%= link_to "Sponsors", new_event_sponsorship_path(@event), class: 'btn btn-info btn-block' %>
                 </div>
               </div>
           <% end %>

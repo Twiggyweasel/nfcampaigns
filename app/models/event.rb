@@ -12,6 +12,7 @@ class Event < ApplicationRecord
   has_many :tickets
   has_many :orders
   has_many :sponsor_levels
+  has_many :sponsorships
   has_one :promo_card 
   
   mount_uploader :event_cover, EventCoverUploader
@@ -71,7 +72,7 @@ class Event < ApplicationRecord
   
   def total_raised
     
-    self.contributions.where(paid: true).pluck(:amount).sum + team_total_raised + order_total
+    self.contributions.where(paid: true).pluck(:amount).sum + team_total_raised + order_total + sponsorship_total
   end
   
   def order_total 
@@ -88,6 +89,10 @@ class Event < ApplicationRecord
   def team_total_raised
     
     self.teams.pluck(:raised).sum
+  end
+  
+  def sponsorship_total
+    self.sponsorships.where(paid: true).pluck(:fee).sum
   end
   
   def percent_raised

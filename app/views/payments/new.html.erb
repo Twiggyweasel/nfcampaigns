@@ -1,6 +1,9 @@
 <% if get_instance(@context) && @context.event.event_type === "Concert"  %>
 
   <%= render 'concert' %>
+  
+<% elsif is_sponsor(@context) %>
+  <%= render 'sponsorship' %>
 <% else %>
 <%= render 'shared/title', title: 'Payment Information', display: 4 %>
 <%= form_for([@event, @context, @payment], :html => {:name => "new_payment"}) do |f| %>
