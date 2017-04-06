@@ -28,7 +28,7 @@ class Payment < ApplicationRecord
   validates :zip, presence: true
   validate :valid_card
   
-  scope :is_new_2_hours, -> { where(created_at: (Time.now - 2.hours)..Time.now) }
+  scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
   
   def finalize
     if self.success == true 
