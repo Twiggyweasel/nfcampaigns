@@ -28,16 +28,21 @@
         <div class='row'>
           <div class='col-12'>
             <h5>Sponsorship Description</h5>
-            <% @event.sponsor_levels.each do |level| %>
-            <div id='sponsor-level-descs' style='min-height: 75px;'>
-            <p id='sponsor-level-<%= level.id %>' style='display: none;' data-quantity="<%= level.quantity %>" data-ticket-id="<%= level.ticket.id %>" data-price="<%= level.price %>"><%= level.desc %></p>
             
+            <div id='sponsor-level-descs' style='min-height: 75px;'>
+            <% @event.sponsor_levels.each do |level| %>
+              <p id='sponsor-level-<%= level.id %>' style='display: none;' data-quantity="<%= level.quantity %>" data-ticket-id="<%= level.ticket.id %>" data-price="<%= level.price %>"><%= level.desc %></p>
+            <% end %>  
             </div>
+            
             <h5>Sponsorship Tickets</h5>
+            
             <div id='sponsor-level-tickets' style='min-height: 45px;'>
+            <% @event.sponsor_levels.each do |level| %>
               <p id='sponsor-level-tickets-<%= level.id %>' style='display: none;'>Tickets: <%= level.ticket.name %> Quantity: <%= level.quantity %></p>
-            </div>
             <% end %>
+            </div>
+            
           </div>
         </div>
         <div class='row'>
