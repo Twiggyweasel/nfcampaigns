@@ -13,11 +13,7 @@ class Ticket < ApplicationRecord
   end
   
   def update_sold 
-    self.update_column(:sold, self.order_items.pluck(:quantity).sum)
-  end
-  
-  def total_tickets_sold_to_sponsors
-    self.update_column(:sold, self.sponsorships.pluck(:quantity).sum)
+    self.update_column(:sold, self.order_items.pluck(:quantity).sum + self.sponsorships.where(paid: true).pluck(:quantity).sum) 
   end
   
   def check_sold_out
