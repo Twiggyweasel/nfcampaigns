@@ -1,5 +1,7 @@
 <%= form_for([:admin, @event, @order]) do |f| %>
-
+<% if @order.errors.any? %>
+  <%= render "shared/errors", errors: @order.errors %>
+<% end %>
 <div class='row'>
   <div class='col-md-6 offset-md-3'>
     <div class='row my-3'>
