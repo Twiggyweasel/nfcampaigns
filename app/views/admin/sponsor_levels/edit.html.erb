@@ -1,35 +1,48 @@
 <div class='row my-4'>
-  <div class='col-12'>
+  <div class='col-md-6 offset-md-3'>
     <div class='card card-block'>
       <h4 class='card-title'>Edit Sponsor Level
       </h4>
-      <div class='collapse' id='sponsor-form'>
-      <%= form_for([:admin, @sponsor_level]) do |f| %>
+
+      <%= form_for([:admin, @event, @sponsor_level]) do |f| %>
       
-        <div class='row'>
-          <div class='col-lg-3 col-md-6'>
+        <div class='row my-2'>
+          <div class='col-12'>
+            <%= f.label :name %>
             <%= f.text_field :name, class: 'form-control', placeholder: "Sponsor Level Name" %>
           </div>
-          <div class='col-lg-3 col-md-6'>
+        </div>
+        <div class='row my-2'>  
+          <div class='col-12'>
+            <%= f.label :price %>
             <%= f.number_field :price, class: 'form-control', placeholder: "Sponsorship Price" %>
           </div>
-          <div class='col-lg-3 col-md-6'>
-            <%= f.select(:ticket_id, event.tickets.collect { |x| [x.name, x.id] } , { prompt: "Tickets" }, class: 'form-control', placeholder: "Sponsorship Price") %>
+        </div>
+        <div class='row my-2'>  
+          <div class='col-12'>
+            <%= f.label :ticket_id %>
+            <%= f.select(:ticket_id, @event.tickets.collect { |x| [x.name, x.id] } , { prompt: "Tickets" }, class: 'form-control', placeholder: "Sponsorship Price") %>
           </div>
-          <div class='col-lg-3 col-md-6'>
+        </div>  
+        <div class='row my-2'>  
+          <div class='col-12'>
+            <%= f.label :Quantity %>
             <%= f.number_field :quantity, class: 'form-control', placeholder: "Number of Tickets" %>
           </div>
         </div>
         <div class='row my-4'>
-          <div class='col-md-6'>
+          <div class='col-12'>
+            <%= f.label :desc, "Description" %>
             <%= f.text_area :desc, class: 'form-control', placeholder: 'Sponsorship Level Description' %>
           </div>
-          <div class='col-md-3'>
+        </div>
+        <div class='row'>
+          <div class='col-12'>
             <%= f.submit "Submit", class: 'btn btn-success mt-2' %>
           </div>
         </div>
       <% end %>
-      </div>
+
     </div>
   </div>
 </div>
