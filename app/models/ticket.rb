@@ -4,8 +4,9 @@ class Ticket < ApplicationRecord
   has_many :sponsor_levels
   belongs_to :event
   
-  scope :not_soldout, -> { where(is_soldout: false) }
+  scope :is_available, -> { where(is_soldout: false, is_public: true) }
   scope :is_publick, -> { where(is_public: true)}
+  
   
   after_find do
     update_sold    

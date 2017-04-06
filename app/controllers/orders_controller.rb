@@ -3,19 +3,19 @@ class OrdersController < ApplicationController
   before_action :require_user, only: [:show, :new, :edit, :destroy]
   def new 
     @order = @event.orders.new 
-    @tickets = @event.tickets.not_soldout
-    @ticket_names = @event.tickets.not_soldout.map do |item| item.name end 
-    @ticket_fees = @event.tickets.not_soldout.map do |item| item.fee end
-    @ticket_ids = @event.tickets.not_soldout.map do |item| item.id end
+    @tickets = @event.tickets.is_available
+    @ticket_names = @event.tickets.is_available.map do |item| item.name end 
+    @ticket_fees = @event.tickets.is_available.map do |item| item.fee end
+    @ticket_ids = @event.tickets.is_available.map do |item| item.id end
     (@event.tickets.count).times { @order.order_items.build }
   end
   
   def create
     @order = @event.orders.create(order_params)
     
-    @ticket_names = @event.tickets.map do |item| item.name end 
-    @ticket_fees = @event.tickets.map do |item| item.fee end
-    @ticket_ids = @event.tickets.map do |item| item.id end
+    @ticket_names = @event.tickets.is_available.map do |item| item.name end 
+    @ticket_fees = @event.tickets.is_available.map do |item| item.fee end
+    @ticket_ids = @event.tickets.is_available.map do |item| item.id end
     
     if @order.save
       redirect_to new_order_payment_path(@order)

@@ -10,10 +10,11 @@ class Admin::SponsorLevelsController < ApplicationController
     
     respond_to do |format|
       if @sponsor_level.save
-        # format.html redirect_to admin_event_path(@event), :flash => { :success => "sponsor_level has been sucessfully created" }
+        format.html { redirect_to admin_event_path(@event), :flash => { :success => "sponsor_level has been sucessfully created" } }
         format.js
       else
         format.html render :new
+        format.js 
       end
     end
   end
