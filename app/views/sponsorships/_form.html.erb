@@ -22,7 +22,7 @@
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :sponsorship_id, "Sponsorship Level" %> 
-            <%= f.select(:sponsor_level_id, options_for_select(@event.sponsor_levels.collect { |x| [x.name + " - " + number_to_currency(x.price).to_s, x.id] }, f.object.sponsor_level_id ), { prompt: "Make a Selection" }, class: 'form-control') %> 
+            <%= f.select(:sponsor_level_id, options_for_select(@event.sponsor_levels.order(:price).collect { |x| [x.name + " - " + number_to_currency(x.price).to_s, x.id] }, f.object.sponsor_level_id ), { prompt: "Make a Selection" }, class: 'form-control') %> 
           </div>
         </div>
         <div class='row'>
