@@ -30,6 +30,31 @@ class Admin::OrdersController < ApplicationController
     end
   end
   
+  def edit
+    @order = Order.find(params[:id])
+    @tickets = @event.tickets.is_available
+    @ticket_names = @event.tickets.is_available.map do |item| item.name end 
+    @ticket_fees = @event.tickets.is_available.map do |item| item.fee end
+    @ticket_ids = @event.tickets.is_available.map do |item| item.id end
+
+  end
+  
+  def update
+    @order = Order.find(params[:id])
+    @tickets = @event.tickets.is_available
+    @ticket_names = @event.tickets.is_available.map do |item| item.name end 
+    @ticket_fees = @event.tickets.is_available.map do |item| item.fee end
+    @ticket_ids = @event.tickets.is_available.map do |item| item.id end
+    
+    if @order.update(order_params)
+      redirect_to admin_event_orders_path(@event), :flash => { :success => "Order Successfully Created" }
+    else
+      render :new
+    end
+  end
+  
+  
+  
   private 
   
     def set_event

@@ -19,7 +19,7 @@
       </div>
     </div>
     
-    <%= f.fields_for :order_items do |ff| %>
+    <%= f.fields_for :order_items, @order.order_items do |ff| %>
       <div class='row my-2'>
         <div class='col-6'>
           <%= ff.hidden_field(:ticket_id, :value => @ticket_ids[ff.index]) %>

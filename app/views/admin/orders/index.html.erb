@@ -18,6 +18,7 @@
     <th>Quantity</th>
     <th>Total</th>
     <th>Paid</th>
+    <th>Actions</th>
   </thead>
   <tbody>
     <% @orders.each do |order| %>
@@ -28,6 +29,7 @@
         <td><%= item.quantity %></td>
         <td><%= number_to_currency(item.total) %></td>
         <td><%= order.paid %></td>
+        <td><%= link_to 'Edit', edit_admin_event_order_path(@event, order) %></td>
       </tr>
       <% end %>
     <% end %>
