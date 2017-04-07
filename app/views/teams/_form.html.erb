@@ -4,7 +4,7 @@
   <% end %>
 
 
-<div class='row'>
+<div class='row mb-5'>
   <div class='col-md-6 offset-md-3'>
     <div class='card event-card-shadow'>
       <div class='card-block'>
@@ -70,7 +70,9 @@
                 <% end %>         
           <%= ff.label :shirt_size %>
           <%= ff.select( :shirt_size, options_for_select(@event.sizes.collect { |x| [x.label, x.label] } ), { prompt: 'Select a Size' }, class: 'form-control') %>
-          <div class='row mt-5'>
+          <%= render 'shared/waiver' %>
+                
+          <div class='row mb-5'>
             <div class='col-12'>
               <div class="form-check">
                 <label class="form-check-label">
@@ -90,7 +92,6 @@
   </div>
 </div>
 
-<%= render 'shared/waiver' %>
 <% end %>
 
 

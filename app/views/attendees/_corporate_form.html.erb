@@ -39,7 +39,9 @@ Photoshop and PDF
                   
                   <%= f.select(:fee, options_for_select(@event.registration_fees.is_corporate.order(amount: :desc).collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>                 
                   <% end %>
-                                  <div class='row mt-5'>
+                <%= render 'shared/waiver' %>
+                
+                <div class='row'>
                   <div class='col-12'>
                     <div class="form-check">
                       <label class="form-check-label">
@@ -57,7 +59,7 @@ Photoshop and PDF
       </div> 
     </div>
   </div>
-  <div class='row mt-1'>
+  <div class='row mt-1 mb-5'>
     <div class='col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3'>
       <div class='card'>
         <div class='card-block'>
