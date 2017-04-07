@@ -65,13 +65,13 @@
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :shirt_size %>
-                    <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
+                    <%= f.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }, f.object.team_id), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
                   </div>
                 </div>
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :team_id, "Choose a Team" %>
-                    <%= f.select(:team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }), {}, class: 'form-control') %>
+                    <%= f.select(:team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }, f.object.team_id), {}, class: 'form-control') %>
                   </div>
                 </div>
                 <% end %>
