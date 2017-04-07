@@ -101,5 +101,9 @@ Rails.application.routes.draw do
   post 'check_promotion_code', to: 'promotions#check_promotion_code'
   
   root to: "pages#home"
+  
+  if Rails.env.production?
+   get '404', :to => 'application#page_not_found'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

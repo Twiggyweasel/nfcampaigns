@@ -1,6 +1,8 @@
 class Admin::TeamsController < ApplicationController
   layout 'admin'
   before_action :set_event
+  before_action :require_user, :require_admin
+  
   def index 
   end
   

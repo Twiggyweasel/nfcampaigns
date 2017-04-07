@@ -1,6 +1,7 @@
 class Admin::PaymentsController < ApplicationController
   layout 'admin'
   before_action :require_user, :require_admin
+  
   def index
     @payments = Payment.all.order(created_at: :desc) 
   end

@@ -1,8 +1,7 @@
 class Admin::GuestsController < ApplicationController
   layout 'admin'
   before_action :set_attendee
-  before_action :require_user
-  before_action :require_admin
+  before_action :require_user, :require_admin
   
   
   def edit

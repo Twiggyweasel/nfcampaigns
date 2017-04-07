@@ -2,6 +2,7 @@ class Admin::OrdersController < ApplicationController
   layout 'admin'
   before_action :set_event
   before_action :require_user, :require_admin
+  
   def index 
     @orders = @event.orders.all
   end

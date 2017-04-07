@@ -1,7 +1,6 @@
 class Admin::GalleryImagesController < ApplicationController
   layout 'admin'
-  before_action :require_user 
-  before_action :require_admin
+  before_action :require_user, :require_admin
   
   def index
     @images = GalleryImage.all

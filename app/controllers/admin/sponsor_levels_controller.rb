@@ -1,6 +1,7 @@
 class Admin::SponsorLevelsController < ApplicationController
   before_action :set_event, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user, :require_admin
+  
   def new
     @sponsor_level = @event.sponsor_levels.new
   end

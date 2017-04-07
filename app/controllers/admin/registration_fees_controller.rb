@@ -1,6 +1,7 @@
 class Admin::RegistrationFeesController < ApplicationController
   before_action :set_event, only: [:new, :create, :edit, :update, :destroy]
   before_action :require_user, :require_admin
+  
   def new
     @fee = @event.registration_fees.new
   end

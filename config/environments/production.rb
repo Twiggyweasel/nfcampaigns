@@ -95,4 +95,5 @@ config.action_mailer.default_url_options = { :host => "nfstrong.org" }
   
   config.assets.quiet
   config.lograge.enabled = true
+  config.exceptions_app = self.routes
 end
