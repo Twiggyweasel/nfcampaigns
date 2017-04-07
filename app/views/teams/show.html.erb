@@ -36,7 +36,7 @@
               <div class='col-9 my-3'>
                 <h6 class='mt-4'><%= link_to attendee.user.name.titleize, attendee_pledge_page_path(attendee) %> | <small class='muted-text'><%= number_to_currency(attendee.fee) %> Raised</small></h6>
               </div>
-              <% attendee.guests.each do |guest| %>
+              <% attendee.guests.is_paid.each do |guest| %>
               <div class='col-3 my-3'>
                 <img class='img-fluid rounded-circle img-thumbnail d-block mx-auto' src='<%= image_url('no_user.png') %>' style='height: 75px;'>
               </div>

@@ -119,7 +119,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                <% @pledge_page.guests.each do |guest| %>
+                <% @pledge_page.guests.is_paid.each do |guest| %>
                 <tr>
                   <td colspan="2"><%= guest.name %></td>
                   <td><%= number_to_currency(guest.fee) %></td>
