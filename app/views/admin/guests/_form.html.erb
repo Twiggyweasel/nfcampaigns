@@ -29,7 +29,7 @@
       <div class='row my-2'>
         <div class='col-12'>
           <%= f.label :shirt_size %>
-          <%= f.select( :shirt_size, options_for_select(@attendee.event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
+          <%= f.select( :shirt_size, options_for_select(@attendee.event.sizes.collect {|x| [x.label, x.label] }, f.object.shirt_size), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
         </div>
       </div>
       
