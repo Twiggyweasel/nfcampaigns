@@ -30,6 +30,16 @@
           <%= ff.select(:fee, options_for_select(@event.registration_fees.is_personal.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}), {prompt: 'Select One'}, class: 'form-control') %>
           <%= ff.label :shirt_size %>
           <%= ff.select( :shirt_size, options_for_select(@event.sizes.collect {|x| [x.label, x.label] }), {prompt: 'Select a Size'}, class: 'form-control') %>
+          <div class='row mt-5'>
+            <div class='col-12'>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <%= ff.check_box :accepted_terms, class: "form-check-input" %>
+                    By clicking this box you accept the waiver listed below for yourself and your guests.
+                </label>
+              </div>
+            </div>
+          </div>
           <%= ff.hidden_field(:event_id, value: @event.id) %>
         <% end %>
         
@@ -40,4 +50,5 @@
   </div>
 </div>
 
+<%= render 'shared/waiver' %>
 <% end %>
