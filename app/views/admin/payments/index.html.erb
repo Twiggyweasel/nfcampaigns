@@ -25,7 +25,7 @@
             <td><%= number_to_currency payment.amount %></td>
             <td><%= payment.success == true ? "Yes" : "No" %></td>
             <td><%= payment.authorization_code %></td>
-            <td><% if payment.payable_type == "Attendee" %> <%= link_to payment.payable_type, admin_event_attendee_path(payment.payable.event, payment.payable_id) %> <% else %> <%= payment.payable_type %> <% end %></td>
+            <!--<td><#% if payment.payable_type == "Attendee" %> <#%= link_to payment.payable_type, admin_event_attendee_path(payment.payable.event, payment.payable_id) %> <#% else %> <#%= payment.payable_type %> <#% end %></td>-->
             <td><%= payment.created_at.strftime("%m/%d/%Y") %></td>
           </tr>
         <% end %>
