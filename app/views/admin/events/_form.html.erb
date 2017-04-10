@@ -65,7 +65,7 @@
     </div>
 
       <%= f.label :size_ids, 'Select Available Shirt Sizes (Ctrl click to select multiple)' %>
-      <%= f.select :size_ids, Size.all.collect {|x| [x.label, x.id]}, {}, class: 'form-control', :multiple => true, size: 6 %>
+      <%= f.select :size_ids, options_for_select(Size.all.collect {|x| [x.label, x.id]}, f.object.size_ids), { }, class: 'form-control', :multiple => true, size: 6 %>
 
       
       <%= f.label :desc, "Event Summary" %>
