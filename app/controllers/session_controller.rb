@@ -66,8 +66,11 @@ class SessionController < ApplicationController
         if u.profile.nil?
           redirect_to new_user_profile_path(u)
         else
-          redirect_to root_path, :flash => { :success => "You have been signed in"}
-        # :flash => { :success => 'Welcome to The App!' }
+          if session[:return_url]
+            redirect_to session[:return_url], :flash => { :success => "You have been signed in" }
+          else
+            redirect_to root_path, :flash => { :success => "You have been signed in"}
+          end
         end
       end
     end

@@ -37,7 +37,9 @@
             <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
           <% else %>
             <img src='<%= image_url('no_user.png') %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
-            <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
+            <% if current_user.has_notices? %> 
+              <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> 
+            <% end %>
           <% end %>
           <%= current_user.name.titleize %>
         </a>

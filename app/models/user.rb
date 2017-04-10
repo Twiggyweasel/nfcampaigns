@@ -80,6 +80,17 @@ class User < OmniAuth::Identity::Models::ActiveRecord
     self.created_at.between?((now - 24.hours), now)
   end
   
+  def has_notices?
+    
+    if current_user.attendees.where(paid: false).any? || current_user.orders.where(paid: false).any? || current_user.contributions.where(paid: false).any? || current_user.sponsorships.where(paid: false).any?
+      true
+    else
+      false
+    end
+    
+  end
+  
+  
   paginates_per 6
   
 end
