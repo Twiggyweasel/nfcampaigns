@@ -36,7 +36,11 @@ class SessionController < ApplicationController
         if current_user.profile.nil?
           redirect_to new_user_profile_path(current_user)
         else
-          redirect_to root_path, :flash => { :success => 'You have been signed in!' }
+          if session[:return_url]
+            redirect_to session[:return_url], :flash => { :success => "You have been signed in" }
+          else
+            redirect_to root_path, :flash => { :success => "You have been signed in"}
+          end
         end 
       else
         # The authentication has no user assigned and there is no user signed in
