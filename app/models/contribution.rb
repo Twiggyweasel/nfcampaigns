@@ -1,7 +1,7 @@
 class Contribution < ApplicationRecord
   belongs_to :backable, polymorphic: true
   has_many :payments, as: :payable
-  belongs_to :user
+  belongs_to :user, optional: true
   
   validates :amount, presence: true, numericality: { only_integer: false }
   

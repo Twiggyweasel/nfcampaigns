@@ -28,6 +28,12 @@ class Payment < ApplicationRecord
   validates :zip, presence: true
   validate :valid_card
   
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  validates :email, :presence   => true,
+            :format     => { :with => email_regex },
+            :uniqueness => { :case_sensitive => false }
+  
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
   
   def finalize

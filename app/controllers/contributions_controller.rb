@@ -1,5 +1,5 @@
 class ContributionsController < ApplicationController
-  before_action :require_user, only: [:new, :edit, :destroy]
+  # before_action :require_user, only: [:new, :edit, :destroy]
   
   def contribution_select
     @events = Event.all

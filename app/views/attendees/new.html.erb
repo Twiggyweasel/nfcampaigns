@@ -2,8 +2,8 @@
 
 
 <% if params[:category] == 'personal' || @attendee.category == 'Personal' %>
-<%= render 'personal_form' %>
+  <%= render 'personal_form' %>
 <% else %>
-<%= render 'corporate_form' %>
+  <%= render 'corporate_form' %>
 <% end %>
 

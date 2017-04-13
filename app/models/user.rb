@@ -1,4 +1,3 @@
-#User class is responsible for creating user records 
 class User < OmniAuth::Identity::Models::ActiveRecord
   belongs_to :role
   has_one :profile, :dependent => :destroy, inverse_of: :user
@@ -12,23 +11,22 @@ class User < OmniAuth::Identity::Models::ActiveRecord
   has_many :champions
   has_many :orders
   has_many :sponsorships
-  
   has_many :authentications, dependent: :destroy
-  
+
   accepts_nested_attributes_for :profile
-  
+
   validates :name, presence: true
-  
-  scope :admins, -> { where(role_id: 1) } 
+
+  scope :admins, -> { where(role_id: 1) }
   mount_uploader :profile_pic, ChampionImageUploader
-  
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
             :uniqueness => { :case_sensitive => false }
 
-  
+
   scope :is_new, -> { where(created_at: (Time.now - 24.hours)..Time.now) }
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
   def self.create_with_omniauth(auth)
@@ -48,49 +46,50 @@ class User < OmniAuth::Identity::Models::ActiveRecord
     end
 
   end
-  
+
   def total_raised
     if self.attendees.where(paid: true).pluck(:raised).blank? && self.contributions.where(paid: true).pluck(:amount).blank?
       0
-    else  
+    else
       self.attendees.where(paid: true).pluck(:raised).sum + self.contributions.where(paid: true).pluck(:amount).sum
     end
   end
-  
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
     UserMailer.password_reset(self).deliver_later
   end
-  
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
-  
-  before_save do 
+
+  before_save do
     name.downcase!
     email.downcase!
   end
-  
+
   def is_new?
     now = Time.now
     self.created_at.between?((now - 24.hours), now)
   end
-  
+
   def has_notices?
-    
     if current_user.attendees.where(paid: false).any? || current_user.orders.where(paid: false).any? || current_user.contributions.where(paid: false).any? || current_user.sponsorships.where(paid: false).any?
       true
     else
       false
     end
-    
   end
-  
-  
+
+
   paginates_per 6
-  
+
 end
+
+
+

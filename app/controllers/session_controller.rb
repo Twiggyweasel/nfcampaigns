@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   def new
 
   end
-  
+
   def create
     auth = request.env['omniauth.auth']
 
@@ -17,12 +17,12 @@ class SessionController < ApplicationController
     if logged_in?
       if @authentication.user == current_user
         # User is signed in so they are trying to link an authentication with their
-        # account. But we found the authentication and the user associated with it 
-        # is the current user. So the authentication is already associated with 
+        # account. But we found the authentication and the user associated with it
+        # is the current user. So the authentication is already associated with
         # this user. So let's display an error message.
         redirect_to user_account_settings_path(current_user), :flash => { :warning => "You have already linked this account" }
       else
-        # The authentication is not associated with the current_user so lets 
+        # The authentication is not associated with the current_user so lets
         # associate the authentication
         @authentication.user = current_user
         @authentication.save
@@ -30,7 +30,7 @@ class SessionController < ApplicationController
       end
     else # no user is signed_in
       if @authentication.user.present?
-        # The authentication we found had a user associated with it so let's 
+        # The authentication we found had a user associated with it so let's
         # just log them in here
         self.current_user = @authentication.user
         if current_user.profile.nil?
@@ -41,7 +41,7 @@ class SessionController < ApplicationController
           else
             redirect_to root_path, :flash => { :success => "You have been signed in"}
           end
-        end 
+        end
       else
         # The authentication has no user assigned and there is no user signed in
         # Our decision here is to create a new account for the user
@@ -51,7 +51,7 @@ class SessionController < ApplicationController
           u = User.find(@authentication.uid)
           # If the provider is identity, then it means we already created a user
           # So we just load it up
-          
+
           # self.current_user = u
           # redirect_to root_path :flash => { :success => "You have been signed in!" } and return
         else
@@ -77,14 +77,14 @@ class SessionController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     self.current_user = nil
     redirect_to root_path, :flash => { :danger => "Signed out!" }
   end
-  
-  def failure  
-    redirect_to login_path, :flash => { :danger => "Authentication failed, please try again." }  
+
+  def failure
+    redirect_to login_path, :flash => { :danger => "Authentication failed, please try again." }
   end
 end
 

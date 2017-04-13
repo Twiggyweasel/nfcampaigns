@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406014851) do
+ActiveRecord::Schema.define(version: 20170412132101) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -187,6 +187,7 @@ ActiveRecord::Schema.define(version: 20170406014851) do
     t.integer  "payable_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "email"
     t.index ["payable_type", "payable_id"], name: "index_payments_on_payable_type_and_payable_id"
   end
 

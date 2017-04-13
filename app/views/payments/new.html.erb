@@ -1,7 +1,7 @@
 <% if get_instance(@context) && @context.event.event_type === "Concert"  %>
 
   <%= render 'concert' %>
-  
+
 <% elsif is_sponsor(@context) %>
   <%= render 'sponsorship' %>
 <% else %>
@@ -10,7 +10,7 @@
 
   <% if @payment.errors.any? %>
     <%= render 'shared/errors', errors: @payment.errors %>
-  <% end %> 
+  <% end %>
 
 
 
@@ -27,28 +27,34 @@
         </div>
         <div class='col-md-6 my-2'>
           <%= f.label :last_name %>
-          <%= f.text_field :last_name,class: "form-control" %>          
+          <%= f.text_field :last_name,class: "form-control" %>
+        </div>
+      </div>
+      <div class="row my-1">
+        <div class='col-12  my-2'>
+          <%= f.label :email, "Receipt Email" %>
+          <%= f.email_field :email,class: "form-control", :value => !current_user.nil? ? current_user.email : ""  %>
         </div>
       </div>
       <div class="row my-3">
         <div class='col-12  my-2'>
           <%= f.label :credit_card_number %>
-          <%= f.text_field :credit_card_number, class: "form-control" %>          
+          <%= f.text_field :credit_card_number, class: "form-control" %>
         </div>
       </div>
       <div class="row my-3">
         <div class='col-md-4 my-2'>
           <%= f.label :expiration_month %>
           <%= f.select :expiration_month, months, {}, class: "form-control" %>
-        </div>  
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :expiration_year %>
-          <%= f.select :expiration_year, years, {}, class: "form-control" %>          
-        </div>  
+          <%= f.select :expiration_year, years, {}, class: "form-control" %>
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :card_security_code %>
-          <%= f.text_field :card_security_code, class: "form-control" %>          
-        </div>  
+          <%= f.text_field :card_security_code, class: "form-control" %>
+        </div>
       </div>
       <div class='row my-3'>
         <div class='col-12'>
@@ -58,7 +64,7 @@
                 Cover the Processing Fees of <%= number_to_currency(@payment.fee(@context.amount).floor2(2)) %>
             </label>
           </div>
-           
+
           <!--<label class="custom-control custom-checkbox">-->
           <!--  <#%= f.check_box :cover_processing, class: 'form-control', checked: true %>-->
           <!--  <span class="custom-control-indicator"></span>-->
@@ -67,7 +73,7 @@
         </div>
       </div>
         <div class="form-group">
-          <%= f.hidden_field(:amount, :value => @context.unpaid_amount) %> 
+          <%= f.hidden_field(:amount, :value => @context.unpaid_amount) %>
           <%= f.hidden_field(:fee, :value => @payment.fee(@context.unpaid_amount).floor2(2)) %>
           <%= f.hidden_field(:promo_code, :value => "", "data-discount" => "0") %>
         </div>
@@ -75,41 +81,43 @@
     <!-- Addresss Block-->
     <div class='card card-block mt-3'>
       <h3><i class="fa fa-address-card-o" aria-hidden="true"></i> Billing Address</h3>
+      <% if logged_in? %>
       <div class='row my-3'>
         <div class='col-12'>
           <label class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id='custom-address'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Use a different address</span>
-          </label>  
+          </label>
         </div>
       </div>
+      <% end %>
       <div id='address_fields'>
         <div class='row my-2'>
           <div class='col-md-6 my-2'>
             <%= f.label :street, "Street Address" %>
-            <%= f.text_field :street, class: "form-control", :value => current_user.profile.street %>
+            <%= f.text_field :street, class: "form-control", :value => !current_user.nil? ? current_user.profile.street : "" %>
           </div>
           <div class='col-md-6 my-2'>
             <%= f.label :apt, "Apt/Suite #" %>
-            <%= f.text_field :apt,class: "form-control", :value => current_user.profile.apt %>          
+            <%= f.text_field :apt,class: "form-control", :value => !current_user.nil? ? current_user.profile.apt : "" %>
           </div>
         </div>
         <div class="row my-2">
           <div class='col-md-4 my-2'>
             <%= f.label :city %>
-            <%= f.text_field :city, class: "form-control", :value => current_user.profile.city %>  
-          </div>  
+            <%= f.text_field :city, class: "form-control", :value => !current_user.nil? ? current_user.profile.city : "" %>
+          </div>
           <div class='col-md-4 my-2'>
             <%= f.label :state %>
-            <%= f.text_field :state, class: "form-control", :value => current_user.profile.state %> 
-          </div>  
+            <%= f.text_field :state, class: "form-control", :value => !current_user.nil? ? current_user.profile.state : "" %>
+          </div>
           <div class='col-md-4 my-2'>
             <%= f.label :zip, "Zip Code" %>
-            <%= f.text_field :zip, class: "form-control", :value => current_user.profile.zipcode %>  
-          </div>  
+            <%= f.text_field :zip, class: "form-control", :value => !current_user.nil? ? current_user.profile.zipcode : "" %>
+          </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
   <!-- Shopping Cart Block -->
@@ -146,7 +154,7 @@
         </table>
 
     </div>
-            <div class='card-footer'>  
+            <div class='card-footer'>
           <%= f.submit "Authorize Card", class: "btn btn-success btn-block" %>
           <%= link_to "Edit Contribution Details", edit_event_contribution_path(@context.backable_id, @context), class: 'btn btn-primary btn-block' %>
         </div>
@@ -196,7 +204,7 @@
             </tbody>
           </table>
         </div>
-        <div class='card-footer'>  
+        <div class='card-footer'>
           <%= f.submit "Authorize Card", class: "btn btn-success btn-block" %>
           <%= link_to "Edit Registration Details", edit_event_attendee_path(@context.event, @context), class:'btn btn-primary btn-block' %>
         </div>
@@ -226,19 +234,19 @@
 <% end %>
 
 <script>
-  var profile_address = "<%= current_user.profile.street if !current_user.profile.nil? %>"
-  var profile_apt = "<%= current_user.profile.apt if !current_user.profile.nil? %>"
-  var profile_city = "<%= current_user.profile.city if !current_user.profile.nil? %>"
-  var profile_state = "<%= current_user.profile.state if !current_user.profile.nil? %>"
-  var profile_zip = "<%= current_user.profile.zipcode if !current_user.profile.nil? %>"
-  
+  var profile_address = "<%= current_user.profile.street if !current_user.nil? && !current_user.profile.nil? %>"
+  var profile_apt = "<%= current_user.profile.apt if !current_user.nil? && !current_user.profile.nil? %>"
+  var profile_city = "<%= current_user.profile.city if !current_user.nil? && !current_user.profile.nil? %>"
+  var profile_state = "<%= current_user.profile.state if !current_user.nil? && !current_user.profile.nil? %>"
+  var profile_zip = "<%= current_user.profile.zipcode if !current_user.nil? && !current_user.profile.nil? %>"
+
   $('#payment_cover_processing').click(function() {
-   
-    
+
+
     var amountRaw = $('#payment_amount').val();
     var feeClean = $('#payment_fee').val();
     var amountwfeeRaw = parseFloat(amountRaw) + parseFloat(feeClean);
-    
+
     if($(this).is(":checked")) {
       var rounded_fee = parseFloat(feeClean).toFixed(2);
       console.log("checked");
@@ -251,11 +259,11 @@
       $('#processing-amount').text('$0.00');
       $('#final-total').text("$" + parseFloat(amountRaw).toFixed(2));
     }
-    
+
   });
-  
+
   $('#custom-address').click(function() {
-    
+
     if($(this).is(":checked")) {
         console.log("checked");
         resetAddressValues();
@@ -263,13 +271,13 @@
       } else {
         addAddressValues();
       }
-      
+
   });
-  
+
   function resetAddressValues() {
     $('#address_fields').find('input:text').val('');
   }
-  
+
   function addAddressValues() {
     $('#payment_street').val(profile_address);
     $('#payment_apt').val(profile_apt);
