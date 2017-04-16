@@ -175,13 +175,13 @@
                                         </tr>
                                         <% if @users.empty? %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                             No new users joined the app in the last hour.
                                             </td>
                                         </tr>
                                         <% else %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                               <%= @users.count %> new users joined the app in the last hour!
                                             </td>
                                         </tr>
@@ -193,7 +193,7 @@
                                                   	<th>User Name</th>
                                                       <th>User Email</th>
                                                       <th>User State</th>
-                                                      
+
                                                   </thead>
                                                   <tbody>
                                                     <% @users.each do |new| %>
@@ -202,7 +202,7 @@
                                                           <td style="padding: 15px;"><%= new.email %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= new.profile.state if !new.profile.nil? %></td>
                                                       </tr>
-                                                    <% end %>  
+                                                    <% end %>
                                                   </tbody>
                                               </table>
                                               <br><br><br>
@@ -217,13 +217,13 @@
                                         </tr>
                                         <% if @attendees.empty? %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                             No new registrations in the last hour.
                                             </td>
                                         </tr>
                                         <% else %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                               <%= @attendees.count %> new registrations in the last hour!
                                             </td>
                                         </tr>
@@ -235,7 +235,7 @@
                                                   	  <th>User Registered</th>
                                                       <th>Event</th>
                                                       <th>Guests</th>
-                                                      
+
                                                   </thead>
                                                   <tbody>
                                                     <% @attendees.each do |attendee| %>
@@ -244,7 +244,7 @@
                                                           <td style="padding: 15px;"><%= attendee.event.title %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= attendee.guests.count %></td>
                                                       </tr>
-                                                    <% end %>  
+                                                    <% end %>
                                                   </tbody>
                                               </table>
                                               <br><br><br>
@@ -259,13 +259,13 @@
                                         </tr>
                                         <% if @payments.empty? %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                             No new payments in the last hour.
                                             </td>
                                         </tr>
                                         <% else %>
                                         <tr>
-                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy"> 
+                                            <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #333333;" class="padding-copy">
                                               <%= @payments.count %> new payments in the last hour!
                                             </td>
                                         </tr>
@@ -278,17 +278,17 @@
                                                       <th>Amount</th>
                                                       <th>Successful</th>
                                                       <th>Reference</th>
-                                                      
+
                                                   </thead>
                                                   <tbody>
                                                     <% @payments.each do |payment| %>
                                                   	<tr>
-                                                          <td style="padding: 15px;"><%= payment.payable.user.name.titleize %></td>
+                                                          <td style="padding: 15px;"><% !payment.payable.user.nil? ? payment.payable.user.name.titleize : payment.fullname %></td>
                                                           <td style="padding: 15px;"><%= number_to_currency(payment.amount) %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= payment.success %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= payment.payable_type %></td>
                                                       </tr>
-                                                    <% end %>  
+                                                    <% end %>
                                                   </tbody>
                                               </table>
                                               <br><br><br>

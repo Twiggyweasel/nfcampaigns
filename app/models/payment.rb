@@ -27,19 +27,19 @@ class Payment < ApplicationRecord
   validates :zip, presence: true, length: { is: 5 }
   validates :zip, presence: true
   validate :valid_card
-  
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
             :uniqueness => { :case_sensitive => false }
-  
+
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
-  
+
   def finalize
-    if self.success == true 
+    if self.success == true
       self.payable.update_column(:paid, true)
-      if self.payable.is_a? Attendee 
+      if self.payable.is_a? Attendee
         self.payable.guests.update_all(paid: true)
       end
       self.update_column(:confirmation_number, (0...4).map { (65 + rand(20)) }.join)
@@ -56,7 +56,7 @@ class Payment < ApplicationRecord
       last_name:           last_name
     )
   end
-  
+
   def purchase_options
     {
       :billing_address => {
@@ -65,27 +65,27 @@ class Payment < ApplicationRecord
         :city => city,
         :state => state,
         :zip => zip
-      
+
       }
     }
   end
 
   def final_amount
     fee_amount = fee(self.amount)
-    
+
     if !self.promo_code.empty?
     promo = (Promotion.where(code: self.promo_code).first.discount / 100)
     promo_reduction = (self.amount * promo)
     end
-    
+
     if self.cover_processing
-      if self.promo_code.empty? 
-        (self.amount + fee_amount)  
+      if self.promo_code.empty?
+        (self.amount + fee_amount)
       else
         ((self.amount - promo_reduction) + fee_amount)
       end
     else
-      if self.promo_code.empty? 
+      if self.promo_code.empty?
         self.amount
       else
         (self.amount - promo_reduction)
@@ -124,10 +124,15 @@ class Payment < ApplicationRecord
       end
     end
   end
-  
+
   def fee(amount)
-    (amount * 0.029) + 0.30  
+    (amount * 0.029) + 0.30
   end
+
+  def fullname
+    self.first_name + " " + self.last_name
+  end
+
 end
 
 class BigDecimal
