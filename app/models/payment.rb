@@ -12,21 +12,21 @@ class Payment < ApplicationRecord
   attr_accessor :zip
   attr_accessor :fee
 
-  validates :first_name, presence: true, unless: !self.new_record?
-  validates :last_name, presence: true, unless: !self.new_record?
-  validates :card_security_code, presence: true, unless: !self.new_record?
-  validates :credit_card_number, presence: true, unless: !self.new_record?
-  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, unless: !self.new_record?
-  validates :expiration_year, presence: true, unless: !self.new_record?
-  validates :amount, presence: true, numericality: { greater_than: 0 }, unless: !self.new_record?
+  validates :first_name, presence: true, if: self.new_record?
+  validates :last_name, presence: true, if: self.new_record?
+  validates :card_security_code, presence: true, if: self.new_record?
+  validates :credit_card_number, presence: true, if: self.new_record?
+  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, if: self.new_record?
+  validates :expiration_year, presence: true, if: self.new_record?
+  validates :amount, presence: true, numericality: { greater_than: 0 }, if: self.new_record?
 
-  validates :street, presence: true, unless: !self.new_record?
+  validates :street, presence: true, if: self.new_record?
 
-  validates :city, presence: true, unless: !self.new_record?
-  validates :state, presence: true, unless: !self.new_record?
-  validates :zip, presence: true, length: { is: 5 }, unless: !self.new_record?
-  validates :zip, presence: true, unless: !self.new_record?
-  validate :valid_card, unless: !self.new_record?
+  validates :city, presence: true, if: self.new_record?
+  validates :state, presence: true, if: self.new_record?
+  validates :zip, presence: true, length: { is: 5 }, if: self.new_record?
+  validates :zip, presence: true, if: self.new_record?
+  validate :valid_card, if: self.new_record?
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
