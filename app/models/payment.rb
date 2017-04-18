@@ -32,7 +32,7 @@ class Payment < ApplicationRecord
 
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
-            :uniqueness => { :case_sensitive => false }, unless: !self.new_record?
+            :uniqueness => { :case_sensitive => false }, if self.new_record?
 
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
