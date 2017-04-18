@@ -12,27 +12,27 @@ class Payment < ApplicationRecord
   attr_accessor :zip
   attr_accessor :fee
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :card_security_code, presence: true
-  validates :credit_card_number, presence: true
-  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }
-  validates :expiration_year, presence: true
-  validates :amount, presence: true, numericality: { greater_than: 0 }
+  validates :first_name, presence: true, unless: !self.new_record?
+  validates :last_name, presence: true, unless: !self.new_record?
+  validates :card_security_code, presence: true, unless: !self.new_record?
+  validates :credit_card_number, presence: true, unless: !self.new_record?
+  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, unless: !self.new_record?
+  validates :expiration_year, presence: true, unless: !self.new_record?
+  validates :amount, presence: true, numericality: { greater_than: 0 }, unless: !self.new_record?
 
-  validates :street, presence: true
+  validates :street, presence: true, unless: !self.new_record?
 
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zip, presence: true, length: { is: 5 }
-  validates :zip, presence: true
-  validate :valid_card
+  validates :city, presence: true, unless: !self.new_record?
+  validates :state, presence: true, unless: !self.new_record?
+  validates :zip, presence: true, length: { is: 5 }, unless: !self.new_record?
+  validates :zip, presence: true, unless: !self.new_record?
+  validate :valid_card, unless: !self.new_record?
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
-            :uniqueness => { :case_sensitive => false }
+            :uniqueness => { :case_sensitive => false }, unless: !self.new_record?
 
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
