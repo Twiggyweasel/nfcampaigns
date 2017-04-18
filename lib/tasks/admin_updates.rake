@@ -17,3 +17,12 @@ task :send_new_actions => :environment do
   puts "done."
 end
 
+task :order_clean_up => :environment do
+  puts "Cleaning up pending Orders"
+  if Order.expiring.any?
+    Order.expiring.each do |order|
+      order.destroy
+    end
+  end
+  puts "Order cleanup complete"
+end
