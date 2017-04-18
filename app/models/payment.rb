@@ -12,27 +12,27 @@ class Payment < ApplicationRecord
   attr_accessor :zip
   attr_accessor :fee
 
-  validates :first_name, presence: true, if: self.new_record?
-  validates :last_name, presence: true, if: self.new_record?
-  validates :card_security_code, presence: true, if: self.new_record?
-  validates :credit_card_number, presence: true, if: self.new_record?
-  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, if: self.new_record?
-  validates :expiration_year, presence: true, if: self.new_record?
-  validates :amount, presence: true, numericality: { greater_than: 0 }, if: self.new_record?
+  validates :first_name, presence: true, :on => :create
+  validates :last_name, presence: true, :on => :create
+  validates :card_security_code, presence: true, :on => :create
+  validates :credit_card_number, presence: true, :on => :create
+  validates :expiration_month, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, :on => :create
+  validates :expiration_year, presence: true, :on => :create
+  validates :amount, presence: true, numericality: { greater_than: 0 }, :on => :create
 
-  validates :street, presence: true, if: self.new_record?
+  validates :street, presence: true, :on => :create
 
-  validates :city, presence: true, if: self.new_record?
-  validates :state, presence: true, if: self.new_record?
-  validates :zip, presence: true, length: { is: 5 }, if: self.new_record?
-  validates :zip, presence: true, if: self.new_record?
-  validate :valid_card, if: self.new_record?
+  validates :city, presence: true, :on => :create
+  validates :state, presence: true, :on => :create
+  validates :zip, presence: true, length: { is: 5 }, :on => :create
+  validates :zip, presence: true, :on => :create
+  validate :valid_card, :on => :create
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence   => true,
             :format     => { :with => email_regex },
-            :uniqueness => { :case_sensitive => false }, if self.new_record?
+            :uniqueness => { :case_sensitive => false }, :on => :create
 
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
