@@ -24,12 +24,13 @@ class PaymentsController < ApplicationController
       if @payment.process
         @payment.finalize
         if @payment.payable_type === "Attendee"
-          if @payment.payable.category === "Concert"
-            PaymentsMailer.concert_payment.(current_user, @payment).deliver_later
-          else
-            PaymentsMailer.registration_payment(current_user, @payment).deliver_later
-          end
+          PaymentsMailer.registration_payment(current_user, @payment).deliver_later
+        elsif @payment.payable.category === "Concert"
+          PaymentsMailer.concert_payment.(current_user, @payment).deliver_later
+        else
+          PaymentsMailer.contribution_payment(@payment).deliver_later
         end
+      end
 
         redirect_to context_url(@context), :flash => { :success => "Your card has been successfully charged." } and return
         # redirect_to event_contribution_reciept_path(@payable.backable, @payable), :flash => { :success => "Your card has been successfully charged." } and return
