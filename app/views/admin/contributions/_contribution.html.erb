@@ -1,5 +1,5 @@
 <tr>
-  <td><% if contribution.user.nil? %> Offline User <% else %> <%= contribution.user.name %> <% end %></td>
+  <td><% if contribution.user.nil? %> <%= contribution.payments.where(paid: true).first.first_name + " " + contribution.payments.where(paid: true).first.last_name %> <% else %> <%= contribution.user.name %> <% end %></td>
   <td><%= contribution.amount %></td>
   <td><%= contribution.paid %></td>
   <td><%= contribution.honoree %></td>
