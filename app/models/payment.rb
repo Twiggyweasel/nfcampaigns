@@ -133,6 +133,12 @@ class Payment < ApplicationRecord
     self.first_name + " " + self.last_name
   end
 
+  def set_email
+    if !self.user.nil? and self.email.nil?
+      self.update_column(email: self.user.email)
+    end
+  end
+
 end
 
 class BigDecimal

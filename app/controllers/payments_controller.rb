@@ -30,7 +30,6 @@ class PaymentsController < ApplicationController
         else
           PaymentsMailer.contribution_payment(@payment).deliver_later
         end
-      end
 
         redirect_to context_url(@context), :flash => { :success => "Your card has been successfully charged." } and return
         # redirect_to event_contribution_reciept_path(@payable.backable, @payable), :flash => { :success => "Your card has been successfully charged." } and return
