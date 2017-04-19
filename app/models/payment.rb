@@ -134,8 +134,8 @@ class Payment < ApplicationRecord
   end
 
   def set_email
-    if !self.user.nil? and self.email.nil?
-      self.update_column(email: self.user.email)
+    if !self.payable.user.nil? and self.email.nil?
+      self.update_column(email: self.payable.user.email)
     end
   end
 
