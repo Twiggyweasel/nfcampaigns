@@ -1,5 +1,5 @@
 <tr>
-  <td><%= contribution.user.name %></td>
+  <td><% if !payment.payable.nil? && !payment.payable.user.nil? %><%= link_to payment.first_name, admin_user_path(payment.payable.user)  %><% else %> <%= payment.first_name %> <% end %></td>
   <td><%= contribution.amount %></td>
   <td><%= contribution.paid %></td>
   <td><%= contribution.honoree %></td>
