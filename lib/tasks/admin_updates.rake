@@ -26,3 +26,13 @@ task :order_clean_up => :environment do
   end
   puts "Order cleanup complete"
 end
+
+task :contribution_email_resend => :environment do
+  puts starting email list
+  if Payment.is_paid_contribution.any?
+    Payment.is_paid_contribution.each do |pay|
+      PaymentsMailer.contribution_payment(pay).deliver
+    end
+  end
+  puts ending email list
+end

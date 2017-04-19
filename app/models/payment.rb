@@ -35,6 +35,7 @@ class Payment < ApplicationRecord
             :uniqueness => { :case_sensitive => false }, :on => :create
 
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
+  scope :is_paid_contribution, -> { where(payable_type: "Contribution").where(success: true) }
 
   def finalize
     if self.success == true
