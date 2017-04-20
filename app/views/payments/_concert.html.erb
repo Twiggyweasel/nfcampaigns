@@ -3,7 +3,7 @@
 
   <% if @payment.errors.any? %>
     <%= render 'shared/errors', errors: @payment.errors %>
-  <% end %> 
+  <% end %>
 <div class='row mb-3'>
 
   <div class='col-lg-6 my-2 offset-lg-1'>
@@ -16,28 +16,28 @@
         </div>
         <div class='col-md-6 my-2'>
           <%= f.label :last_name %>
-          <%= f.text_field :last_name,class: "form-control" %>          
+          <%= f.text_field :last_name,class: "form-control" %>
         </div>
       </div>
       <div class="row my-3">
         <div class='col-12  my-2'>
           <%= f.label :credit_card_number %>
-          <%= f.text_field :credit_card_number, class: "form-control" %>          
+          <%= f.text_field :credit_card_number, class: "form-control" %>
         </div>
       </div>
       <div class="row my-3">
         <div class='col-md-4 my-2'>
           <%= f.label :expiration_month %>
           <%= f.select :expiration_month, months, {}, class: "form-control" %>
-        </div>  
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :expiration_year %>
-          <%= f.select :expiration_year, years, {}, class: "form-control" %>          
-        </div>  
+          <%= f.select :expiration_year, years, {}, class: "form-control" %>
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :card_security_code %>
-          <%= f.text_field :card_security_code, class: "form-control" %>          
-        </div>  
+          <%= f.text_field :card_security_code, class: "form-control" %>
+        </div>
       </div>
       <div class='row my-3'>
         <div class='col-12'>
@@ -46,17 +46,18 @@
             <!--<input type="checkbox" class="custom-control-input" id='cover-fee' checked>-->
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Cover the Processing Fees of <%= number_to_currency(@payment.fee(@context.amount).floor2(2)) %></span>
-          </label>  
+          </label>
         </div>
       </div>
         <div class="form-group">
-          <%= f.hidden_field(:amount, :value => @context.amount) %> 
+          <%= f.hidden_field(:amount, :value => @context.amount) %>
           <%= f.hidden_field(:promo_code, :value => "") %>
+          <%- f.hidden_field(:email, :value => current_user.email) %>
         </div>
     </div>
-    
 
-    
+
+
     <div class='card card-block mt-3'>
       <h3><i class="fa fa-address-card-o" aria-hidden="true"></i> Billing Address</h3>
       <div class='row my-3'>
@@ -65,7 +66,7 @@
             <input type="checkbox" class="custom-control-input" id='custom-address'>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Use a different address</span>
-          </label>  
+          </label>
         </div>
       </div>
       <div class='row my-2'>
@@ -75,26 +76,26 @@
         </div>
         <div class='col-md-6 my-2'>
           <%= f.label :apt, "Apt/Suite #" %>
-          <%= f.text_field :apt,class: "form-control", :value => current_user.profile.apt if !current_user.profile.nil? %>          
+          <%= f.text_field :apt,class: "form-control", :value => current_user.profile.apt if !current_user.profile.nil? %>
         </div>
       </div>
       <div class="row my-2">
         <div class='col-md-4 my-2'>
           <%= f.label :city %>
-          <%= f.text_field :city, class: "form-control", :value => current_user.profile.city if !current_user.profile.nil?  %>  
-        </div>  
+          <%= f.text_field :city, class: "form-control", :value => current_user.profile.city if !current_user.profile.nil?  %>
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :state %>
-          <%= f.text_field :state, class: "form-control", :value => current_user.profile.state if !current_user.profile.nil?  %> 
-        </div>  
+          <%= f.text_field :state, class: "form-control", :value => current_user.profile.state if !current_user.profile.nil?  %>
+        </div>
         <div class='col-md-4 my-2'>
           <%= f.label :zip, "Zip Code" %>
-          <%= f.text_field :zip, class: "form-control", :value => current_user.profile.zipcode if !current_user.profile.nil?  %>  
-        </div>  
+          <%= f.text_field :zip, class: "form-control", :value => current_user.profile.zipcode if !current_user.profile.nil?  %>
+        </div>
       </div>
     </div>
   </div>
-  
+
   <div class='col-lg-4 my-2'>
       <div class='card'>
         <div class='card-block'>
@@ -131,10 +132,10 @@
               </tr>
             </tbody>
           </table>
-          
+
 
         </div>
-        <div class='card-footer'>  
+        <div class='card-footer'>
         <input type='number' value='<%= (@context.amount + @payment.fee(@context.amount)).floor2(2) %>' id='hidden_total_fee' style='display: none;'>
         <input type='number' value='<%= @context.amount.floor2(2) %>' id='hidden_total' style='display: none;'>
         <input type='number' value='<%= @payment.fee(@context.amount).floor2(2) %>' id='hidden_fee' style='display: none;'>
@@ -143,21 +144,21 @@
         </div>
       </div>
     </div>
-  
-  
+
+
 </div>
 <% end %>
 
 <script>
 
   $('#payment_cover_processing').click(function() {
-   
+
    var amount = "<%= number_to_currency(@context.amount).to_s %>";
    var fee = "<%= number_to_currency(@payment.fee(@context.amount)).to_s %>";
    var amount_w_fee = "<%= number_to_currency(@payment.fee(@context.amount) + @context.amount).to_s %>";
-   
+
       if($(this).is(":checked")) {
-        
+
         console.log("checked");
         // $('#processing-block').show();
         $('#processing-count').text('x1')
@@ -166,7 +167,7 @@
 
       } else {
         console.log('not checked');
-        // $('#processing-block').hide(); 
+        // $('#processing-block').hide();
         $('#processing-count').text('x0');
         $('#processing-amount').text('$0.00');
         $('#final-total').text(amount);
@@ -175,7 +176,7 @@
   });
 
   $('#custom-address').click(function() {
-    
+
     var profile_address = "<%= current_user.profile.street %>"
     var profile_apt = "<%= current_user.profile.apt %>"
     var profile_city = "<%= current_user.profile.city %>"
@@ -192,7 +193,7 @@
         $('#payment_street').focus();
       } else {
         console.log('not checked');
-        // $('#processing-block').hide(); 
+        // $('#processing-block').hide();
         $('#payment_street').val(profile_address);
         $('#payment_apt').val(profile_apt);
         $('#payment_city').val(profile_city);
