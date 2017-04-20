@@ -52,7 +52,7 @@
         <div class="form-group">
           <%= f.hidden_field(:amount, :value => @context.amount) %>
           <%= f.hidden_field(:promo_code, :value => "") %>
-                    <%- f.hidden_field(:email, :value => current_user.email) %>
+                    <%- f.hidden_field(:email, :value => current_user.email) if !current_user.nil? %>
 
         </div>
     </div>
