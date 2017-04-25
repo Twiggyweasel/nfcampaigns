@@ -1,6 +1,6 @@
 <tr>
   <td><%= contribution.id %></td>
-  <td><% if contribution.user.nil? %> <%= contribution.payments.first.first_name + " " + contribution.payments.first.first_name if contribution.payments.any? %> <% else %> <%= contribution.user.name.titleize %> <% end %></td>
+  <td><% if contribution.user.nil? %> <%= contribution.payments.first.first_name + " " + contribution.payments.first.last_name if contribution.payments.any? %> <% else %> <%= contribution.user.name.titleize %> <% end %></td>
   <td><%= contribution.amount %></td>
   <td><%= contribution.paid %></td>
   <td><%= contribution.honoree %></td>
