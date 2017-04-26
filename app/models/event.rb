@@ -50,10 +50,6 @@ class Event < ApplicationRecord
     title
   end
 
-  def event_date
-    self.event_date
-  end
-
   def event_date_cannot_be_in_the_past
     if event_date.present? && event_date < Date.today
       errors.add(:event_date, "can't be in the past")
