@@ -24,17 +24,17 @@
   <div class='row mt-5'>
     <div class='col-md-6'>
       <h3>About Our Events</h3>
-      <p>#NFStrong events take place in communities nationwide.  
-      These inspiring events create strong bonds that build a supportive NF community.  
-      The goal of these strong communities is to rally together and become one great voice in 
-      finding affective treatments and an eventual cure for NF.  The events are a great way to 
-      involve family and friends, meet others who are affected by NF, while raising awareness 
-      of this disorder and to create funding for NF research. Take your first step towards a cure 
+      <p>#NFStrong events take place in communities nationwide.
+      These inspiring events create strong bonds that build a supportive NF community.
+      The goal of these strong communities is to rally together and become one great voice in
+      finding affective treatments and an eventual cure for NF.  The events are a great way to
+      involve family and friends, meet others who are affected by NF, while raising awareness
+      of this disorder and to create funding for NF research. Take your first step towards a cure
       by finding, registering, and then fundraising for an event near you!</p>
-      
+
       <br>
       <h3>Event Activites</h3>
-      <p>Join us at #NFStrong events for fun, food, face painting, a raffle with fabulous prizes, NF tattoos, 
+      <p>Join us at #NFStrong events for fun, food, face painting, a raffle with fabulous prizes, NF tattoos,
       NF Champion medals, top fundraising certificates, and new friends.</p>
     </div>
     <div class='col-md-6'>
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
 </div>
 
@@ -82,7 +82,7 @@
         <p> #NF Strong events happen throughout the country. Find one near you!</p>
         <%= link_to 'All Events', events_path, class: "btn btn-outline-secondary" %>
       </div>
-      <% @events.is_active.each do |event| %>
+      <% @events.is_viewable.each do |event| %>
       <div class='col-lg-4 col-md-6 event-card' onclick='location.href="<%= url_for controller: 'events', action: 'show', id: event.title %>";' style='background-image: url(<%= event.event_card.url %>);'>
         <div class='date-overlay py-3 px-4 text-center'>
           <%= event.event_date.strftime("%b") %><h4><%= event.event_date.strftime("%d") %></h4>
@@ -160,8 +160,8 @@
       <h3>Meet Our NF Champs</h3>
       <br>
       <p>Their strength, courage, and happiness despite
-      difficult circumstances. They are the reason we keep 
-      pushing further to find treatments and a cure for 
+      difficult circumstances. They are the reason we keep
+      pushing further to find treatments and a cure for
       neurofibromatosis.
       </p>
       <div class='row'>
@@ -169,7 +169,7 @@
           <%= link_to "View Their Stories", champions_path, class: 'btn btn-block btn-info' %>
         </div>
         <div class='col-lg-6 my-2'>
-          <%= link_to "Share Your NF Champ", new_champion_path, class:'btn btn-block btn-warning' %>    
+          <%= link_to "Share Your NF Champ", new_champion_path, class:'btn btn-block btn-warning' %>
         </div>
       </div>
     </div>
@@ -186,15 +186,15 @@
     <div class='col-md-6 offset-md-1 my-3'>
       <h3>Want to see an NF event in your area?</h3>
       <br>
-      <p>Our NF Events are an excellent way to build the NF community, raise money to fund research, and to spread awareness. 
+      <p>Our NF Events are an excellent way to build the NF community, raise money to fund research, and to spread awareness.
       We are always looking for individuals who are driven to engage with their locale community and help organize events.
       If this describes you take a moment to fill out an interest form and join us in the fight to stay #NFstrong.</p>
-      
+
       <div class='row'>
         <div class='col-lg-6 offset-lg-3 my-2'>
           <%= link_to "Click Here", new_application_path, class: 'btn btn-block btn-primary' %>
         </div>
-        
+
       </div>
     </div>
 
@@ -217,18 +217,18 @@
                  ',height=' + height +
                  ',top='    + top    +
                  ',left='   + left;
-    
+
     window.open(url, 'twitter', opts);
- 
+
     return false;
   });
-  
+
 // function fbShare(url, title, descr, image, winWidth, winHeight) {
 //         var winTop = (screen.height / 2) - (winHeight / 2);
 //         var winLeft = (screen.width / 2) - (winWidth / 2);
 //         window.open('http://www.facebook.com/sharer.php?m2w&s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width='+winWidth+',height='+winHeight);
 //     }
-// 
+//
 </script>
 
 <script>
@@ -249,7 +249,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-    
+
 
 
 <script>
