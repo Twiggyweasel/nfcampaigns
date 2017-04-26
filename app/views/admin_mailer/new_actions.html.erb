@@ -283,7 +283,7 @@
                                                   <tbody>
                                                     <% @payments.each do |payment| %>
                                                   	<tr>
-                                                          <td style="padding: 15px;"><% payment.payable.user.nil? ? payment.fullname : payment.payable.user.name.titleize %></td>
+                                                          <td style="padding: 15px;"><%= payment.payable.user.nil? ? payment.fullname : payment.payable.user.name.titleize %></td>
                                                           <td style="padding: 15px;"><%= number_to_currency(payment.amount) %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= payment.success %></td>
                                                           <td style="padding: 15px; alignment: center;"><%= payment.payable_type %></td>
