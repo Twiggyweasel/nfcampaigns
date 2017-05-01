@@ -3,8 +3,8 @@ wb.add_worksheet(name: "Users") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
-  sheet.add_row ["Record Number", "User's Full Name", "Email", "Created On", "Payment Status"]
+  sheet.add_row ["Record Number", "User's Full Name", "Email", "Event Name" "Created On", "Payment Status"]
   @attendees.each do |attendee|
-    sheet.add_row [attendee.id, attendee.user.name, attendee.user.email, attendee.created_at, attendee.paid], style: [nil, nil, nil, date_cell, nil]
+    sheet.add_row [attendee.id, attendee.user.name.titleize, attendee.user.email, attendee.event.title, attendee.created_at, attendee.paid], style: [nil, nil, nil, date_cell, nil]
   end
 end
