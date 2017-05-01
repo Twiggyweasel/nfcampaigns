@@ -15,8 +15,8 @@ module Nfcampaigns
     config.action_mailer.asset_host = 'http://nfcampaigns.herokuapp.com/'
 
     config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => 'http://cms.twiggystudios.com',
-    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    'Access-Control-Allow-Origin' => 'https://nfnetwork.org',
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(","),
     }
   end
 end
