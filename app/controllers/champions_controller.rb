@@ -47,6 +47,6 @@ class ChampionsController < ApplicationController
   end
 
   def champion_params
-    params.require(:champion).permit(:name, :champion_image, :age, :story, :active, :user_id, :event_id)
+    params.require(:champion).permit(:submitter, :name, :champion_image, :age, :story, :active, :user_id, :event_id)
   end
 end

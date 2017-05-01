@@ -13,6 +13,11 @@ module Nfcampaigns
     # -- all .rb files in that directory are automatically loaded.
     config.active_record.time_zone_aware_types = [:datetime, :time]
     config.action_mailer.asset_host = 'http://nfcampaigns.herokuapp.com/'
+
+    config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => 'http://cms.twiggystudios.com',
+    'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    }
   end
 end
 

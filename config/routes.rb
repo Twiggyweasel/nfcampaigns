@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :champions, only: [:index]
+      resources :events, only: [:index]
+    end
+  end
+
   namespace :admin do
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'
-    resources :events do 
+    resources :events do
       resources :resources, except: [:show, :index]
       resources :registration_fees
-      resources :attendees do 
+      resources :attendees do
         resources :guests
       end
       resources :contributions
@@ -15,16 +22,16 @@ Rails.application.routes.draw do
       resources :tickets
       resources :sponsor_levels
     end
-    resources :promotions 
+    resources :promotions
     resources :users
     resources :applications, only: [:index, :show, :destroy]
     resources :resources, only: [:index]
     resources :gallery_images
     get 'collect_all', to: 'gallery_images#collect_all'
   end
-  
-  resources :events, except: [:new, :create] do 
-    resources :contributions, only: [:show, :new, :create, :edit, :update] do 
+
+  resources :events, except: [:new, :create] do
+    resources :contributions, only: [:show, :new, :create, :edit, :update] do
       get 'reciept', to: 'contributions#reciept'
       get 'decline', to: 'contributions#decline'
     end
@@ -36,23 +43,23 @@ Rails.application.routes.draw do
     resources :sponsorships
     get 'registration-select', to: 'events#registration_select'
   end
-  
+
   resources :orders do
     resources :payments, only: [:new, :create]
     get 'reciept', to: 'orders#reciept'
     get 'decline', to: 'orders#decline'
   end
-  
+
   resources :sponsorships do
     resources :payments, only: [:new, :create]
     get 'reciept', to: 'sponsorships#reciept'
     get 'decline', to: 'sponsorships#decline'
   end
-  
+
   resources :contributions, except: [:destroy, :index] do
       resources :payments, only: [:new, :create]
   end
-  
+
   resources :attendees, except: [:new, :create, :index] do
     # resources :pledge_pages, only: [:edit, :update]
     resources :payments
@@ -64,18 +71,18 @@ Rails.application.routes.draw do
     resources :contributions, only: [:show, :new, :create, :edit, :update]
     post 'join_team', to: 'attendees#join_team'
   end
-  
+
   resources :pledge_page do
     resources :comments, only: [:new, :create]
   end
-  
+
   match '/auth/:provider/callback', to: 'session#create', via: [:get, :post] #omniauth route
   match '/register', to: 'users#new', via: [:get, :post]
-  
+
   match '/login', to: 'session#new', via: [:get, :post]
   match '/logout', to: 'session#destroy', via: [:get, :post]
   get '/auth/failure', to: 'session#failure'
-  
+
   resources :users do  #needed by omniauth-identity
     resources :notifications
     resources :profiles, only: [:new, :create, :edit, :update] do
@@ -84,12 +91,12 @@ Rails.application.routes.draw do
     get 'account_settings', to: 'profiles#show'
   end
   resources :password_resets
-  resources :champions do 
+  resources :champions do
     resources :contributions
   end
-  
+
   resources :applications, only: [:new, :create]
-  
+
   resources :referrals
   get 'top_attendees', to: 'pages#attendees'
   get 'top_teams', to: 'teams#index'
@@ -97,11 +104,11 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'privacy', to: 'pages#privacy'
   get 'nf', to: "pages#nf"
-  
+
   post 'check_promotion_code', to: 'promotions#check_promotion_code'
-  
+
   root to: "pages#home"
-  
+
   if Rails.env.production?
    get '404', :to => 'application#page_not_found'
   end
