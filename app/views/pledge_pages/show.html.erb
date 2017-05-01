@@ -20,7 +20,7 @@
                 </div>
                 <div class='col-lg-7 text-center text-md-center text-lg-left text-sm-center'>
                   <h4><%= @pledge_page.user.name.titleize %> <% if logged_in? && current_user === @pledge_page.user %> <%= link_to(edit_attendee_pledge_page_path(@pledge_page.attendee)) do %> <i class='fa fa-pencil' style='color: black;'></i>  <% end %> <% end %> <br /><small class='text-muted'>I'm NFStrong for <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %></small></h4>
-                </div>                
+                </div>
               </div>
               <h5>
               <%= link_to(event_path(@pledge_page.event)) do %> #NFStrong <%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name %><% end %>
@@ -35,7 +35,7 @@
                   <h4><span class='float-lg-right'>Goal: <%= number_to_currency(@pledge_page.goal) %></span></h4>
                 </div>
               </div>
-               
+
               <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="<%= @pledge_page.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @pledge_page.percent_raised.to_f.ceil %>%;'></div>
               </div>
@@ -61,11 +61,11 @@
               <% if !@pledge_page.custom_story.blank? %>
               <p>
                 <%= @pledge_page.custom_story %>
-              </p>  
+              </p>
               <% else %>
               <p>
                 On <%= @pledge_page.event.event_date.strftime("%A, %B %d") %>, I’ll be participating at <%= @pledge_page.event.name %> on behalf of <%= @pledge_page.nf_connection.blank? ? "those with NF" : @pledge_page.nf_connection %>, and we’d love your support.
-                Whether participating alongside us or contributing to our fundraising efforts, you can make a difference in the lives of 
+                Whether participating alongside us or contributing to our fundraising efforts, you can make a difference in the lives of
                 the more than 100,000 Americans living with NF.</p>
               <% end %>
             </div>
@@ -83,9 +83,9 @@
               <h4>What is NF?</h4>
               <p>
                 Neurofibromatosis (NF) is a genetic disorder of the nervous system that causes tumors to form on the nerves anywhere
-                body at any time. This progressive disorder affects all races, all ethnic groups and both sexes equally. NF is one of the most common 
-                genetic disorders in the United States (one in every 2,500 to 3,000 births). The neurofibromatoses affects more than 100,000 
-                Americans; this makes NF more prevalent than Cystic Fibrosis, hereditary Muscular Dystrophy, Huntington’s Disease and Tay Sachs 
+                body at any time. This progressive disorder affects all races, all ethnic groups and both sexes equally. NF is one of the most common
+                genetic disorders in the United States (one in every 2,500 to 3,000 births). The neurofibromatoses affects more than 100,000
+                Americans; this makes NF more prevalent than Cystic Fibrosis, hereditary Muscular Dystrophy, Huntington’s Disease and Tay Sachs
                 combined.
               </p>
             </div>
@@ -94,8 +94,8 @@
            <div class='row'>
             <div class='col-12'>
               <h4>About the NF Network</h4>
-              The NF Network network provides opportunities for local NF organizations to share experiences.  
-              The network is a dynamic and growing open space for shared resources, development of new tools, 
+              The NF Network network provides opportunities for local NF organizations to share experiences.
+              The network is a dynamic and growing open space for shared resources, development of new tools,
               and creation of innovative programs.  It brings together groups from around the country to speak as one voice on national issues.
             </div>
           </div>
@@ -124,7 +124,7 @@
                   <td colspan="2"><%= guest.name %></td>
                   <td><%= number_to_currency(guest.fee) %></td>
                 </tr>
-                <% end %>  
+                <% end %>
                 </tbody>
               </table>
             </div>
@@ -143,12 +143,12 @@
                   <tr>
                     <th colspan="2">Name</th>
                     <th>Contribution</th>
-                  </tr>  
+                  </tr>
                 </thead>
                 <tbody>
                 <% @pledge_page.contributions.each do |contribution| %>
                 <tr>
-                  <td colspan="2"><%= contribution.user.name.titleize %></td>
+                  <td colspan="2"><%= contribution.user.nil? ? contribution.payments.where(success: true).first.fullname.titleize : contribution.user.name.titleize %></td>
                   <td><%= number_to_currency(contribution.amount) %></td>
                 </tr>
                 <% end %>
@@ -181,11 +181,11 @@
         <p>Your pledge page is the perfect place for your friends, family members, and co-workers to join you
         in helping those with neurofibromatosis. <br>
         <br>
-        We've populated your page with information from your registration form. 
-        Click "Customize" to add your personal NF connection to the prefilled text or write about your own experiences with NF. 
+        We've populated your page with information from your registration form.
+        Click "Customize" to add your personal NF connection to the prefilled text or write about your own experiences with NF.
         You can also set a custom donation goal and change your profile picture.<br>
         <br>
-        
+
         Please take a few minutes to add your personal touch and join us in the fight to stay #NFStrong.</p>
       </div>
       <div class="modal-footer">
