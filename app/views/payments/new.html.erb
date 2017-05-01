@@ -6,7 +6,7 @@
   <%= render 'sponsorship' %>
 <% else %>
 <%= render 'shared/title', title: 'Payment Information', display: 4 %>
-<%= form_for([@event, @context, @payment], :html => {:name => "new_payment"}) do |f| %>
+<%= form_for([@context, @payment], :html => {:name => "new_payment"}) do |f| %>
 
   <% if @payment.errors.any? %>
     <%= render 'shared/errors', errors: @payment.errors %>

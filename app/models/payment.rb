@@ -31,8 +31,7 @@ class Payment < ApplicationRecord
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :presence   => true,
-            :format     => { :with => email_regex },
-            :uniqueness => { :case_sensitive => false }, :on => :create
+            :format     => { :with => email_regex }, :on => :create
 
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
   scope :is_paid_contribution, -> { where(payable_type: "Contribution").where(success: true) }

@@ -95,6 +95,6 @@ private
   end
 
   def payment_params
-    params.require(:payment).permit(:first_name, :promo_code, :cover_processing, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount, :confirmation_number, :street, :apt, :city, :state, :zip, :email)
+    params.require(:payment).permit(:first_name, :promo_code, :cover_processing, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount, :confirmation_number, :street, :apt, :city, :state, :zip, :email, :fee)
   end
 end
