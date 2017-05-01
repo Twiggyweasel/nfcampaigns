@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'
+    get 'reports', to: 'reports#index'
+    get 'unpaid_registrations', to: 'reports#unpaid_registrations'
     resources :events do
       resources :resources, except: [:show, :index]
       resources :registration_fees
