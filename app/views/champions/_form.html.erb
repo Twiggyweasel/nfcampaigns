@@ -8,6 +8,12 @@
     <div class='card card-block'>
       <div class='row my-2'>
         <div class='col-12'>
+          <%= f.label :submitter, "Nominator's Name" %>
+          <%= f.text_field :submitter, class: 'form-control', value: current_user.nil? ? "" : current_user.name.titlize  %>
+        </div>
+      </div>
+      <div class='row my-2'>
+        <div class='col-12'>
           <%= f.label :name, "Champion's Name" %>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
@@ -32,7 +38,7 @@
           <%= f.text_area :story, class: 'form-control', :rows => 15 %>
         </div>
       </div>
-      <%= f.hidden_field(:user_id, :value => current_user.id) %>
+      <%= f.hidden_field(:user_id, :value => current_user.id) if logged_in? %>
       <%= f.submit @champion.new_record? ? "Create Champion" : "Update Champion Details", class: 'btn btn-block btn-success mt-3' %>
       <%= link_to "Cancel", :back, class: 'btn btn-block btn-danger mt-3' %>
     </div>
