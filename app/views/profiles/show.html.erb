@@ -4,7 +4,8 @@
     <div class='card card-block'>
       <div class='row'>
         <div class='col-12'>
-          <h4>User Info</h4>         
+          <h4>User Info <%= link_to "Update Details", edit_user_path(current_user), class: 'pull-right' %></h4>
+          <br />
         </div>
       </div>
       <div class='row'>
@@ -14,7 +15,7 @@
         </div>
         <div class='col-md-4'>
           <h6>Full Name</h6>
-          <%= @user.name %>
+          <%= @user.name.titleize %>
           <br>
           <br>
           <h6>I have NF</h6>
@@ -26,7 +27,7 @@
           <br>
           <br>
           <h6>Child with NF</h6>
-          
+
           <%= @profile.child_with_nf? ? 'Yes' : 'No' %>
         </div>
       </div>
@@ -78,13 +79,13 @@
                 <% else %>
                   <td><%= link_to "Link Account", "/auth/facebook" %></td>
                 <% end %>
-                
+
                 <% if @user.authentications.find_by_provider('twitter') %>
-                  <td><i class='fa fa-check-circle success fa-3x'></i></td>             
+                  <td><i class='fa fa-check-circle success fa-3x'></i></td>
                 <% else %>
                   <td><%= link_to "Link Account", "/auth/twitter" %></td>
                 <% end %>
-                
+
                 <% if @user.authentications.find_by_provider('google_oauth2') %>
                   <td><i class='fa fa-check-circle success fa-3x'></i></td>
                 <% else %>
@@ -93,7 +94,7 @@
                 </tr>
               <% end %>
             </tbody>
-          </table>            
+          </table>
         </div>
       </div>
     </div>
@@ -125,7 +126,7 @@
                 <td>No (Update)</td>
               </tr>
             </tbody>
-          </table>            
+          </table>
         </div>
       </div>
     </div>

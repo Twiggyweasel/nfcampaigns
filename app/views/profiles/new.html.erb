@@ -3,7 +3,7 @@
 <%= form_for([@user, @profile]) do |f| %>
 <% if @profile.errors.any? %>
   <%= render 'shared/errors', errors: @profile.errors %>
-<% end %> 
+<% end %>
 
 <div class='row'>
   <div class='col-md-6 offset-md-3'>
@@ -86,8 +86,8 @@
           </label>
         </div>
       </div>
-      
-       
+
+
     </div>
   </div>
 </div>
@@ -98,13 +98,12 @@
       <div class='row my-2'>
         <div class='col-12'>
           <%= f.submit 'Create Account', class: 'btn btn-block btn-success' %>
-          <%= link_to "Cancel Registration", root_path, class: 'btn btn-block btn-danger' %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<% end %> 
+<% end %>
 
 
