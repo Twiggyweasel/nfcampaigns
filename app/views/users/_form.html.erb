@@ -28,7 +28,7 @@
         </div>
       </div>
       <% if !@user.profile.nil? %>
-        <%= f.fields_for @user.profile do |ff| %>
+        <%= f.fields_for :profile do |ff| %>
           <div class='row my-3'>
             <div class='col-12'>
               <h4>Address Details</h4>
@@ -51,7 +51,7 @@
             </div>
             <div class='col-md-4'>
               <%= ff.label :state %>
-              <%= ff.select :state, options_for_select(states), { }, {class:'form-control', prompt: 'Select a State' } %>
+              <%= ff.select :state, options_for_select(states, ff.object.state), { }, {class:'form-control', prompt: 'Select a State' } %>
             </div>
             <div class='col-md-4'>
               <%= ff.label :zipcode %>
