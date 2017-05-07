@@ -1,21 +1,21 @@
 class Admin::EventsController < ApplicationController
   layout "admin"
-  before_action :set_event, except: [:index, :new, :create]
+  before_action :set_event, except: [:index, :new, :create, :concert_summary]
   before_action :require_user, :require_admin
-  
-  
+
+
   def index
     @events = Event.all.order(:event_date)
   end
-  
-  def show 
-    
+
+  def show
+
   end
-  
+
   def new
     @event = Event.new
   end
-  
+
   def create
     @event = Event.create(event_params)
     if @event.save
@@ -24,11 +24,11 @@ class Admin::EventsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
-    
+
   end
-  
+
   def update
     if @event.update(event_params)
       redirect_to admin_event_path(@event), :flash => { :success => "Event Successfully Updated!"}
@@ -36,17 +36,28 @@ class Admin::EventsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
 
     @event.destroy
     redirect_to admin_home_path, :flash => { :danger => "Event Successfully Deleted!"}
   end
-  
-  
+
+  def concert_summary
+    @event = Event.find_by_title(params[:event_id])
+    @orders = @event.orders.where(paid: true)
+    @contributions = @event.contributions.where(paid: true)
+
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
+  end
+
+
+
   private
-  
-    def set_event 
+    def set_event
       @event = Event.find_by_title(params[:id])
     end
     def event_params

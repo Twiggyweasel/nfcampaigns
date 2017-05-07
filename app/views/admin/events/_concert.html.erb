@@ -12,6 +12,9 @@
   <li class="nav-item">
     <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
   </li>
+  <li class='nav-item'>
+    <%= link_to "Create Event Summary", admin_event_concert_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>
+  </li>
   <li class="nav-item">
     <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
   </li>
@@ -34,7 +37,7 @@
   <div class='col-sm-8 offset-sm-2 offset-lg-0 col-lg-4 my-3'>
     <div class='card card-block callout text-center' style='min-height: 178px;'>
       <h4 class='my-3'>
-      Raised 
+      Raised
       <br><br>
       <%= number_to_currency(@event.raised) %>
       </h4>
@@ -43,13 +46,13 @@
 </div>
 
 
-  
+
 <div class='row'>
   <div class='col-12'>
-    
+
     <div class='card card-block'>
       <h3 class='card-title'>Tickets Available <%= link_to "Create Ticket", new_admin_event_ticket_path(@event), class: 'btn btn-success float-right' %></h3>
-      
+
       <table class='table'>
         <thead>
           <th>Ticket Name</th>
@@ -68,14 +71,14 @@
   </div>
 </div>
 
-<%= render 'admin/sponsor_levels/new', event: @event %>  
+<%= render 'admin/sponsor_levels/new', event: @event %>
 
 <div class='row'>
   <div class='col-12'>
-    
+
     <div class='card card-block my-3'>
       <h3 class='card-title'>Sponsor Levels</h3>
-      
+
       <table class='table'>
         <thead>
           <th>Sponsor Level Name</th>

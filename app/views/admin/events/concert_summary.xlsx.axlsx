@@ -1,0 +1,20 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Ticket List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+
+  sheet.add_row ["Name", "Ticket Type", "Quantity", "Has Paid", "Order Date"]
+  @orders.each do |order|
+    order.order_items.where(quantity != 0).each do |item|
+      sheet.add_row [order.user.name, item.ticket.name, order.paid, order.created_at], style: [nil, nil, nil, date_cell]
+    end
+  end
+end
+
+wb.add_worksheet(name: "Contributions") do |sheet|
+
+  sheet.add_row ["Name", "Contribution Channel", "Amount", "Honoree"]
+  @contributions.each do |contribution|
+    sheet.add_row [contribution.user.nil? ? contribution.fullname : contribution.user.name, contribution.payment_channel, contribution.amount, contribution.honoree]
+  end
+end
