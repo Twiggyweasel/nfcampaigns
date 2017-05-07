@@ -11,10 +11,10 @@ wb.add_worksheet(name: "Ticket List") do |sheet|
   end
 end
 
-wb.add_worksheet(name: "Contributions") do |sheet|
+#wb.add_worksheet(name: "Contributions") do |sheet|
 
-  sheet.add_row ["Name", "Contribution Channel", "Amount", "Honoree"]
-  @contributions.each do |contribution|
-    sheet.add_row [contribution.user.nil? ? contribution.fullname : contribution.user.name, contribution.payment_channel, contribution.amount, contribution.honoree]
-  end
-end
+ # sheet.add_row ["Name", "Contribution Channel", "Amount", "Honoree"]
+  #@contributions.each do |contribution|
+   # sheet.add_row [contribution.user.nil? ? contribution.fullname : contribution.user.name, contribution.payment_channel, contribution.amount, contribution.honoree]
+  #end
+#end
