@@ -6,7 +6,7 @@ wb.add_worksheet(name: "Ticket List") do |sheet|
   sheet.add_row ["Name", "Ticket Type", "Quantity", "Has Paid", "Order Date"]
   @orders.each do |order|
     order.order_items.each do |item|
-      sheet.add_row [order.user.name, item.ticket.name, order.paid, order.created_at], style: [nil, nil, nil, date_cell]
+      sheet.add_row [order.user.name, item.ticket.name, item.quantity, order.paid, order.created_at], style: [nil, nil, nil, date_cell]
     end
   end
 end
