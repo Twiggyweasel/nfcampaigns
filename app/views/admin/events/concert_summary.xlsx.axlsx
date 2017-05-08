@@ -15,6 +15,6 @@ wb.add_worksheet(name: "Contributions") do |sheet|
 
   sheet.add_row ["Name", "Contribution Channel", "Amount", "Honoree"]
   @contributions.each do |contribution|
-    sheet.add_row [contribution.user.nil? ? contribution.payments.where(success: true).first.fullname : contribution.user.name, contribution.payment_channel, contribution.amount, contribution.honoree]
+    sheet.add_row [contribution.user.nil? ? contribution.payments.where(success: true).first.fullname.titleize : contribution.user.name.titleize, contribution.category, contribution.amount, contribution.honoree]
   end
 end
