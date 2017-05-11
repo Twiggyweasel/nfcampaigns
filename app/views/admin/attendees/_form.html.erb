@@ -54,6 +54,7 @@
         </div>
         <div class='row'>
           <div class='col-md-6 mt-2'>
+            <%= f.hidden_field(:accepted_terms, :value => "true") %>
             <%= f.submit(@attendee.new_record? ? "Create Registration" : "Update Attendee Record", class: 'btn btn-success btn-block') %>
           </div>
           <div class='col-md-6 mt-2'>
