@@ -234,11 +234,11 @@
 <% end %>
 
 <script>
-  var profile_address = "<%= current_user.profile.street if !current_user.nil? && !current_user.profile.nil? %>"
-  var profile_apt = "<%= current_user.profile.apt if !current_user.nil? && !current_user.profile.nil? %>"
-  var profile_city = "<%= current_user.profile.city if !current_user.nil? && !current_user.profile.nil? %>"
-  var profile_state = "<%= current_user.profile.state if !current_user.nil? && !current_user.profile.nil? %>"
-  var profile_zip = "<%= current_user.profile.zipcode if !current_user.nil? && !current_user.profile.nil? %>"
+  var profile_address = "<%= current_user.profile.street if logged_in? && !current_user.profile.nil? %>"
+  var profile_apt = "<%= current_user.profile.apt if logged_in? && !current_user.profile.nil? %>"
+  var profile_city = "<%= current_user.profile.city if logged_in? && !current_user.profile.nil? %>"
+  var profile_state = "<%= current_user.profile.state if logged_in? && !current_user.profile.nil? %>"
+  var profile_zip = "<%= current_user.profile.zipcode if logged_in? && !current_user.profile.nil? %>"
 
   $('#payment_cover_processing').click(function() {
 

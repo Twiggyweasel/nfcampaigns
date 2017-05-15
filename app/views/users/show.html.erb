@@ -10,7 +10,7 @@
     <%= image_tag('no_user.png', class: 'img-fluid d-block mx-auto img-thumbnail rounded-circle', style: "margin-top: -100px; height: 250px; ")  %>
   <% end %>
   <div class='raised-content'>
-    <h3 class='card-title text-center'><%= @user.name %> - <%= @user.profile.state %></h3>
+    <h3 class='card-title text-center'><%= @user.name %> - <%= @user.profile.state if !@user.profile.nil? %></h3>
     <div class='row mt-2'>
       <div class='col-md-2 offset-md-2 text-xs-center card card-block card-callout my-3'>
         <h3><%= @user.attendees.is_personal.count %></h3>
@@ -56,7 +56,7 @@
       <div class='card-footer'>
         <div class='row'>
           <div class='col-6'>
-            <%= link_to "Registration", event_attendee_path(attendee.event, attendee), class: 'btn btn-secondary btn-block' %>          
+            <%= link_to "Registration", event_attendee_path(attendee.event, attendee), class: 'btn btn-secondary btn-block' %>
           </div>
           <div class='col-6'>
             <%= link_to "Pledge Page", attendee_pledge_page_path(attendee), class: 'btn btn-secondary btn-block' %>
