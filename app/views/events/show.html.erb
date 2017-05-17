@@ -27,7 +27,7 @@
         <br>
         <i class='fa fa-map-marker' aria-hidden="true" style='width:20px;'></i>  <%= @event.venue_name %> - <%= @event.city %>, <%= @event.state %>
       </p>
- 
+
       <div class='row my-2 mb-5'>
           <% if logged_in? %>
             <% if !current_user.attendees.where(event_id: @event.id).any? %>
@@ -38,7 +38,7 @@
                 <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'btn btn-info btn-block' %>
               </div>
             <% else %>
-              <div class='col-lg-3 my-2'> 
+              <div class='col-lg-3 my-2'>
                 <%= link_to 'Manage Registration', event_attendee_path(@event, @event.attendees.where(user_id: current_user.id).first.id), class: 'btn btn-primary btn-block mt-3 mb-6' %>
               </div>
             <% end %>
@@ -50,7 +50,7 @@
                 <%= link_to 'Corporate Registation', new_event_attendee_path(@event, :category => 'corporate'), class: 'btn btn-info btn-block' %>
               </div>
           <% end %>
-        
+
         <div class='col-lg-3 my-2'>
           <%= link_to 'Donate', new_event_contribution_path(@event), class: 'btn btn-success btn-block' %>
         </div>
@@ -85,7 +85,7 @@
                 <div class="progress-bar" role="progressbar" aria-valuenow="<%= @event.percent_raised.to_f.ceil %>" aria-valuemin="0" aria-valuemax="100" style='height: 20px; width: <%= @event.percent_raised.to_f.ceil %>%;   border-top-right-radius: 20px;
                   border-bottom-right-radius: 20px;
                   border-top-left-radius: 20px;
-                  border-bottom-left-radius: 20px; 
+                  border-bottom-left-radius: 20px;
                   background: linear-gradient(45deg, rgba(149,211,179,1) 0%, rgba(73,188,115,1) 100%);'>
                 </div>
               </div>
@@ -105,7 +105,7 @@
             <div class='card card-block callout'>
               <img src='https://s3.amazonaws.com/nfeventimages/images/misc/ticketred.png' class='img-fluid d-block mx-auto' style='height:90px'>
               <!--<i class="fa fa-user fa-3x mt-2" aria-hidden="true"></i>  -->
-              <h2 class='mb-0'><%= @event.attendees.count %><br />Attendees</h2>
+              <h2 class='mb-0'><%= @event.all_attendees %><br />Attendees</h2>
             </div>
           </div>
           <div class='col-md-4 my-2'>
@@ -119,7 +119,7 @@
             <div class='card card-block callout'>
               <img src='https://s3.amazonaws.com/nfeventimages/images/misc/donationred.png' class='img-fluid d-block mx-auto' style='height:90px'>
               <!--<i class="fa fa-gift fa-3x mt-2" aria-hidden="true"></i>-->
-              <h2 class='mb-0'><%= @event.contributions.count %></br>Donations</h2> 
+              <h2 class='mb-0'><%= @event.contributions.count %></br>Donations</h2>
             </div>
           </div>
         </div>
@@ -128,11 +128,11 @@
           <%= @event.desc.html_safe %>
         </div>
       </div>
-    
+
       <% if !@event.promo_card.nil? %>
         <%= render 'promocard' %>
       <% end %>
-      
+
       <div class='row my-3'>
         <% if @event.champions.empty? %>
         <div class='col-lg-12 w' style='background-color: #8CBCDF; border-radius: 15px;'>
@@ -145,7 +145,7 @@
           <h3 class='my-3'>NF Champs</h3>
           <p>Our NF Champs are chosen for their strength, courage, and happiness despite difficult circumstances. View their stories or upload your own and join us in the fight to stay #NFstrong.</p>
           <%= link_to "Share Your Champ", new_champion_path, class: "btn btn-success my-3" %>
-        </div>        
+        </div>
         <% end %>
         <% @event.champions.each do |champ| %>
         <div class='col-lg-4 col-md-6 champ-card' style='background-image: url("<%= champ.champion_image.url %>"); height: 300px; background-size: cover; background-position: center; '>
@@ -157,7 +157,7 @@
         </div>
         <% end %>
       </div>
-      
+
       </div>
     </div>
 
@@ -173,12 +173,12 @@
           <% else %>
           <div class='row'>
             <div class='col-6'>
-              <a href='<% @event.organizer_url %>' target='_blank'><img src='<%= @event.organizer_logo.url %>' class="img-fluid d-block mx-auto" style='width: 150px;'></a> 
+              <a href='<% @event.organizer_url %>' target='_blank'><img src='<%= @event.organizer_logo.url %>' class="img-fluid d-block mx-auto" style='width: 150px;'></a>
             </div>
             <div class='col-6'>
             <a href='https://nfnetwork.org' target='_blank'><img src='https://s3.amazonaws.com/nfeventimages/images/misc/nfcirclelogo.png' class="img-fluid d-block mx-auto" style='width: 150px;'></a>
             </div>
-          </div>             
+          </div>
           <% end %>
         </div>
       </div>
@@ -208,7 +208,7 @@
             <a class="nav-link" data-toggle="tab" href="#individuals" role="tab">Individuals</a>
           </li>
         </ul>
-        
+
         <!-- Tab panes -->
         <div class="tab-content my-3">
           <div class="tab-pane fade show active" id="teams" role="tabpanel">
@@ -271,7 +271,7 @@
          <h3 class='sm-header mb-4'>Event Location</h3>
         <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBkh8FKeW5f8K0ms_1lNh6QGrBBtBpPY_Y&q=<%= @event.street %>,<%= @event.city %>+<%= @event.state %>" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>         
+        </div>
       </div>
 
     </div>
@@ -283,10 +283,10 @@
    <%= render 'comments/new', context: @event %>
   <div id="comments_container">
     <%= render @event.comments %>
-  </div>   
-    
   </div>
-  
+
+  </div>
+
 </div>
 <% end %>
 
@@ -304,12 +304,12 @@
                  ',height=' + height +
                  ',top='    + top    +
                  ',left='   + left;
-    
+
     window.open(url, 'twitter', opts);
- 
+
     return false;
   });
-  
+
 </script>
 
 
@@ -330,7 +330,7 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
-    
+
 
 
 <script>
