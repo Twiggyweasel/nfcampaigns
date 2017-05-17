@@ -1,10 +1,17 @@
-<%= render 'shared/title', title: "Coming Soon", display: 2 %>
+<%= render 'shared/title', title: "#{@attendee.event.title} Registration", display: 2 %>
 
-<ul>
-  <li>Registration for: <%= @attendee.user.name %></li>
-  <li>Event Name: <%= @attendee.event.name %></li>
-  <li>Shirt Size: <%= @attendee.shirt_size %></li>
-  <li>Registration Category: <%= @attendee.category %></li>
-  <li>Paid: <%= @attendee.paid %> </li>
-  <li>Guests: <%= @attendee.guests.count %></li>
-</ul>
+<div class='row'>
+  <div class='col-md-6 offset-md-3'>
+    <div class='card card-block'>
+      <ul>
+        <li>Registration for: <%= @attendee.user.name %></li>
+        <li>Event Name: <%= @attendee.event.name %></li>
+        <li>Shirt Size: <%= @attendee.shirt_size %></li>
+        <li>Registration Category: <%= @attendee.category %></li>
+        <li>Paid: <%= @attendee.paid %> </li>
+        <li>Guests: <%= @attendee.guests.count %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+

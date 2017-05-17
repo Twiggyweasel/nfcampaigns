@@ -1,9 +1,9 @@
 class Admin::PaymentsController < ApplicationController
   layout 'admin'
   before_action :require_user, :require_admin
-  
+
   def index
-    @payments = Payment.all.order(created_at: :desc) 
+    @payments = Payment.all.order(created_at: :desc)
   end
 
   def show
@@ -26,8 +26,10 @@ class Admin::PaymentsController < ApplicationController
     end
   end
 
+
   private
     def payment_params
       params.require(:payment).permit(:first_name, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount)
     end
+
 end
