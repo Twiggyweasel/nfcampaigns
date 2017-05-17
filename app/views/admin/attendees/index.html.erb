@@ -3,7 +3,7 @@
     <%= link_to(admin_event_path(@event), class: 'btn btn-success float-left') do %><i class="fa fa-arrow-left" aria-hidden="true"></i> Return To Event <% end %><%= link_to(admin_event_attendees_path(@event, format: :xlsx), class: 'btn btn-primary btn-sm float-right') do %><i class='fa fa-download'></i> Export to Excel <% end %>
   </div>
 </div>
-<%= render 'shared/title', title: "Users attending #{@event.name}", display: 4 %>
+<%= render 'shared/title', title: "Users attending #{@event.name} - #{@event.state}", display: 4 %>
 
 <%= link_to "Create Registration", new_admin_event_attendee_path(@event), class: 'btn btn-primary' %>
 <div class='row mt-3'>
@@ -29,9 +29,9 @@
       </table>
     </div>
   </div>
-</div>  
-  
-  
+</div>
+
+
 <div class='row mt-3'>
   <div class='col-12'>
     <div class='card card-block'>
@@ -55,4 +55,4 @@
       </table>
     </div>
   </div>
-</div>  
+</div>
