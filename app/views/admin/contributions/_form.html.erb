@@ -1,0 +1,16 @@
+<%= form_for [:admin, @context, @contribution] do |f| %>
+
+
+
+  <%= f.label :amount, "Donation Amount" %>
+  <%= f.number_field :amount, class: 'form-control' %>
+
+  <label class="custom-control custom-checkbox">
+    <%= f.check_box :paid, class: 'custom-control-input' %>
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Donation Has Been Paid</span>
+  </label>
+
+  <%= f.submit(@contribution.new_record? ? "Create Donation" : "Update Donation", class: 'btn btn-success btn-block my-2') %>
+  <%= link_to "Cancel", admin_event_contributions_path(@context), class: 'btn btn-danger btn-block my-2' %>
+<% end %>

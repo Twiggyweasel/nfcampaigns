@@ -32,9 +32,10 @@ Rails.application.routes.draw do
     resources :gallery_images
     get 'collect_all', to: 'gallery_images#collect_all'
   end
+  resources :contributions, only: [:new, :create]
 
   resources :events, except: [:new, :create] do
-    resources :contributions, only: [:show, :new, :create, :edit, :update] do
+    resources :contributions, except: [:destroy] do
       get 'reciept', to: 'contributions#reciept'
       get 'decline', to: 'contributions#decline'
     end

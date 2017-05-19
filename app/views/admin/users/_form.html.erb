@@ -3,38 +3,38 @@
   <% if @user.errors.any? %>
     <%= render 'shared/errors', errors: @user.errors %>
   <% end %>
-  
+
   <div class='row'>
     <div class='col-12 col-lg-8 offset-lg-2'>
       <div class='card card-block'>
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :name, "Full Name" %>
-            <%= f.text_field :name, class: 'form-control' %>   
+            <%= f.text_field :name, class: 'form-control' %>
           </div>
         </div>
-        
+
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :email, "Email" %>
-            <%= f.text_field :email, class: 'form-control' %>             
+            <%= f.text_field :email, class: 'form-control' %>
           </div>
         </div>
-        
+
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :password, "Password" %>
-            <%= f.password_field :password, class: 'form-control' %>            
+            <%= f.password_field :password, class: 'form-control' %>
           </div>
         </div>
-        
+
         <div class='row my-2'>
           <div class='col-12'>
             <%= f.label :role_id, "System Access" %>
-            <%= f.select :role_id, options_from_collection_for_select(Role.all, "id", "name", 2), { prompt: "Make a Selection" } , class: 'form-control' %>            
+            <%= f.select :role_id, options_from_collection_for_select(Role.all, "id", "name", f.object.role_id), { prompt: "Make a Selection" } , class: 'form-control' %>
           </div>
         </div>
-        
+
         <%= f.fields_for :profile do |ff| %>
           <div class='row my-2'>
             <div class='col-8'>
@@ -43,7 +43,7 @@
             </div>
             <div class='col-4'>
               <%= ff.label :apt %>
-              <%= ff.text_field :apt, class: 'form-control' %>            
+              <%= ff.text_field :apt, class: 'form-control' %>
             </div>
           </div>
           <div class='row'>
@@ -67,9 +67,9 @@
             </div>
           </div>
         <% end %>
-  
-  
-        
+
+
+
         <%= f.submit(@user.new_record? ? "Create New User" : "Update User Record", class: 'btn btn-success btn-block my-3') %>
         <%= link_to "Cancel", admin_users_path, class: 'btn btn-danger btn-block mb-3' %>
       </div>
