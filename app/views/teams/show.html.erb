@@ -1,5 +1,5 @@
 <!--<#%= render 'shared/title', title: "#{@team.name}", display: 2 %>-->
-<div class='event-banner' style='position: relative; background-image: url(<%= @team.event.event_cover? ? @team.event.event_cover.url : image_url('walk-wide.jpg') %>); height:450px; background-size: cover; margin-top: -46px;'>
+<div class='event-banner row' style='position: relative; background-image: url(<%= @team.event.event_cover? ? @team.event.event_cover.url : image_url('walk-wide.jpg') %>); height:450px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
     <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
       <h1 class='display-4' style="font-family: 'Changa One', cursive;"><%= @team.name %></h1>
@@ -18,8 +18,36 @@
   </div>
 </div>
 
-<div class='row'>
-  <div class='col-8'>
+<div class='row mt-4'>
+  <div class='col-md-4 push-md-8'>
+    <div class='row'>
+      <div class='col-12'>
+        <div class='card card-block'>
+          <h4><%= number_to_currency(@team.raised) %> Raised <small class='text-muted'><%= @team.raised_percent.round(2) %>%</small></h4>
+          <hr />
+          <%= number_to_currency(@team.goal) %>
+          <div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: <%= @team.raised_percent %>%" aria-valuenow="<%= @team.raised_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<%= link_to "Join This Team", new_event_attendee_path(@team.event, :category => "personal"), class: 'btn btn-success btn-block mt-3' %>
+        </div>
+      </div>
+    </div>
+    <div class='row mt-3'>
+      <div class='col-12'>
+      <div class='card card-block'>
+              <h3 class='text-center mt-4' style="font-family: 'Just Another Hand', cursive;">Share With Friends</h3>
+    <ul class='nav justify-content-center pr-1 mt-2'>
+            <li class='nav-item'><a class='nav-link' id='fbshare'><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
+            <li class='nav-item'><a class='nav-link popup' href="https://twitter.com/share?text=Checkout%20all%20the%20exciting%20events%20brought%20to%20by%20the%20NF%20Network%20#NFStrong&hashtags=NFSTRONG" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
+            <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
+            <li class='nav-item'><a class='nav-link'href="mailto:?subject=Sharing <%= @event.name %> - <%= @event.state %>&body=NFStrong is hosting a great event and I think you should join me!%0D%0A%0D%0AUse this link:%20<%= request.original_url %>"><i class='fa fa-envelope fa-3x social-icon' style='color:#8CBCDF;'></i></a></li>
+          </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-8 pull-md-4'>
     <div class='row mt-3'>
       <div class='col-12'>
         <div class='card card-block'>
@@ -47,36 +75,60 @@
             <% end %>
           </div>
         </div>
-      </div>  
-    </div>
-  </div>
-  <div class='col-4'>
-    <div class='row'>
-      <div class='col-12'>
-        <div class='card card-block ml-3'>
-          <h4><%= number_to_currency(@team.raised) %> Raised <small class='text-muted'><%= @team.raised_percent.round(2) %>%</small></h4>
-          <hr />
-          <%= number_to_currency(@team.goal) %>
-          <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: <%= @team.raised_percent %>%" aria-valuenow="<%= @team.raised_percent %>" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<%= link_to "Join This Team", new_event_attendee_path(@team.event, :category => "personal"), class: 'btn btn-success btn-block mt-3' %>
-        </div>  
-      </div>
-    </div>
-    <div class='row mt-3'>
-      <div class='col-12'>
-      <div class='card card-block ml-3'>
-              <h3 class='text-center mt-4' style="font-family: 'Just Another Hand', cursive;">Share With Friends</h3>
-    <ul class='nav justify-content-center pr-1 mt-2'>
-      <li class='nav-item'><a class='nav-link' href='https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>' target="_blank"><i class='fa fa-facebook-square fa-3x social-icon' style='color:#3b5998;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='http://twitter.com/home?status=SHAREMESSAGE' target="_blank" ><i class='fa fa-twitter-square fa-3x social-icon' style='color:#00aced;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='https://plus.google.com/share?url=<%= request.original_url %>'  target="_blank"><i class='fa fa-google-plus-square fa-3x social-icon' style='color:#dd4b39;'></i></a></li>
-      <li class='nav-item'><a class='nav-link' href='https://www.reddit.com/r/Charity/submit?title=Checkout%20the%20event:&url=<%= request.original_url %>' target="_blank"><i class='fa fa-reddit-square fa-3x social-icon' style='color:#FF5700;'></i></a></li>
-    </ul>
-      </div>
       </div>
     </div>
   </div>
+
 </div>
 <br />
+
+<script>
+  $('.popup').click(function(event) {
+    var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+
+    window.open(url, 'twitter', opts);
+
+    return false;
+  });
+
+</script>
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '438500613204488',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+<script>
+document.getElementById('fbshare').onclick = function() {
+  FB.ui({
+    method: 'share',
+    mobile_iframe: true,
+    href: '<%= request.original_url %>',
+  }, function(response){});
+}
+</script>
