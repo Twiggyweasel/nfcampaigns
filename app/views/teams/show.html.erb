@@ -80,16 +80,16 @@
       <div class='col-12'>
         <div class='card card-block'>
           <h4>Contributions</h4>
+          <% @team.contributions.where(paid: true).each do |donation| %>
           <div class='row'>
-            <% @team.contributions.where(paid: true).each do |donation| %>
             <div class='col-4'>
               <p><%= number_to_currency(donation.amount) %></p>
             </div>
             <div class='col-4'>
               <p>Given By: <%= donation.user.nil? ? donation.payments.where(success: true).first.fullname : donation.user.name.titleize %></p>
             </div>
-            <% end %>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
