@@ -86,7 +86,7 @@
               <p><%= number_to_currency(donation.amount) %></p>
             </div>
             <div class='col-4'>
-              <p>Given By: <%= donation.user.nil? ? donation.payment.fullname : donation.user.name.titleize %></p>
+              <p>Given By: <%= donation.user.nil? ? donation.payments.where(success: true).first.fullname : donation.user.name.titleize %></p>
             </div>
             <% end %>
           </div>
