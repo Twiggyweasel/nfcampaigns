@@ -17,7 +17,7 @@ class User < OmniAuth::Identity::Models::ActiveRecord
 
   validates :name, presence: true
 
-  scope :admins, -> { where(role_id: 1) }
+  scope :admins, -> { where(role_id: 1).where.not(email: "admin@nfstrong.org") }
   mount_uploader :profile_pic, ChampionImageUploader
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
