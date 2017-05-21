@@ -76,6 +76,23 @@
         </div>
       </div>
     </div>
+        <div class='row mt-3'>
+      <div class='col-12'>
+        <div class='card card-block'>
+          <h4>Contributions</h4>
+          <div class='row'>
+            <% @team.contributions.where(paid: true).each do |donation| %>
+            <div class='col-4'>
+              <p><%= number_to_currency(donation.amount) %></p>
+            </div>
+            <div class='col-4'>
+              <p>Given By: <%= payment.payable.user.nil? ? payment.fullname : payment.payable.user.name.titleize %></p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
