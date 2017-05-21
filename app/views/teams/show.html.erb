@@ -52,7 +52,7 @@
         <div class='card card-block'>
           <h4>Team Members</h4>
           <div class='row'>
-            <% @team.attendees.each do |attendee| %>
+            <% @team.attendees.where(paid: true).each do |attendee| %>
               <div class='col-3 my-3'>
                 <% if attendee.user.profile_pic? %>
                 <img class='img-fluid rounded-circle d-block mx-auto' src='<%= attendee.user.profile_pic %>' style='height: 75px;'>
