@@ -15,6 +15,6 @@ class PaymentsMailer < ApplicationMailer
 
   def contribution_payment(payment)
     @payment = payment
-    mail(to: @payment.email, subject: "#NF Contribution Recieved - Thank You")
+    mail(to: @payment.email, subject: "#NF Donation Received - Thank You")
   end
 end
