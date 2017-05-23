@@ -21,6 +21,7 @@ class Attendee < ApplicationRecord
 
   scope :is_corporate, -> { where(category: 'Corporate') }
   scope :is_personal, -> { where(category: 'Personal') }
+  scope :is_fundraising, -> { where(category: 'Personal Fundraising') }
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
   after_create do

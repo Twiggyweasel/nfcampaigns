@@ -31,6 +31,30 @@
   </div>
 </div>
 
+<div class='row mt-3'>
+  <div class='col-12'>
+    <div class='card card-block'>
+      <h2>Attendees Fundraising</h2>
+      <table class='table mt-3'>
+        <thead>
+          <tr>
+            <th>Attendee Name</th>
+            <th>Category</th>
+            <th>Fee</th>
+            <th>Shirt Size</th>
+            <th>Guests</th>
+            <th>Team Name</th>
+            <th>Paid</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @attendees.is_fundraising %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <div class='row mt-3'>
   <div class='col-12'>
