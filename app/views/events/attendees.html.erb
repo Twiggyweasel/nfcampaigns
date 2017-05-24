@@ -1,0 +1,30 @@
+<div class='event-banner row' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:600px; background-size: cover; margin-top: -46px;'>
+  <div class='row' style='position: absolute; bottom: 25%; left: 15px; width:100%'>
+    <div class='col-12 col-md-8 offset-md-2 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 w pt-2' style='background-color: rgba(38, 49, 59, 0.54); '>
+      <h1 class='display-4' style="font-family: 'Changa One', cursive;">#NFStrong - <%= @event.name %></h1>
+      <hr style="border-top-color: white; margin-right: 7rem;">
+      <p style='font-size: 120%;'>
+        <i class="fa fa-calendar" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_date.strftime("%A, %B %d, %Y") %>
+        <br>
+        <i class="fa fa-clock-o" aria-hidden="true" style='width:20px;'></i>  <%= @event.event_start_time.strftime("%I:%M %p")  %> - <%= @event.event_end_time.strftime("%I:%M %p")  %>
+        <br>
+        <i class='fa fa-map-marker' aria-hidden="true" style='width:20px;'></i>  <%= @event.venue_name %> - <%= @event.city %>, <%= @event.state %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-12 text-center'>
+    <h1>All Attendees</h1>
+  </div>
+</div>
+<div class='row'>
+  <% @attendees.each do |attendee| %>
+  <div class='col-md-4 offset-md-4'>
+    <ul>
+    <li><%= attendee.user.name.titleize %></li>
+    </ul>
+  </div>
+  <% end %>
+</div>

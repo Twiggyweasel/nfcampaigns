@@ -63,9 +63,14 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def registration_select
     @event = Event.find_by_title(params[:event_id])
+  end
+
+  def attendees
+    @event = Event.find_by_title(params[:event_id])
+    @attendees = @event.attendees
   end
 
   private

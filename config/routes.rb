@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     resources :orders
     resources :sponsorships
     get 'registration-select', to: 'events#registration_select'
+    get 'attendees', to: 'events#attendees'
   end
 
   resources :orders do
