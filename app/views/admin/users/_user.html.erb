@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to user.name, admin_user_path(user) %> <% if user.is_new? %><span class="badge badge-info">New!</span><% end %></td>
+  <td><%= link_to user.name.titleize, admin_user_path(user) %> <% if user.is_new? %><span class="badge badge-info">New!</span><% end %></td>
   <td><%= user.email %></td>
   <td><% user.authentications.each do |auth| %>
     <%= auth.provider %>
