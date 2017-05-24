@@ -21,9 +21,10 @@
 </div>
 <div class='row'>
   <% @attendees.each do |attendee| %>
-  <div class='col-md-4 offset-md-2'>
+  <div class='col-md-3 offset-md-2'>
     <div class='card card-block'>
       <h3 class='card-title'><%= attendee.user.name.titleize %></h3>
+      <%= link_to 'View Pledge Page',   attendee_pledge_page_path(attendee), class: 'btn btn-primary' %>
     </div>
   </div>
   <% end %>
