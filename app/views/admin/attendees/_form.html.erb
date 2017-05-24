@@ -12,7 +12,7 @@
             <div class='row my-2'>
               <div class='col-12'>
                 <%= f.label :category %>
-                <%= f.select( :category, options_for_select(["Personal", "Corporate"]), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
+                <%= f.select( :category, options_for_select(["Personal", "Corporate", "Personal Fundraising"], f.object.category), {prompt: 'Select a Size'}, class: 'form-control form-control-success') %>
               </div>
             </div>
             <div class='row my-2'>

@@ -21,8 +21,8 @@ class Team < ApplicationRecord
   end
 
   def total_raised
-
-    self.contributions.where(paid: true).pluck(:amount).sum + self.attendees.where(paid: true).pluck(:raised).sum
+  # self.contributions.where(paid: true).pluck(:amount).sum +
+     self.attendees.where(paid: true).pluck(:raised).sum
   end
 
   def update_raised
