@@ -1,12 +1,28 @@
 <%= render 'shared/title', title: 'All Users' %>
+<div class='row'>
+  <div class='col-12 col-lg-4 offset-lg-4'>
+    <%= search_form_for([:admin, @q], class: 'form-inline') do |f| %>
+      <div class="input-group" style='margin: 0 auto;'>
+        <%= f.search_field :name_cont, class: 'form-control', placeholder: "Search..." %>
+        <span class="input-group-btn">
+          <%= f.button(class: 'btn btn-secondary') do %><i class='fa fa-search'></i><% end %>
+        </span>
+
+      </div>
+      <% if !@q.conditions.empty? %>
+        <%= link_to(request.path, class:"btn btn-danger") do %><i class='fa fa-times'><% end %></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <div class='container mt-3'>
   <div class='row my-4'>
-    <div class='col-lg-4'>
+    <div class='col-lg-4 my-2'>
       <div class='card card-block callout text-center'>
         <h2 class='mb-0'><%= @users.count %><br />Total Users</h2>
       </div>
     </div>
-    <div class='col-lg-4'>
+    <div class='col-lg-4 my-2'>
       <div class='card card-block callout text-center'>
         <h2 class='mb-0'><%= @users.is_new.count %><br />New Users</h2>
       </div>
