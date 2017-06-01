@@ -10,7 +10,7 @@ wb.add_worksheet(name: "Attendee List") do |sheet|
   @attendees.is_personal.each do |attendee|
     sheet.add_row [attendee.id, "Attendee", attendee.user.name.titleize, number_to_currency(attendee.fee), attendee.paid, attendee.shirt_size, number_to_currency(attendee.raised)], style: border
     attendee.guests.each do |guest|
-      sheet.add_row [guest.id, "Guest", guest.name, number_to_currency(guest.fee), guest.paid, guest.shirt_size], style: border
+      sheet.add_row [guest.id, "Guest", guest.name, number_to_currency(guest.fee), guest.paid, guest.shirt_size, ""], style: border
     end
   end
 end
