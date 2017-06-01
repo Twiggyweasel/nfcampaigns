@@ -56,6 +56,6 @@ wb.add_worksheet(name: "Donations List") do |sheet|
 
   sheet.add_row ["ID", "Given By" "Donation Amount"], style: heading
   @contributions.where(paid: true).each do |donation|
-    sheet.add_row [donation.id, if donation.user_id.nil? ? donation.payment.where(paid: true).first.fullname : donation.user.name, number_to_currency(donation.amount)], style: border
+    sheet.add_row [donation.id, donation.user_id.nil? ? donation.payment.where(paid: true).first.fullname : donation.user.name, number_to_currency(donation.amount)], style: border
   end
 end
