@@ -47,7 +47,7 @@ wb.add_worksheet(name: "Sponsors List") do |sheet|
   end
 end
 
-wb.add_worksheet(name: "Sponsors List") do |sheet|
+wb.add_worksheet(name: "Donations List") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
   fit = style.add_style(best_fit: true)
