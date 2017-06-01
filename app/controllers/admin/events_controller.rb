@@ -54,7 +54,11 @@ class Admin::EventsController < ApplicationController
     end
   end
 
-
+  def event_summary
+    @event = Event.find_by_title(params[:event_id])
+    @attendees = @event.attendees
+    @contributions = @event.contributions
+  end
 
   private
     def set_event

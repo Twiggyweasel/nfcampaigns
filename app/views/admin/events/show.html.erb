@@ -18,6 +18,9 @@
       <li class="nav-item">
         <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
       </li>
+      <li class='nav-item'>
+        <%= link_to "Create Event Summary", admin_event_event_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>
+      </li>
       <li class="nav-item">
         <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
       </li>
@@ -36,7 +39,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class='row my-3'>
     <div class='col-12 mb-3'>
       <div class='card card-block'>
@@ -78,16 +81,16 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   <div class='row mb-5'>
     <div class='col-12'>
       <div class='card card-block'>
-        <h3>Promo Card       
-          <% if !@event.promo_card.nil? %> 
-            <%= link_to "Edit", edit_admin_event_promo_card_path(@event, @event.promo_card), class: 'btn btn-warning float-right' %> 
+        <h3>Promo Card
+          <% if !@event.promo_card.nil? %>
+            <%= link_to "Edit", edit_admin_event_promo_card_path(@event, @event.promo_card), class: 'btn btn-warning float-right' %>
           <% else %>
-            <%= link_to "Create", new_admin_event_promo_card_path(@event), class: 'btn btn-success float-right' %> 
+            <%= link_to "Create", new_admin_event_promo_card_path(@event), class: 'btn btn-success float-right' %>
           <% end %>
         </h3>
         <div class='row'>
@@ -100,5 +103,5 @@
       </div>
     </div>
   </div>
-  
+
 <% end %>

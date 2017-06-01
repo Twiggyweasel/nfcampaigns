@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = env['omniauth.identity'] ||= User.new
+    @user = request.env['omniauth.identity'] ||= User.new
   end
 
   # def create
