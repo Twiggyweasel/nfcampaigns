@@ -6,7 +6,7 @@ wb.add_worksheet(name: "Attendee List") do |sheet|
   heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
   border = style.add_style(:border => { style: :thin, :color => "000000" })
 
-  sheet.add_row ["ID", "Type", "Name", "Fee", "Has Paid", "T-Shirt Size", "Amount Raised", "Team" "Registration Date"], style: heading
+  sheet.add_row ["ID", "Type", "Name", "Fee", "Has Paid", "T-Shirt Size", "Amount Raised", "Team", "Registration Date"], style: heading
   @attendees.is_personal.each do |attendee|
     sheet.add_row [attendee.id, "Attendee", attendee.user.name.titleize, number_to_currency(attendee.fee), attendee.paid, attendee.shirt_size, number_to_currency(attendee.raised), attendee.team.name.titleize, attendee.created_at.strftime("%m-%d-%Y")], style: border
     attendee.guests.each do |guest|
