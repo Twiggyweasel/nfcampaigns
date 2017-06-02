@@ -37,7 +37,7 @@ class Event < ApplicationRecord
   validate :registration_date_cannot_be_after_event_date
 
   scope :is_active, -> { where(is_private: false) }
-  scope :is_viewable, -> { where("event_date > ? OR event_date IS NULL", Time.zone.now + 1.day).where(is_private: false) }
+  scope :is_viewable, -> { where("event_date > ? OR event_date IS NULL", Time.zone.now + 3.day).where(is_private: false) }
 
 
   def slug
