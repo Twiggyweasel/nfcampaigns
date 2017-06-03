@@ -13,9 +13,9 @@ wb = xlsx_package.workbook
 
     sheet.add_row [team.name.titleize], style: bold
 
-    sheet.add_row ["# on Team", "Registration Type", "Registrants Name", "Registration Fee", "Amount Raised", "Walk-up Registration Fee", "Individual Total"], style: readable
+    sheet.add_row ["# on Team", "Registration Type", "Registrants Name", "Registration Fee", "Amount Raised","Donations after 6/2", "Walk-up Registration Fee", "Individual Total"], style: readable
     team.attendees.each do |attendee|
-      sheet.add_row ["", attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : "0.00", "", number_to_currency(attendee.raised)], style: readable
+      sheet.add_row ["", attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : "0.00", "", "", number_to_currency(attendee.raised)], style: readable
       attendee.guests.each do |guest|
         sheet.add_row ["", "Guest", guest.name.titleize, number_to_currency(guest.fee), "--"], style: readable
       end

@@ -87,6 +87,19 @@ class Event < ApplicationRecord
     return amount
   end
 
+  def contributions_count
+    self.contributions.count + attendee_contribution_count
+  end
+
+  def attendee_contribution_count
+    count = 0
+    self.attendees.each do |attendee|
+      count = count + attendee.contributions.count
+    end
+
+    return count
+  end
+
   def team_total_raised
 
     self.teams.pluck(:raised).sum
