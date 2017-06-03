@@ -23,6 +23,6 @@ wb = xlsx_package.workbook
     sheet.merge_cells "A1:H1"
     sheet.merge_cells "A2:H2"
 
-    sheet.add_row["", "Total # on Team","","","","","","", "Total Team $"], style: readable
+    sheet.add_row["", "Total # on Team","","","","","","", "Total Team $"]
   end
 end
