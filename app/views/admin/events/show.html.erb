@@ -21,6 +21,9 @@
       <li class='nav-item'>
         <%= link_to "Create Event Summary", admin_event_event_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>
       </li>
+      <li class='nav-item'>
+        <%= link_to "Create Team Summary", admin_event_event_team_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>
+      </li>
       <li class="nav-item">
         <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
       </li>

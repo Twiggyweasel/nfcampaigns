@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       resources :sponsor_levels
       get 'concert_summary', to: 'events#concert_summary'
       get 'event_summary', to: 'events#event_summary'
-      get 'event_team_summary', to: 'event#event_team_summary'
+      get 'event_team_summary', to: 'events#event_team_summary'
     end
     resources :promotions
     resources :users
