@@ -60,6 +60,12 @@ class Admin::EventsController < ApplicationController
     @contributions = @event.contributions
   end
 
+  def event_team_summary
+    @event = Event.find_by_title(params[:event_id])
+    @teams = @event.teams.order(:created_at)
+    @attendee = @event.attendees.order(:created_at)
+    @contributions = @event.contributions
+  end
   private
     def set_event
       @event = Event.find_by_title(params[:id])

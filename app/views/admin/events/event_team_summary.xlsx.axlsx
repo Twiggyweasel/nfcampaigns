@@ -1,0 +1,78 @@
+wb = xlsx_package.workbook
+
+@team.each do |team|
+  wb.add_worksheet(name: team.name.titleize) do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["2017 #NFSTRONG Walk," @event.city @event.state
+
+end
+
+
+
+
+
+wb.add_worksheet(name: "Attendee List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["ID", "Type", "Name", "Fee", "Has Paid", "T-Shirt Size", "Amount Raised", "Team", "Registration Date"], style: heading
+  @attendees.is_personal.each do |attendee|
+    sheet.add_row [attendee.id, "Attendee", attendee.user.name.titleize, number_to_currency(attendee.fee), attendee.paid, attendee.shirt_size, number_to_currency(attendee.raised), attendee.team.name.titleize, attendee.created_at.strftime("%m-%d-%Y")], style: border
+    attendee.guests.each do |guest|
+      sheet.add_row [guest.id, "Guest", guest.name, number_to_currency(guest.fee), guest.paid, guest.shirt_size, "", attendee.team.name.titleize, guest.created_at.strftime("%m-%d-%Y")], style: border
+    end
+  end
+end
+
+wb.add_worksheet(name: "Fundraisers List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["ID", "Type", "Name", "Raised", "T-Shirt Size", "Team", "Registration Date"], style: heading
+  @attendees.is_fundraising.each do |attendee|
+    sheet.add_row [attendee.id, "Fundraiser", attendee.user.name.titleize, number_to_currency(attendee.raised), attendee.shirt_size, attendee.team.name.titleize, attendee.created_at.strftime("%m-%d-%Y")], style: border
+    attendee.guests.each do |guest|
+      sheet.add_row [guest.id, "Guest", guest.name, "", guest.shirt_size, attendee.team.name.titleize, guest.created_at.strftime("%m-%d-%Y")], style: border
+    end
+  end
+end
+
+wb.add_worksheet(name: "Sponsors List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["ID", "Type", "Name", "Fee", "Has Paid", "T-Shirt Size", "Team", "Registration Date"], style: heading
+  @attendees.is_corporate.each do |attendee|
+    sheet.add_row [attendee.id, "Sponsor", attendee.business_name.titleize, number_to_currency(attendee.fee), attendee.paid, "", attendee.team.name.titleize, attendee.created_at.strftime("%m-%d-%Y")], style: border
+    attendee.guests.each do |guest|
+      sheet.add_row [guest.id, "Guest", guest.name, "", guest.paid, guest.shirt_size, attendee.team.name.titleize, guest.created_at.strftime("%m-%d-%Y")], style: border
+    end
+  end
+end
+
+wb.add_worksheet(name: "Donations List") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["ID", "Given By", "Donation Amount"], style: heading
+  @contributions.where(paid: true).each do |donation|
+    sheet.add_row [donation.id, donation.user_id.nil? ? donation.payments.where(success: true).first.fullname : donation.user.name, number_to_currency(donation.amount)], style: border
+  end
+end

@@ -18,7 +18,6 @@ class Admin::ContributionsController < ApplicationController
   end
 
   def new
-    @context = context
     @contribution = @context.contributions.new
   end
 
