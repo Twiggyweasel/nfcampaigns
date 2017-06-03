@@ -23,7 +23,6 @@ class Admin::ContributionsController < ApplicationController
 
 
   def create
-    @context = context
     @contribution = @event.contributions.create(contribution_params)
 
     respond_to do |format|
