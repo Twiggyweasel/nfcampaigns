@@ -21,7 +21,5 @@ wb = xlsx_package.workbook
       end
     end
 
-    sheet.add_row["Team Total"]
-    sheet.add_row[team.raised.s]
   end
 end
