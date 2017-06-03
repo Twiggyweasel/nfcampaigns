@@ -20,6 +20,7 @@ wb = xlsx_package.workbook
         sheet.add_row ["", "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid" ], style: readable
       end
     end
-
+    sheet.merge_cells "A1:H1"
+    sheet.merge_cells "A2:H2"
   end
 end
