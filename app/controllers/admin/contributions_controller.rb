@@ -23,6 +23,7 @@ class Admin::ContributionsController < ApplicationController
 
 
   def create
+    @event = Event.find_by_title(params[:event_id])
     @contribution = @event.contributions.create(contribution_params)
 
     respond_to do |format|
