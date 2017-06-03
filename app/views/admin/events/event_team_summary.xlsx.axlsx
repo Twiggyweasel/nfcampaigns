@@ -20,5 +20,7 @@ wb = xlsx_package.workbook
         sheet.add_row ["", "Guest", guest.name.titleize, number_to_currency(guest.fee), "--"], style: readable
       end
     end
+    sheet.add_row["Team Total"], style: readable
+    sheet.add_row[number_to_currency(team.raised)] style: readable
   end
 end
