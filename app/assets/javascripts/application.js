@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require analytics.js
 //= require turbolinks
-//= require tether
 //= require bootstrap
 //= require Chart.bundle
 //= require chartkick
