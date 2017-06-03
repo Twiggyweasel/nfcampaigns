@@ -16,6 +16,7 @@ wb = xlsx_package.workbook
   sheet.add_row ["# on Team", "Registrants Name", "Registration Fee", "Amount Raised"]
   team.attendees.each do |attendee, index|
     sheet.add_row [index, attendee.user.name, number_to_currency(attendee.fee), number_to_currency(attendee.raised - attendee.fee)]
+
   end
   end
 end
