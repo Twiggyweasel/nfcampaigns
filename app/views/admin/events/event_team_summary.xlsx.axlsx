@@ -14,7 +14,7 @@ wb = xlsx_package.workbook
     sheet.add_row [team.name.titleize], style: bold
 
     sheet.add_row ["# on Team", "Registration Type", "Registrants Name", "Registration Fee", "Amount Raised"]
-    team.attendees.each_with_index do |attendee|
+    team.attendees do |attendee|
       sheet.add_row ["", attendee.category, attendee.user.name, number_to_currency(attendee.fee), number_to_currency(attendee.raised - attendee.fee)]
       attendee.guests.each do |guest|
         sheet.add_row["", "Guest", guest.name.titleize, guest.fee]
