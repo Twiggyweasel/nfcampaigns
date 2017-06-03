@@ -2,21 +2,20 @@ wb = xlsx_package.workbook
 
 @teams.each do |team|
   wb.add_worksheet(name: team.name.titleize) do |sheet|
-  style = wb.styles
-  date_cell = style.add_style(format_code: "mm-dd-yyyy")
-  fit = style.add_style(best_fit: true)
-  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
-  border = style.add_style(:border => { style: :thin, :color => "000000" })
-  bold = style.add_style(b: true, sz: 14, alignment: {horizontal: :center})
+    style = wb.styles
+    date_cell = style.add_style(format_code: "mm-dd-yyyy")
+    fit = style.add_style(best_fit: true)
+    heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+    border = style.add_style(:border => { style: :thin, :color => "000000" })
+    bold = style.add_style(b: true, sz: 14, alignment: {horizontal: :center})
 
-  sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
-  sheet.merge_cells "A1:H1"
-  sheet.add_row [team.name.titleize], style: bold
-  sheet.merge_cells "A1:H2"
-  sheet.add_row ["# on Team", "Registration Type", "Registrants Name", "Registration Fee", "Amount Raised"]
-  team.attendees.each_with_index do |attendee, index|
-    sheet.add_row [index, attendee.category, attendee.user.name, number_to_currency(attendee.fee), number_to_currency(attendee.raised - attendee.fee)]
+    sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
 
-  end
+    sheet.add_row [team.name.titleize], style: bold
+
+    sheet.add_row ["# on Team", "Registration Type", "Registrants Name", "Registration Fee", "Amount Raised"]
+    team.attendees.each_with_index do |attendee, index|
+      sheet.add_row [index, attendee.category, attendee.user.name, number_to_currency(attendee.fee), number_to_currency(attendee.raised - attendee.fee)]
+    end
   end
 end
