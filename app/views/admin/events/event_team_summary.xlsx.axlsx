@@ -21,6 +21,6 @@ wb = xlsx_package.workbook
       end
     end
     sheet.add_row["Team Total"], style: readable
-    sheet.add_row[number_to_currency(team.raised)] style: readable
+    sheet.add_row[number_to_currency(team.raised)], style: readable
   end
 end
