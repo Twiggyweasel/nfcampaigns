@@ -9,7 +9,7 @@ wb = xlsx_package.workbook
     heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 18, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
     border = style.add_style(:border => { style: :thin, :color => "000000" })
     bold = style.add_style(b: true, sz: 14, alignment: {horizontal: :center})
-    readable = style.add_style(sz: 14, best_fit: true)
+    readable = style.add_style(sz: 14, :border => { :style => :thin, :color => "000000" })
     summary = style.add_style(sz: 16, b: true)
 
     sheet.merge_cells "A1:H1"
