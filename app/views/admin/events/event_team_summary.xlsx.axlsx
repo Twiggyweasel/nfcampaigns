@@ -28,8 +28,8 @@ wb = xlsx_package.workbook
         sheet.add_row [""]
         sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
         sheet.add_row [team.name.titleize + " Page "+ page_count.to_s], style: bold
-        sheet["A" + ((page_count - 1) * 40) + (3 * page_count)].merge sheet["I"+ ((page_count - 1) * 40) + (3 * page_count)]
-        sheet["A" + ((page_count - 1) * 40) + (3 * page_count) + 1].merge sheet["I"+ ((page_count - 1) * 40) + (4 * page_count) + 1]
+        sheet["A" + (((page_count - 1) * 40) + (3 * page_count)).to_s].merge sheet["I"+ (((page_count - 1) * 40) + (3 * page_count)).to_s]
+        sheet["A" + (((page_count - 1) * 40) + (3 * page_count) + 1).to_s].merge sheet["I"+ (((page_count - 1) * 40) + (4 * page_count) + 1).to_s]
         sheet.add_row [count + (page_count * 40), attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
         count = count + 1
         attendee.guests.each do |guest|
