@@ -11,11 +11,14 @@ wb = xlsx_package.workbook
     bold = style.add_style(b: true, sz: 14, alignment: {horizontal: :center})
     readable = style.add_style(sz: 14, best_fit: true)
     summary = style.add_style(sz: 16, b: true)
-    sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
 
+    sheet.merge_cells "A1:H1"
+    sheet.merge_cells "A2:H2"
+
+    sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
     sheet.add_row [team.name.titleize], style: bold
 
-    sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18
+    sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18, width { best_fit: true }
     team.attendees.each do |attendee|
       sheet.add_row [count, attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : "0.00", "", "", number_to_currency(attendee.raised)], style: readable, height: 27
       count = count + 1
@@ -24,9 +27,9 @@ wb = xlsx_package.workbook
         count = count + 1
       end
     end
-    sheet.merge_cells "A1:H1"
-    sheet.merge_cells "A2:H2"
+
 
     sheet.add_row ["Total # on Team","","","","","","","Total Team $"], style: summary
+
   end
 end
