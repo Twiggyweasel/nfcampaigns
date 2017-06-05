@@ -50,6 +50,5 @@ wb = xlsx_package.workbook
     end
 
     sheet.add_row ["Total # on Team","","","","","","","Total Team $"], style: summary, widths: [22, :ignore, :ignore, :ignore, :ignore, :ignore, :ignore, :auto]
-
   end
 end
