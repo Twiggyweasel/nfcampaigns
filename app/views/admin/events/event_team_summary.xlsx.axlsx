@@ -28,6 +28,9 @@ wb = xlsx_package.workbook
       end
     end
 
+    while count < 40
+      sheet.add_row [count,"","","","","","","","",""], style: readable, height: 27
+    end
 
     sheet.add_row ["Total # on Team","","","","","","","Total Team $"], style: summary
 
