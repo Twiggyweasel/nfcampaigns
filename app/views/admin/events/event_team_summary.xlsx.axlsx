@@ -33,7 +33,7 @@ wb = xlsx_package.workbook
       count = count + 1
     end
 
-    sheet.add_row ["Total # on Team","","","","","","","Total Team $"], style: summary, widths: [:auto, :ignore, :ignore, :ignore, :ignore, :ignore, :ignore, :auto]
+    sheet.add_row ["Total # on Team","","","","","","","Total Team $"], style: summary, widths: [22, :ignore, :ignore, :ignore, :ignore, :ignore, :ignore, :auto]
 
   end
 end
