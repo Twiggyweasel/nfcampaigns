@@ -45,7 +45,7 @@ wb = xlsx_package.workbook
     end
 
     while count <= 40
-      sheet.add_row [if(page_count == 1) then count else count + (page_count * 40),"","","","","","","",""], style: readable, height: 27
+      sheet.add_row [if(page_count == 1) then count else count + (page_count * 40) end,"","","","","","","",""], style: readable, height: 27
       count = count + 1
     end
 
