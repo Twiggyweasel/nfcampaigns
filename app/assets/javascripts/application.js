@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require Chart.bundle
+//= require chartkick
 //= require analytics.js
 //= require turbolinks
 //= require bootstrap
-//= require Chart.bundle
-//= require chartkick
 //= require_tree .

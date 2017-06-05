@@ -54,9 +54,9 @@ gem 'axlsx_rails'
 
 gem 'aws-ses', require: 'aws/ses'
 
-# source 'https://rails-assets.org' do
-#   gem 'rails-assets-tether', '>= 1.3.3'
-# end
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 
 group :production do
   gem 'pg'
