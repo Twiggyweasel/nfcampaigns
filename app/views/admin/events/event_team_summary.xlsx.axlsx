@@ -30,10 +30,10 @@ wb = xlsx_package.workbook
         sheet.add_row [team.name.titleize + " Page "+ page_count.to_s], style: bold
         sheet["A" + (((page_count - 1) * 40) + (3 * page_count)).to_s].merge sheet["I"+ (((page_count - 1) * 40) + (3 * page_count)).to_s]
         sheet["A" + (((page_count - 1) * 40) + (3 * page_count) + 1).to_s].merge sheet["I"+ (((page_count - 1) * 40) + (4 * page_count) + 1).to_s]
-        sheet.add_row [count + (page_count * 40), attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
+        sheet.add_row [count + ((page_count - 1) * 40), attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
         count = count + 1
         attendee.guests.each do |guest|
-          sheet.add_row [count + (page_count * 40), "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid", "","","","" ], style: readable, height: 27, widths: :auto
+          sheet.add_row [count + ((page_count -1) * 40), "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid", "","","","" ], style: readable, height: 27, widths: :auto
           count = count + 1
         end
       else
@@ -47,7 +47,7 @@ wb = xlsx_package.workbook
     end
 
     while count <= 40
-      sheet.add_row [if page_count == 1 then count else count + (page_count * 40) end,"","","","","","","",""], style: readable, height: 27
+      sheet.add_row [if page_count == 1 then count else count + ((page_count -1) * 40) end,"","","","","","","",""], style: readable, height: 27
       count = count + 1
     end
 
