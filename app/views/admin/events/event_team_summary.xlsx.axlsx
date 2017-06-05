@@ -3,6 +3,7 @@ wb = xlsx_package.workbook
 @teams.each do |team|
   wb.add_worksheet(name: team.name.titleize) do |sheet|
     count = 1
+    page_count = 1
     style = wb.styles
     date_cell = style.add_style(format_code: "mm-dd-yyyy")
     fit = style.add_style(best_fit: true)
@@ -16,20 +17,35 @@ wb = xlsx_package.workbook
     sheet.merge_cells "A2:H2"
 
     sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
-    sheet.add_row [team.name.titleize], style: bold
+    sheet.add_row [team.name.titleize + " Page " + page_count], style: bold
 
     sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18, widths: :auto
     team.attendees.each do |attendee|
-      sheet.add_row [count, attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
-      count = count + 1
-      attendee.guests.each do |guest|
-        sheet.add_row [count, "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid", "","","","" ], style: readable, height: 27, widths: :auto
+      if count > 40
+        count = 1
+        page_count = page_count + 1
+        sheet.add_row [""]
+        sheet.add_row [""]
+        sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
+        sheet.add_row [team.name.titleize + " Page " + page_count], style: bold
+        sheet.add_row [count + (page_count * 40), attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
+        count + 1
+        attendee.guests.each do |guest|
+          sheet.add_row [count + (page_count * 40), "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid", "","","","" ], style: readable, height: 27, widths: :auto
+          count = count + 1
+        end
+      else
+        sheet.add_row [count, attendee.category, if attendee.category == "Corporate" then attendee.business_name else attendee.user.name.titleize end, number_to_currency(attendee.fee), attendee.paid? ? "Paid" : "Unpaid", attendee.paid? ? number_to_currency(attendee.raised - (attendee.fee + attendee.guests.pluck(:fee).sum)) : 0.00, "", "", number_to_currency(attendee.raised)], style: readable, height: 27, widths: :auto
         count = count + 1
+        attendee.guests.each do |guest|
+          sheet.add_row [count, "Guest", guest.name.titleize, number_to_currency(guest.fee), guest.paid? ? "Paid" : "Unpaid", "","","","" ], style: readable, height: 27, widths: :auto
+          count = count + 1
+        end
       end
     end
 
     while count <= 40
-      sheet.add_row [count,"","","","","","","",""], style: readable, height: 27
+      sheet.add_row [if page_count == 1 then count else count + (page_count * 40),"","","","","","","",""], style: readable, height: 27
       count = count + 1
     end
 
