@@ -29,7 +29,7 @@
             <!--<input type="checkbox" class="custom-control-input" id='cover-fee' checked>-->
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Has External Registration</span>
-        </label>  
+        </label>
       </div>
       <div class='col-3'>
         <label class="custom-control custom-checkbox mt-4">
@@ -37,37 +37,37 @@
             <!--<input type="checkbox" class="custom-control-input" id='cover-fee' checked>-->
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">Private Event</span>
-        </label>  
+        </label>
       </div>
       <div class='col-6'>
         <%= f.label :external_url %>
         <%= f.text_field :external_url, class: 'form-control' %>
       </div>
-    </div>  
-      
+    </div>
+
     <div class='row my-2'>
        <div class='col-md-4'>
         <%= f.label :event_cover, "Event Cover Image" %>
-        <%= f.file_field :event_cover, class: 'form-control' %>  
+        <%= f.file_field :event_cover, class: 'form-control' %>
         <%= f.hidden_field :event_cover_cache %>
         <%= image_tag(@event.event_cover_url, class: 'img-fluid mx-auto d-block mt-3') if @event.event_cover? %>
        </div>
       <div class='col-md-4'>
         <%= f.label :event_card, "Upcoming Event Image" %>
-        <%= f.file_field :event_card, class: 'form-control' %>     
+        <%= f.file_field :event_card, class: 'form-control' %>
         <%= f.hidden_field :event_card_cache %>
         <%= image_tag(@event.event_card_url, class: 'img-fluid mx-auto d-block mt-3') if @event.event_card? %>
       </div>
       <div class='col-md-4'>
         <%= f.label :event_type %>
-        <%= f.select :event_type, options_for_select([["Walk", "Walk"], ["Bowling", "Bowling"], ["Golf", "Golf"], ["Concert", "Concert"], ["Gala", "Gala"]], f.object.event_type), { :prompt => "Make a Selection" }, class: 'form-control' %>
+        <%= f.select :event_type, options_for_select([["Walk", "Walk"], ["Bowling", "Bowling"], ["Golf", "Golf"], ["Concert", "Concert"], ["Gala", "Gala"],["Horse","Horse"],["Doctor", "Doctor"]], f.object.event_type), { :prompt => "Make a Selection" }, class: 'form-control' %>
       </div>
     </div>
 
       <%= f.label :size_ids, 'Select Available Shirt Sizes (Ctrl click to select multiple)' %>
       <%= f.select :size_ids, options_for_select(Size.all.collect {|x| [x.label, x.id]}, f.object.size_ids), { }, class: 'form-control', :multiple => true, size: 6 %>
 
-      
+
       <%= f.label :desc, "Event Summary" %>
       <%= f.text_area :desc, class: "tinymce", :row => 350, :cols => 120 %>
     </div>
@@ -102,7 +102,7 @@
           <br />
           <%= f.time_select :event_end_time, { ampm: true, minute_step: 15 }, { class: "form-control" } %>
         </div>
-      </div>        
+      </div>
 
      </div>
   </div>
@@ -137,7 +137,7 @@
           <%= f.label :zipcode %>
           <%= f.text_field :zipcode, class: 'form-control' %>
         </div>
-      </div>  
+      </div>
      </div>
   </div>
 </div>
@@ -188,7 +188,7 @@
   <div class='col-10 offset-1'>
     <div class='card card-block'>
       <%= f.submit(@event.new_record? ? "Create New Event" : "Save Changes", class: "btn btn-success btn-block") %>
-      <%= link_to "Cancel", admin_events_path, class: "btn btn-danger btn-block" %> 
+      <%= link_to "Cancel", admin_events_path, class: "btn btn-danger btn-block" %>
     </div>
   </div>
 </div>
