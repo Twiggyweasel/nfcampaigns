@@ -94,10 +94,11 @@
 
 
         </div>
-        <% if @attendee.event.event_type == "Doctor" %>
+
+        <div class='card-footer'>
+          <% if @attendee.event.event_type == "Doctor" %>
 
         <% else %>
-        <div class='card-footer'>
         <% if @attendee.category == "Personal Fundraising" %>
           <%= link_to "View/Customize Fundraising Page", attendee_pledge_page_path(@attendee), class: 'btn btn-success btn-block' %>
         <!--<#% elsif !@attendee.paid && @attendee.payments.empty? && @attendee.payments.where(success: true).empty? %>-->
