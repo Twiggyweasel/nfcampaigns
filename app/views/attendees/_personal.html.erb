@@ -94,7 +94,7 @@
 
 
         </div>
-        <%= @attendee.event.event_type == "Doctor" %>
+        <% if @attendee.event.event_type == "Doctor" %>
 
         <% else %>
         <div class='card-footer'>
