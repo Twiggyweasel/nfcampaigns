@@ -21,7 +21,7 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Pay Registration</span>
                       </label>
-                      
+
                       <label class="custom-control custom-radio">
                         <input id="fundraise_select" name="registration_type" type="radio" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
@@ -33,7 +33,7 @@
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Pay Registration</span>
                       </label>
-                      
+
                       <label class="custom-control custom-radio">
                         <input id="fundraise_select" name="registration_type" type="radio" class="custom-control-input">
                         <span class="custom-control-indicator"></span>
@@ -47,7 +47,7 @@
                   <div class='col-12'>
                     <%= f.label :fee, "Registration Type" %>
                     <%= f.select(:fee, options_for_select(@event.registration_fees.is_personal.collect {|x| [x.name + ' - $' + x.amount.to_s + '0', x.amount]}, f.object.fee), {prompt: 'Select One'}, class: 'form-control', id: 'fee_form_element') %>
-                  
+
                   </div>
                 </div>
                 <% if @event.registration_fees.is_fundraise.count > 0 %>
@@ -58,10 +58,11 @@
                   </div>
                 </div>
                 <% end %>
-                <% if @event.event_type == "Concert" %>
+                <% if @event.event_type == "Concert" || @event.event_type == "Doctor" %>
                   <%= f.hidden_field(:shirt_size, :value => "N/A") %>
                   <%= f.hidden_field(:team_id, :value => @event.teams.first.id) %>
                 <% else %>
+
                 <div class='row my-2'>
                   <div class='col-12'>
                     <%= f.label :shirt_size %>
@@ -73,13 +74,13 @@
                     <%= f.label :team_id, "Choose a Team" %>
                     <%= f.select(:team_id, options_for_select(@event.teams.collect {|x| [x.name, x.id] }, f.object.team_id), {}, class: 'form-control') %>
                     <p class="form-text text-muted">
-                      Not seeing your team in the list? <%= link_to "Create a team", new_event_team_path(@event) %>   
+                      Not seeing your team in the list? <%= link_to "Create a team", new_event_team_path(@event) %>
                     </p>
                   </div>
                 </div>
                 <% end %>
                 <%= render 'shared/waiver' %>
-                
+
                 <div class='row'>
                   <div class='col-12'>
                     <div class="form-check">
@@ -93,7 +94,7 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
   <div class='row mt-1 mb-5'>
@@ -129,27 +130,27 @@
     }
   });
   $('#Registration_select').click(function() {
-  
-  if($(this).is(":checked")) { 
+
+  if($(this).is(":checked")) {
     $('#reg_fee_box').show();
     $('#fundraise_box').hide()
     $('#attendee_category').val("Personal")
     $('#fundraise_form_element').attr("disabled", true);
     $('#fee_form_element').attr("disabled", false);
   }
-  
+
   });
 
   $('#fundraise_select').click(function() {
-  
-  if($(this).is(":checked")) { 
+
+  if($(this).is(":checked")) {
     $('#fundraise_box').show()
     $('#reg_fee_box').hide();
     $('#fundraise_form_element').attr("disabled", false);
     $('#fee_form_element').attr("disabled", true);
     $('#attendee_category').val("Personal Fundraising")
   }
-  
+
   });
 
 </script>
