@@ -34,7 +34,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color: white;'>
           <% if current_user.profile_pic? %>
             <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px; position: relative;' >
-            <% if current_user.attendees.where(paid: false).any? && !current_user.attendees.where(paid: false).first.event_type == "Doctor" %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
+            <% if current_user.attendees.where(paid: false).any? && !current_user.attendees.where(paid: false).first.event.event_type == "Doctor" %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
           <% else %>
             <img src='<%= image_url('no_user.png') %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
             <!--<#% if current_user.has_notices? %> -->
