@@ -1,5 +1,5 @@
 <div class='container-fluid px-0'>
-<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse" style="background-color: #8CBCDF;">  
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse" style="background-color: #8CBCDF;">
 <!--navbar-inverse-->
   <div class='container'>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,19 +22,19 @@
         <%= link_to "About NF", nf_path, class: 'nav-link', style:'color:white;' %>
       </li>
     </ul>
-    
-    
+
+
     <ul class="navbar-nav ml-auto" style="margin-top: .10rem;" >
       <% if logged_in? %>
         <% if is_admin? %>
           <li class='nav-item'><%= link_to(admin_events_path, class: 'nav-link', style: 'color:white;') do %><i class='fa fa-gear' aria-hidden="true"></i> Admin <% end %></li>
         <% end %>
-        
+
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color: white;'>
           <% if current_user.profile_pic? %>
             <img src='<%= current_user.profile_pic %>' class='rounded-circle d-inline-block align-top' style='height: 30px; position: relative;' >
-            <% if current_user.attendees.where(paid: false).any? %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
+            <% if current_user.attendees.where(paid: false).any? && !current_user.attendees.where(paid: false).first.event_type == "Doctor" %> <span class="badge badge-danger badge-pill" style='margin-left:-15px;'> ! </span> <% end %>
           <% else %>
             <img src='<%= image_url('no_user.png') %>' class='rounded-circle d-inline-block align-top' style='height: 30px;' >
             <!--<#% if current_user.has_notices? %> -->
