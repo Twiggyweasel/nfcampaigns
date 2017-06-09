@@ -14,6 +14,9 @@
 
 <% if @event.event_type == "Concert" %>
   <%= render 'concerts' %>
+<%= elsif @event.event_type == "Doctor" %>
+
+
 <% else %>
 <div class='event-banner row' style='position: relative; background-image: url(<%= @event.event_cover.url %>); height:600px; background-size: cover; margin-top: -46px;'>
   <div class='row' style='position: absolute; bottom: 5%; left: 15px; width:100%'>
