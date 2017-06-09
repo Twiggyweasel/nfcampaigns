@@ -11,7 +11,7 @@
     <%= link_to 'Cancel Registration', @attendee, method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'dropdown-item' %>
           </div>
 </div>
-                  
+
         <h2>Registration Information</h2>
         <p class='card-text'>
           Registrant: <%= @attendee.user.name.titleize %>
@@ -20,16 +20,16 @@
           <br />
           Shirt Size Requested: <%= @attendee.shirt_size %>
           <br />
-          Team: <span id='team_name'><%= @attendee.team.name %></span> 
-          <% if @attendee.team === @attendee.event.teams.first %> 
+          Team: <span id='team_name'><%= @attendee.team.name %></span>
+          <% if @attendee.team === @attendee.event.teams.first %>
             <button class="btn btn-warning btn-sm" type="button" data-toggle="collapse" data-target="#jointeam" aria-expanded="false" aria-controls="collapseExample">
-              Join Team 
+              Join Team
             </button>
-          <% end %> 
+          <% end %>
           <% if @attendee.team != @attendee.event.teams.first %> - <%= link_to @attendee.is_leader? ? "Manage" : "View", event_team_path(@attendee.event, @attendee.team), class: '' %> <% end %>
         </p>
         <div class="collapse" id="jointeam">
-          <%= render 'join' %>  
+          <%= render 'join' %>
         </div>
       </div>
     </div>
@@ -91,17 +91,20 @@
               </tr>
             </tbody>
           </table>
-          
+
 
         </div>
-        <div class='card-footer'>  
+        <%= @attendee.event.event_type == "Doctor" %>
+
+        <% else %>
+        <div class='card-footer'>
         <% if @attendee.category == "Personal Fundraising" %>
           <%= link_to "View/Customize Fundraising Page", attendee_pledge_page_path(@attendee), class: 'btn btn-success btn-block' %>
         <!--<#% elsif !@attendee.paid && @attendee.payments.empty? && @attendee.payments.where(success: true).empty? %>-->
         <% elsif @attendee.guests.where(paid: false) || !@attendee.paid %>
           <%= link_to "Submit Payment", new_attendee_payment_path(@attendee), class: 'btn btn-success btn-block' %>
         <% end %>
-        
+        <% end %>
 
 
         <%= link_to "Return to Event", event_path(@event), class: 'btn btn-info btn-block mt-3' %>
@@ -114,7 +117,7 @@
   $('#info').on('click', function() {
     $(this).popover('show')
   });
-  
+
   $('#info').popover({
     trigger: 'focus'
   });
