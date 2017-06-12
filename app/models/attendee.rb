@@ -25,8 +25,9 @@ class Attendee < ApplicationRecord
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
   after_create do
-    self.create_pledge_page(goal: 100, attendee_id: self.id)
-
+    if !self.event.event_type == "Doctor"
+      self.create_pledge_page(goal: 100, attendee_id: self.id)
+    end
   end
 
   after_save do
