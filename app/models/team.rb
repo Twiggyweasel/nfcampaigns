@@ -9,6 +9,7 @@ class Team < ApplicationRecord
   accepts_nested_attributes_for :attendees, allow_destroy: true
 
   validates :name, presence: true
+  validates_uniqueness_of :name, conditions: -> { where.not(name: 'No Team') }
 
   after_find do
     # if Contribution.where(backable_id: self.id, backable_type: "Team", paid: true).where('created_at >= ?', 1.hour.ago).count != 0
