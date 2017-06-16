@@ -28,7 +28,7 @@
     <div class='card card-block'>
       <h3 class='card-title'><%= attendee.user.name.titleize %></h3>
       <br>
-      <%= link_to 'View Pledge Page',   attendee_pledge_page_path(attendee), class: 'btn btn-primary' %>
+      <%= link_to 'View Pledge Page',   attendee_pledge_page_path(attendee), class: 'btn btn-primary' unless attendee.pledge_page.nil? %>
     </div>
   </div>
 
