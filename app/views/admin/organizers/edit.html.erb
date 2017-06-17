@@ -1,0 +1,28 @@
+<%= render 'shared/title', title: "Edit Organizer", display: 4 %>
+
+<%= form_for([:admin, @event, @organizer]) do |f| %>
+  <% if @organizer.errors.any? %>
+    <%= render 'shared/errors', errors: organizer.errors %>
+  <% end %>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6 offset-md-3'>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+  </div>
+    <div class='row'>
+      <div class='col-md-6 offset-md-3 my-4'>
+        <%= f.submit('Edit Organizer', class: 'btn btn-success btn-block') %>
+      </div>
+      <div class='col-md-6 offset-md-3 my-1'>
+        <%= link_to 'Cancel', admin_event_organizers_path(@event), class: 'btn btn-danger btn-block' %>
+      </div>
+    </div>
+  </div>
+<% end %>

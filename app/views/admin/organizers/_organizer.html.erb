@@ -1,0 +1,6 @@
+<tr id='organizer_<%= organizer.id %>'>
+  <td><%= organizer.id %></td>
+  <td><%= organizer.name.titleize %></td>
+  <td><%= organizer.email %></td>
+  <td><%= link_to "Edit", edit_admin_event_organizer_path(@event, organizer), class: 'btn btn-primary' %> <%= link_to 'delete', admin_event_organizer_path(organizer.event, organizer), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, :remote => true, class: 'btn btn-danger' %></td>
+</tr>

@@ -13,6 +13,7 @@ class Event < ApplicationRecord
   has_many :orders
   has_many :sponsor_levels
   has_many :sponsorships
+  has_many :organizers
   has_one :promo_card
 
   mount_uploader :event_cover, EventCoverUploader

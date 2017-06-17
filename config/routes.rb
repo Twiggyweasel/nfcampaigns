@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :orders
       resources :tickets
       resources :sponsor_levels
+      resources :organizers
       get 'concert_summary', to: 'events#concert_summary'
       get 'event_summary', to: 'events#event_summary'
       get 'event_team_summary', to: 'events#event_team_summary'
