@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :contributions
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'
     get 'reports', to: 'reports#index'
@@ -19,7 +20,9 @@ Rails.application.routes.draw do
       end
       resources :contributions
       resources :promo_cards, except:[:index]
-      resources :teams
+      resources :teams do
+        resources :contributions, only: [:edit, :destroy]
+      end
       resources :orders
       resources :tickets
       resources :sponsor_levels

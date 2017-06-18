@@ -9,8 +9,21 @@
   <div class='col-12'>
     <div class='card card-block'>
       <h3>Create Offline Donation</h3>
-        <%= render 'admin/contributions/new', event: @event %>
-
+      <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseEvent" aria-expanded="false" aria-controls="collapseEvent">
+          Apply Donation to Event
+        </a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseAttendee" aria-expanded="false" aria-controls="collapseAttendee">
+          Apply Donation to Attendee
+        </a>
+      </p>
+      <div class="collapse" id="collapseEvent">
+        <%= render 'admin/contributions/new_event_donation', event: @event %>
+      </div>
+        <!--<#%= render 'admin/contributions/new', event: @event %>-->
+      <div class="collapse" id="collapseAttendee">
+        <%= render 'admin/contributions/new_attendee_donation', event: @event %>
+      </div>
     </div>
   </div>
 </div>
