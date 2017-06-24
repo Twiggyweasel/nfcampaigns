@@ -18,15 +18,27 @@
       <li class="nav-item">
         <%= link_to "Edit", edit_admin_event_path(@event), class: 'nav-link btn btn-warning mx-2' %>
       </li>
-      <li>
+      <li class='nav-item'>
         <%= link_to "Event Organizers", admin_event_organizers_path(@event), class: 'nav-link btn btn-primary mx-2' %>
+      </li>
+      <li class='nav-item'>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reports
+        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Create Event Summary", admin_event_event_summary_path(@event, format: :xlsx,), class: 'dropdown-item' %>
+          <%= link_to "Create Team Summary", admin_event_event_team_summary_path(@event, format: :xlsx,), class: 'dropdown-item' %>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
       </li>
       <!--<li class='nav-item'>-->
       <!--  <#%= link_to "Create Event Summary", admin_event_event_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>-->
       <!--</li>-->
-      <li class='nav-item'>
-        <%= link_to "Create Team Summary", admin_event_event_team_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>
-      </li>
+      <!--<li class='nav-item'>-->
+      <!--  <#%= link_to "Create Team Summary", admin_event_event_team_summary_path(@event, format: :xlsx,), class: 'nav-link btn btn-primary mx-2' %>-->
+      <!--</li>-->
       <li class="nav-item">
         <%= link_to 'Delete', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure? (This action can not be undone)' }, class: 'btn btn-danger nav-link mx-2' %>
       </li>
