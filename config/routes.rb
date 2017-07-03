@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :applications, only: [:index]
+    resources :applications, only: [:index, :show]
     resources :contributions
     resources :payments, only: [:index]
     get 'home', to: 'pages#home'

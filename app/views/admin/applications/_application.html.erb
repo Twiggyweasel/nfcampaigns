@@ -3,4 +3,5 @@
   <td><%= application.created_at.strftime("%B %d, %Y") %></td>
   <td><%= application.name %></td>
   <td><%= application.state %></td>
+  <td><%= link_to "View", admin_application_path(application), class: 'btn btn-primary' %></td>
 </tr>
