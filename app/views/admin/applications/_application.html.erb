@@ -1,6 +1,6 @@
 <tr>
   <td><%= application.id %></td>
-  <td><%= application.created_at %></td>
+  <td><%= application.created_at.strftime("%B %d, %Y") %></td>
   <td><%= application.name %></td>
   <td><%= application.state %></td>
 </tr>
