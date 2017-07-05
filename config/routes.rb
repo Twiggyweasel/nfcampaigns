@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :applications, only: [:index, :show]
     resources :contributions
-    resources :payments, only: [:index]
+    resources :payments, only: [:index, :edit, :update]
     get 'home', to: 'pages#home'
     get 'reports', to: 'reports#index'
     get 'unpaid_registrations', to: 'reports#unpaid_registrations'

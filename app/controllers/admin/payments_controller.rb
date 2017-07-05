@@ -26,10 +26,28 @@ class Admin::PaymentsController < ApplicationController
     end
   end
 
+  def edit
+    @payment = Payment.find(params[:id])
+  end
+
+  def update
+    @payment = Payment.find(params[:id])
+
+    if @payment.update(payment_params)
+      if @payment.success == true
+        @payment.payable.update_column(:paid, true)
+      else
+        @payment.payable.update_column(:paid, false)
+      end
+      redirect_to admin_payments_path, :flash => { :success => "Payment Successfully Updated" }
+    else
+      render :new
+    end
+  end
 
   private
     def payment_params
-      params.require(:payment).permit(:first_name, :last_name, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount)
+      params.require(:payment).permit(:first_name, :last_name, :confirmation_number, :success, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount)
     end
 
 end

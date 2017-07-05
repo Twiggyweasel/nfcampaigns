@@ -7,6 +7,7 @@
   <div class='col-12'>
     <table class="table table-bordered table-striped">
       <tr>
+        <th>Record ID</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Last 4</th>
@@ -15,10 +16,12 @@
         <th>Authorization Code</th>
         <th>Payable Reference</th>
         <th>Transaction Date</th>
+        <th>Actions</th>
       </tr>
       <% if @payments.size > 0 %>
         <% @payments.each do |payment| %>
           <tr>
+            <td><%= payment.id %></td>
             <td><% if !payment.payable.nil? && !payment.payable.user.nil? %><%= link_to payment.first_name, admin_user_path(payment.payable.user)  %><% else %> <%= payment.first_name %> <% end %></td>
             <td><%= payment.last_name %></td>
             <td><%= payment.last4 %></td>
@@ -27,6 +30,7 @@
             <td><%= payment.authorization_code %></td>
             <td><% if payment.payable_type == "Attendee" %> <%= link_to payment.payable_type, admin_event_attendee_path(payment.payable.event, payment.payable_id) %> <% else %> <%= payment.payable_type %> <% end %></td>
             <td><%= payment.created_at.strftime("%m/%d/%Y") %></td>
+            <td><%= link_to "Edit Payment", edit_admin_payment_path(payment) %></td>
           </tr>
         <% end %>
       <% else %>
@@ -34,7 +38,7 @@
           <td colspan="5">No payments have been attempted.</td>
         </tr>
       <% end %>
-    </table>    
+    </table>
   </div>
 </div>
 

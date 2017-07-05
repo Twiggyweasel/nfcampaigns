@@ -1,0 +1,47 @@
+<%= render 'shared/title', title: "Editing Payment ##{@payment.id}", display: 4 %>
+
+<%= form_for([:admin, @payment]) do |f| %>
+  <div class='row'>
+    <div class='col-12 col-md-8 offset-md-2 card card-block'>
+      <div class='row'>
+        <div class='col-12 col-md-6'>
+          <%= f.label :first_name, "Payee First Name" %>
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+        <div class='col-12 col-md-6'>
+          <%= f.label :last_name, "Payee Last Name" %>
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-12'>
+          <%= f.label :confirmation_number %>
+          <%= f.text_field :confirmation_number, class: 'form-control' %>
+        </div>
+      </div>
+      <div class='row my-3'>
+        <div class='col-12'>
+          <label class="custom-control custom-checkbox">
+            <%= f.check_box :success, class: 'custom-control-input' %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Payment was Successful</span>
+          </label>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= f.submit("Update Payment", class: 'btn btn-success btn-block') %>
+        </div>
+        <div class='col-md-6'>
+          <%= link_to "Cancel", admin_payments_path, class: 'btn btn-danger btn-block' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+<% end %>
