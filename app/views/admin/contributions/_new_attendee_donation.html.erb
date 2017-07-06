@@ -3,7 +3,7 @@
 
         <%= f.hidden_field(:category, :value => 'offline') %>
         <%= f.hidden_field(:paid, :value => true) %>
-        <%= f.select(:user_id, options_for_select(User.all.collect { |x| [ x.name, x.id ]}), {} , class: 'form-control mb-2 mr-sm-2 mb-sm-0') %>
+        <%= f.select(:user_id, options_for_select(User.order(:name).collect { |x| [ x.name, x.id ]}), {} , class: 'form-control mb-2 mr-sm-2 mb-sm-0') %>
         <%= f.number_field :amount, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "0.00" %>
         <%= f.text_field :honoree, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => 'Dedication' %>
         <%= f.select(:backable, options_for_select(event.attendees.collect { |x| [ x.user.name, x.id] }), {}, class: 'form-control mb-2 mr-sm-2 mb-sm-0') %>
