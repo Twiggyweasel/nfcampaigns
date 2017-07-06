@@ -17,4 +17,8 @@
 //= require analytics.js
 //= require turbolinks
 //= require bootstrap
+//= require chosen-jquery
+//= require chosen
 //= require_tree .
+
+

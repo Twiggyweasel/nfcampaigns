@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require chosen
  *= require_self
  */
 @import "bootstrap";
@@ -42,14 +43,14 @@ body {
 }
 
 .event-card-shadow {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
-  0 3px 1px -2px rgba(0, 0, 0, 0.2), 
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 3px 1px -2px rgba(0, 0, 0, 0.2),
   0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .callout {
-  color:white; 
-  background-color:#8CBCDF; 
+  color:white;
+  background-color:#8CBCDF;
   border-radius:5px;
   border: 1px solid #8CBCDF;
   transition: all 1s;
@@ -97,8 +98,8 @@ body {
     position: relative;
     width: 100%;
     color: black;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 
-    0 3px 1px -2px rgba(0, 0, 0, 0.2), 
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -147,9 +148,9 @@ body {
 
 #sidebar {
     margin-bottom: -5000px; /* any large number will do */
-  padding-bottom: 5000px; 
+  padding-bottom: 5000px;
   overflow: hidden;
-  
+
 }
 
 .card-link {
@@ -160,7 +161,7 @@ body {
 }
 
 .card-link .card {
-  min-height: 95%; 
+  min-height: 95%;
   border: 3px #ccc dashed;
 }
 
@@ -203,10 +204,10 @@ body {
 .img-raise:hover {
   transform: translate(0,-10px);
   -webkit-transform: translate(0,-10px);
-  -o-transform: translate(0,-10px); 
+  -o-transform: translate(0,-10px);
   -moz-transform: translate(0,-10px);
 }
- 
+
 
 .shadow {
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
@@ -216,7 +217,7 @@ body {
    color: #636C72;
    transition: all 0.5s;
   cursor: pointer;
-   
+
 }
 
 .anchor-styled span {
@@ -246,9 +247,9 @@ body {
 }
 
 .banner-image {
-  background-image: image_url('walk-wide.jpg'); 
+  background-image: image_url('walk-wide.jpg');
   height: 600px;
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
   position: relative;
 }
@@ -259,39 +260,39 @@ body {
 
 .event-card {
   min-height: 350px;
-  position: relative; 
+  position: relative;
   background-size: cover;
 }
 
 .title-overlay {
-  position: absolute; 
-  bottom:0; left: 0; 
-  color: white; 
-  background-color: rgba(38, 49, 59, 0.54); 
+  position: absolute;
+  bottom:0; left: 0;
+  color: white;
+  background-color: rgba(38, 49, 59, 0.54);
   width: 100%;
   transition: all .5s;
 }
 
 .date-overlay {
-  position: absolute; 
-  top: 5%; right:5%; 
-  color: white; 
+  position: absolute;
+  top: 5%; right:5%;
+  color: white;
   background-color: rgba(38, 49, 59, 0.74);
 }
 
 .event-card:hover .title-overlay {
-  background-color: rgba(38, 49, 59, 1); 
+  background-color: rgba(38, 49, 59, 1);
   transform: translate(0,-10px);
   -webkit-transform: translate(0,-10px);
-  -o-transform: translate(0,-10px); 
+  -o-transform: translate(0,-10px);
   -moz-transform: translate(0,-10px);
 }
 
 .champ-card:hover .title-overlay {
-  background-color: rgba(38, 49, 59, 1); 
+  background-color: rgba(38, 49, 59, 1);
   transform: translate(0,-10px);
   -webkit-transform: translate(0,-10px);
-  -o-transform: translate(0,-10px); 
+  -o-transform: translate(0,-10px);
   -moz-transform: translate(0,-10px);
 }
 
@@ -368,7 +369,7 @@ body {
 }
 
 .selector .active .card {
-  background-color: #fff;  
+  background-color: #fff;
   transition: .3s all;
 }
 
@@ -377,7 +378,7 @@ body {
 }
 
 .selector .card {
-  background-color: #E9EBEE;  
+  background-color: #E9EBEE;
   transition: .3s all;
 }
 

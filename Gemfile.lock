@@ -87,6 +87,10 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     chartkick (2.1.1)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     code_analyzer (0.4.7)
       sexp_processor
     coderay (1.1.1)
@@ -313,6 +317,7 @@ DEPENDENCIES
   byebug
   carrierwave (>= 1.0.0.rc, < 2.0)
   chartkick
+  chosen-rails
   coffee-rails (~> 4.2)
   faker
   fog-aws

@@ -11,7 +11,7 @@ class Admin::ContributionsController < ApplicationController
     # @contributions = @search.result(distinct: true).includes(:user).page(params[:page])
 
     @contributions = Contribution.where(backable: @event).page params[:page]
-
+    @attendees = @event.attendees.joins(:user).merge(User.order(:name))
     respond_to do |format|
       format.js
       format.html

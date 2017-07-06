@@ -3,11 +3,11 @@
 
         <%= f.hidden_field(:category, :value => 'offline') %>
         <%= f.hidden_field(:paid, :value => true) %>
-        <%= f.select(:user_id, options_for_select(User.order(:name).collect { |x| [ x.name, x.id ]}), {} , class: 'form-control mb-2 mr-sm-2 mb-sm-0') %>
+        <%= f.select(:user_id, options_for_select(User.order(:name).collect { |x| [ x.name, x.id ]}), { include_blank: true, prompt: "User Donating" } , class: 'chosen-select mb-2 mr-sm-2 mb-sm-0') %>
         <%= f.number_field :amount, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "0.00" %>
         <%= f.text_field :honoree, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => 'Dedication' %>
-        <%= f.select(:backable, options_for_select(event.attendees.collect { |x| [ x.user.name, x.id] }), {}, class: 'form-control mb-2 mr-sm-2 mb-sm-0') %>
-        <label class="custom-control custom-checkbox">
+        <%= f.select(:backable, options_for_select(event.attendees.collect { |x| [ x.user.name, x.id] }), {include_blank: true, prompt: "Attendee Receiving Donation" }, class: 'chosen-select mb-2 mr-sm-2 mb-sm-0') %>
+        <label class="custom-control custom-checkbox ml-1">
           <%= f.check_box :paid, class: 'custom-control-input', type: 'checkbox' %>
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">Has this donation been paid?</span>
