@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'tether-rails'
 gem "font-awesome-rails"
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem "fog-aws"

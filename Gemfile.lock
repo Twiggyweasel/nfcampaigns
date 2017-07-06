@@ -281,6 +281,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    tether-rails (1.4.0)
+      rails (>= 3.1)
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -344,6 +346,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  tether-rails
   tinymce-rails
   turbolinks (~> 5)
   tzinfo-data

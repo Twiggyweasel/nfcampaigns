@@ -16,9 +16,11 @@
 //= require chartkick
 //= require analytics.js
 //= require turbolinks
+//= require tether
 //= require bootstrap
 //= require chosen-jquery
 //= require chosen
+
 //= require_tree .
 
 
