@@ -39,7 +39,7 @@ class Event < ApplicationRecord
 
   scope :is_active, -> { where(is_private: false) }
   scope :is_viewable, -> { where("event_date > ? OR event_date IS NULL", Time.zone.now - 1.day).where(is_private: false) }
-
+  scope :is_past, -> { where("event_date < ? OR event_date IS Null", Time.zone.now - 1.day).where(is_private: false) }
 
   def slug
     if title?

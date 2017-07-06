@@ -73,6 +73,10 @@ class EventsController < ApplicationController
     @attendees = @event.attendees
   end
 
+  def previous_events
+    @events = Event.is_past
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
