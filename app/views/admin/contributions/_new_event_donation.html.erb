@@ -3,8 +3,8 @@
 
         <%= f.hidden_field(:category, :value => 'offline') %>
         <%= f.hidden_field(:paid, :value => true) %>
-        <%= f.select(:user_id, options_for_select(User.order(:name).collect { |x| [ x.name, x.id ]}), { include_blank: true, prompt: "User Donating" } , class: 'chosen-select mb-2 mr-sm-2 mb-sm-0') %>
-        <%= f.number_field :amount, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "0.00" %>
+        <%= f.select(:user_id, options_for_select(User.order(:name).collect { |x| [ x.name,titleize, x.id ]}), { include_blank: true, prompt: "User Donating" } , class: 'chosen-select mb-2 mr-sm-2 mb-sm-0') %>
+        <%= f.number_field :amount, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => "0.00", :step => "any"  %>
         <%= f.text_field :honoree, class: 'form-control mb-2 mr-sm-2 mb-sm-0', :placeholder => 'Dedication' %>
 
         <label class="custom-control custom-checkbox">
