@@ -18,4 +18,9 @@ class AdminMailer < ApplicationMailer
     @payments = payments
     mail(to: user.email, subject: "NFStrong - New Actions Summary")
   end
+
+  def new_interest(path)
+    @link = path
+    mail(to: "yglass@nfnetwork.org", subject: "New Interest Application")
+  end
 end
