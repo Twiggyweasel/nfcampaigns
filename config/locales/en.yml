@@ -21,3 +21,16 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      volunteer:
+        email: "E-mail address"
+        street1: "Street Address"
+    errors:
+      models:
+        volunteer:
+          attributes:
+            email:
+              blank: "is required"
+            street1:
+              blank: "is required"

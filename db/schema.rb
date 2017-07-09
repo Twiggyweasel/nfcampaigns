@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617203813) do
+ActiveRecord::Schema.define(version: 20170709193625) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "name"
@@ -363,6 +363,24 @@ ActiveRecord::Schema.define(version: 20170617203813) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.index ["role_id"], name: "index_users_on_role_id"
+  end
+
+  create_table "volunteers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "email"
+    t.string   "shirt_size"
+    t.string   "volunteer_type"
+    t.string   "group_name"
+    t.integer  "event_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["event_id"], name: "index_volunteers_on_event_id"
   end
 
 end

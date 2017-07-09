@@ -98,7 +98,35 @@
       </div>
     </div>
   </div>
-
+  <div class='row my-3'>
+    <div class='col-12 col-xl-6 mb-3'>
+      <div class='card card-block'>
+        <h3 class='card-title'>Event Volunteers</h3>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Group</th>
+              <th>Shirt Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @event.volunteers.each do |v| %>
+              <tr>
+                <td><%= v.id %></td>
+                <td><%= v.full_name %></td>
+                <td><%= v.email %></td>
+                <td><%= v.group_name %></td>
+                <td><%= v.shirt_size %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <div class='row mb-5'>
     <div class='col-12'>

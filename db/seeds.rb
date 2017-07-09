@@ -28,25 +28,25 @@ User.create! name: 'System Admin', email: "admin@nfstrong.org", password: "N17F#
 
 if Rails.env == "development"
 
-  Event.create! name: 'Event One', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2017-7-08', event_start_time: "2000-01-01 8:30:00", event_end_time: "2000-01-01 10:30:00", goal: 10000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: true, size_ids: [1,2,3,4,5]
-  Event.create! name: 'Event Two', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2017-5-16', event_start_time: "2000-01-01 19:30:00", event_end_time: "2000-01-01 10:30:00", goal: 40000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: false, size_ids: [1,2,3,4,5]
-  
+  Event.create! name: 'Event One', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2018-7-08', event_start_time: "2000-01-01 8:30:00", event_end_time: "2000-01-01 10:30:00", goal: 10000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: true, size_ids: [1,2,3,4,5]
+  Event.create! name: 'Event Two', event_type: 'Walk', desc: 'Test is a test', teaser: "Teaser Text", registration_date: '2017-01-08', event_date: '2018-5-16', event_start_time: "2000-01-01 19:30:00", event_end_time: "2000-01-01 10:30:00", goal: 40000, raised: 0, venue_name: 'Magic Fields Park', street: '13308 W 96th Terr', city: 'Lenexa', state: 'KS', zipcode: '66215', has_shirts: true, is_private: false, size_ids: [1,2,3,4,5]
 
-  
+
+
   25.times do
-    User.create( 
+    User.create(
       name: Faker::Name.unique.name,
       email: Faker::Internet.unique.email,
       password: "test_123",
       role_id: 2
     )
   end
-  
+
   count = 1
-  25.times do 
-  
+  25.times do
+
     user = User.find(count)
-    
+
     user.create_profile(
       street: Faker::Address.street_address,
       city: Faker::Address.city,
@@ -57,11 +57,11 @@ if Rails.env == "development"
       news_letter: true,
       event_notifications: true
     )
-    
+
     count += 1
   end
-  
-  10.times do 
+
+  10.times do
     Team.create(
       name: Faker::Team.name,
       max_members: 999,
@@ -69,9 +69,9 @@ if Rails.env == "development"
       event_id: rand(1..2),
     )
   end
-  
+
   # @category = ["Corporate", "Personal"]
-  
+
   # @sizes = ["Small", "Medium", "Large"]
   # @fees = [25.00, 35.00, 150.00, 12.00]
   # 55.times do
@@ -84,24 +84,24 @@ if Rails.env == "development"
   #     category: @category.sample,
   #     guest_limit: 999
   #   )
-    
+
   # end
-  
+
   # teamcount = 3
-  # 10.times do 
-  #   attendee = Team.find(teamcount).attendees.first 
-  
+  # 10.times do
+  #   attendee = Team.find(teamcount).attendees.first
+
   #   attendee.update(is_leader: true)
-  
+
   #   teamcount += 1
   # end
   # for i in 0..Team.count
-  #   team = Team.find(i) 
+  #   team = Team.find(i)
   #   if team.attendees.count != 0
   #     team.attendees.first.update(is_leader: "true")
   #   end
   # end
-  
+
   100.times do
     Contribution.create(
       amount: rand(1..550),
@@ -110,7 +110,7 @@ if Rails.env == "development"
       user_id: rand(2..26),
     )
   end
-  
+
   # 100.times do
   #   Contribution.create(
   #     amount: rand(1..550),
@@ -119,7 +119,7 @@ if Rails.env == "development"
   #     user_id: rand(2..26),
   #   )
   # end
-  
+
   100.times do
     Contribution.create(
       amount: rand(1..550),
@@ -128,7 +128,7 @@ if Rails.env == "development"
       user_id: rand(2..26),
     )
   end
-  
+
   Promotion.create! name: "$5 Discount", desc: "$5 of entire cart", code: "NF5OFF", discount: 20.0, is_active: true, start: "2017-01-08", stop: "2017-12-08"
 
-end 
+end

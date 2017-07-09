@@ -84,6 +84,8 @@ Rails.application.routes.draw do
     post 'join_team', to: 'attendees#join_team'
   end
 
+  resources :volunteers, only: [:new, :create]
+
   get 'previous_events', to: 'events#previous_events'
   resources :pledge_page do
     resources :comments, only: [:new, :create]

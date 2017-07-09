@@ -1,0 +1,98 @@
+<%= render 'shared/title', title: 'Volunteer Form', display: 4 %>
+
+<%= form_for(@volunteer) do |f| %>
+  <% if @volunteer.errors.any? %>
+    <%= render 'shared/errors', errors: @volunteer.errors %>
+  <% end %>
+  <div class='row'>
+    <div class='col-12 col-md-8 offset-md-2'>
+      <div class='card card-block'>
+        <div class='row my-2'>
+          <div class='col-12 col-md-6'>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-6'>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12 col-md-8'>
+            <%= f.label :street1, "Street Address" %>
+            <%= f.text_field :street1, class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-4'>
+            <%= f.label :street2, "Apt/Unit #" %>
+            <%= f.text_field :street2, class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12 col-md-6'>
+            <%= f.label :city %>
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-3'>
+            <%= f.label :state %>
+            <%= f.select :state, options_for_select(states, :selected => f.object.state), { } , class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-3'>
+            <%= f.label :zipcode %>
+            <%= f.text_field :zipcode, class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12 col-md-6'>
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-6'>
+            <%= f.label :shirt_size %>
+            <%= f.select :shirt_size, options_for_select(sizes, :selected => f.object.shirt_size), { prompt: 'Select Size' }, class: 'form-control' %>
+          </div>
+        </div>
+        <div class='row my-2'>
+          <div class='col-12 col-md-6'>
+            <%= f.label :event_id, "Event Your Volunteering For" %>
+            <%= f.select :event_id, options_for_select(Event.is_viewable.collect { |x| [ x.title, x.id] }), { prompt: 'Select Event' }, class: 'form-control' %>
+          </div>
+          <div class='col-12 col-md-6'>
+            <%= f.label :volunteer_type %>
+            <br />
+            <%= radio_button_tag(:volunteer_type, "Individual", checked: true) %>
+            <%= label_tag(:volunteer_type_individual, "Individual") %>
+            <%= radio_button_tag(:volunteer_type, "Group") %>
+            <%= label_tag(:volunteer_type_group, "With A Group/Organization") %>
+          </div>
+        </div>
+        <div class='row my-2' id='group_input' style='display: none;'>
+          <div class='col-12'>
+            <%= f.label :group_name, "Name of Group/Organization" %>
+            <%= f.text_field :group_name, class: 'form-control' %>
+          </div>
+        </div>
+         <div class='row my-2'>
+          <div class='col-12 col-md-6'>
+            <%= f.submit("Submit", class: 'btn btn-success btn-block') %>
+          </div>
+          <div class='col-12 col-md-6'>
+            <%= link_to "Cancel", root_path, class: 'btn btn-danger btn-block' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $('input[type=radio][name=volunteer_type]').change(function() {
+        if (this.value == 'Group') {
+            $("#group_input").show();
+        }
+        else {
+            $("#group_input").hide();
+        }
+    });
+});
+</script>
