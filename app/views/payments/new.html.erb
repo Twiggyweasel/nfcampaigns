@@ -96,7 +96,7 @@
         <div class='row my-2'>
           <div class='col-md-6 my-2'>
             <%= f.label :street, "Street Address" %>
-            <%= f.text_field :street, class: "form-control", :value => !current_user.nil? ? current_user.profile.street : "" %>
+            <%= f.text_field :street, class: "form-control", :value => !current_user.nil? ? current_user.profile.street : "" unless current_user.profile.nil? %>
           </div>
           <div class='col-md-6 my-2'>
             <%= f.label :apt, "Apt/Suite #" %>
