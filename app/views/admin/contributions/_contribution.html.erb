@@ -5,5 +5,5 @@
   <td><%= contribution.paid %></td>
   <td><%= contribution.honoree %></td>
   <td><%= contribution.category.titleize if !contribution.category.nil? %></td>
-  <td><%= link_to "Edit", edit_admin_contribution_path(contribution.backable, contribution) %>  <%= link_to " | Delete", admin_contributions_path(contribution.backable, contribution), method: :delete, data: { confirm:  "Are you sure? (This action can not be undone!)" } if !contribution.paid? %></td>
+  <td><% link_to "Edit", edit_admin_contribution_path(contribution.backable, contribution) %>  <%= link_to " | Delete", admin_contributions_path(contribution.backable, contribution), method: :delete, data: { confirm:  "Are you sure? (This action can not be undone!)" } if !contribution.paid? %></td>
 </tr>
