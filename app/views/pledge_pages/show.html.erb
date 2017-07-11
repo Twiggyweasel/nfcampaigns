@@ -23,7 +23,7 @@
                 </div>
               </div>
               <h5>
-              <%= link_to(event_path(@pledge_page.event)) do %> #NFStrong <%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name %><% end %>
+              <%= link_to(event_path(@pledge_page.event)) do %> #NFStrong <%= @pledge_page.event.name %> @ <%= @pledge_page.event.venue_name + " " + @pledge_page.event.city + "," + @pledge_page.event.state %><% end %>
               <br />
               <%= @pledge_page.event.event_date.strftime("%A, %B %d %Y") %>
               </h5>
