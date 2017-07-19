@@ -1,4 +1,4 @@
-<%= render 'shared/title', title: "Edit Donation for #{ @context.name }", display: 4 %>
+<%= render 'shared/title', title: "Edit Donation for #{<% if @contribution.backable_type == "Attendee" then @contribution.backable.user.full_name else @contribution.backable.name end %>}", display: 4 %>
 
 
 <%= render 'form' %>

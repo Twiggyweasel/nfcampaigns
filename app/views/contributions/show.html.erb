@@ -2,8 +2,8 @@
   <div class='col-md-10 offset-md-1 col-lg-6 offset-lg-3'>
     <div class='card mt-3'>
       <div class='card-block'>
-        <h2 class='card-title text-center'>Contribution for <%= @contribution.backable.name %> </h2>
-        
+        <h2 class='card-title text-center'>Contribution for <% if @contribution.backable_type == "Attendee" then @contribution.backable.user.full_name else @contribution.backable.name end %> </h2>
+
         <p class='card-text text-center'>
           Amount of Contribution: <%= number_to_currency(@contribution.amount) %>
           <br />
@@ -22,7 +22,7 @@
             </div>
           </div>
         </p>
-      </div>  
+      </div>
     </div>
   </div>
 </div>
