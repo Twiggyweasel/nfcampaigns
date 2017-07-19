@@ -69,7 +69,7 @@ class Admin::EventsController < ApplicationController
 
   def contact_list
     @event = Event.find_by_title(params[:event_id])
-    @attendees = @event.attendees.include(:user).order(user.name)
+    @attendees = @event.attendees.order(:created_at)
   end
   private
     def set_event
