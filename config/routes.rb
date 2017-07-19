@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get 'concert_summary', to: 'events#concert_summary'
       get 'event_summary', to: 'events#event_summary'
       get 'event_team_summary', to: 'events#event_team_summary'
+      get 'event_contact_list', to: 'events#contact_list'
     end
     resources :promotions
     resources :users

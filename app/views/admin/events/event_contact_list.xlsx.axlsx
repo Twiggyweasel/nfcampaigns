@@ -1,0 +1,13 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Attendee Email Addresses") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+  fit = style.add_style(best_fit: true)
+  heading = style.add_style(best_fit: true, alignment: {horizontal: :center}, b: true, sz: 16, bg_color: "5b9bd5", fg_color: "FF", :border => { :style => :thick, :color => "000000" })
+  border = style.add_style(:border => { style: :thin, :color => "000000" })
+
+  sheet.add_row ["ID", "Name", "Email"], style: heading
+  @attendees.is_personal.each do |attendee|
+    sheet.add_row [attendee.id, attendee.user.name.titleize, attendee.user.email.capitalize], style: border
+  end
+end
