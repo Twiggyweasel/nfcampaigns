@@ -68,6 +68,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def contact_list
+    @event = Event.find_by_title(params[:event_id])
     @attendees = @event.attendees.include(:user).order(user.name)
   end
   private
