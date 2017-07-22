@@ -63,7 +63,7 @@ class Admin::EventsController < ApplicationController
   def event_team_summary
     @event = Event.find_by_title(params[:event_id])
     @teams = @event.teams.order(:created_at)
-    @attendee = @event.attendees.include(:user).order('user.name')
+    @attendee = @event.attendees
     @contributions = @event.contributions
   end
 

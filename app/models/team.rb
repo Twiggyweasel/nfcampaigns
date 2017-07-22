@@ -2,7 +2,7 @@ class Team < ApplicationRecord
   belongs_to :event
   has_one :leader,-> { where(is_leader: true, team_id: self) }, :class_name => "Attendee"
   # has_many :contributions, as: :backable
-  has_many :attendees, inverse_of: :team
+  has_many :attendees, inverse_of: :team, -> { order(:name) }
   has_many :contributions, through: :attendees
   mount_uploader :team_photo, ChampionImageUploader
 
