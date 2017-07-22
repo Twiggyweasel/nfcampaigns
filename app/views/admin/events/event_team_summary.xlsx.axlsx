@@ -20,7 +20,7 @@ wb = xlsx_package.workbook
     sheet.add_row [team.name.titleize + " Page " + page_count.to_s], style: bold
 
     sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18, widths: :auto
-    team.attendees.each do |attendee|
+    team.attendees.order('user.name').each do |attendee|
       if count > 40
         count = 1
         page_count = page_count + 1
