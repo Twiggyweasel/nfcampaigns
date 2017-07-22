@@ -4,6 +4,7 @@ wb = xlsx_package.workbook
   wb.add_worksheet(name: team.name.titleize) do |sheet|
     count = 1
     page_count = 1
+    sheet.page_setup.fit_to :width => 1, :height => 999
     style = wb.styles
     date_cell = style.add_style(format_code: "mm-dd-yyyy")
     fit = style.add_style(best_fit: true)
@@ -20,7 +21,7 @@ wb = xlsx_package.workbook
     sheet.add_row [team.name.titleize + " Page " + page_count.to_s], style: bold
 
     sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18, widths: :auto
-    team.attendees.order('user.name').each do |attendee|
+    team.attendees.each do |attendee|
       if count > 40
         count = 1
         page_count = page_count + 1
