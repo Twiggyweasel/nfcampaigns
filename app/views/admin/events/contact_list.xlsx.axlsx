@@ -8,6 +8,6 @@ wb.add_worksheet(name: "Attendee Email Addresses") do |sheet|
 
   sheet.add_row ["ID", "Full Name","First Name", "Last Name", "Address 1", "Address 2", "City", "State", "Zipcode", "Phone", "Email"], style: heading
   @attendees.is_personal.each do |attendee|
-    sheet.add_row [attendee.id, attendee.user.name.titleize, attendee.user.name.rpartition(' ').first.titleize, attendee.user.name.rpartition(' ').first.titleize, if(attendee.user.profile) then attendee.user.profile.street else "" end,  attendee.user.email.capitalize], style: border
+    sheet.add_row [attendee.id, attendee.user.name.titleize, attendee.user.name.rpartition(' ').first.titleize, attendee.user.name.rpartition(' ').first.titleize, if(attendee.user.profile) then attendee.user.profile.street else "" end, if(attendee.user.profile) then attendee.user.profile.apt else "" end, if(attendee.user.profile) then attendee.user.profile.city else "" end, if(attendee.user.profile) then attendee.user.profile.state else "" end, if(attendee.user.profile) then attendee.user.profile.zipcode else "" end, if(attendee.user.profile) then attendee.user.profile.phone else "" end  attendee.user.email.capitalize], style: border
   end
 end
