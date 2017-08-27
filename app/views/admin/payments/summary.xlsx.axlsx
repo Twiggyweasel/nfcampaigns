@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 
-wb.add_worksheet(name: "Payments Summary" do |sheet|
+wb.add_worksheet(name: "Payments Summary") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
