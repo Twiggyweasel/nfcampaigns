@@ -6,7 +6,7 @@ wb.add_worksheet(name: "Payments Summary") do |sheet|
 
   sheet.add_row ["Action Type", "ID", "Date Processed", "Amount", "Covered Processing Fee"]
   @attendees.each do |attendee|
-    payment = attendee.payments.where(paid: true).first
+    payment = attendee.payments.where(success: true).first
       if payment.nil?
         sheet.add_row ["Event Registration", attendee.id, attendee.created_at]
       else
