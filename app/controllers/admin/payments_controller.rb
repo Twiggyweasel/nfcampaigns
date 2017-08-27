@@ -45,6 +45,10 @@ class Admin::PaymentsController < ApplicationController
     end
   end
 
+  def summary
+    @payments = Payment.where(success: true)
+  end
+
   private
     def payment_params
       params.require(:payment).permit(:first_name, :last_name, :authorization_code, :confirmation_number, :success, :credit_card_number, :expiration_month, :expiration_year, :card_security_code, :amount)

@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Payments Summary" do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+
+  Sheet.add_row ["ID", "Date Processed", "Amount", "Covered Processing Fee"]
+  @payments.each do |p|
+    sheet.add_row [p.id, p.created_at, p.amount, p.cover_processing], style: [nil, date_cell, nil, nil]
+  end
+end
