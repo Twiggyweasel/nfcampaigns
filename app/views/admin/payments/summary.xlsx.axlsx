@@ -5,7 +5,7 @@ wb.add_worksheet(name: "Payments Summary") do |sheet|
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
   sheet.add_row ["Action Type", "ID", "Date Processed", "Amount", "Covered Processing Fee"]
-  @attendee.each do |attendee|
+  @attendees.each do |attendee|
     sheet.add_row ["Event Registration", attendee.id, attendee.created_at, attendee.payment.amount, attendee.payment.cover_processing ]
   end
 end
