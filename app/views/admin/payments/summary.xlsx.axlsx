@@ -10,7 +10,7 @@ wb.add_worksheet(name: "Payments Summary") do |sheet|
       if !payment
         sheet.add_row ["Event Registration", attendee.id, attendee.created_at]
       else
-        sheet.add_row ["Event Registration", attendee.id, attendee.created_at, payment.first.amount, attendee.payment.first.cover_processing ]
+        sheet.add_row ["Event Registration", attendee.id, attendee.created_at, attendee.payments.first.amount, attendee.payment.first.cover_processing ]
       end
 
   end
