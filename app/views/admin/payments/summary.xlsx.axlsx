@@ -6,6 +6,6 @@ wb.add_worksheet(name: "Payments Summary") do |sheet|
 
   sheet.add_row ["Action Type", "ID", "Date Processed", "Amount", "Covered Processing Fee"]
   @attendees.each do |attendee|
-    sheet.add_row ["Event Registration", attendee.id, attendee.created_at, attendee.payment.amount, attendee.payment.cover_processing ]
+    sheet.add_row ["Event Registration", attendee.id, attendee.created_at, attendee.payments.first.amount, attendee.payments.first.cover_processing ]
   end
 end
