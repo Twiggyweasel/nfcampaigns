@@ -47,6 +47,9 @@ class Admin::PaymentsController < ApplicationController
 
   def summary
     @payments = Payment.where(success: true)
+    @contribtions = Contribution.where(paid: true)
+    @attendees = Attendee.where(paid: true)
+
   end
 
   private

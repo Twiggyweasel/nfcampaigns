@@ -4,8 +4,7 @@ wb.add_worksheet(name: "Payments Summary") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
-  sheet.add_row ["ID", "Date Processed", "Amount", "Covered Processing Fee"]
-  @payments.each do |p|
-    sheet.add_row [p.id, p.created_at, p.amount, p.cover_processing], style: [nil, date_cell, nil, nil]
-  end
+  sheet.add_row ["Action Type", "ID", "Date Processed", "Amount", "Covered Processing Fee"]
+  @attendee.each do |attendee|
+    sheet.add_row ["Event Registration", attendee.id, attendee.created_at, attendee.payment.amount unless attendee.payment.nil?, attendee.payment.cover_processing unless attendee.payment.nil?]
 end
