@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   def attendees
     # @attendees = Attendee.all.order(raised: :desc)
 
-    @q = Attendee.all.order(reaised: :desc).ransack(params[:q])
+    @q = Attendee.all.order(raised: :desc).ransack(params[:q])
     @attendees = @q.result().page params[:page]
   end
 
