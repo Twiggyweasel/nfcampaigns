@@ -5,7 +5,7 @@ class ContributionsController < ApplicationController
     @events = Event.all
 
 
-    @pledgepages = PledgePage.all
+    @pledgepages = PledgePage.last(100)
   end
 
   def index
