@@ -18,7 +18,7 @@ wb = xlsx_package.workbook
     sheet.merge_cells "A2:I2"
 
     sheet.add_row ["2017 #NFSTRONG Walk, " + @event.city + ", " + @event.state], style: bold
-    sheet.add_row [team.name.titleize.truncate(29) + " Page " + page_count.to_s], style: bold
+    sheet.add_row [team.name.titleize.truncate(20) + " Page " + page_count.to_s], style: bold
 
     sheet.add_row ["# on Team", "Type", "Name", "Reg Fee", "Paid" , "Raised","Donations after 6/2", "Walk-up Reg Fee", "Indiv. Total"], style: readable, height: 18, widths: :auto
     team.attendees.each do |attendee|
