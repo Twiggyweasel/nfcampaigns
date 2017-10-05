@@ -24,6 +24,8 @@ class Attendee < ApplicationRecord
   scope :is_fundraising, -> { where(category: 'Personal Fundraising') }
   scope :is_new_1_hours, -> { where(created_at: (Time.now - 1.hours)..Time.now) }
 
+  paginates_per 10
+
   after_create do
     self.create_pledge_page(goal: 100, attendee_id: self.id) unless self.event.event_type === "Doctor"
   end
