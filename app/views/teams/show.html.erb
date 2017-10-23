@@ -92,7 +92,7 @@
             <div class='col-4'>
               <% if donation.payments.nil? %>
               <p>Given By: System Admin</p>
-              <%= else %>
+              <% else %>
               <p>Given By: <%= donation.user.nil? ? donation.payments.where(success: true).first.fullname : donation.user.name.titleize %></p>
               <% end %>
             </div>
