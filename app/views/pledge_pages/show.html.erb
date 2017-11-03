@@ -148,7 +148,11 @@
                 <tbody>
                 <% @pledge_page.contributions.where(paid: true).each do |contribution| %>
                 <tr>
-                  <td colspan="2"><%= contribution.user.nil? ? contribution.payments.where(success: true).first.fullname.titleize : contribution.user.name.titleize %></td>
+                  <% if contribution.user_id.nil? && !contribution.payments.any? %>
+              <td>System Admin</td>
+              <% else %>
+              <td><%= contribution.user.nil? ? contribution.payments.where(success: true).first.fullname : contribution.user.name.titleize %></td>
+              <% end %>
                   <td><%= number_to_currency(contribution.amount) %></td>
                 </tr>
                 <% end %>
