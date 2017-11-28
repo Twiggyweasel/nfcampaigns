@@ -21,7 +21,7 @@ wb.add_worksheet(name: "Donations") do |sheet|
       sheet.add_row [donation.id, donation.amount, donation.payments.where(success: true).first.fullname], style: [nil, nil, nil]
     else
       if donation.user.profile.nil?
-        sheet.add_row [donation.id, donation.amount, donation.honoree, user.name], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, donation.user.name], style: [nil, nil, nil]
 
       else
         sheet.add_row [donation.id, donation.amount, donation.honoree, user.name, donation.user.profile.street + " " + donation.user.profile.apt, donation.user.profile.city, donation.user.profile.state, donation.user.profile.zipcode], style: [nil, nil, nil]
