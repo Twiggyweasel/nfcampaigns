@@ -14,17 +14,17 @@ wb.add_worksheet(name: "Donations") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
-  sheet.add_row ["Record Number", "Amount", "Name", "Street", "City", "State", "Zipcode"]
+  sheet.add_row ["Record Number", "Amount", "honoree", "Name", "Street", "City", "State", "Zipcode"]
   @donations.each do |donation|
     user_nil = donation.user_id.nil?
     if user_nil
-      sheet.add_row [donation.id, donation.amount, user_nil], style: [nil, nil, nil]
+      sheet.add_row [donation.id, donation.amount, donation.payment.where(success: true).first.fullname], style: [nil, nil, nil]
     else
       if donation.user.profile.nil?
-        sheet.add_row [donation.id, donation.amount], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, user.name], style: [nil, nil, nil]
 
       else
-        sheet.add_row [donation.id, donation.amount, donation.user.profile.street + " " + donation.user.profile.apt, donation.user.profile.city, donation.user.profile.state, donation.user.profile.zipcode], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, user.name, donation.user.profile.street + " " + donation.user.profile.apt, donation.user.profile.city, donation.user.profile.state, donation.user.profile.zipcode], style: [nil, nil, nil]
       end
     end
   end
