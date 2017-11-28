@@ -18,7 +18,11 @@ wb.add_worksheet(name: "Donations") do |sheet|
   @donations.each do |donation|
     user_nil = donation.user_id.nil?
     if user_nil
-      sheet.add_row [donation.id, donation.amount, donation.payments.first.fullname], style: [nil, nil, nil]
+      if donation.payments.nil?
+        sheet.add_row [donation.id, donation.amount, "Unavailable", style: [nil, nil, nil]
+      else
+        sheet.add_row [donation.id, donation.amount, donation.payments.first.fullname], style: [nil, nil, nil]
+      end
     else
       if donation.user.profile.nil?
         sheet.add_row [donation.id, donation.amount, donation.honoree, donation.user.name], style: [nil, nil, nil]
