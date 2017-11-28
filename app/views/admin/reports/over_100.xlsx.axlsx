@@ -33,3 +33,18 @@ wb.add_worksheet(name: "Donations") do |sheet|
     end
   end
 end
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Payments") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+
+  sheet.add_row ["Record Number", "Amount", "Name", "Street", "City", "State", "Zipcode" ]
+  @payments.each do |payment|
+    if payment.user.nil?
+      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, 'Unavailable' ]
+    else
+      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, payment.user.profile.street, payment.user.profile.city, payment.user.profile.state, payment.user.profile.zipcode ]
+    end
+  end
+end
