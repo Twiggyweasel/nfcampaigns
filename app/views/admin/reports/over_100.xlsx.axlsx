@@ -5,7 +5,7 @@ wb.add_worksheet(name: "Registrations") do |sheet|
 
   sheet.add_row ["Record Number", "Raised"]
   @attendees.each do |attendee|
-    sheet.add_row [attendee.id, number_to_currency(attendee.raised), style: [nil, nil]
+    sheet.add_row [attendee.id, number_to_currency(attendee.raised)], style: [nil, nil]
   end
 end
 
