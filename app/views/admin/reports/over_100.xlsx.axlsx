@@ -16,6 +16,7 @@ wb.add_worksheet(name: "Donations") do |sheet|
 
   sheet.add_row ["Record Number", "Amount"]
   @donations.each do |donation|
-    sheet.add_row [donation.id, donation.amount], style: [nil, nil]
+    user_nil = donation.user_id.nil?
+    sheet.add_row [donation.id, donation.amount, user_nil], style: [nil, nil, nil]
   end
 end
