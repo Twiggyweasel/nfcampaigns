@@ -39,12 +39,12 @@ wb.add_worksheet(name: "Payments") do |sheet|
   style = wb.styles
   date_cell = style.add_style(format_code: "mm-dd-yyyy")
 
-  sheet.add_row ["Record Number", "Amount", "Name", "Street", "City", "State", "Zipcode" ]
+  sheet.add_row ["Record Number", "Amount", "Name", "Street", "City", "State", "Zipcode", 'authorization Code', 'processing date' ]
   @payments.each do |payment|
     if payment.payable.user.nil?
-      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, 'Unavailable' ]
+      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, 'Unavailable', 'unavialable', 'unavailable', 'unavailable', payment.authorization_code, payment.created_at ], style: [nil, nil, nil, nil, nil, nil, nil, date_cell ]
     else
-      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, payment.payable.user.profile.street, payment.payable.user.profile.city, payment.payable.user.profile.state, payment.payable.user.profile.zipcode ]
+      sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, payment.payable.user.profile.street, payment.payable.user.profile.city, payment.payable.user.profile.state, payment.payable.user.profile.zipcode, payment.authorization_code, payment.created_at ], style: [nil, nil, nil, nil, nil, nil, nil, date_cell ]
     end
   end
 end
