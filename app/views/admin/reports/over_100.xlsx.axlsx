@@ -6,8 +6,7 @@ wb.add_worksheet(name: "Registrations") do |sheet|
   sheet.add_row ["Record Number", "Raised", "Name", "Street", "City", "State", "Zipcode" ]
   @attendees.each do |attendee|
     user = attendee.user
-    sheet.add_row [attendee.id,
-    number_to_currency(attendee.raised), attendee.user.name, user.profile? ? user.profile.street + ' ' + user.profile.apt : 'unavailable', user.profile? ? user.profile.city : 'unavailable', user.profile? ? user.profile.state : 'unavailable', user.profile? ? user.profile.zipcode : 'unavailable' ]
+    sheet.add_row [attendee.id, number_to_currency(attendee.raised), attendee.user.name, user.profile.street + ' ' + user.profile.apt, user.profile.city, user.profile.state, user.profile.zipcode ]
   end
 end
 
