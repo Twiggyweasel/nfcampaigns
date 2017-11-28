@@ -21,7 +21,7 @@ wb.add_worksheet(name: "Donations") do |sheet|
       if donation.payments.empty?
         sheet.add_row [donation.id, donation.amount, "Unavailable"], style: [nil, nil, nil]
       else
-        sheet.add_row [donation.id, donation.amount, donation.payments.first.first_name], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, donation.payments.first.fullname], style: [nil, nil, nil]
       end
     else
       if donation.user.profile.nil?
