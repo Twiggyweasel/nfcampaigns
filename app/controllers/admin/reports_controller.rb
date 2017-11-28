@@ -14,5 +14,9 @@ class Admin::ReportsController < ApplicationController
 
   end
 
+  def over_100
+    @Attendees = Attendee.where.(paid: true).where("raised > ?", 100)
+    @donations = Contribution.where(paid: true).where('amount > ?', 100)
+  end
 
 end

@@ -1,3 +1,5 @@
 <%= render 'shared/title', title: "Reports", display: 2 %>
 
 <%= link_to 'Unpaid Registrations', admin_unpaid_registrations_path(format: :xlsx), class: 'btn btn-lg btn-primary' %>
+
+<%= link_to 'over_100', admin_over_100_path(format: :xlsx), class: 'btn btn-lg btn-primary' %>

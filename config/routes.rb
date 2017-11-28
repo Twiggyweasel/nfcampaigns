@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     get 'home', to: 'pages#home'
     get 'reports', to: 'reports#index'
+    get 'over_100', to: 'reports#over_100'
     get 'unpaid_registrations', to: 'reports#unpaid_registrations'
     resources :events do
       resources :resources, except: [:show, :index]

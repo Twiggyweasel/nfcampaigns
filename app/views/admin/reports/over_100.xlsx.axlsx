@@ -1,0 +1,20 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Registrations") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+
+  sheet.add_row ["Record Number", "Raised"]
+  @attendees.each do |attendee|
+    sheet.add_row [attendee.id, number_to_currency(attendee.raised), style: [nil, nil]
+  end
+end
+
+wb.add_worksheet(name: "Donations") do |sheet|
+  style = wb.styles
+  date_cell = style.add_style(format_code: "mm-dd-yyyy")
+
+  sheet.add_row ["Record Number", "Amount"]
+  @donations.each do |donation|
+    sheet.add_row [donation.id, donation.amount], style: [nil, nil]
+  end
+end
