@@ -19,9 +19,9 @@ wb.add_worksheet(name: "Donations") do |sheet|
     user_nil = donation.user_id.nil?
     if user_nil
       if donation.payments.empty?
-        sheet.add_row [donation.id, donation.amount, "Unavailable"], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, "Unavailable", "Unavailable", "Unavailable", "Unavailable", "Unavailable"], style: [nil, nil, nil]
       else
-        sheet.add_row [donation.id, donation.amount, donation.honoree, donation.payments.first.fullname], style: [nil, nil, nil]
+        sheet.add_row [donation.id, donation.amount, donation.honoree, donation.payments.first.fullname, "Unavailable", "Unavailable", "Unavailable", "Unavailable"], style: [nil, nil, nil]
       end
     else
       if donation.user.profile.nil?
