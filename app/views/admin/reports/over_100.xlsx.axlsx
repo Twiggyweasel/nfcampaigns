@@ -41,7 +41,7 @@ wb.add_worksheet(name: "Payments") do |sheet|
 
   sheet.add_row ["Record Number", "Amount", "Name", "Street", "City", "State", "Zipcode" ]
   @payments.each do |payment|
-    if payment.backable.user.nil?
+    if payment.payable.user.nil?
       sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, 'Unavailable' ]
     else
       sheet.add_row [payment.id, number_to_currency(payment.amount), payment.fullname, payment.payable.user.profile.street, payment.payable.user.profile.city, payment.payable.user.profile.state, payment.payable.user.profile.zipcode ]
